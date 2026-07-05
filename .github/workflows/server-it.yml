@@ -1,0 +1,44 @@
+# 実PostgreSQL統合テスト（Phase 4）。GitHub Actions のサービスコンテナで実PGを起動して全テストを走らせる。
+name: server integration (PostgreSQL)
+
+on:
+  push:
+    paths:
+      - "server/**"
+      - ".github/workflows/server-it.yml"
+  pull_request:
+    paths:
+      - "server/**"
+  workflow_dispatch:
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: worldawn
+          POSTGRES_PASSWORD: worldawn
+          POSTGRES_DB: worldawn_test
+        ports:
+          - 55432:5432
+        options: >-
+          --health-cmd="pg_isready -U worldawn -d worldawn_test"
+          --health-interval=2s
+          --health-timeout=3s
+          --health-retries=30
+    env:
+      DATABASE_URL: postgres://worldawn:worldawn@127.0.0.1:55432/worldawn_test
+    defaults:
+      run:
+        working-directory: server
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci || npm install
+      - run: npm run typecheck
+      - run: npm run db:migrate
+      - run: node --test "tests/**/*.test.ts"

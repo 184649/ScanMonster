@@ -1,0 +1,462 @@
+ground	Aardvark	ツチブタ	normal
+ground	Alpaca	アルパカ	normal
+ground	Anteater	アリクイ	normal
+ground	Armadillo	アルマジロ	normal
+ground	Badger	アナグマ	normal
+ground	Bear	クマ	normal
+ground	Bison	バイソン	normal
+ground	Camel	ラクダ	normal
+ground	Cat	猫	normal
+ground	Chameleon	カメレオン	normal
+ground	Cheetah	チーター	normal
+ground	Chimpanzee	チンパンジー	normal
+ground	Cow	牛	normal
+ground	Deer	鹿	normal
+ground	Dog	犬	normal
+ground	Donkey	ロバ	normal
+ground	Elephant	ゾウ	normal
+ground	Fenrir	フェンリル	legend
+ground	Ferret	フェレット	normal
+ground	Fox	キツネ	normal
+ground	Gecko	ヤモリ	normal
+ground	Giraffe	キリン	normal
+ground	Goat	ヤギ	normal
+ground	Gorilla	ゴリラ	normal
+ground	Hamster	ハムスター	normal
+ground	Hedgehog	ハリネズミ	normal
+ground	Horse	馬	normal
+ground	Hyena	ハイエナ	normal
+ground	Iguana	イグアナ	normal
+ground	Jaguar	ジャガー	normal
+ground	Kangaroo	カンガルー	normal
+ground	Koala	コアラ	normal
+ground	Lemur	キツネザル	normal
+ground	Leopard	ヒョウ	normal
+ground	Lion	ライオン	normal
+ground	Lizard	トカゲ	normal
+ground	Llama	ラマ	normal
+ground	Mandrill	マンドリル	normal
+ground	Marmot	マーモット	normal
+ground	Marten	テン	normal
+ground	Meerkat	ミーアキャット	normal
+ground	Mole	モグラ	normal
+ground	Monkey	サル	normal
+ground	Moose	ムース	normal
+ground	Mouse	ネズミ	normal
+ground	Okapi	オカピ	normal
+ground	Orangutan	オランウータン	normal
+ground	Panda	パンダ	normal
+ground	Pangolin	センザンコウ	normal
+ground	Porcupine	ヤマアラシ	normal
+ground	Prairie Dog	プレーリードッグ	normal
+ground	Rabbit	うさぎ	normal
+ground	Raccoon	アライグマ	normal
+ground	Raccoon Dog	タヌキ	normal
+ground	Red Panda	レッサーパンダ	normal
+ground	Reindeer	トナカイ	normal
+ground	Rhinoceros	サイ	normal
+ground	Serow	カモシカ	normal
+ground	Sheep	羊	normal
+ground	Skunk	スカンク	normal
+ground	Sloth	ナマケモノ	normal
+ground	Snake	ヘビ	normal
+ground	Squirrel	リス	normal
+ground	Tapir	バク	normal
+ground	Tiger	トラ	normal
+ground	Tsuchinoko	ツチノコ	legend
+ground	Underground Dweller	地底人	legend
+ground	Vicuna	ビクーニャ	normal
+ground	Weasel	イタチ	normal
+ground	White Tiger	白虎	normal
+ground	Wild Boar	イノシシ	normal
+ground	Wolf	オオカミ	normal
+ground	Yeti	イエティ	legend
+ground	Zebra	シマウマ	normal
+ground		麒麟	
+ground	Wombat	ウォンバット	normal
+ground	Fennec Fox	フェネック	normal
+ground	Mongoose	マングース	normal
+ground	Musk Ox	ジャコウウシ	normal
+ground	Komodo Dragon	コモドオオトカゲ	normal
+ground	Yak	ヤク	normal
+ground	Water Buffalo	スイギュウ	normal
+ground	Antelope	アンテロープ	normal
+ground	Gazelle	ガゼル	normal
+ground	Oryx	オリックス	normal
+ground	Ibex	アイベックス	normal
+ground	Lynx	オオヤマネコ	normal
+ground	Bobcat	ボブキャット	normal
+ground	Cougar	ピューマ	normal
+ground	Serval	サーバル	normal
+ground	Caracal	カラカル	normal
+ground	Jackal	ジャッカル	normal
+ground	Coyote	コヨーテ	normal
+ground	Wolverine	クズリ	normal
+ground	Chipmunk	シマリス	normal
+ground	Groundhog	ウッドチャック	normal
+ground	Jerboa	トビネズミ	normal
+ground	Gerbil	スナネズミ	normal
+ground	Pika	ナキウサギ	normal
+ground	Quokka	クオッカ	normal
+ground	Tasmanian Devil	タスマニアデビル	normal
+ground	Opossum	オポッサム	normal
+ground	Aye-aye	アイアイ	normal
+ground	Gibbon	テナガザル	normal
+ground	Baboon	ヒヒ	normal
+ground	Kinkajou	キンカジュー	normal
+ground	Saola	サオラ	rare
+ground	Iberian Lynx	イベリアオオヤマネコ	rare
+waterside	Beaver	ビーバー	normal
+waterside	Capybara	カピバラ	normal
+waterside	Crocodile	ワニ	normal
+waterside	Dolphin	イルカ	normal
+waterside	Frog	カエル	normal
+waterside	Hippopotamus	カバ	normal
+waterside	Newt	イモリ	normal
+waterside	Otter	カワウソ	normal
+waterside	Penguin	ペンギン	normal
+waterside	Platypus	カモノハシ	normal
+waterside	Salamander	サンショウウオ	normal
+waterside	Sea Otter	ラッコ	normal
+waterside	Seal	アザラシ	normal
+waterside	Turtle	カメ	normal
+waterside	Walrus	セイウチ	normal
+waterside	Whale	クジラ	normal
+waterside	Medaka	メダカ	normal
+waterside	Goldfish	金魚	normal
+waterside	Carp	鯉	normal
+waterside	Crucian Carp	フナ	normal
+waterside	Loach	ドジョウ	normal
+waterside	Catfish	ナマズ	normal
+waterside	Sweetfish	アユ	normal
+waterside	Yamame Trout	ヤマメ	normal
+waterside	Char	イワナ	normal
+waterside	Salmon	サケ	normal
+waterside	Trout	マス	normal
+waterside	Wakasagi Smelt	ワカサギ	normal
+waterside	Eel	ウナギ	normal
+waterside	Conger Eel	アナゴ	normal
+waterside	Pike Conger	ハモ	normal
+waterside	Sea Bream	タイ	normal
+waterside	Sea Bass	スズキ	normal
+waterside	Horse Mackerel	アジ	normal
+waterside	Mackerel	サバ	normal
+waterside	Sardine	イワシ	normal
+waterside	Pacific Saury	サンマ	normal
+waterside	Bonito	カツオ	normal
+waterside	Tuna	マグロ	normal
+waterside	Yellowtail	ブリ	normal
+waterside	Greater Amberjack	カンパチ	normal
+waterside	Flounder	ヒラメ	normal
+waterside	Flatfish	カレイ	normal
+waterside	Pufferfish	フグ	normal
+waterside	Porcupinefish	ハリセンボン	normal
+waterside	Ocean Sunfish	マンボウ	normal
+waterside	Flying Fish	トビウオ	normal
+waterside	Marlin	カジキ	normal
+waterside	Shark	サメ	normal
+waterside	Ray	エイ	normal
+waterside	Seahorse	タツノオトシゴ	normal
+waterside	Clownfish	クマノミ	normal
+waterside	Blue Tang	ナンヨウハギ	normal
+waterside	Butterflyfish	チョウチョウウオ	normal
+waterside	Moorish Idol	ツノダシ	normal
+waterside	Boxfish	ハコフグ	normal
+waterside	Lionfish	ミノカサゴ	normal
+waterside	Rockfish	カサゴ	normal
+waterside	Black Rockfish	メバル	normal
+waterside	Greenling	アイナメ	normal
+waterside	Gunnel	ギンポ	normal
+waterside	Wrasse	ベラ	normal
+waterside	Parrotfish	ブダイ	normal
+waterside	Goby	ハゼ	normal
+waterside	Mudskipper	ムツゴロウ	normal
+waterside	Anglerfish	アンコウ	normal
+waterside	Oarfish	リュウグウノツカイ	normal
+waterside	Coelacanth	シーラカンス	normal
+waterside	Arapaima	ピラルク	normal
+waterside	Arowana	アロワナ	normal
+waterside	Piranha	ピラニア	normal
+waterside	Neon Tetra	ネオンテトラ	normal
+waterside	Guppy	グッピー	normal
+waterside	Betta	ベタ	normal
+waterside	Angelfish	エンゼルフィッシュ	normal
+waterside	Discus	ディスカス	normal
+waterside	Pleco	プレコ	normal
+waterside	Corydoras	コリドラス	normal
+waterside	Archerfish	テッポウウオ	normal
+waterside	Jellyfish	クラゲ	normal
+waterside	Octopus	タコ	normal
+waterside	Squid	イカ	normal
+waterside	Clam	アサリ	normal
+waterside	Common Orient Clam	ハマグリ	normal
+waterside	Scallop	ホタテ	normal
+waterside	Turban Shell	サザエ	normal
+waterside	Sea Slug	ウミウシ	normal
+waterside	Sea Cucumber	ナマコ	normal
+waterside	Starfish	ヒトデ	normal
+waterside	Sea Urchin	ウニ	normal
+waterside	Coral	サンゴ	normal
+waterside	Sea Anemone	イソギンチャク	normal
+waterside	Orca	シャチ	normal
+waterside	Crab	カニ	normal
+waterside	Hermit Crab	ヤドカリ	normal
+waterside	Shrimp	エビ	normal
+waterside	Lobster	ロブスター	normal
+waterside	Lumpsucker	ダンゴウオ	normal
+waterside	Spotted Garden Eel	チンアナゴ	normal
+waterside	Moray Eel	ウツボ	normal
+waterside	Filefish	カワハギ	normal
+waterside	Devil Stinger	オニオコゼ	normal
+waterside	Barracuda	カマス	normal
+waterside	Largescale Blackfish	メジナ	normal
+waterside	Sillago	キス	normal
+waterside	Snapper	フエダイ	normal
+waterside	Cod	タラ	normal
+waterside	Herring	ニシン	normal
+waterside	Mullet	ボラ	normal
+waterside	Grouper	ハタ	normal
+waterside	Pike	カワカマス	normal
+waterside	Tilapia	ティラピア	normal
+waterside	Silver-stripe Round Herring	キビナゴ	normal
+waterside	Hake	メルルーサ	normal
+waterside	Sea Hare	アメフラシ	normal
+waterside	Krill	オキアミ	normal
+waterside	Kraken	クラーケン	legend
+waterside	Sea Dragon	海竜	legend
+waterside	Megalodon	メガロドン	legend
+waterside	Coelacanth	シーラカンス	rare
+waterside	Megamouth Shark	メガマウス	legend
+waterside	Nessie	ネッシー	legend
+waterside	Merlion	マーライオン	legend
+waterside	Manatee	マナティー	normal
+waterside	Dugong	ジュゴン	normal
+waterside	Nautilus	オウムガイ	normal
+waterside	Manta Ray	オニイトマキエイ	normal
+waterside	Horseshoe Crab	カブトガニ	normal
+waterside	Vaquita	コガシラネズミイルカ	rare
+waterside	Axolotl	メキシコサンショウウオ	rare
+sky	Bat	コウモリ	normal
+sky	Cockatoo	オウム	normal
+sky	Crane	ツル	normal
+sky	Crow	カラス	normal
+sky	Eagle	ワシ	normal
+sky	Flamingo	フラミンゴ	normal
+sky	Hawk	タカ	normal
+sky	Ostrich	ダチョウ	normal
+sky	Owl	フクロウ	normal
+sky	Parakeet	インコ	normal
+sky	Peacock	クジャク	normal
+sky	Pigeon	ハト	normal
+sky	Sparrow	スズメ	normal
+sky	Swallow	ツバメ	normal
+sky	Swan	白鳥	normal
+sky	Kingfisher	カワセミ	normal
+sky	Albatross	アホウドリ	normal
+sky	Hornbill	サイチョウ	normal
+sky	Kestrel	チョウゲンボウ	normal
+sky	Hummingbird	ハチドリ	normal
+sky	Falcon	ハヤブサ	normal
+sky	Vulture	ハゲワシ	normal
+sky	Condor	コンドル	normal
+sky	Kite	トビ	normal
+sky	Harrier	チュウヒ	normal
+sky	Osprey	ミサゴ	normal
+sky	Buzzard	ノスリ	normal
+sky	Secretarybird	ヘビクイワシ	normal
+sky	Shoebill	ハシビロコウ	normal
+sky	Stork	コウノトリ	normal
+sky	Heron	サギ	normal
+sky	Egret	シラサギ	normal
+sky	Sacred Ibis	アフリカクロトキ	normal
+sky	Spoonbill	ヘラサギ	normal
+sky	Great Cormorant	カワウ	normal
+sky	Pelican	ペリカン	normal
+sky	Gannet	カツオドリ	normal
+sky	Blue-footed Booby	アオアシカツオドリ	normal
+sky	Frigatebird	グンカンドリ	normal
+sky	Petrel	ウミツバメ	normal
+sky	Shearwater	ミズナギドリ	normal
+sky	Puffin	ニシツノメドリ	normal
+sky	Auk	ウミスズメ	normal
+sky	Guillemot	ウミガラス	normal
+sky	Tern	アジサシ	normal
+sky	Gull	カモメ	normal
+sky	Skua	トウゾクカモメ	normal
+sky	Loon	アビ	normal
+sky	Grebe	カイツブリ	normal
+sky	Coot	オオバン	normal
+sky	Moorhen	バン	normal
+sky	Goose	ガン	normal
+sky	Duck	カモ	normal
+sky	Mallard	マガモ	normal
+sky	Teal	コガモ	normal
+sky	Eider	ケワタガモ	normal
+sky	Shelduck	ツクシガモ	normal
+sky	Pheasant	キジ	normal
+sky	Quail	ウズラ	normal
+sky	Partridge	ヤマウズラ	normal
+sky	Turkey	シチメンチョウ	normal
+sky	Guinea Fowl	ホロホロチョウ	normal
+sky	Ptarmigan	ライチョウ	normal
+sky	Grouse	ライチョウ類	normal
+sky	Bustard	ノガン	normal
+sky	Sandgrouse	サケイ	normal
+sky	Woodpecker	キツツキ	normal
+sky	Toucan	オオハシ	normal
+sky	Hoopoe	ヤツガシラ	normal
+sky	Bee-eater	ハチクイ	normal
+sky	Roller	ブッポウソウ	normal
+sky	Swift	アマツバメ	normal
+sky	Nightjar	ヨタカ	normal
+sky	Cuckoo	カッコウ	normal
+sky	Roadrunner	オオミチバシリ	normal
+sky	African Grey Parrot	ヨウム	normal
+sky	Macaw	コンゴウインコ	normal
+sky	Lorikeet	ヒインコ	normal
+sky	Lovebird	ボタンインコ	normal
+sky	Canary	カナリア	normal
+sky	Finch	フィンチ	normal
+sky	Goldfinch	ゴシキヒワ	normal
+sky	Robin	ヨーロッパコマドリ	normal
+sky	Bluebird	ルリツグミ	normal
+sky	Starling	ムクドリ	normal
+sky	Myna	キュウカンチョウ	normal
+sky	Magpie	カササギ	normal
+sky	Jay	カケス	normal
+sky	Raven	ワタリガラス	normal
+sky	Shrike	モズ	normal
+sky	Wagtail	セキレイ	normal
+sky	Warbler	ウグイス	normal
+sky	Flycatcher	ヒタキ	normal
+sky	Nuthatch	ゴジュウカラ	normal
+sky	Treecreeper	キバシリ	normal
+sky	Wren	ミソサザイ	normal
+sky	Thrush	ツグミ	normal
+sky	Blackbird	クロウタドリ	normal
+sky	Oriole	コウライウグイス	normal
+sky	Bunting	ホオジロ	normal
+sky	Kakapo	カカポ	rare
+sky	Japanese Crested Ibis	トキ	rare
+bug	Ladybug	テントウムシ	normal
+bug	Rhinoceros Beetle	カブトムシ	normal
+bug	Stag Beetle	クワガタ	normal
+bug	Scarab Beetle	コガネムシ	normal
+bug	Jewel Beetle	タマムシ	normal
+bug	Bronze Beetle	カナブン	normal
+bug	Flower Chafer	ハナムグリ	normal
+bug	Butterfly	蝶	normal
+bug	Moth	蛾	normal
+bug	Silkworm	カイコ	normal
+bug	Honeybee	ミツバチ	normal
+bug	Carpenter Bee	クマバチ	normal
+bug	Hornet	スズメバチ	normal
+bug	Paper Wasp	アシナガバチ	normal
+bug	Ant	アリ	normal
+bug	Termite	シロアリ	normal
+bug	Mantis	カマキリ	normal
+bug	Grasshopper	バッタ	normal
+bug	Katydid	キリギリス	normal
+bug	Cricket	コオロギ	normal
+bug	Bell Cricket	スズムシ	normal
+bug	Pine Cricket	マツムシ	normal
+bug	Cicada	セミ	normal
+bug	Dragonfly	トンボ	normal
+bug	Firefly	ホタル	normal
+bug	Giant Water Bug	タガメ	normal
+bug	Diving Beetle	ゲンゴロウ	normal
+bug	Whirligig Beetle	ミズスマシ	normal
+bug	Water Strider	アメンボ	normal
+bug	Scorpion	サソリ	normal
+bug	Centipede	ムカデ	normal
+bug	Millipede	ヤスデ	normal
+bug	Pill Bug	ダンゴムシ	normal
+bug	Stick Insect	ナナフシ	normal
+bug	Leaf Insect	コノハムシ	normal
+bug	Leaf Beetle	ハムシ	normal
+bug	Weevil	ゾウムシ	normal
+bug	Longhorn Beetle	カミキリムシ	normal
+bug	Tiger Beetle	ハンミョウ	normal
+bug	Ground Beetle	オサムシ	normal
+bug	Dung Beetle	フンコロガシ	normal
+bug	Earwig	ハサミムシ	normal
+bug	Silverfish	シミ	normal
+bug	Springtail	トビムシ	normal
+bug	Aphid	アブラムシ	normal
+bug	Caterpillar	芋虫	normal
+bug	Bagworm	ミノムシ	normal
+bug	Leafroller	ハマキムシ	normal
+bug	Antlion	ウスバカゲロウ	normal
+bug	Mayfly	カゲロウ	normal
+bug	Stonefly	カワゲラ	normal
+bug	Cockroach	ゴキブリ	normal
+bug	Mosquito	カ	normal
+bug	Fly	ハエ	normal
+bug	Horsefly	アブ	normal
+bug	Blackfly	ブユ	normal
+bug	Crane Fly	ガガンボ	normal
+bug	Stink Bug	カメムシ	normal
+bug	Cave Cricket	カマドウマ	normal
+bug	Leafhopper	ヨコバイ	normal
+bug	Planthopper	ウンカ	normal
+bug	Scale Insect	カイガラムシ	normal
+bug	Bark Beetle	キクイムシ	normal
+bug	Mole Cricket	オケラ	normal
+bug	Click Beetle	コメツキムシ	normal
+bug	Spittlebug	アワフキムシ	normal
+bug	Sawfly	ハバチ	normal
+bug	Spider	クモ	normal
+bug	Mite	ダニ	normal
+bug	Tick	マダニ	normal
+bug	Flea	ノミ	normal
+bug	Louse	シラミ	normal
+bug	Booklouse	チャタテムシ	normal
+bug	Whitefly	コナジラミ	normal
+bug	Lacewing	クサカゲロウ	normal
+bug	Dobsonfly	ヘビトンボ	normal
+bug	Alderfly	センブリ	normal
+bug	Caddisfly	トビケラ	normal
+bug	Thrips	アザミウマ	normal
+bug	Rove Beetle	ハネカクシ	normal
+bug	Firebrat	マダラシミ	normal
+bug	Robber Fly	ムシヒキアブ	normal
+bug	Hoverfly	ハナアブ	normal
+bug	Ichneumon Wasp	ヒメバチ	normal
+bug	Lace Bug	グンバイムシ	normal
+bug	Assassin Bug	サシガメ	normal
+bug	Bed Bug	トコジラミ	normal
+bug	Water Scorpion	ミズカマキリ	normal
+bug	Water Boatman	ミズムシ	normal
+bug	Backswimmer	マツモムシ	normal
+bug	Velvet Worm	カギムシ	normal
+bug	Pseudoscorpion	カニムシ	normal
+bug	Harvestman	ザトウムシ	normal
+bug	House Centipede	ゲジ	normal
+bug	Symphylan	コムカデ	normal
+bug	Pauropod	エダヒゲムシ	normal
+bug	Bristletail	イシノミ	normal
+bug	Snakefly	ラクダムシ	normal
+bug	Webspinner	シロアリモドキ	normal
+bug	Horntail	キバチ	normal
+bug	Phantom Insect	幻虫	rare
+bug	Kesaran Pasaran	ケサランパサラン	rare
+bug	Goliath Beetle	ゴライアスオオツノハナムグリ	normal
+bug	Atlas Moth	ヨナグニサン	normal
+bug	Orchid Mantis	ハナカマキリ	normal
+bug	Tarantula	タランチュラ	normal
+bug	Atlas Beetle	コーカサスオオカブト	normal
+bug	Lord Howe Island Stick Insect	ロードハウナナフシ	rare
+bug	Queen Alexandra's Birdwing	アレクサンドラトリバネアゲハ	rare
+phantom	Dragon	ドラゴン	rare
+phantom	Ghost	ゴースト	rare
+phantom	Phoenix	フェニックス	rare
+phantom	Sphinx	スフィンクス	rare
+phantom	Moai	モアイ	rare
+phantom	Fairy	妖精	rare
+phantom	Dwarf	小人	rare
+phantom	Elf	エルフ	rare
+phantom	Unicorn	ユニコーン	rare
+phantom	Griffin	グリフォン	rare
+phantom	Pegasus	ペガサス	rare
+planet	Alien	エイリアン	rare
+planet	Robot	ロボット	rare

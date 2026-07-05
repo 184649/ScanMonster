@@ -1,0 +1,35 @@
+# WORLDAWN サーバー + PostgreSQL（ConoHa VPS 推奨構成）。
+# 使い方: cp .env.example .env で値を設定 → docker compose up -d
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: worldawn_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change_me}
+      POSTGRES_DB: worldawn
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U worldawn_user -d worldawn"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    # 本番は外部公開せず、api からのみ接続する（ports は開けない）。
+
+  api:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: postgresql://worldawn_user:${POSTGRES_PASSWORD:-change_me}@db:5432/worldawn
+      APP_ORIGIN: ${APP_ORIGIN:-*}
+    ports:
+      - "127.0.0.1:3000:3000" # Nginx 経由のみ公開（localhost バインド）
+
+volumes:
+  pgdata:

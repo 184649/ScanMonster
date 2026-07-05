@@ -1,0 +1,38 @@
+{
+  "_comment": "キャラ分類の正本レイヤ。Character.xlsx は rarity=normal|rare しか表現できず legendary/releaseStatus を持てないため、ここが legendary 分類と releaseStatus の正式な正本。id 据え置きで実効 rarity を上書きする（rare=実在／legendary=空想）。",
+  "rarity": {
+    "ground_rare_fenrir": "legendary",
+    "ground_rare_yeti": "legendary",
+    "ground_rare_tsuchinoko": "legendary",
+    "ground_rare_underground_dweller": "legendary",
+    "waterside_rare_kraken": "legendary",
+    "waterside_rare_sea_dragon": "legendary",
+    "waterside_rare_nessie": "legendary",
+    "waterside_rare_merlion": "legendary",
+    "bug_rare_phantom_insect": "legendary",
+    "bug_rare_kesaran_pasaran": "legendary",
+    "phantom_rare_dragon": "legendary",
+    "phantom_rare_phoenix": "legendary",
+    "phantom_rare_sphinx": "legendary",
+    "phantom_rare_fairy": "legendary",
+    "phantom_rare_dwarf": "legendary",
+    "phantom_rare_elf": "legendary",
+    "phantom_rare_unicorn": "legendary",
+    "phantom_rare_griffin": "legendary",
+    "phantom_rare_pegasus": "legendary",
+    "phantom_rare_ghost": "legendary",
+    "planet_rare_alien": "legendary"
+  },
+  "releaseStatus": {
+    "_comment": "各キャラの明示状態。initial=初期リリース / future=将来 / inactive=非アクティブ / qa=QA専用。hasImage は決定要因にしない（決定後に検証する）。initial なのに画像が無いキャラはビルドで future へ保留（art待ち）し、監査で報告する。",
+    "worldDefault": {
+      "ground": "initial",
+      "sky": "initial",
+      "waterside": "future",
+      "bug": "future",
+      "phantom": "future",
+      "planet": "future"
+    },
+    "byId": {}
+  }
+}

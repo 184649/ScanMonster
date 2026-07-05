@@ -1,0 +1,70 @@
+{
+  "expo": {
+    "name": "WORLDAWN",
+    "slug": "worldawn",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F7FAFF"
+    },
+    "scheme": "worldawn",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.worldawn.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "バーコードやQRコードを読み取り、生き物キャラクターを発見するためにカメラを使用します。",
+        "NSPhotoLibraryUsageDescription": "選択した画像内のバーコードやQRコードを読み取るために写真ライブラリを使用します。",
+        "NSLocationWhenInUseUsageDescription": "現在地から地方区分を自動判定し、地域ごとの生き物の個体差を作るために位置情報を使用します。緯度経度は保存しません。"
+      }
+    },
+    "android": {
+      "package": "com.worldawn.app",
+      "permissions": [
+        "CAMERA",
+        "ACCESS_COARSE_LOCATION"
+      ],
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#F7FAFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "バーコードやQRコードを読み取り、生き物キャラクターを発見するためにカメラを使用します。",
+          "microphonePermission": "WORLDAWNは音声を録音しません。",
+          "recordAudioAndroid": false,
+          "barcodeScannerEnabled": true
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "選択した画像内のバーコードやQRコードを読み取るために写真ライブラリを使用します。"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "現在地から地方区分を自動判定し、地域ごとの生き物の個体差を作るために位置情報を使用します。緯度経度は保存しません。"
+        }
+      ],
+      "expo-audio",
+      "expo-secure-store"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "worldawn-local-mvp"
+      }
+    }
+  }
+}

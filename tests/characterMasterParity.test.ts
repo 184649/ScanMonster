@@ -1,0 +1,130 @@
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+import { buildCatalog, loadClassification } from "../scripts/catalogBuild.js";
+import { CATALOG_LEGENDARIES, CATALOG_NORMALS, CATALOG_RARES } from "../src/data/characterCatalog.generated.ts";
+import { SEED_CHARACTERS } from "../server/src/characterSeed.generated.ts";
+
+/**
+ * キャラクター一元化の整合性テスト（releaseStatus 明示モデル・89/85/4）。
+ * 正本 = character_master.json + character-classification.json。
+ * 重要：hasImage は releaseStatus を決定・降格しない。initial 画像欠損は missing として検出（future にしない）。
+ * 生成物（app catalog / server seed）は buildable（initial∩hasImage=85）で一致する。
+ */
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
+const charactersDir = path.join(root, "assets", "characters");
+const master = JSON.parse(fs.readFileSync(path.join(charactersDir, "character_master.json"), "utf8"));
+const classification = loadClassification(charactersDir);
+type Entry = { id: string; worldGroup: string; hasImage: boolean; releaseStatus: string };
+const full = buildCatalog({ root, charactersDir, master, classification }) as {
+  characters: Entry[];
+  rares: Entry[];
+  legendaries: Entry[];
+  missingInitialAssets: Array<{ id: string; world: string; rarity: string }>;
+};
+const all = [...full.characters, ...full.rares, ...full.legendaries];
+const byId = new Map(all.map((c) => [c.id, c]));
+const legIds = new Set(full.legendaries.map((c) => c.id));
+const rareIds = new Set(full.rares.map((c) => c.id));
+
+const MISSING_4 = [
+  "ground_rare_white_tiger",
+  "ground_rare_tsuchinoko",
+  "ground_rare_yeti",
+  "ground_rare_underground_dweller"
+];
+
+describe("初期リリース 89/85/4（hasImageで降格しない）", () => {
+  it("canonical initial = 89", () => {
+    assert.equal(all.filter((c) => c.releaseStatus === "initial").length, 89);
+  });
+  it("asset complete initial = 85", () => {
+    assert.equal(all.filter((c) => c.releaseStatus === "initial" && c.hasImage).length, 85);
+  });
+  it("missing initial = 4（正確なID集合）", () => {
+    const missIds = full.missingInitialAssets.map((m) => m.id).sort();
+    assert.deepEqual(missIds, [...MISSING_4].sort());
+  });
+  it("欠損4体は future へ降格されず releaseStatus=initial のまま", () => {
+    for (const id of MISSING_4) {
+      const c = byId.get(id)!;
+      assert.equal(c.releaseStatus, "initial", `${id} が initial でない`);
+      assert.equal(c.hasImage, false, `${id} は画像なしのはず`);
+    }
+  });
+});
+
+describe("rarity 分類（21 legendary 維持・実在は rare）", () => {
+  it("classification.rarity は 21 件で全て legendary", () => {
+    const vals = Object.values(classification.rarity as Record<string, string>);
+    assert.equal(vals.length, 21);
+    assert.ok(vals.every((v) => v === "legendary"));
+  });
+  it("Fenrir/Kraken/Tsuchinoko/Yeti/Underground Dweller は legendary", () => {
+    for (const id of [
+      "ground_rare_fenrir",
+      "waterside_rare_kraken",
+      "ground_rare_tsuchinoko",
+      "ground_rare_yeti",
+      "ground_rare_underground_dweller",
+      "phantom_rare_dragon",
+      "phantom_rare_phoenix",
+      "planet_rare_alien"
+    ]) {
+      assert.ok(legIds.has(id), `${id} が legendary でない`);
+      assert.ok(!rareIds.has(id), `${id} が rare に残存`);
+    }
+  });
+  it("White Tiger / Megalodon / Coelacanth は rare（実在）", () => {
+    for (const id of ["ground_rare_white_tiger", "waterside_rare_megalodon", "waterside_rare_coelacanth"]) {
+      assert.ok(rareIds.has(id), `${id} が rare でない`);
+      assert.ok(!legIds.has(id), `${id} が legendary に誤分類`);
+    }
+  });
+});
+
+describe("future は image有無に関わらず future のまま", () => {
+  it("Kraken(future+画像あり) は future / bug(future) も future", () => {
+    assert.equal(byId.get("waterside_rare_kraken")!.releaseStatus, "future");
+    const bug = all.find((c) => c.worldGroup === "bug");
+    if (bug) assert.equal(bug.releaseStatus, "future");
+  });
+});
+
+describe("生成物(85)は buildable=initial∩hasImage と一致（server=app）", () => {
+  const catById = new Map<string, { rarity: string; world: string }>();
+  for (const c of CATALOG_NORMALS) catById.set(c.id, { rarity: "normal", world: c.worldGroup });
+  for (const c of CATALOG_RARES) catById.set(c.id, { rarity: "rare", world: c.worldGroup });
+  for (const c of CATALOG_LEGENDARIES) catById.set(c.id, { rarity: "legendary", world: c.worldGroup });
+  const buildableIds = new Set(all.filter((c) => c.releaseStatus === "initial" && c.hasImage).map((c) => c.id));
+
+  it("app catalog = server seed = buildable(85) の同一ID集合", () => {
+    assert.equal(catById.size, 85);
+    assert.equal(SEED_CHARACTERS.length, 85);
+    assert.deepEqual([...buildableIds].sort(), [...new Set(SEED_CHARACTERS.map((s) => s.id))].sort());
+    for (const s of SEED_CHARACTERS) {
+      const c = catById.get(s.id);
+      assert.ok(c, `seed ${s.id} が catalog に無い`);
+      assert.equal(c!.rarity, s.rarity);
+      assert.equal(c!.world, s.world);
+    }
+  });
+
+  it("§16 ワールドごと VISIBLE=DRAWABLE=UNLOCK normal（ID集合・欠損4はnormalでないので不影響）", () => {
+    for (const world of ["ground", "sky"]) {
+      const visible = new Set(CATALOG_NORMALS.filter((c) => c.worldGroup === world).map((c) => c.id));
+      const drawable = new Set(SEED_CHARACTERS.filter((s) => s.world === world && s.rarity === "normal").map((s) => s.id));
+      assert.deepEqual([...visible].sort(), [...drawable].sort(), `${world}: normal集合不一致`);
+    }
+  });
+
+  it("Fenrir は初期 catalog/seed の legendary（地上の伝説）／Kraken・phantom は出さない", () => {
+    assert.ok(CATALOG_LEGENDARIES.some((c) => c.id === "ground_rare_fenrir"));
+    assert.ok(SEED_CHARACTERS.some((s) => s.id === "ground_rare_fenrir" && s.rarity === "legendary"));
+    assert.ok(!CATALOG_LEGENDARIES.some((c) => c.id === "waterside_rare_kraken"));
+    assert.ok(!SEED_CHARACTERS.some((s) => s.world === "phantom"));
+  });
+});

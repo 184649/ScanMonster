@@ -1,0 +1,21 @@
+{
+  "workbookPath": "C:\\Users\\user\\work\\git\\ScanMonster\\assets\\characters\\Character.xlsx",
+  "outputCopy": "C:\\Users\\user\\work\\git\\ScanMonster\\tmp\\character-xlsx-work\\outputs\\Character.updated.xlsx",
+  "worldCounts": {
+    "動物": 100,
+    "魚": 100,
+    "虫": 100,
+    "植物": 100,
+    "恐竜": 100,
+    "宇宙": 100,
+    "レア": 27
+  },
+  "variantCandidateCount": 62,
+  "variantCandidatesBySheet": {
+    "動物": 1,
+    "魚": 10,
+    "虫": 33,
+    "植物": 6,
+    "宇宙": 12
+  }
+}

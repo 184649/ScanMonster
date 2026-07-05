@@ -1,0 +1,16 @@
+# 実PostgreSQL統合テスト用の使い捨てDB（Phase 4）。
+# 使い方：docs/POSTGRES_INTEGRATION_TEST.md 参照。データは -v で破棄する前提。
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: worldawn
+      POSTGRES_PASSWORD: worldawn
+      POSTGRES_DB: worldawn_test
+    ports:
+      - "55432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U worldawn -d worldawn_test"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
