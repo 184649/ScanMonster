@@ -1,0 +1,228 @@
+/**
+ * 新しいワールド構成のキャラクターデータを生成する。
+ *
+ * 入力:
+ *   - assets/characters/character_master.json   … Character.xlsx から抽出した原本
+ *       { "<world>": [ { no, name(キャラ名), speciesJa(和名), speciesEn(英名), status } ... ] }
+ *   - assets/characters/<world>/<speciesEn>/*.png … 実画像（存在するものだけ）
+ *
+ * 出力:
+ *   - src/data/characterCatalog.generated.ts   … ワールド/キャラ/レアのメタデータ（画像requireは含めない）
+ *   - src/assets/characterImages.generated.ts  … 実在PNGだけを static require する画像マニフェスト
+ *
+ * 方針:
+ *   - Metro は動的requireできないので、画像は存在するものだけを静的requireする（欠損でバンドルが壊れない）。
+ *   - レアはワールド横断の一枚シート。RARE_WORLD で各レアを出現ワールドへ割り当てる。
+ *   - 画像未生成のキャラも図鑑の枠として残す（hasImage=false）。出現ロジック側で扱いを決める。
+ */
+const fs = require("fs");
+const path = require("path");
+
+const root = path.join(__dirname, "..");
+const charactersDir = path.join(root, "assets", "characters");
+const masterPath = path.join(charactersDir, "character_master.json");
+const catalogOut = path.join(root, "src", "data", "characterCatalog.generated.ts");
+const imagesOut = path.join(root, "src", "assets", "characterImages.generated.ts");
+
+// worldGroup → realmGroup（領域＝表示・拡張用のテーマ分類）。
+const realmOf = (w) => {
+  if (["ground", "waterside", "sky", "bug", "scale", "phantom"].includes(w)) return "life";
+  if (["planet", "constellation"].includes(w)) return "space";
+  if (["bc", "jomon", "heisei"].includes(w)) return "history";
+  if (["atom", "virus"].includes(w)) return "micro";
+  if (["staple_food", "dessert"].includes(w)) return "food";
+  return "";
+};
+
+const slug = (value) =>
+  String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+
+const toPosix = (value) => value.split(path.sep).join("/");
+
+const firstPng = (dir) => {
+  if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) {
+    return null;
+  }
+  const png = fs.readdirSync(dir).find((f) => f.toLowerCase().endsWith(".png"));
+  return png ? path.join(dir, png) : null;
+};
+
+const master = JSON.parse(fs.readFileSync(masterPath, "utf8"));
+
+const characters = []; // normal characters across worlds
+const rares = [];
+const imageEntries = []; // { id, requirePath }
+const seenIds = new Set();
+
+const addImage = (id, absPngPath) => {
+  if (!absPngPath) {
+    return false;
+  }
+  imageEntries.push({ id, abs: absPngPath, requirePath: "../../" + toPosix(path.relative(root, absPngPath)) });
+  return true;
+};
+
+const THUMB_MAX = 256; // 図鑑グリッド表示用サムネの最大辺(px)。表示は110px前後だがRetina/拡大に余裕を持たせる。
+const thumbsDir = path.join(root, "assets", "thumbs");
+
+// 大きな原画(1024px級)を図鑑用の小さいサムネに縮小する。原画より新しいサムネがあればスキップ。
+const buildThumbnails = async (entries) => {
+  const { Jimp } = require("jimp");
+  fs.mkdirSync(thumbsDir, { recursive: true });
+  const out = [];
+  let made = 0;
+  for (const e of entries) {
+    const outAbs = path.join(thumbsDir, `${e.id}.png`);
+    try {
+      const srcStat = fs.statSync(e.abs);
+      const fresh = fs.existsSync(outAbs) && fs.statSync(outAbs).mtimeMs >= srcStat.mtimeMs;
+      if (!fresh) {
+        const img = await Jimp.read(e.abs);
+        const { width, height } = img.bitmap;
+        const scale = THUMB_MAX / Math.max(width, height);
+        if (scale < 1) {
+          img.resize({ w: Math.max(1, Math.round(width * scale)), h: Math.max(1, Math.round(height * scale)) });
+        }
+        await img.write(outAbs);
+        made += 1;
+      }
+      out.push({ id: e.id, requirePath: "../../" + toPosix(path.relative(root, outAbs)) });
+    } catch (err) {
+      console.warn(`  thumb skip ${e.id}: ${err.message}`);
+    }
+  }
+  console.log(`thumbnails: ${out.length} ready (${made} regenerated)`);
+  return out;
+};
+
+// --- キャラクター（character_master.json は worldGroup キー） ---
+// 各シート＝1ワールド。行の rarity 列（normal/rare）で通常/レアに振り分ける。
+// 画像は assets/characters/<worldGroup>/<英名>/<英名>.png（通常・レア共通の構成）。
+for (const [worldGroup, rows] of Object.entries(master)) {
+  if (!Array.isArray(rows)) continue;
+  const realmGroup = realmOf(worldGroup);
+  for (const row of rows) {
+    const en = (row.speciesEn || row["英名"] || "").trim();
+    if (!en) continue; // 英名（＝フォルダ名）が無い行はスキップ
+
+    const isRare = String(row.rarity || "").trim() === "rare";
+    const prefix = isRare ? `${worldGroup}_rare` : worldGroup;
+    let id = `${prefix}_${slug(en)}`;
+    if (seenIds.has(id)) {
+      id = `${id}_${row.no || seenIds.size}`;
+    }
+    seenIds.add(id);
+
+    const png = firstPng(path.join(charactersDir, worldGroup, en));
+    const hasImage = addImage(id, png);
+
+    const entry = {
+      id,
+      realmGroup,
+      worldGroup,
+      no: Number(row.no) || 0,
+      name: (row.name || row["キャラ名"] || en).trim(),
+      speciesJa: (row.speciesJa || row["和名"] || "").trim(),
+      speciesEn: en,
+      hasImage,
+      description: (row.description || row["説明"] || "").trim()
+    };
+    if (isRare) {
+      rares.push(entry);
+    } else {
+      characters.push({ ...entry, status: (row.status || row["作成状況"] || "").trim() });
+    }
+  }
+}
+
+// ---------- write catalog ----------
+const catalogLines = [];
+catalogLines.push("// AUTO-GENERATED by scripts/generateCharacterData.js. Do not edit by hand.");
+catalogLines.push("// worldGroup 構成のキャラクターメタデータ（画像requireは characterImages.generated.ts）。");
+catalogLines.push("");
+catalogLines.push("export type CatalogCharacter = {");
+catalogLines.push("  id: string;");
+catalogLines.push("  realmGroup: string;");
+catalogLines.push("  worldGroup: string;");
+catalogLines.push("  no: number;");
+catalogLines.push("  name: string;");
+catalogLines.push("  speciesJa: string;");
+catalogLines.push("  speciesEn: string;");
+catalogLines.push("  hasImage: boolean;");
+catalogLines.push("  status: string;");
+catalogLines.push("  description: string;");
+catalogLines.push("};");
+catalogLines.push("");
+catalogLines.push("export type CatalogRare = {");
+catalogLines.push("  id: string;");
+catalogLines.push("  realmGroup: string;");
+catalogLines.push("  worldGroup: string;");
+catalogLines.push("  no: number;");
+catalogLines.push("  name: string;");
+catalogLines.push("  speciesJa: string;");
+catalogLines.push("  speciesEn: string;");
+catalogLines.push("  hasImage: boolean;");
+catalogLines.push("  description: string;");
+catalogLines.push("};");
+catalogLines.push("");
+catalogLines.push(`export const CATALOG_CHARACTERS: CatalogCharacter[] = ${JSON.stringify(characters, null, 2)};`);
+catalogLines.push("");
+catalogLines.push(`export const CATALOG_RARES: CatalogRare[] = ${JSON.stringify(rares, null, 2)};`);
+catalogLines.push("");
+fs.writeFileSync(catalogOut, catalogLines.join("\n"), "utf8");
+
+// ---------- write image manifest（サムネ生成を含むため async） ----------
+(async () => {
+  const thumbEntries = await buildThumbnails(imageEntries);
+
+  const imgLines = [];
+  imgLines.push("// AUTO-GENERATED by scripts/generateCharacterData.js. Do not edit by hand.");
+  imgLines.push("// 実在するPNGだけを static require（欠損画像はキーごと存在しない）。");
+  imgLines.push("// CHARACTER_IMAGES=原画（個体詳細/結果用）、CHARACTER_THUMBS=図鑑グリッド用の縮小版。");
+  imgLines.push('import type { ImageSourcePropType } from "react-native";');
+  imgLines.push("");
+  imgLines.push("export const CHARACTER_IMAGES: Record<string, ImageSourcePropType> = {");
+  for (const e of imageEntries) {
+    imgLines.push(`  ${JSON.stringify(e.id)}: require(${JSON.stringify(e.requirePath)}),`);
+  }
+  imgLines.push("};");
+  imgLines.push("");
+  imgLines.push("export const CHARACTER_THUMBS: Record<string, ImageSourcePropType> = {");
+  for (const e of thumbEntries) {
+    imgLines.push(`  ${JSON.stringify(e.id)}: require(${JSON.stringify(e.requirePath)}),`);
+  }
+  imgLines.push("};");
+  imgLines.push("");
+  imgLines.push("export const getCharacterImage = (id: string): ImageSourcePropType | undefined => CHARACTER_IMAGES[id];");
+  imgLines.push("");
+  imgLines.push("export const hasCharacterImage = (id: string): boolean => Boolean(CHARACTER_IMAGES[id]);");
+  imgLines.push("");
+  imgLines.push("// 図鑑用サムネ。無ければ原画へフォールバックできるよう undefined を返す。");
+  imgLines.push("export const getCharacterThumb = (id: string): ImageSourcePropType | undefined =>");
+  imgLines.push("  CHARACTER_THUMBS[id] ?? CHARACTER_IMAGES[id];");
+  imgLines.push("");
+  fs.writeFileSync(imagesOut, imgLines.join("\n"), "utf8");
+
+  // ---------- summary ----------
+  const byWorld = {};
+  for (const c of characters) {
+    byWorld[c.worldGroup] = byWorld[c.worldGroup] || { total: 0, img: 0 };
+    byWorld[c.worldGroup].total += 1;
+    if (c.hasImage) byWorld[c.worldGroup].img += 1;
+  }
+  console.log("Generated:", path.relative(root, catalogOut), "&", path.relative(root, imagesOut));
+  console.log("characters:", characters.length, "rares:", rares.length, "images bundled:", imageEntries.length);
+  for (const [wg, s] of Object.entries(byWorld)) {
+    console.log(`  ${wg}: ${s.img}/${s.total} images`);
+  }
+  const rareByWorld = {};
+  for (const r of rares) rareByWorld[r.worldGroup] = (rareByWorld[r.worldGroup] || 0) + 1;
+  console.log("  rares by worldGroup:", JSON.stringify(rareByWorld));
+})().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

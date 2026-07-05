@@ -1,0 +1,49 @@
+{
+  "name": "worldawn",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test \"tests/**/*.test.ts\"",
+    "gen:images": "node scripts/generateMonsterImages.js",
+    "gen:form-images": "node scripts/generateFormImages.js",
+    "gen:frames": "node scripts/generateCharacterFrames.js",
+    "export:master": "node scripts/exportCharacterMaster.js",
+    "gen:catalog": "node scripts/generateCharacterData.js"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@react-navigation/bottom-tabs": "^7.0.0",
+    "@react-navigation/native": "^7.3.4",
+    "@react-navigation/native-stack": "^7.17.6",
+    "expo": "~54.0.0",
+    "expo-camera": "~17.0.10",
+    "expo-crypto": "~15.0.9",
+    "expo-image-picker": "~17.0.11",
+    "expo-location": "~19.0.8",
+    "expo-status-bar": "~3.0.9",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-screens": "~4.16.0",
+    "react-native-svg": "15.12.1",
+    "typescript": "~5.9.2",
+    "zustand": "^5.0.14"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-class-properties": "^7.29.7",
+    "@babel/plugin-transform-private-methods": "^7.29.7",
+    "@babel/plugin-transform-private-property-in-object": "^7.29.7",
+    "@expo/ngrok": "^4.1.3",
+    "@types/react": "~19.1.10",
+    "babel-preset-expo": "~54.0.10",
+    "jimp": "^1.6.1",
+    "typescript": "~5.9.2",
+    "xlsx": "^0.18.5"
+  }
+}
