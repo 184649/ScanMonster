@@ -15,6 +15,8 @@
     "gen:frames": "node scripts/generateCharacterFrames.js",
     "export:master": "node scripts/exportCharacterMaster.js",
     "gen:catalog": "node scripts/generateCharacterData.js",
+    "gen:seed": "node scripts/generateServerSeed.js",
+    "validate:release-assets": "node scripts/validateReleaseAssets.js",
     "gen:sounds": "node scripts/generateSoundManifest.js"
   },
   "dependencies": {

@@ -1,13 +1,15 @@
 /**
- * 開発用シード投入。ワールド／代表キャラ（アプリ catalog と同じ id）／デモユーザー。
- *   npm run db:seed
+ * 開発用シード投入。ワールド／キャラ（**唯一の正本から生成**）／デモユーザー。
+ *   npm run gen:seed   … 正本(character_master.json + rarity-overrides.json)→ characterSeed.generated.ts
+ *   npm run db:seed    … 生成済みシードを PostgreSQL へ投入
  *
- * 本番の全キャラは Character.xlsx→character_master から生成した一覧を投入すること
- * （ここは動作確認用の最小セット）。character_id はアプリのローカル画像キーと一致させる。
+ * キャラは手書きせず SEED_CHARACTERS（app catalog と同一ソース）を使う。二度と 8体 vs 74体 の乖離を作らない。
+ * legendary/secret は is_visible_in_dex=false（未解放/未発見では図鑑に出さない）。legendary は is_available_for_scan=true（解放後に候補入り）。
  */
 import { randomUUID } from "node:crypto";
 
 import { getPool } from "./db.ts";
+import { SEED_CHARACTERS } from "./characterSeed.generated.ts";
 
 const pool = getPool();
 
@@ -18,19 +20,7 @@ const WORLDS: [string, string, string, number][] = [
   ["bug", "life", "虫ワールド", 4]
 ];
 
-// アプリの characterCatalog.generated.ts と同じ id を使う（画像整合のため）。
-const CHARACTERS: { id: string; name: string; rarity: string; world: string }[] = [
-  { id: "ground_alpaca", name: "モコアルパ", rarity: "normal", world: "ground" },
-  { id: "ground_anteater", name: "アリクイノ", rarity: "normal", world: "ground" },
-  { id: "ground_armadillo", name: "アルマジロロ", rarity: "normal", world: "ground" },
-  { id: "ground_cheetah", name: "チータッシュ", rarity: "normal", world: "ground" },
-  { id: "ground_elephant", name: "ゾウガード", rarity: "normal", world: "ground" },
-  { id: "ground_fox", name: "コンフォックス", rarity: "normal", world: "ground" },
-  { id: "ground_giraffe", name: "キリンター", rarity: "normal", world: "ground" },
-  { id: "ground_koala", name: "コアラフ", rarity: "normal", world: "ground" },
-  { id: "ground_rare_fenrir", name: "フェンリル", rarity: "rare", world: "ground" },
-  { id: "waterside_rare_kraken", name: "クラーケン", rarity: "rare", world: "waterside" }
-];
+const CHARACTERS = SEED_CHARACTERS;
 
 const DEMO_USER = "demo_user";
 
@@ -45,11 +35,15 @@ const run = async () => {
   }
 
   for (const c of CHARACTERS) {
+    // legendary/secret は図鑑に事前露出しない。legendary は解放後に候補入りするため scan 対象は true。
+    const visibleInDex = c.rarity === "normal" || c.rarity === "rare";
+    const availableForScan = c.rarity !== "secret";
     await pool.query(
       `INSERT INTO character_masters (id, name, rarity, world_group, is_available_for_scan, is_visible_in_dex)
-       VALUES ($1,$2,$3,$4,TRUE,TRUE)
-       ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, rarity = EXCLUDED.rarity, world_group = EXCLUDED.world_group`,
-      [c.id, c.name, c.rarity, c.world]
+       VALUES ($1,$2,$3,$4,$5,$6)
+       ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, rarity = EXCLUDED.rarity, world_group = EXCLUDED.world_group,
+         is_available_for_scan = EXCLUDED.is_available_for_scan, is_visible_in_dex = EXCLUDED.is_visible_in_dex`,
+      [c.id, c.name, c.rarity, c.world, availableForScan, visibleInDex]
     );
   }
 

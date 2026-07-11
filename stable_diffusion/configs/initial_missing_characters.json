@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "model": {
+    "id": "stabilityai/stable-diffusion-xl-base-1.0",
+    "version": "1.0",
+    "revision": "a7c2bcc30a3b5489f1f1989e66cd5fe957fdb45c",
+    "source": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+    "license": "CreativeML Open RAIL++-M",
+    "licenseUrl": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/blob/main/LICENSE.md",
+    "vae": "SDXL bundled VAE",
+    "dtype": "float16"
+  },
+  "generation": {
+    "sampler": "DPM++ 2M SDE",
+    "scheduler": "Karras",
+    "steps": 35,
+    "cfg": 6.5,
+    "width": 1024,
+    "height": 1024,
+    "candidateCount": 4,
+    "sourceBackground": "plain near-white"
+  },
+  "postProcessing": {
+    "tool": "rembg",
+    "model": "u2net",
+    "modelLicense": "Apache-2.0",
+    "maxCanvasFill": 0.84,
+    "outputMode": "RGBA"
+  },
+  "commonNegativePrompt": "background scenery, landscape, grass, rocks, floor, ground plane, ground shadow, cast shadow, text, logo, watermark, frame, UI, collage, grid, multiple characters, duplicate character, extra limbs, extra legs, extra arms, duplicate body parts, malformed anatomy, cropped body, cut off tail, cut off ears, cut off feet, weapon, gun, sword, armor, explorer outfit, adventurer outfit, goggles, backpack, pendant, necklace, crown, random gemstone, excessive glow, magic circle, excessive aura, chibi baby proportions, cheap mascot, thick black outline, photorealistic, blurry, low quality",
+  "characters": [
+    {
+      "id": "ground_rare_white_tiger",
+      "nameJa": "白虎",
+      "speciesEn": "White Tiger",
+      "world": "ground",
+      "rarity": "rare",
+      "releaseStatus": "initial",
+      "designStatus": "ready",
+      "enabled": true,
+      "personality": "静かな好奇心",
+      "keyTraits": [
+        "白から淡いクリーム色の被毛と濃い虎縞",
+        "幅広い虎の頭部と短い丸耳",
+        "強い肩と大きな前脚",
+        "長い縞尾"
+      ],
+      "pose": "横向きに一歩踏み出し、片前脚を上げ、頭だけこちらへ向け、尾を反対側へ流して重心を取る",
+      "seeds": [8910201, 8910202, 8910203, 8910204],
+      "prompt": "WORLDAWN original premium game-IP character illustration, one full-body real leucistic white tiger only, unmistakable tiger anatomy, powerful quadruped feline body, broad tiger head, short rounded ears, strong shoulders, large front paws, long naturally banded tail, ivory-white to pale cream fur with clear charcoal tiger stripes, warm amber eyes with a calm observant gaze, quiet curiosity, stepping forward in a side-oriented pose with one front paw lifted, head turned toward the viewer, tail counterbalancing the body, asymmetrical natural movement, refined expressive face, no accessories, no clothing, subtle dawn-peach color accent only, fine-to-medium linework, polished blend of cel shading and painterly rendering, two-to-three-stage shading, soft curves, restrained mystery, one character only, full body fully inside canvas, centered, plain near-white background, no floor, no shadow, no text, no logo",
+      "negativePromptAddon": "mythic Baihu, Chinese guardian beast, white lion, snow leopard, domestic cat, wings, horns, armor, blue gems, golden aura, fantasy stripes",
+      "finalPath": "assets/characters/ground/rare/White Tiger.png"
+    },
+    {
+      "id": "ground_rare_tsuchinoko",
+      "nameJa": "ツチノコ",
+      "speciesEn": "Tsuchinoko",
+      "world": "ground",
+      "rarity": "legendary",
+      "releaseStatus": "initial",
+      "designStatus": "ready",
+      "enabled": true,
+      "personality": "気まぐれ",
+      "keyTraits": [
+        "短く太いヘビ型の胴体",
+        "中央部が特徴的に膨らむ輪郭",
+        "ヘビらしい幅広い頭部",
+        "尾へ向けて急に細くなる四肢のない身体"
+      ],
+      "pose": "太い胴体を低くひねり、頭を軽く上げ、細い尾先を反対方向へ跳ねる",
+      "seeds": [8920301, 8920302, 8920303, 8920304],
+      "prompt": "WORLDAWN original premium legendary game-IP character illustration, one full-body tsuchinoko only, unmistakable Japanese cryptid silhouette, extremely short thick snake body with a distinctly swollen middle, broad natural serpent head, body narrowing rapidly into a thin tail, visible refined scales and belly scutes, absolutely no limbs, compact low center of gravity, capricious slightly puzzled personality, thick body twisting in a low asymmetrical curve, head raised slightly with a curious sideways gaze, thin tail tip flicking in the opposite direction, restrained moss-brown and muted copper palette with a subtle dawn-coral eye accent, quiet dignity and mystery, refined expressive face without baby proportions, no accessories, fine-to-medium linework, polished blend of cel shading and painterly rendering, two-to-three-stage shading, one character only, full body fully inside canvas, centered, plain near-white background, no floor, no shadow, no text, no logo",
+      "negativePromptAddon": "ordinary long snake, cobra hood, rattlesnake, giant python, lizard, dragon, salamander, legs, arms, wings, horns, fish fins, jewelry, magic circle",
+      "finalPath": "assets/characters/ground/legendary/Tsuchinoko.png"
+    },
+    {
+      "id": "ground_rare_yeti",
+      "nameJa": "イエティ",
+      "speciesEn": "Yeti",
+      "world": "ground",
+      "rarity": "legendary",
+      "releaseStatus": "initial",
+      "designStatus": "ready",
+      "enabled": true,
+      "personality": "慎重",
+      "keyTraits": [
+        "雪山適応を感じる厚い白から灰白色の長い毛",
+        "幅広い肩と大型の人型未確認生物の骨格",
+        "やや長い腕と大きな手",
+        "大きな素足"
+      ],
+      "pose": "やや半身で身体を引き、片腕を自然に前へ下げ、肩越しに静かに観察する",
+      "seeds": [8930401, 8930402, 8930403, 8930404],
+      "prompt": "WORLDAWN original premium legendary game-IP character illustration, one full-body yeti only, unmistakable snow-mountain adapted unidentified humanoid creature, broad shoulders, powerful slightly hunched torso, somewhat long arms, large expressive hands, enormous bare feet, dense layered off-white and cool-gray long fur, distinct nonhuman but approachable face that is not a gorilla, bear, or human, cautious intelligent eyes, restrained mouth, cautious personality, body held slightly back in a three-quarter side stance, one arm naturally lowered forward for balance, head quietly observing over one shoulder, asymmetrical weight and natural movement, quiet strength rather than aggression, no accessories, no clothing, no weapon, subtle pale dawn-rose edge accent only, fine-to-medium linework, polished blend of cel shading and painterly rendering, two-to-three-stage shading, restrained mystery and dignity, one character only, full body fully inside canvas, centered, plain near-white background, no snow scene, no floor, no shadow, no text, no logo",
+      "negativePromptAddon": "white gorilla, polar bear, human in fur suit, snowman, horror monster, zombie, demon, armor, explorer, backpack, weapon, roaring attack pose, snow mountain background, blizzard",
+      "finalPath": "assets/characters/ground/legendary/Yeti.png"
+    },
+    {
+      "id": "ground_rare_underground_dweller",
+      "nameJa": "地底人",
+      "speciesEn": "Underground Dweller",
+      "world": "ground",
+      "rarity": "legendary",
+      "releaseStatus": "initial",
+      "designStatus": "BLOCKED_DESIGN_UNRESOLVED",
+      "enabled": false,
+      "personality": null,
+      "keyTraits": [],
+      "pose": null,
+      "seeds": [],
+      "prompt": null,
+      "negativePromptAddon": null,
+      "finalPath": "assets/characters/ground/legendary/Underground Dweller.png"
+    }
+  ]
+}

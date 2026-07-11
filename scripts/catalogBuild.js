@@ -64,7 +64,12 @@ const imageKeysFor = (speciesEn, isRare) => {
   return keys;
 };
 
-const buildCatalog = ({ root, charactersDir, master }) => {
+const buildCatalog = ({ root, charactersDir, master, classification = {} }) => {
+  const rarityOverrides = classification.rarity || {};
+  const rs = classification.releaseStatus || {};
+  const worldDefault = rs.worldDefault || {};
+  const byIdStatus = rs.byId || {};
+  const missingInitialAssets = []; // releaseStatus=initial だが画像が解決できないもの（future へ降格しない・release gate で失敗）。
   const worldImageDirs = new Map();
   const getWorldImageDirs = (worldGroup) => {
     if (!worldImageDirs.has(worldGroup)) {
@@ -107,6 +112,7 @@ const buildCatalog = ({ root, charactersDir, master }) => {
   const characters = [];
   const rares = [];
   const legendaries = [];
+  const secrets = []; // secret は通常 catalog へ出さない（呼び出し側で秘匿）。
   const imageEntries = [];
   const seenIds = new Set();
   const addImage = (id, abs) => {
@@ -122,16 +128,39 @@ const buildCatalog = ({ root, charactersDir, master }) => {
       const en = (row.speciesEn || row["英名"] || "").trim();
       if (!en) continue;
 
-      const rarityCol = String(row.rarity || "").trim().toLowerCase();
-      const isRare = rarityCol === "rare";
-      const isLegendary = rarityCol === "legendary";
-      const rarityFolder = isLegendary ? "legendary" : isRare ? "rare" : "normal";
-      const prefix = isLegendary ? `${worldGroup}_legendary` : isRare ? `${worldGroup}_rare` : worldGroup;
+      // id は「manifest の rarity」から決めて安定させる（rarity 上書きしても id は変わらない・§9）。
+      const manifestRarity = String(row.rarity || "").trim().toLowerCase();
+      const isRareM = manifestRarity === "rare";
+      const isLegendaryM = manifestRarity === "legendary";
+      const prefix = isLegendaryM ? `${worldGroup}_legendary` : isRareM ? `${worldGroup}_rare` : worldGroup;
       let id = `${prefix}_${slug(en)}`;
       if (seenIds.has(id)) id = `${id}_${row.no || seenIds.size}`;
       seenIds.add(id);
 
-      const hasImage = addImage(id, findImageFor(worldGroup, en, isRare, rarityFolder));
+      // 実効 rarity（classification.rarity による分類修正。id は据え置き）。
+      const effRarity = rarityOverrides[id] || manifestRarity || "normal";
+      const effRarityFolder = effRarity === "legendary" ? "legendary" : effRarity === "rare" ? "rare" : effRarity === "secret" ? "secret" : "normal";
+
+      // 画像解決は「実効 rarity」フォルダで行う（<world>/<effRarity>/<英名>.png と <world>/<英名>/ の両対応）。
+      const hasImage = addImage(id, findImageFor(worldGroup, en, effRarity === "rare", effRarityFolder));
+
+      // releaseStatus は明示のみ（byId > worldDefault > future）。**hasImage で決定・降格しない。**
+      const releaseStatus = byIdStatus[id] || worldDefault[worldGroup] || "future";
+      // initial なのに画像が無い＝missing（future へ降格せず、release gate で失敗させる）。
+      if (releaseStatus === "initial" && !hasImage) {
+        missingInitialAssets.push({
+          id,
+          name: (row.name || row["キャラ名"] || en).trim(),
+          speciesEn: en,
+          world: worldGroup,
+          rarity: effRarity,
+          expectedPaths: [
+            `assets/characters/${worldGroup}/${effRarityFolder}/${en}.png`,
+            `assets/characters/${worldGroup}/${en}/${en}.png`
+          ]
+        });
+      }
+
       const entry = {
         id,
         realmGroup,
@@ -141,15 +170,30 @@ const buildCatalog = ({ root, charactersDir, master }) => {
         speciesJa: (row.speciesJa || row["和名"] || "").trim(),
         speciesEn: en,
         hasImage,
+        releaseStatus,
         description: (row.description || row["説明"] || "").trim()
       };
-      if (isLegendary) legendaries.push(entry);
-      else if (isRare) rares.push(entry);
+      if (effRarity === "legendary") legendaries.push(entry);
+      else if (effRarity === "rare") rares.push(entry);
+      else if (effRarity === "secret") secrets.push(entry);
       else characters.push({ ...entry, status: (row.status || row["作成状況"] || "").trim() });
     }
   }
 
-  return { characters, rares, legendaries, imageEntries };
+  return { characters, rares, legendaries, secrets, imageEntries, missingInitialAssets };
 };
 
-module.exports = { buildCatalog, normImageKey, imageKeysFor };
+/** character-classification.json を読み込む（rarity 分類修正 + releaseStatus の正本レイヤ）。 */
+const loadClassification = (charactersDir) => {
+  const p = path.join(charactersDir, "character-classification.json");
+  const empty = { rarity: {}, releaseStatus: { worldDefault: {}, byId: {} } };
+  if (!fs.existsSync(p)) return empty;
+  try {
+    const c = JSON.parse(fs.readFileSync(p, "utf8"));
+    return { rarity: c.rarity || {}, releaseStatus: c.releaseStatus || { worldDefault: {}, byId: {} } };
+  } catch {
+    return empty;
+  }
+};
+
+module.exports = { buildCatalog, loadClassification, normImageKey, imageKeysFor };

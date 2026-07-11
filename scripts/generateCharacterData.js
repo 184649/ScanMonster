@@ -18,7 +18,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const { buildCatalog } = require("./catalogBuild");
+const { buildCatalog, loadClassification } = require("./catalogBuild");
 
 const root = path.join(__dirname, "..");
 const charactersDir = path.join(root, "assets", "characters");
@@ -29,7 +29,30 @@ const imagesOut = path.join(root, "src", "assets", "characterImages.generated.ts
 const toPosix = (value) => value.split(path.sep).join("/");
 
 const master = JSON.parse(fs.readFileSync(masterPath, "utf8"));
-const { characters, rares, legendaries, imageEntries } = buildCatalog({ root, charactersDir, master });
+const classification = loadClassification(charactersDir);
+// secrets は通常 catalog に出さない（秘匿）。future/inactive/qa も初期リリース catalog に出さない。
+const built = buildCatalog({ root, charactersDir, master, classification });
+
+// release gate：initial なのに画像が無い（missing）場合、既定では生成を中止して既存の生成物を壊さない（§14/§26）。
+// hasImage で releaseStatus を降格しない。欠損は release gate（validate:release-assets）で失敗させる。
+const missing = built.missingInitialAssets;
+const allowIncomplete = process.env.WORLDAWN_ALLOW_INCOMPLETE === "1";
+if (missing.length > 0) {
+  console.error(`[gen:catalog] initial だが画像が無いキャラが ${missing.length} 体（future へ降格しません）:`);
+  for (const m of missing) console.error(`  - ${m.id} (${m.name} / ${m.speciesEn}) [${m.world}/${m.rarity}] 期待パス: ${m.expectedPaths[0]}`);
+  if (!allowIncomplete) {
+    console.error("[gen:catalog] 中止：4画像を配置してから再実行してください（WORLDAWN_ALLOW_INCOMPLETE=1 で 85体の安全ビルドを生成）。");
+    process.exit(2);
+  }
+  console.warn("[gen:catalog] WORLDAWN_ALLOW_INCOMPLETE=1：画像がある initial のみで安全ビルドを生成します。");
+}
+// 生成物は「initial かつ画像あり（=buildable）」のみ。壊れた require を含めない。
+const buildable = (arr) => arr.filter((c) => c.releaseStatus === "initial" && c.hasImage);
+const characters = buildable(built.characters);
+const rares = buildable(built.rares);
+const legendaries = buildable(built.legendaries);
+const initialIds = new Set([...characters, ...rares, ...legendaries].map((c) => c.id));
+const imageEntries = built.imageEntries.filter((e) => initialIds.has(e.id));
 
 const THUMB_MAX = 256; // 図鑑グリッド表示用サムネの最大辺(px)。表示は110px前後だがRetina/拡大に余裕を持たせる。
 const thumbsDir = path.join(root, "assets", "thumbs");
@@ -78,6 +101,7 @@ catalogLines.push("  name: string;");
 catalogLines.push("  speciesJa: string;");
 catalogLines.push("  speciesEn: string;");
 catalogLines.push("  hasImage: boolean;");
+catalogLines.push("  releaseStatus: string;");
 catalogLines.push("  status: string;");
 catalogLines.push("  description: string;");
 catalogLines.push("};");
@@ -91,6 +115,7 @@ catalogLines.push("  name: string;");
 catalogLines.push("  speciesJa: string;");
 catalogLines.push("  speciesEn: string;");
 catalogLines.push("  hasImage: boolean;");
+catalogLines.push("  releaseStatus: string;");
 catalogLines.push("  description: string;");
 catalogLines.push("};");
 catalogLines.push("");

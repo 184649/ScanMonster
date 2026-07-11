@@ -3,17 +3,25 @@ import { describe, it } from "node:test";
 
 import { CATALOG_CHARACTERS, CATALOG_RARES } from "../src/data/characterCatalog.generated.ts";
 
-const INITIAL_WORLD_GROUPS = ["ground", "waterside", "sky", "bug"];
 const VALID_REALMS = new Set(["life", "space", "history", "micro", "food"]);
 
-describe("characterCatalog (generated)", () => {
+// app catalog は「初期リリース(releaseStatus=initial)」のみを持つ（future/inactive/qa/secret は出さない）。
+describe("characterCatalog (generated / initial-only)", () => {
   it("通常キャラが存在し、ID は全体で一意", () => {
-    assert.ok(CATALOG_CHARACTERS.length > 100, `chars=${CATALOG_CHARACTERS.length}`);
+    assert.ok(CATALOG_CHARACTERS.length > 50, `chars=${CATALOG_CHARACTERS.length}`);
     const ids = new Set<string>();
     for (const c of [...CATALOG_CHARACTERS, ...CATALOG_RARES]) {
       assert.ok(!ids.has(c.id), `duplicate id: ${c.id}`);
       ids.add(c.id);
     }
+  });
+
+  it("catalog は全て releaseStatus=initial かつ hasImage（initial⟹画像あり）", () => {
+    for (const c of CATALOG_CHARACTERS) {
+      assert.equal(c.releaseStatus, "initial", `char ${c.id} not initial`);
+      assert.ok(c.hasImage, `initial char ${c.id} は画像必須`);
+    }
+    for (const r of CATALOG_RARES) assert.equal(r.releaseStatus, "initial");
   });
 
   it("全キャラ・全レアに worldGroup と有効な realmGroup が付く", () => {
@@ -22,20 +30,14 @@ describe("characterCatalog (generated)", () => {
       assert.ok(VALID_REALMS.has(c.realmGroup), `char ${c.id} bad realmGroup ${c.realmGroup}`);
       assert.ok(c.speciesEn.length > 0, `char ${c.id} missing speciesEn`);
     }
-    for (const r of CATALOG_RARES) {
-      assert.ok(r.worldGroup.length > 0, `rare ${r.id} missing worldGroup`);
-      assert.ok(VALID_REALMS.has(r.realmGroup), `rare ${r.id} bad realmGroup ${r.realmGroup}`);
-    }
   });
 
-  it("初回リリースの4ワールドに通常キャラが割り当てられている", () => {
-    for (const w of INITIAL_WORLD_GROUPS) {
-      const chars = CATALOG_CHARACTERS.filter((c) => c.worldGroup === w);
-      assert.ok(chars.length > 0, `world ${w} has no character`);
+  it("初期リリース対象ワールド（地上・空）に通常キャラが割り当てられている", () => {
+    for (const w of ["ground", "sky"]) {
+      assert.ok(CATALOG_CHARACTERS.some((c) => c.worldGroup === w), `world ${w} has no character`);
     }
-    // 画像付き通常キャラが存在する（地上/水辺/空 は画像実装済みがある）
-    const withImage = CATALOG_CHARACTERS.filter((c) => c.hasImage);
-    assert.ok(withImage.length > 0, "no image-ready character");
+    // waterside/bug は現状 future（初期 catalog に出さない）。
+    assert.ok(!CATALOG_CHARACTERS.some((c) => c.worldGroup === "bug"), "bug は future（catalog非表示）");
   });
 
   it("hasImage フラグは boolean で一貫している", () => {

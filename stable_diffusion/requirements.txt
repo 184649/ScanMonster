@@ -1,0 +1,7 @@
+diffusers==0.39.0
+transformers==5.13.0
+accelerate==1.14.0
+safetensors==0.8.0
+Pillow==12.3.0
+invisible-watermark==0.2.0
+rembg[cpu]==2.0.76
