@@ -57,7 +57,9 @@
         {
           "locationWhenInUsePermission": "現在地から地方区分を自動判定し、地域ごとの生き物の個体差を作るために位置情報を使用します。緯度経度は保存しません。"
         }
-      ]
+      ],
+      "expo-audio",
+      "expo-secure-store"
     ],
     "extra": {
       "eas": {

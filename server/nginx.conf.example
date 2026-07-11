@@ -1,0 +1,19 @@
+# WORLDAWN API リバースプロキシ（api.example.com → localhost:3000）。
+# /etc/nginx/sites-available/worldawn-api に配置し sites-enabled へ symlink。
+# HTTPS 証明書は certbot が自動追記する（DEPLOY_CONOHA_VPS.md 参照）。
+
+server {
+    listen 80;
+    server_name api.example.com;
+
+    # certbot 用。HTTPS 化後は 443 サーバーへ 301 される。
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 30s;
+    }
+}

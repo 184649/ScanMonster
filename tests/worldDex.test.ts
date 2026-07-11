@@ -8,6 +8,7 @@ import {
   worldProgress,
   worldRareEntries
 } from "../src/services/worldDex.core.ts";
+import { FEATURE_FLAGS } from "../src/constants/featureFlags.ts";
 
 const groundWithImage = CATALOG_CHARACTERS.find((c) => c.worldGroup === "ground" && c.hasImage)!;
 
@@ -52,5 +53,12 @@ describe("worldDex.core", () => {
     assert.equal(p.total, 0);
     assert.equal(p.imageReady, 0);
     assert.equal(p.discovered, 0);
+  });
+
+  it("デバッグ中でも図鑑を全取得扱いにする旧フラグは無効", () => {
+    assert.equal(FEATURE_FLAGS.DEBUG_ALL_OWNED, false);
+    const entries = worldNormalEntries(CATALOG_CHARACTERS, "ground", new Set());
+    assert.ok(entries.length > 0);
+    assert.ok(entries.every((entry) => !entry.owned));
   });
 });

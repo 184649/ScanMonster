@@ -6,8 +6,12 @@ import { useNavigation } from "@react-navigation/native";
 import { APP_LINKS } from "../constants/appLinks";
 import { FEATURE_FLAGS } from "../constants/featureFlags";
 import { PrimaryButton } from "../components/PrimaryButton";
+import { playSound } from "../services/soundService";
+import { DEFAULT_SOUND_SETTINGS } from "../types/sound";
 import { useMonsterStore } from "../stores/monsterStore";
 import { useSettingsStore } from "../stores/settingsStore";
+
+const VOLUME_STEPS = [0.2, 0.4, 0.6, 0.8, 1.0];
 
 export const SettingsScreen = () => {
   const navigation = useNavigation<any>();
@@ -20,6 +24,31 @@ export const SettingsScreen = () => {
   const [message, setMessage] = useState<string | null>(null);
   const scanDebugEnabled = FEATURE_FLAGS.SHOW_SCAN_DEBUG || settings.showScanDebug === true;
   const monsterImageDebugEnabled = FEATURE_FLAGS.SHOW_CHARACTER_IMAGE_DEBUG || settings.showMonsterImageDebug === true;
+  const seEnabled = settings.seEnabled ?? DEFAULT_SOUND_SETTINGS.seEnabled;
+  const seVolume = settings.seVolume ?? DEFAULT_SOUND_SETTINGS.seVolume;
+  const hapticsEnabled = settings.hapticsEnabled ?? true;
+  const simpleScanFx = settings.simpleScanFx ?? false;
+
+  const toggleSe = () => {
+    const next = !seEnabled;
+    void (async () => {
+      await updateSettings({ seEnabled: next });
+      // ONにした瞬間だけ確認音を鳴らす（OFF時は無音）。
+      if (next) {
+        playSound("tap");
+      }
+    })();
+  };
+
+  const cycleVolume = () => {
+    const index = VOLUME_STEPS.findIndex((step) => Math.abs(step - seVolume) < 0.01);
+    const next = VOLUME_STEPS[(index + 1) % VOLUME_STEPS.length] ?? DEFAULT_SOUND_SETTINGS.seVolume;
+    void (async () => {
+      await updateSettings({ seVolume: next });
+      // 新しい音量でプレビュー。
+      playSound("tap");
+    })();
+  };
 
   const handleOpenLink = async (url: string, label: string) => {
     try {
@@ -68,10 +97,56 @@ export const SettingsScreen = () => {
         {message ? <Text style={styles.messageBox}>{message}</Text> : null}
 
         <View style={styles.panel}>
+          <Text style={styles.sectionTitle}>アカウント・コミュニティ</Text>
+          <Text style={styles.description}>
+            データの引継ぎ・連携や、機能改善の要望投稿ができます。
+          </Text>
+          <PrimaryButton label="アカウント・データ引継ぎ" onPress={() => navigation.navigate("Account")} />
+          <PrimaryButton label="要望掲示板" variant="secondary" onPress={() => navigation.navigate("FeatureBoard")} />
+        </View>
+
+        <View style={styles.panel}>
           <Text style={styles.sectionTitle}>初回リリースの範囲</Text>
           <Text style={styles.description}>
             WORLDAWN MVPでは、スキャン、図鑑、DP、カテゴリ解放、気配ブースト、称号を提供します。探索、研究、個体差コレクション、位置情報による出現制御、課金、広告は初回リリース対象外です。
           </Text>
+        </View>
+
+        <View style={styles.panel}>
+          <Text style={styles.sectionTitle}>サウンド</Text>
+          <Text style={styles.description}>
+            スキャンや発見の効果音（SE）を設定します。素材が未配置の場合は無音のままアプリは動作します。
+          </Text>
+          <PrimaryButton
+            label={`効果音: ${seEnabled ? "ON" : "OFF"}`}
+            variant="ghost"
+            soundId="none"
+            onPress={toggleSe}
+          />
+          <PrimaryButton
+            label={`効果音音量: ${Math.round(seVolume * 100)}%`}
+            variant="ghost"
+            soundId="none"
+            disabled={!seEnabled}
+            onPress={cycleVolume}
+          />
+        </View>
+
+        <View style={styles.panel}>
+          <Text style={styles.sectionTitle}>スキャン演出</Text>
+          <Text style={styles.description}>
+            発見までの演出です。端末のReduce Motion（視差効果を減らす）設定時は自動で簡易表示になります。
+          </Text>
+          <PrimaryButton
+            label={`触覚フィードバック: ${hapticsEnabled ? "ON" : "OFF"}`}
+            variant="ghost"
+            onPress={() => void updateSettings({ hapticsEnabled: !hapticsEnabled })}
+          />
+          <PrimaryButton
+            label={`演出: ${simpleScanFx ? "簡易" : "しっかり"}`}
+            variant="ghost"
+            onPress={() => void updateSettings({ simpleScanFx: !simpleScanFx })}
+          />
         </View>
 
         {FEATURE_FLAGS.ENABLE_DEV_UNLOCK_ALL ? (

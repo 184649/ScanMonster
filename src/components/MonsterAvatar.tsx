@@ -21,6 +21,7 @@ type MonsterAvatarProps = {
   backgroundColor?: string;
   /** 図鑑グリッドなど小サイズ表示では縮小サムネを使う（無ければ原画へフォールバック）。 */
   thumb?: boolean;
+  silhouette?: boolean;
 };
 
 type FallbackVisualProps = {
@@ -98,7 +99,8 @@ export const MonsterAvatar = ({
   showRarity = true,
   showElementFrame = true,
   backgroundColor,
-  thumb = false
+  thumb = false,
+  silhouette = false
 }: MonsterAvatarProps) => {
   const resolvedRareId = rareId ?? monster?.rareId;
   const rare: RareMonster | undefined = resolvedRareId ? getRareById(resolvedRareId) : undefined;
@@ -132,7 +134,7 @@ export const MonsterAvatar = ({
       ]}
     >
       {imageSource ? (
-        <Image source={imageSource} style={styles.image} resizeMode="contain" fadeDuration={0} />
+        <Image source={imageSource} style={[styles.image, silhouette && styles.silhouetteImage]} resizeMode="contain" fadeDuration={0} />
       ) : (
         <FallbackVisual
           emoji={fallbackEmoji}
@@ -165,6 +167,10 @@ const styles = StyleSheet.create({
   image: {
     width: "96%",
     height: "96%"
+  },
+  silhouetteImage: {
+    opacity: 0.68,
+    tintColor: "#334155"
   },
   fallbackRoot: {
     position: "relative",

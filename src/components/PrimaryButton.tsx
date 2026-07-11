@@ -1,6 +1,9 @@
 import type { ComponentType } from "react";
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native";
 
+import { playSound } from "../services/soundService";
+import type { SoundId } from "../types/sound";
+
 type IconProps = {
   color?: string;
   size?: number;
@@ -14,6 +17,8 @@ type PrimaryButtonProps = {
   variant?: "primary" | "secondary" | "ghost";
   disabled?: boolean;
   loading?: boolean;
+  /** 押下時に鳴らすSE。既定は "tap"。専用SEを別途鳴らす箇所は "none" で二重再生を防ぐ。 */
+  soundId?: SoundId | "none";
 };
 
 export const PrimaryButton = ({
@@ -22,17 +27,25 @@ export const PrimaryButton = ({
   icon: Icon,
   variant = "primary",
   disabled = false,
-  loading = false
+  loading = false,
+  soundId = "tap"
 }: PrimaryButtonProps) => {
   const isPrimary = variant === "primary";
   const isSecondary = variant === "secondary";
   const contentColor = isPrimary ? "#FFFFFF" : isSecondary ? "#0F3D70" : "#1E40AF";
 
+  const handlePress = () => {
+    if (soundId !== "none") {
+      playSound(soundId);
+    }
+    onPress();
+  };
+
   return (
     <Pressable
       accessibilityRole="button"
       disabled={disabled || loading}
-      onPress={onPress}
+      onPress={handlePress}
       style={({ pressed }) => [
         styles.button,
         isPrimary && styles.primary,

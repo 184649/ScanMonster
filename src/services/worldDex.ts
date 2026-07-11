@@ -1,7 +1,6 @@
 /**
  * ワールド図鑑（アプリ向けバインダ）。純粋ロジックは worldDex.core.ts。
  */
-import { FEATURE_FLAGS } from "../constants/featureFlags";
 import {
   CATALOG_CHARACTERS,
   CATALOG_RARES,
@@ -37,17 +36,14 @@ export type WorldDexView = {
 export const getWorldTabs = (): WorldGroupDef[] =>
   [...RELEASED_WORLD_DEFS].sort((a, b) => a.order - b.order);
 
-/** デバッグモード（DEBUG_ALL_OWNED）時に「全キャラ取得済み」として扱うためのID集合。 */
-const debugAllOwnedIds = (): Set<string> =>
-  new Set<string>([...CATALOG_CHARACTERS.map((c) => c.id), ...CATALOG_RARES.map((r) => r.id)]);
-
+/** 図鑑の発見状態は、実際に所持しているモンスターだけから判定する。 */
 export const getWorldDexView = (
   world: WorldGroup,
   monsters: UserMonster[],
   unlockedWorlds: WorldGroup[]
 ): WorldDexView => {
   const def = WORLD_GROUP_DEFS.find((w) => w.key === world) ?? WORLD_GROUP_DEFS[0]!;
-  const ownedIds = FEATURE_FLAGS.DEBUG_ALL_OWNED ? debugAllOwnedIds() : ownedCatalogIds(monsters);
+  const ownedIds = ownedCatalogIds(monsters);
   const normals = worldNormalEntries(CATALOG_CHARACTERS, world, ownedIds);
   const rares = worldRareEntries(CATALOG_RARES, world, ownedIds);
   return {

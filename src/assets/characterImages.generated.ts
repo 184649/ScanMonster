@@ -50,7 +50,7 @@ export const CHARACTER_IMAGES: Record<string, ImageSourcePropType> = {
   "ground_panda": require("../../assets/characters/ground/Panda/Panda.png"),
   "ground_rabbit": require("../../assets/characters/ground/Rabbit/Rabbit.png"),
   "ground_raccoon": require("../../assets/characters/ground/Raccoon/Raccoon.png"),
-  "ground_raccoon_dog": require("../../assets/characters/ground/Raccoon Dog/Tanuki.png"),
+  "ground_raccoon_dog": require("../../assets/characters/ground/Raccoon Dog/Raccoon Dog.png"),
   "ground_red_panda": require("../../assets/characters/ground/Red Panda/Red Panda.png"),
   "ground_rhinoceros": require("../../assets/characters/ground/Rhinoceros/Rhinoceros.png"),
   "ground_sheep": require("../../assets/characters/ground/Sheep/Sheep.png"),

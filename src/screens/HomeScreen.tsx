@@ -3,6 +3,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 
 import { MonsterAvatar } from "../components/MonsterAvatar";
+import { FriendEffectCard } from "../components/FriendEffectCard";
+import { DiscoveryCertificateCard } from "../components/discovery/DiscoveryCertificateCard";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { DP_DESCRIPTION, formatDP } from "../data/economy";
 import {
@@ -12,8 +14,9 @@ import {
 } from "../data/worlds";
 import { getTitleById } from "../data/titles";
 import { createDexSummary } from "../services/dexService";
+import { topDiscoveryOfDay } from "../services/discoveryQueries";
 import { useMonsterStore } from "../stores/monsterStore";
-import { formatDateTime } from "../utils/dateUtils";
+import { formatDateTime, getLocalDateKey } from "../utils/dateUtils";
 
 type InfoCardProps = {
   title: string;
@@ -40,6 +43,8 @@ export const HomeScreen = () => {
   const monsters = useMonsterStore((state) => state.monsters);
   const histories = useMonsterStore((state) => state.scanHistories);
   const economy = useMonsterStore((state) => state.economy);
+  const discoveryRecords = useMonsterStore((state) => state.discoveryRecords);
+  const todayTop = topDiscoveryOfDay(discoveryRecords, getLocalDateKey(new Date()));
   const summary = createDexSummary(monsters, histories);
   const unlockedWorlds = economy.unlocks.unlockedWorldGroups;
   const nextUnlockCost = getNextWorldUnlockCost(unlockedWorlds.length);
@@ -80,6 +85,24 @@ export const HomeScreen = () => {
             <Text style={styles.playerMeta}>発見 {summary.discoveredFamilies}種 / スキャン {histories.length}回</Text>
           </View>
         </View>
+
+        <View style={styles.todayPanel}>
+          <Text style={styles.sectionTitle}>今日の一番発見</Text>
+          {todayTop ? (
+            <Pressable onPress={() => navigation.navigate("MonsterDetail", { catalogId: todayTop.characterId })}>
+              <DiscoveryCertificateCard record={todayTop} compact highlighted={todayTop.strongestProof} />
+            </Pressable>
+          ) : (
+            <Text style={styles.todayEmpty}>まだ今日の発見はありません。スキャンして一番発見をつくろう。</Text>
+          )}
+          <View style={styles.discoveryLinks}>
+            <PrimaryButton label="発見ログ" variant="ghost" onPress={() => navigation.navigate("DiscoveryLog")} />
+            <PrimaryButton label="カレンダー" variant="ghost" onPress={() => navigation.navigate("DiscoveryCalendar")} />
+            <PrimaryButton label="番号コレクション" variant="ghost" onPress={() => navigation.navigate("NumberCollection")} />
+          </View>
+        </View>
+
+        <FriendEffectCard />
 
         <View style={styles.dpPanel}>
           <Text style={styles.dpLabel}>所持ドーンポイント</Text>
@@ -133,7 +156,9 @@ export const HomeScreen = () => {
 
         <View style={styles.actions}>
           <PrimaryButton label="スキャンする" onPress={() => navigation.navigate("Scan")} />
-          <PrimaryButton label="図鑑を見る" variant="secondary" onPress={() => navigation.navigate("DexHome")} />
+          <PrimaryButton label="図鑑を見る" variant="secondary" onPress={() => navigation.navigate("MainTabs", { screen: "Dex" })} />
+          <PrimaryButton label="ワールド一覧" variant="ghost" onPress={() => navigation.navigate("WorldList")} />
+          <PrimaryButton label="フレンドQR" variant="ghost" onPress={() => navigation.navigate("FriendQRCode")} />
           <PrimaryButton label="称号を見る" variant="ghost" onPress={() => navigation.navigate("Titles")} />
         </View>
 
@@ -241,6 +266,23 @@ const styles = StyleSheet.create({
     color: "#52627A",
     fontSize: 13,
     fontWeight: "800"
+  },
+  todayPanel: {
+    gap: 12,
+    borderRadius: 12,
+    padding: 16,
+    backgroundColor: "#FFFFFF",
+    borderWidth: 1,
+    borderColor: "#E2E8F0"
+  },
+  todayEmpty: {
+    color: "#64748B",
+    fontSize: 13,
+    lineHeight: 20,
+    fontWeight: "700"
+  },
+  discoveryLinks: {
+    gap: 8
   },
   dpPanel: {
     gap: 10,

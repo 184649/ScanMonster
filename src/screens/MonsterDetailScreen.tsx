@@ -3,24 +3,24 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { MonsterAvatar } from "../components/MonsterAvatar";
+import { CharacterRecordSection } from "../components/discovery/CharacterRecordSection";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { getCatalogCharacterById, getCatalogDescriptionById, getCatalogRareById } from "../data/catalogLookup";
+import { getCharacterMemoForSpecies } from "../data/characterMemos";
+import { getRealWorldProfileForSpecies } from "../data/realWorldProfiles";
 import { REALM_GROUP_LABELS, WORLD_GROUP_LABELS } from "../data/worlds";
 import { HABITAT_GROUP_LABELS } from "../data/habitatGroups";
 import { getCharacterRarityForMonster, getFamilyHabitatGroup } from "../data/characters";
 import { getFamilyById } from "../data/monsterFamilies";
 import { getRareById } from "../data/rareMonsters";
+import { playSound } from "../services/soundService";
+import { characterRarityLabel } from "../services/rarityLabel.core";
 import { useMonsterStore } from "../stores/monsterStore";
 import type { RootStackParamList } from "../types/navigation";
 import type { RealmGroup, WorldGroup } from "../types/worlds";
-import { formatFullDateTime } from "../utils/dateUtils";
 import { goBackOrHome } from "../utils/navigation";
 
-const rarityLabel = {
-  normal: "通常",
-  rare: "レア",
-  secret: "シークレット"
-} as const;
+// レアリティ表示は共通モジュール characterRarityLabel を使用（legendary=「伝説」・段3）。
 
 export const MonsterDetailScreen = () => {
   const navigation = useNavigation<any>();
@@ -39,13 +39,13 @@ export const MonsterDetailScreen = () => {
       const cRealm = cat.realmGroup ? REALM_GROUP_LABELS[cat.realmGroup as RealmGroup] : "";
       const isRare = Boolean(catRare);
       return (
-        <SafeAreaView style={styles.safeArea}>
+        <SafeAreaView style={styles.safeArea} edges={["left", "right", "bottom"]}>
           <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
             <View style={styles.heroCard}>
-              <View style={styles.noBadge}>
-                <Text style={styles.noText}>{String(cat.no).padStart(3, "0")}</Text>
+              <View style={styles.noPill}>
+                <Text style={styles.noPillText}>{`${cWorld || "図鑑"} No.${String(cat.no).padStart(3, "0")}`}</Text>
               </View>
-              <MonsterAvatar imageKey={cat.id} size={230} showRarity={false} showElementFrame={false} />
+              <MonsterAvatar imageKey={cat.id} size={220} showRarity={false} showElementFrame={false} />
               <Text style={styles.title}>{cat.name}</Text>
               <Text style={styles.subtitle}>
                 {isRare ? `${cWorld}のレア` : cWorld} / {cat.speciesJa || cat.speciesEn}
@@ -98,61 +98,81 @@ export const MonsterDetailScreen = () => {
   const lastDiscoveredAt = monster.lastDiscoveredAt ?? monster.obtainedAt;
   const discoveryCount = monster.discoveryCount ?? 1;
 
+  // 図鑑No：カタログ（ワールド内の連番）を優先、無ければ旧 family.no。
+  const catalogChar = getCatalogCharacterById(monster.characterId ?? monster.imageKey);
+  const dexNo = catalogChar?.no ?? family.no;
+  const dexNoLabel = `${hasWorld ? worldLabel : "図鑑"} No.${String(dexNo).padStart(3, "0")}`;
+
+  // キャラメモ：カタログ説明→モチーフ別メモ→（ワールド系は汎用文／旧系は family/rare）。
+  const speciesJa = monster.speciesJa ?? monster.speciesEn ?? "";
+  const memoText =
+    catalogDescription ??
+    getCharacterMemoForSpecies(monster.speciesEn) ??
+    (hasWorld
+      ? speciesJa
+        ? `${speciesJa}をモチーフにした${worldLabel}のいきものです。`
+        : "このワールドで見つかるいきものです。"
+      : rare
+        ? rare.loreMemo
+        : family.biologicalMemo);
+  const profile = getRealWorldProfileForSpecies(monster.speciesEn);
+
+  // 代表発見証明の直後に差し込む「キャラメモ＋実在モチーフ参考値」。
+  const memoPanel = (
+    <View style={styles.panel}>
+      <Text style={styles.sectionTitle}>キャラメモ</Text>
+      <Text style={styles.body}>{memoText}</Text>
+      {profile ? (
+        <View style={styles.profileBox}>
+          <Text style={styles.profileTitle}>実在モチーフ参考値</Text>
+          {profile.motifName ? <Text style={styles.profileMotif}>モチーフ：{profile.motifName}</Text> : null}
+          {profile.sizeText ? (
+            <Text style={styles.profileLine}>
+              {profile.sizeLabel ?? "サイズ"}：{profile.sizeText}
+            </Text>
+          ) : null}
+          {profile.weightText ? <Text style={styles.profileLine}>体重：{profile.weightText}</Text> : null}
+          {profile.wingspanText ? <Text style={styles.profileLine}>翼開長：{profile.wingspanText}</Text> : null}
+          {profile.lifespanText ? (
+            <Text style={styles.profileLine}>
+              {profile.lifespanLabel ?? "寿命"}：{profile.lifespanText}
+            </Text>
+          ) : null}
+          <Text style={styles.profileNote}>※図鑑の読み物です。ゲームの能力値ではありません。</Text>
+        </View>
+      ) : null}
+    </View>
+  );
+
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={["left", "right", "bottom"]}>
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.heroCard}>
-          <View style={styles.noBadge}>
-            <Text style={styles.noText}>{family.no.toString().padStart(2, "0")}</Text>
+          <View style={styles.noPill}>
+            <Text style={styles.noPillText}>{dexNoLabel}</Text>
           </View>
-          <MonsterAvatar monster={monster} size={230} showRarity={false} showElementFrame={false} />
+          <MonsterAvatar monster={monster} size={220} showRarity={false} showElementFrame={false} />
           <Text style={styles.title}>{monster.nickname ?? monster.displayName}</Text>
           <Text style={styles.subtitle}>
             {hasWorld
-              ? `${characterRarity === "rare" ? `${worldLabel}のレア` : worldLabel} / ${monster.speciesJa ?? monster.speciesEn ?? ""}`
+              ? `${characterRarity === "rare" ? `${worldLabel}のレア` : worldLabel} / ${speciesJa}`
               : `${rare ? `${family.name}のレア` : family.name} / ${family.baseAnimalName}`}
           </Text>
           <View style={styles.badgeRow}>
-            <Text style={styles.badge}>{rarityLabel[characterRarity]}</Text>
-            {hasWorld && realmLabel ? <Text style={styles.badge}>{realmLabel}</Text> : null}
+            <Text style={styles.badge}>発見済み</Text>
+            <Text style={styles.badge}>{characterRarityLabel[characterRarity]}</Text>
             <Text style={styles.badge}>{hasWorld ? worldLabel : HABITAT_GROUP_LABELS[habitat]}</Text>
-            <Text style={styles.badge}>{monster.favorite ? "お気に入り" : "通常登録"}</Text>
+            {monster.favorite ? <Text style={[styles.badge, styles.badgeFav]}>★お気に入り</Text> : null}
           </View>
         </View>
 
-        <View style={styles.panel}>
-          <Text style={styles.sectionTitle}>発見記録</Text>
-          <View style={styles.recordGrid}>
-            <View style={styles.recordItem}>
-              <Text style={styles.recordLabel}>初発見日</Text>
-              <Text style={styles.recordValue}>{formatFullDateTime(firstDiscoveredAt)}</Text>
-            </View>
-            <View style={styles.recordItem}>
-              <Text style={styles.recordLabel}>最終発見日</Text>
-              <Text style={styles.recordValue}>{formatFullDateTime(lastDiscoveredAt)}</Text>
-            </View>
-            <View style={styles.recordItem}>
-              <Text style={styles.recordLabel}>発見回数</Text>
-              <Text style={styles.recordValue}>{discoveryCount}回</Text>
-            </View>
-            <View style={styles.recordItem}>
-              <Text style={styles.recordLabel}>{hasWorld ? "所属ワールド" : "出現カテゴリ"}</Text>
-              <Text style={styles.recordValue}>{hasWorld ? `${realmLabel}／${worldLabel}` : HABITAT_GROUP_LABELS[habitat]}</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.panel}>
-          <Text style={styles.sectionTitle}>キャラメモ</Text>
-          {catalogDescription ? (
-            <Text style={styles.body}>{catalogDescription}</Text>
-          ) : (
-            <>
-              <Text style={styles.body}>{rare ? rare.loreMemo : family.biologicalMemo}</Text>
-              <Text style={styles.body}>{rare ? rare.relationToBaseFamily : family.gameTrait}</Text>
-            </>
-          )}
-        </View>
+        <CharacterRecordSection
+          characterId={monster.characterId ?? monster.imageKey}
+          fallbackFirstDiscoveredAt={firstDiscoveredAt}
+          fallbackLastDiscoveredAt={lastDiscoveredAt}
+          fallbackDiscoveryCount={discoveryCount}
+          belowRepresentative={memoPanel}
+        />
 
         <View style={styles.panel}>
           <Text style={styles.sectionTitle}>プライバシー</Text>
@@ -163,7 +183,11 @@ export const MonsterDetailScreen = () => {
           <PrimaryButton
             label={monster.favorite ? "お気に入り解除" : "お気に入り登録"}
             variant={monster.favorite ? "secondary" : "primary"}
-            onPress={() => void toggleFavorite(monster.id)}
+            soundId="none"
+            onPress={() => {
+              playSound("favorite");
+              void toggleFavorite(monster.id);
+            }}
           />
           <PrimaryButton label="図鑑へ" variant="secondary" onPress={() => navigation.navigate("WorldDex")} />
           <PrimaryButton label="もう一度スキャン" variant="ghost" onPress={() => navigation.navigate("MainTabs", { screen: "Scan" })} />
@@ -179,8 +203,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#F7FAFF"
   },
   content: {
-    padding: 18,
-    gap: 14,
+    padding: 16,
+    paddingTop: 10,
+    gap: 12,
     paddingBottom: 36
   },
   centerContent: {
@@ -192,27 +217,26 @@ const styles = StyleSheet.create({
   },
   heroCard: {
     alignItems: "center",
-    gap: 12,
+    gap: 10,
     borderRadius: 12,
-    padding: 18,
+    padding: 16,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
     borderColor: "#D7E0EA"
   },
-  noBadge: {
-    width: 58,
-    height: 58,
-    borderRadius: 29,
-    alignItems: "center",
-    justifyContent: "center",
+  noPill: {
+    borderRadius: 999,
+    paddingHorizontal: 14,
+    paddingVertical: 6,
     backgroundColor: "#F0FDF4",
-    borderWidth: 2,
-    borderColor: "#35AD4D"
+    borderWidth: 1,
+    borderColor: "#86EFAC"
   },
-  noText: {
+  noPillText: {
     color: "#166534",
-    fontSize: 21,
-    fontWeight: "900"
+    fontSize: 14,
+    fontWeight: "900",
+    letterSpacing: 0.5
   },
   title: {
     color: "#071B46",
@@ -242,6 +266,22 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: "900"
   },
+  badgeFav: {
+    color: "#92400E",
+    backgroundColor: "#FEF3C7"
+  },
+  profileBox: {
+    gap: 4,
+    borderRadius: 8,
+    padding: 12,
+    backgroundColor: "#F8FAFC",
+    borderWidth: 1,
+    borderColor: "#EEF2F7"
+  },
+  profileTitle: { color: "#071B46", fontSize: 14, fontWeight: "900", marginBottom: 2 },
+  profileMotif: { color: "#0F172A", fontSize: 14, fontWeight: "900" },
+  profileLine: { color: "#334155", fontSize: 13, fontWeight: "700" },
+  profileNote: { color: "#94A3B8", fontSize: 11, fontWeight: "700" },
   panel: {
     gap: 12,
     borderRadius: 12,

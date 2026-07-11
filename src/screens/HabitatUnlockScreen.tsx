@@ -3,6 +3,8 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { PrimaryButton } from "../components/PrimaryButton";
+import { playSound } from "../services/soundService";
+import type { SoundId } from "../types/sound";
 import { formatDP } from "../data/economy";
 import {
   INITIAL_WORLD_GROUPS,
@@ -26,9 +28,13 @@ export const HabitatUnlockScreen = () => {
   const activeBoost = economy.unlocks.activeWorldBoost;
   const rates = getWorldRates(unlocked, activeBoost);
 
-  const runAction = async (action: () => Promise<{ message: string }>) => {
+  const runAction = async (
+    action: () => Promise<{ ok: boolean; message: string }>,
+    successSound: SoundId
+  ) => {
     const result = await action();
     setMessage(result.message);
+    playSound(result.ok ? successSound : "error");
   };
 
   return (
@@ -84,7 +90,8 @@ export const HabitatUnlockScreen = () => {
                     }
                     variant="secondary"
                     disabled={!canBoost}
-                    onPress={() => void runAction(() => startWorldBoost(world))}
+                    soundId="none"
+                    onPress={() => void runAction(() => startWorldBoost(world), "boost_activate")}
                   />
                 ) : (
                   <PrimaryButton
@@ -96,7 +103,8 @@ export const HabitatUnlockScreen = () => {
                           : `解放する（${formatDP(nextCost)}）`
                     }
                     disabled={nextCost === null || shortage > 0}
-                    onPress={() => void runAction(() => unlockWorldGroup(world))}
+                    soundId="none"
+                    onPress={() => void runAction(() => unlockWorldGroup(world), "world_unlock")}
                   />
                 )}
               </View>

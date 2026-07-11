@@ -7,11 +7,18 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 import { PrimaryButton } from "../components/PrimaryButton";
+import { FriendEffectCard } from "../components/FriendEffectCard";
+import { ScanPresentation } from "../components/discovery/ScanPresentation";
 import { FEATURE_FLAGS } from "../constants/featureFlags";
+import { useLocationStore } from "../stores/locationStore";
 import { normalizeScanResult, type NormalizedScanResult } from "../services/scannerService";
+import { playSound } from "../services/soundService";
+import { isServerMode } from "../config/apiConfig";
+import { isApiReachable, OFFLINE_SCAN_MESSAGE } from "../services/networkService";
 import { useMonsterStore } from "../stores/monsterStore";
 import { useSettingsStore } from "../stores/settingsStore";
 import type { DetectedCode, DiscoveryResult, DiscoveryResultRef } from "../types/discovery";
+import type { ScanOutcome } from "../types/scanPresentation";
 
 type ScanEvent = {
   data: string;
@@ -70,6 +77,8 @@ export const ScanScreen = () => {
   const lastSeenRef = useRef<Record<string, number>>({});
   // 発見処理の多重実行ガード（setStateの反映待ちの隙間対策）。
   const processingRef = useRef(false);
+  // 演出オーバーレイに渡すコード（セット中は ScanPresentation が表示される）。
+  const [pendingCodes, setPendingCodes] = useState<DetectedCode[] | null>(null);
   const settings = useSettingsStore((state) => state.settings);
   const processDetectedCodes = useMonsterStore((state) => state.processDetectedCodes);
   const selectedRegionKey = settings.selectedRegionKey ?? "unknown";
@@ -82,6 +91,7 @@ export const ScanScreen = () => {
     setScanState("scanning");
     setError(null);
     setInfo(null);
+    setPendingCodes(null);
     lastSeenRef.current = {};
     processingRef.current = false;
   }, []);
@@ -89,6 +99,10 @@ export const ScanScreen = () => {
   useFocusEffect(
     useCallback(() => {
       resetScan();
+      // スキャン画面を開いた時の起動音。
+      playSound("scan_start");
+      // 現在地の都道府県を（スロットリングで）取得しておき、prefecture 抽選に備える。
+      void useLocationStore.getState().refresh();
     }, [resetScan])
   );
 
@@ -117,60 +131,81 @@ export const ScanScreen = () => {
         return;
       }
 
+      // サーバーモードでは公式発見に通信が必須。オフラインなら新規スキャンを成立させない（§3）。
+      if (isServerMode && !(await isApiReachable())) {
+        playSound("error");
+        setError(OFFLINE_SCAN_MESSAGE);
+        setScanState("scanning");
+        return;
+      }
+
       processingRef.current = true;
       setScanState("processing");
       setError(null);
       setInfo(null);
 
-      try {
-        const codes: DetectedCode[] = unique.map((item) => ({
-          id: item.id,
-          scanSource: item.scanSource,
-          codeType: item.codeType,
-          normalizedValue: item.normalizedValue
-        }));
-
-        const results: DiscoveryResult[] = await processDetectedCodes(codes, selectedRegionKey);
-
-        // 新規発見（first / new）のみ結果画面へ。発見済みブロック（duplicate）は進めない。
-        const newRefs: DiscoveryResultRef[] = [];
-        let blockedCount = 0;
-        for (const result of results) {
-          if (result.kind === "duplicate") {
-            blockedCount += 1;
-            continue;
-          }
-          newRefs.push({
-            id: result.id,
-            kind: result.kind,
-            scanSource: result.scanSource,
-            monsterId: result.monster.id,
-            dpEarned: result.dpEarned,
-            dpBalanceAfter: result.dpBalanceAfter,
-            dpBreakdown: result.dpBreakdown
-          });
-        }
-
-        if (newRefs.length > 0) {
-          // 画面遷移。戻ってきたら useFocusEffect でスキャンを再開する。
-          navigation.navigate("SummonResult", { results: newRefs });
-          return;
-        }
-
-        if (blockedCount > 0) {
-          setInfo("このコードは今日は発見済みです\nまた明日スキャンしてみましょう");
-        } else {
-          setError("発見処理に失敗しました。もう一度読み取ってください。");
-        }
-        setScanState("scanning");
-      } catch {
-        setError("発見処理に失敗しました。もう一度読み取ってください。");
-        setScanState("scanning");
-      } finally {
-        processingRef.current = false;
-      }
+      // 発見処理は演出オーバーレイ（ScanPresentation）に委譲する。
+      // 演出中に API を投げ、待機時間を「解析演出」に吸収する。
+      const codes: DetectedCode[] = unique.map((item) => ({
+        id: item.id,
+        scanSource: item.scanSource,
+        codeType: item.codeType,
+        normalizedValue: item.normalizedValue
+      }));
+      setPendingCodes(codes);
     },
-    [navigation, processDetectedCodes, scanState, selectedRegionKey]
+    [scanState, selectedRegionKey, navigation]
+  );
+
+  /** 演出オーバーレイから呼ばれ、発見APIを実行して結果一覧（重複含む）を返す。 */
+  const runDiscovery = useCallback(
+    async (codes: DetectedCode[]): Promise<DiscoveryResultRef[]> => {
+      const results: DiscoveryResult[] = await processDetectedCodes(codes, selectedRegionKey);
+      return results.map((result) =>
+        result.kind === "duplicate"
+          ? {
+              id: result.id,
+              kind: "duplicate" as const,
+              scanSource: result.scanSource,
+              duplicateFamilyId: result.familyId,
+              researchPoints: result.researchPoints,
+              dpEarned: result.dpEarned,
+              dpBalanceAfter: result.dpBalanceAfter,
+              dpBreakdown: result.dpBreakdown
+            }
+          : {
+              id: result.id,
+              kind: result.kind,
+              scanSource: result.scanSource,
+              monsterId: result.monster.id,
+              dpEarned: result.dpEarned,
+              dpBalanceAfter: result.dpBalanceAfter,
+              dpBreakdown: result.dpBreakdown,
+              discoveryRecordId: result.discoveryRecordId
+            }
+      );
+    },
+    [processDetectedCodes, selectedRegionKey]
+  );
+
+  /** 演出完了時：発見なら結果画面へ、重複/失敗はスキャン画面に表示を戻す。 */
+  const handlePresentationFinished = useCallback(
+    (outcome: ScanOutcome) => {
+      setPendingCodes(null);
+      processingRef.current = false;
+      if (outcome.kind === "discovered") {
+        // 公開演出は済んでいる（presented）。結果画面では reveal を再生しない。
+        navigation.navigate("SummonResult", { results: outcome.results, presented: true });
+        return;
+      }
+      if (outcome.kind === "duplicate") {
+        setInfo("このコードは今日は発見済みです\nまた明日スキャンしてみましょう");
+      } else {
+        setError(outcome.message);
+      }
+      setScanState("scanning");
+    },
+    [navigation]
   );
 
   const handleBarcodeScanned = ({ data, type }: ScanEvent) => {
@@ -192,7 +227,7 @@ export const ScanScreen = () => {
     // 3秒以内の同一コードはカメラの重複検出として無視（1日1回のゲームルールとは別管理）。
     const key = keyOf({ scanSource: result.sourceType, codeType: result.barcodeType, normalizedValue: result.normalizedData });
     const now = Date.now();
-    if (lastSeenRef.current[key] && now - lastSeenRef.current[key]! < cooldownMs) {
+    if (!FEATURE_FLAGS.DEBUG_MODE && lastSeenRef.current[key] && now - lastSeenRef.current[key]! < cooldownMs) {
       return;
     }
     lastSeenRef.current[key] = now;
@@ -206,6 +241,8 @@ export const ScanScreen = () => {
       return;
     }
 
+    // コード検出音（有効コードを掴んだ合図）。
+    playSound("scan_read");
     // 検出したら自動で発見処理へ（発見ボタンは廃止）。
     void autoDiscover([item]);
   };
@@ -243,12 +280,15 @@ export const ScanScreen = () => {
         .filter((item): item is DetectedItem => item !== null);
 
       if (items.length === 0) {
+        playSound("error");
         setError("画像内のコードは読み取れませんでした（対応していない形式の可能性があります）。");
         return;
       }
 
+      playSound("scan_read");
       await autoDiscover(items);
     } catch {
+      playSound("error");
       setError("画像の読み取りに失敗しました。もう一度お試しください。");
     }
   };
@@ -341,6 +381,8 @@ export const ScanScreen = () => {
           />
         ) : null}
 
+        <FriendEffectCard />
+
         <View style={styles.hintCard}>
           <Text style={styles.hintText}>
             商品のバーコードやQRコードをカメラ枠に写すと、自動で発見が始まります。{"\n"}
@@ -361,6 +403,10 @@ export const ScanScreen = () => {
           </View>
         ) : null}
       </ScrollView>
+
+      {pendingCodes ? (
+        <ScanPresentation run={() => runDiscovery(pendingCodes)} onFinished={handlePresentationFinished} />
+      ) : null}
     </SafeAreaView>
   );
 };

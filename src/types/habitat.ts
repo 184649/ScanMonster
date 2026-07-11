@@ -1,6 +1,6 @@
 export type HabitatGroup = "land" | "water" | "sky" | "bug" | "reptile" | "rare_world";
 
-export type CharacterRarity = "normal" | "rare" | "secret";
+export type CharacterRarity = "normal" | "rare" | "legendary" | "secret";
 
 export type Character = {
   id: string;

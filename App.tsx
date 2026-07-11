@@ -8,18 +8,30 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 
 import { BackButton } from "./src/components/common/BackButton";
+import { AccountScreen } from "./src/screens/AccountScreen";
 import { CollectionScreen } from "./src/screens/CollectionScreen";
-import { DexHomeScreen } from "./src/screens/DexHomeScreen";
+import { FeatureBoardScreen } from "./src/screens/FeatureBoardScreen";
+import { DexScreen } from "./src/screens/DexScreen";
+import { FriendScreen } from "./src/screens/FriendScreen";
+import { MenuScreen } from "./src/screens/MenuScreen";
+import { DiscoveryCalendarScreen } from "./src/screens/DiscoveryCalendarScreen";
+import { DiscoveryLogScreen } from "./src/screens/DiscoveryLogScreen";
+import { NumberCollectionScreen } from "./src/screens/NumberCollectionScreen";
 import { WorldDexScreen } from "./src/screens/WorldDexScreen";
 import { FriendDexScreen } from "./src/screens/FriendDexScreen";
 import { FriendInviteScreen } from "./src/screens/FriendInviteScreen";
 import { FriendQrScanScreen } from "./src/screens/FriendQrScanScreen";
+import { FriendQRCodeScreen } from "./src/screens/FriendQRCodeScreen";
+import { FriendWorldScanScreen } from "./src/screens/FriendWorldScanScreen";
+import { FriendQRResultScreen } from "./src/screens/FriendQRResultScreen";
+import { WorldListScreen } from "./src/screens/WorldListScreen";
 import { HabitatUnlockScreen } from "./src/screens/HabitatUnlockScreen";
 import { HomeScreen } from "./src/screens/HomeScreen";
 import { InitialWorldScreen } from "./src/screens/InitialWorldScreen";
 import { LoginScreen } from "./src/screens/LoginScreen";
 import { MissionScreen } from "./src/screens/MissionScreen";
 import { MonsterDetailScreen } from "./src/screens/MonsterDetailScreen";
+import { LegalScreen } from "./src/screens/LegalScreen";
 import { MyPageScreen } from "./src/screens/MyPageScreen";
 import { ResearchScreen } from "./src/screens/ResearchScreen";
 import { RegionSettingsScreen } from "./src/screens/RegionSettingsScreen";
@@ -27,6 +39,8 @@ import { ScanScreen } from "./src/screens/ScanScreen";
 import { SettingsScreen } from "./src/screens/SettingsScreen";
 import { SummonResultScreen } from "./src/screens/SummonResultScreen";
 import { TitlesScreen } from "./src/screens/TitlesScreen";
+import { ensureAnonToken } from "./src/services/authToken";
+import { useAuthStore } from "./src/stores/authStore";
 import { useMonsterStore } from "./src/stores/monsterStore";
 import { useProfileStore } from "./src/stores/profileStore";
 import { useSettingsStore } from "./src/stores/settingsStore";
@@ -62,8 +76,8 @@ const MainTabs = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "#2FA84F",
-        tabBarInactiveTintColor: "#50627F",
+        tabBarActiveTintColor: "#1D4ED8",
+        tabBarInactiveTintColor: "#64748B",
         tabBarStyle: styles.tabBar,
         tabBarLabelStyle: styles.tabLabel
       }}
@@ -77,37 +91,35 @@ const MainTabs = () => {
         }}
       />
       <Tab.Screen
-        name="DexHome"
-        component={DexHomeScreen}
+        name="Scan"
+        component={ScanScreen}
+        options={{
+          title: "スキャン",
+          tabBarIcon: ({ color, size, focused }) => <TabEmojiIcon emoji="⛶" color={color} size={size} focused={focused} />
+        }}
+      />
+      <Tab.Screen
+        name="Dex"
+        component={DexScreen}
         options={{
           title: "図鑑",
           tabBarIcon: ({ color, size, focused }) => <TabEmojiIcon emoji="📖" color={color} size={size} focused={focused} />
         }}
       />
       <Tab.Screen
-        name="Scan"
-        component={ScanScreen}
+        name="Friend"
+        component={FriendScreen}
         options={{
-          title: "スキャン",
-          tabBarIcon: ({ color, size, focused }) => (
-            <TabEmojiIcon emoji="📷" color={color} size={size} focused={focused} primary />
-          )
+          title: "フレンド",
+          tabBarIcon: ({ color, size, focused }) => <TabEmojiIcon emoji="👥" color={color} size={size} focused={focused} />
         }}
       />
       <Tab.Screen
-        name="MyPage"
-        component={MyPageScreen}
+        name="Menu"
+        component={MenuScreen}
         options={{
-          title: "マイページ",
-          tabBarIcon: ({ color, size, focused }) => <TabEmojiIcon emoji="🏅" color={color} size={size} focused={focused} />
-        }}
-      />
-      <Tab.Screen
-        name="SettingsTab"
-        component={SettingsScreen}
-        options={{
-          title: "設定",
-          tabBarIcon: ({ color, size, focused }) => <TabEmojiIcon emoji="⚙️" color={color} size={size} focused={focused} />
+          title: "メニュー",
+          tabBarIcon: ({ color, size, focused }) => <TabEmojiIcon emoji="☰" color={color} size={size} focused={focused} />
         }}
       />
     </Tab.Navigator>
@@ -123,10 +135,14 @@ export default function App() {
   const hydrateMonsters = useMonsterStore((state) => state.hydrate);
   const hydrateSettings = useSettingsStore((state) => state.hydrate);
   const hydrateProfile = useProfileStore((state) => state.hydrate);
+  const hydrateAuth = useAuthStore((state) => state.hydrate);
 
   useEffect(() => {
-    void Promise.all([hydrateMonsters(), hydrateSettings(), hydrateProfile()]);
-  }, [hydrateMonsters, hydrateSettings, hydrateProfile]);
+    // 認証情報の復元（hydrateAuth で account.token を Bearer に載せる）後、匿名アカウントを確保する。
+    void Promise.all([hydrateMonsters(), hydrateSettings(), hydrateProfile(), hydrateAuth()]).then(() =>
+      ensureAnonToken()
+    );
+  }, [hydrateMonsters, hydrateSettings, hydrateProfile, hydrateAuth]);
 
   const hydrated = monstersHydrated && settingsHydrated && profileHydrated;
 
@@ -152,11 +168,22 @@ export default function App() {
             <Stack.Screen name="MonsterDetail" component={MonsterDetailScreen} options={{ title: "キャラ詳細" }} />
             <Stack.Screen name="Collection" component={CollectionScreen} options={{ title: "コレクション（準備中）" }} />
             <Stack.Screen name="WorldDex" component={WorldDexScreen} options={{ title: "ワールド図鑑" }} />
+            <Stack.Screen name="DiscoveryLog" component={DiscoveryLogScreen} options={{ title: "発見ログ" }} />
+            <Stack.Screen name="NumberCollection" component={NumberCollectionScreen} options={{ title: "番号コレクション" }} />
+            <Stack.Screen name="DiscoveryCalendar" component={DiscoveryCalendarScreen} options={{ title: "発見カレンダー" }} />
             <Stack.Screen name="HabitatUnlock" component={HabitatUnlockScreen} options={{ title: "カテゴリ解放" }} />
             <Stack.Screen name="Titles" component={TitlesScreen} options={{ title: "称号" }} />
             <Stack.Screen name="Research" component={ResearchScreen} options={{ title: "研究（準備中）" }} />
             <Stack.Screen name="RegionSettings" component={RegionSettingsScreen} options={{ title: "地域設定" }} />
             <Stack.Screen name="Settings" component={SettingsScreen} options={{ title: "設定" }} />
+            <Stack.Screen name="MyPage" component={MyPageScreen} options={{ title: "マイページ" }} />
+            <Stack.Screen name="Legal" component={LegalScreen} options={{ title: "規約・ポリシー" }} />
+            <Stack.Screen name="Account" component={AccountScreen} options={{ title: "アカウント" }} />
+            <Stack.Screen name="FeatureBoard" component={FeatureBoardScreen} options={{ title: "要望掲示板" }} />
+            <Stack.Screen name="WorldList" component={WorldListScreen} options={{ title: "ワールド一覧" }} />
+            <Stack.Screen name="FriendQRCode" component={FriendQRCodeScreen} options={{ title: "フレンドQR" }} />
+            <Stack.Screen name="FriendQRScanServer" component={FriendWorldScanScreen} options={{ title: "フレンドQRを読み取る" }} />
+            <Stack.Screen name="FriendQRResult" component={FriendQRResultScreen} options={{ title: "フレンド発見" }} />
             <Stack.Screen name="FriendInvite" component={FriendInviteScreen} options={{ title: "フレンド・招待" }} />
             <Stack.Screen name="FriendQrScan" component={FriendQrScanScreen} options={{ title: "フレンドQR" }} />
             <Stack.Screen name="FriendDex" component={FriendDexScreen} options={{ title: "フレンド図鑑" }} />

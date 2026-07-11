@@ -5,6 +5,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { APP_INFO } from "../constants/appInfo";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { MonsterAvatar } from "../components/MonsterAvatar";
+import { isServerMode } from "../config/apiConfig";
+import { useAuthStore } from "../stores/authStore";
 import { useProfileStore } from "../stores/profileStore";
 
 const MAX_NAME_LENGTH = 16;
@@ -15,8 +17,31 @@ const MAX_NAME_LENGTH = 16;
  */
 export const LoginScreen = () => {
   const completeLogin = useProfileStore((state) => state.completeLogin);
+  const login = useAuthStore((state) => state.login);
   const [name, setName] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState<string | null>(null);
+
+  const handleLogin = () => {
+    if (submitting) return;
+    setSubmitting(true);
+    setLoginError(null);
+    void (async () => {
+      try {
+        const res = await login(email, password);
+        if (res.ok) {
+          await completeLogin();
+        } else {
+          setLoginError(res.message);
+        }
+      } finally {
+        setSubmitting(false);
+      }
+    })();
+  };
 
   const handleStart = (displayName?: string) => {
     if (submitting) {
@@ -70,8 +95,43 @@ export const LoginScreen = () => {
             <PrimaryButton label="名前は後で決める" variant="ghost" disabled={submitting} onPress={() => handleStart(undefined)} />
           </View>
 
+          {isServerMode ? (
+            <View style={styles.card}>
+              {showLogin ? (
+                <>
+                  <Text style={styles.cardTitle}>ログインしてはじめる</Text>
+                  <Text style={styles.cardBody}>以前アカウント連携した方は、ログインで発見記録を引き継げます。</Text>
+                  <TextInput
+                    style={styles.input}
+                    value={email}
+                    onChangeText={setEmail}
+                    placeholder="メールアドレス"
+                    placeholderTextColor="#94A3B8"
+                    autoCapitalize="none"
+                    keyboardType="email-address"
+                  />
+                  <TextInput
+                    style={styles.input}
+                    value={password}
+                    onChangeText={setPassword}
+                    placeholder="パスワード"
+                    placeholderTextColor="#94A3B8"
+                    secureTextEntry
+                  />
+                  {loginError ? <Text style={styles.error}>{loginError}</Text> : null}
+                  <PrimaryButton label="ログイン" loading={submitting} onPress={handleLogin} />
+                  <PrimaryButton label="やめる" variant="ghost" onPress={() => setShowLogin(false)} />
+                </>
+              ) : (
+                <PrimaryButton label="アカウントをお持ちの方はログイン" variant="secondary" onPress={() => setShowLogin(true)} />
+              )}
+            </View>
+          ) : null}
+
           <Text style={styles.notice}>
-            アカウント登録は不要です。データはこの端末内に保存されます（現在はバックエンド無しのMVP版）。
+            {isServerMode
+              ? "ゲストではじめられます。あとから設定＞アカウントで連携すれば、端末変更でも引き継げます。"
+              : "データはこの端末内に保存されます（現在サーバー未接続）。"}
           </Text>
         </ScrollView>
       </KeyboardAvoidingView>
@@ -161,5 +221,10 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     fontWeight: "700",
     textAlign: "center"
+  },
+  error: {
+    color: "#B91C1C",
+    fontSize: 13,
+    fontWeight: "800"
   }
 });

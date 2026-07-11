@@ -35,4 +35,12 @@ export type AppSettings = {
   showMonsterImageDebug?: boolean;
   /** デバッグ用：出現のノーマル/レアを固定する（未設定＝通常の抽選）。 */
   debugForceRarity?: "normal" | "rare";
+  /** 効果音(SE) ON/OFF（未設定＝ON）。docs/SOUND_SPEC.md 準拠。 */
+  seEnabled?: boolean;
+  /** 効果音音量 0.0〜1.0（未設定＝0.8）。 */
+  seVolume?: number;
+  /** 触覚フィードバック(ハプティクス) ON/OFF（未設定＝ON）。 */
+  hapticsEnabled?: boolean;
+  /** スキャン演出を簡易化（未設定＝OFF）。Reduce Motion 時も自動で簡易化。docs/SCAN_PRESENTATION.md */
+  simpleScanFx?: boolean;
 };

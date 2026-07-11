@@ -4,6 +4,7 @@ import { FEATURE_FLAGS } from "../constants/featureFlags";
 import { detectCurrentRegion, saveSelectedRegion } from "../services/regionService";
 import { storageService } from "../services/storageService";
 import type { AppSettings, RegionDetectionInfo, RegionKey } from "../types/region";
+import { DEFAULT_SOUND_SETTINGS } from "../types/sound";
 
 type SettingsStore = {
   settings: AppSettings;
@@ -18,7 +19,11 @@ type SettingsStore = {
 const defaultSettings: AppSettings = {
   scannerCooldownMs: 1800,
   showScanDebug: FEATURE_FLAGS.SHOW_SCAN_DEBUG,
-  showMonsterImageDebug: FEATURE_FLAGS.SHOW_CHARACTER_IMAGE_DEBUG
+  showMonsterImageDebug: FEATURE_FLAGS.SHOW_CHARACTER_IMAGE_DEBUG,
+  seEnabled: DEFAULT_SOUND_SETTINGS.seEnabled,
+  seVolume: DEFAULT_SOUND_SETTINGS.seVolume,
+  hapticsEnabled: true,
+  simpleScanFx: false
 };
 
 export const useSettingsStore = create<SettingsStore>((set, get) => ({

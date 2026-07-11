@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BookOpen, CheckCircle2, GalleryVerticalEnd, RotateCcw, Sparkles } from "../components/icons";
 import { Share, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { AwakeningReveal } from "../components/discovery/AwakeningReveal";
+import { DiscoveryCertificateCard } from "../components/discovery/DiscoveryCertificateCard";
 import { DiscoveryRewardSummary } from "../components/discovery/DiscoveryRewardSummary";
 import { APP_INFO } from "../constants/appInfo";
 import { WORLD_GROUP_LABELS } from "../data/worlds";
@@ -14,14 +15,23 @@ import { getCharacterRarityForMonster, getFamilyHabitatGroup } from "../data/cha
 import { getElementMeta, SEASON_LABELS, TIME_SLOT_LABELS } from "../data/elements";
 import { getFamilyById, MONSTER_FAMILIES } from "../data/monsterFamilies";
 import { getRareById } from "../data/rareMonsters";
+import { LegendaryRevealOverlay } from "../components/LegendaryRevealOverlay";
 import { MonsterAvatar } from "../components/MonsterAvatar";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { ShareCard } from "../components/ShareCard";
 import { TagChip } from "../components/TagChip";
+import { getRevealedWorlds, markWorldRevealed } from "../services/legendaryReveal";
+import { shouldRevealLegendary } from "../services/legendaryVisibility.core";
+import { characterRarityLabel } from "../services/rarityLabel.core";
 import { createDexSummary } from "../services/dexService";
 import { getScanStreakView, type ScanStreakView } from "../services/economyService";
+import { discoveryTitle } from "../services/discoveryTitle.core";
+import { formatDiscoveryNo } from "../services/numberValue.core";
+import { playSound } from "../services/soundService";
 import { useMonsterStore } from "../stores/monsterStore";
 import type { DiscoveryResultRef } from "../types/discovery";
+import type { DiscoveryRecord } from "../types/discoveryRecord";
+import type { SoundId } from "../types/sound";
 import type { ScanSource, UserMonster } from "../types/monster";
 import type { RootStackParamList } from "../types/navigation";
 import { formatDateTime } from "../utils/dateUtils";
@@ -29,11 +39,7 @@ import { goBackOrHome } from "../utils/navigation";
 
 const scanSourceLabel = (source: ScanSource): string => (source === "qr" ? "QRコード" : "バーコード");
 
-const characterRarityLabel = {
-  normal: "通常",
-  rare: "レア",
-  secret: "シークレット"
-} as const;
+// レアリティ表示は共通モジュールへ集約（legendary を含む・段3）。
 
 const kindBadge = (kind: DiscoveryResultRef["kind"]): { label: string; color: string; soft: string } => {
   if (kind === "first") {
@@ -93,25 +99,84 @@ export const SummonResultScreen = () => {
   const economy = useMonsterStore((state) => state.economy);
   const toggleFavorite = useMonsterStore((state) => state.toggleFavorite);
   const getMonsterById = useMonsterStore((state) => state.getMonsterById);
+  const getDiscoveryRecordById = useMonsterStore((state) => state.getDiscoveryRecordById);
   const summary = createDexSummary(monsters, histories);
   const streak = getScanStreakView(economy);
   const hasValidDiscovery = refs.some((ref) => ref.kind !== "duplicate");
   // 「目覚めの儀式」演出（単発発見の初回表示で1回だけ再生）。
-  const [revealDone, setRevealDone] = useState(false);
+  // スキャン画面側で公開演出済み（presented）なら結果画面では再生しない。
+  const [revealDone, setRevealDone] = useState(Boolean(params?.presented));
+  // 発見音・DP音を初回表示で1回だけ鳴らす（重複再生ガード）。
+  const soundPlayedRef = useRef(false);
 
-  const shareMonster = (monster: UserMonster) => {
+  // 伝説解放演出（§5）。この発見で normal コンプリートしたワールドがあれば、一度だけ表示する。
+  const legendaryUnlockedWorld = refs
+    .map((ref) => (ref.kind !== "duplicate" && ref.discoveryRecordId ? getDiscoveryRecordById(ref.discoveryRecordId)?.legendaryUnlockedNow : undefined))
+    .find((w): w is string => Boolean(w));
+  const [showLegendary, setShowLegendary] = useState(false);
+  useEffect(() => {
+    if (!legendaryUnlockedWorld) return;
+    let active = true;
+    void (async () => {
+      const revealed = await getRevealedWorlds();
+      if (!active) return;
+      if (shouldRevealLegendary(legendaryUnlockedWorld, revealed)) {
+        setShowLegendary(true);
+        await markWorldRevealed(legendaryUnlockedWorld); // 二重表示防止（戻る・再表示・再起動でも出さない）
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, [legendaryUnlockedWorld]);
+  const legendaryOverlay = <LegendaryRevealOverlay visible={showLegendary} onClose={() => setShowLegendary(false)} />;
+
+  useEffect(() => {
+    // presented（スキャン画面で公開演出済み）のときは発見音を二重に鳴らさない。
+    if (soundPlayedRef.current || refs.length === 0 || params?.presented) {
+      return;
+    }
+    soundPlayedRef.current = true;
+
+    const anyRare = refs.some((ref) => {
+      if (ref.kind === "duplicate" || !ref.monsterId) {
+        return false;
+      }
+      const target = getMonsterById(ref.monsterId);
+      return target ? (target.characterRarity ?? getCharacterRarityForMonster(target)) === "rare" : false;
+    });
+    const anyFirst = refs.some((ref) => ref.kind === "first");
+    const primary: SoundId = anyRare ? "discovery_rare" : anyFirst ? "discovery_normal" : "rediscovery";
+    playSound(primary);
+
+    // DP獲得音は発見音に重ねず、少し遅らせて順に鳴らす。
+    const dpTotal = refs.reduce((total, ref) => total + ref.dpEarned, 0);
+    if (dpTotal <= 0) {
+      return;
+    }
+    const delay = anyRare ? 1800 : 900;
+    const timer = setTimeout(() => playSound("dp_gain"), delay);
+    return () => clearTimeout(timer);
+    // 初回マウント時のみ実行する。
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const shareMonster = (monster: UserMonster, record?: DiscoveryRecord) => {
     const family = getFamilyById(monster.familyId);
     const rare = monster.rareId ? getRareById(monster.rareId) : undefined;
     const speciesLabel = rare ? `${family.name}のレア` : family.name;
     const rarity = characterRarityLabel[monster.characterRarity ?? getCharacterRarityForMonster(monster)];
-    const message = [
-      `${APP_INFO.name}で「${monster.displayName}」を発見！`,
-      `${speciesLabel} / ${rarity}`,
-      `図鑑 ${summary.discoveredFamilies}/${summary.totalFamilies}`,
-      `${APP_INFO.tagline} ${APP_INFO.hashtag}`
-    ].join("\n");
+    const proofLabel = record?.strongestProof ? "【最強の証】" : "";
+    // 共有カードに生コード値・sourceHash・商品名・時刻・位置は含めない（§28）。
+    const lines = [`${APP_INFO.name}で「${monster.displayName}${proofLabel}」を発見！`, `${speciesLabel} / ${rarity}`];
+    if (record) {
+      const badge = record.primaryNumberBadge ? `・${record.primaryNumberBadge.label}` : "";
+      lines.push(`${formatDiscoveryNo(record.characterDiscoveryNo)}・発見難度${record.difficultyRank}${badge}`);
+    }
+    lines.push(`図鑑 ${summary.discoveredFamilies}/${summary.totalFamilies}`);
+    lines.push(`${APP_INFO.tagline} ${APP_INFO.hashtag}`);
 
-    void Share.share({ message });
+    void Share.share({ message: lines.join("\n") });
   };
 
   const navActions = (
@@ -193,10 +258,21 @@ export const SummonResultScreen = () => {
     const habitat = monster.habitatGroup ?? getFamilyHabitatGroup(monster.familyId);
     const rarity = monster.characterRarity ?? getCharacterRarityForMonster(monster);
     const worldLabel = monster.worldGroup ? WORLD_GROUP_LABELS[monster.worldGroup] : "";
+    const certificate = ref.discoveryRecordId ? getDiscoveryRecordById(ref.discoveryRecordId) : undefined;
+    // 発見結果の見出し（レアリティ別・secretは伏せる・prefectureは県名）。
+    const resultRarity =
+      certificate?.rarity ?? (rarity === "rare" ? "rare" : rarity === "legendary" ? "legendary" : "normal");
+    const dTitle = discoveryTitle(resultRarity, certificate?.prefectureName);
 
     return (
       <SafeAreaView style={styles.safeArea}>
+        {legendaryOverlay}
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+          <View style={styles.discoveryHead}>
+            <Text style={styles.discoveryHeadTitle}>{dTitle.title}</Text>
+            <Text style={styles.discoveryHeadSub}>{dTitle.subtitle}</Text>
+          </View>
+
           <View style={styles.hero}>
             <View style={[styles.resultBadge, { backgroundColor: badge.soft }]}>
               <CheckCircle2 color={badge.color} size={18} strokeWidth={2.4} />
@@ -219,6 +295,13 @@ export const SummonResultScreen = () => {
               {rare ? <TagChip label={rare.rareCategory} color="#EDE9FE" /> : null}
             </View>
           </View>
+
+          {certificate ? (
+            <View style={styles.certificateSection}>
+              <Text style={styles.sectionTitle}>発見証明</Text>
+              <DiscoveryCertificateCard record={certificate} />
+            </View>
+          ) : null}
 
           <DiscoveryRewardSummary
             rewardLines={ref.dpBreakdown}
@@ -264,7 +347,7 @@ export const SummonResultScreen = () => {
               totalFamilies={summary.totalFamilies}
               discoveredIndividuals={summary.discoveredIndividuals}
             />
-            <PrimaryButton label="この発見を共有する" icon={Sparkles} onPress={() => shareMonster(monster)} />
+            <PrimaryButton label="この発見を共有する" icon={Sparkles} onPress={() => shareMonster(monster, certificate)} />
           </View>
 
           <View style={styles.actions}>
@@ -279,7 +362,11 @@ export const SummonResultScreen = () => {
               label={monster.favorite ? "お気に入り解除" : "お気に入り登録"}
               icon={GalleryVerticalEnd}
               variant="ghost"
-              onPress={() => void toggleFavorite(monster.id)}
+              soundId="none"
+              onPress={() => {
+                playSound("favorite");
+                void toggleFavorite(monster.id);
+              }}
             />
             <PrimaryButton
               label="もう一度スキャン"
@@ -310,6 +397,7 @@ export const SummonResultScreen = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
+      {legendaryOverlay}
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.hero}>
           <Text style={styles.title}>{refs.length}個のコードを読み取りました</Text>
@@ -532,6 +620,36 @@ const styles = StyleSheet.create({
   shareSection: {
     gap: 12
   },
+  certificateSection: {
+    gap: 10
+  },
+  discoveryHead: {
+    alignItems: "center",
+    gap: 2,
+    paddingVertical: 4
+  },
+  discoveryHeadTitle: {
+    color: "#16A34A",
+    fontSize: 34,
+    fontWeight: "900",
+    letterSpacing: 1
+  },
+  discoveryHeadSub: {
+    color: "#475569",
+    fontSize: 14,
+    fontWeight: "800"
+  },
+  regionBanner: {
+    gap: 2,
+    alignItems: "center",
+    borderRadius: 12,
+    padding: 14,
+    backgroundColor: "#ECFEFF",
+    borderWidth: 1,
+    borderColor: "#67E8F9"
+  },
+  regionBannerTitle: { color: "#0E7490", fontSize: 18, fontWeight: "900" },
+  regionBannerText: { color: "#155E75", fontSize: 14, fontWeight: "800" },
   sectionTitle: {
     color: "#0F172A",
     fontSize: 18,

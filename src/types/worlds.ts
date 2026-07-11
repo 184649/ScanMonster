@@ -26,7 +26,7 @@ export type WorldGroup =
   | "staple_food"
   | "dessert";
 
-export type CharacterRarity = "normal" | "rare" | "secret";
+export type CharacterRarity = "normal" | "rare" | "legendary" | "secret";
 
 export type WorldCharacter = {
   id: string;

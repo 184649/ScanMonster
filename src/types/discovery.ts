@@ -24,6 +24,8 @@ export type DiscoveryResult =
       dpEarned: number;
       dpBalanceAfter: number;
       dpBreakdown: DPRewardLine[];
+      /** 発行された発見証明ID。 */
+      discoveryRecordId?: string;
     }
   | {
       id: string;
@@ -47,4 +49,6 @@ export type DiscoveryResultRef = {
   dpEarned: number;
   dpBalanceAfter: number;
   dpBreakdown: DPRewardLine[];
+  /** 発行された発見証明ID（結果画面が store から証明を引く）。 */
+  discoveryRecordId?: string;
 };

@@ -25,7 +25,6 @@ import { calculateDiscoveryRate, selectDiscoveryType } from "../services/discove
 import { rareReadyWorldGroups, selectWorldSpawn } from "../services/worldSpawn";
 import { FEATURE_FLAGS } from "../constants/featureFlags";
 import { useSettingsStore } from "./settingsStore";
-import { effectiveUnlockedWorldGroups } from "../services/worldAccess";
 import {
   ALL_WORLD_GROUPS,
   INITIAL_WORLD_GROUPS,
@@ -45,13 +44,20 @@ import { createSourceHash, createVariantSeed } from "../services/hashService";
 import { generateMonsterFromScan, pickFamilyFromHash } from "../services/monsterGenerator";
 import { decrementBoostAfterValidScan, getUnlockedHabitatsOrFallback, pickFamilyForHabitat, pickHabitatByRates } from "../services/habitatService";
 import { addResearchReward } from "../services/researchService";
+import { applyDiscoveryToCharacterRecord, recordDiscovery } from "../services/discoveryRecordService";
+import { isServerMode } from "../config/apiConfig";
+import { ApiUnavailableError, postScan } from "../services/apiClient";
+import { getActiveServerUserId } from "../services/activeUser";
+import { getActivePrefecture } from "./locationStore";
+import { isApiReachable } from "../services/networkService";
 import { storageService } from "../services/storageService";
 import { syncUnlockedTitles } from "../services/titleService";
+import type { CharacterRecord, DiscoveryRarity, DiscoveryRecord } from "../types/discoveryRecord";
 import type { DetectedCode, DiscoveryResult } from "../types/discovery";
 import type { ScanCategory } from "../types/category";
 import type { EconomyStateData, FormStage, SpendDPResult } from "../types/economy";
 import type { ActiveExpedition, ExpeditionReward } from "../types/expedition";
-import type { HabitatGroup } from "../types/habitat";
+import type { CharacterRarity, HabitatGroup } from "../types/habitat";
 import type { MissionProgress } from "../types/mission";
 import type { ScanSource, UserMonster } from "../types/monster";
 import type { RegionKey } from "../types/region";
@@ -76,6 +82,8 @@ export type AddScanResult =
       dpEarned: number;
       dpBalanceAfter: number;
       dpBreakdown: DiscoveryResult["dpBreakdown"];
+      /** 発行された発見証明ID（結果画面が store から証明を引く）。 */
+      discoveryRecordId?: string;
     }
   | {
       kind: "duplicate";
@@ -95,10 +103,22 @@ type MonsterStore = {
   research: FamilyResearch[];
   missionProgress: MissionProgress[];
   economy: EconomyStateData;
+  /** 発見証明（全履歴、新しい順）。 */
+  discoveryRecords: DiscoveryRecord[];
+  /** キャラごとの記録（1種1件）。 */
+  characterRecords: CharacterRecord[];
   userSalt: string;
   hydrated: boolean;
   hydrate: () => Promise<void>;
   addScannedMonster: (params: AddScannedMonsterParams) => Promise<AddScanResult>;
+  /** キャラの記録を取得する。 */
+  getCharacterRecord: (characterId: string) => CharacterRecord | undefined;
+  /** キャラの取得済み発見証明を新しい順で返す。 */
+  getDiscoveryRecordsForCharacter: (characterId: string) => DiscoveryRecord[];
+  /** IDで発見証明を返す。 */
+  getDiscoveryRecordById: (recordId: string) => DiscoveryRecord | undefined;
+  /** 引継ぎ同期：サーバーの発見証明で発見記録キャッシュを置き換える。 */
+  applyServerDiscoveries: (records: DiscoveryRecord[]) => Promise<void>;
   processDetectedCodes: (codes: DetectedCode[], regionKey: RegionKey, scannedAt?: Date) => Promise<DiscoveryResult[]>;
   updateMonster: (monster: UserMonster) => Promise<void>;
   toggleFavorite: (monsterId: string) => Promise<void>;
@@ -143,22 +163,36 @@ export const useMonsterStore = create<MonsterStore>((set, get) => ({
   research: [],
   missionProgress: [],
   economy: createDefaultEconomyState(),
+  discoveryRecords: [],
+  characterRecords: [],
   userSalt: "",
   hydrated: false,
 
   async hydrate() {
     await storageService.ensureSchema();
-    const [monsters, scanHistories, dailySourceLimits, expeditions, research, missionProgress, economy, userSalt] =
-      await Promise.all([
-        storageService.getMonsters(),
-        storageService.getScanHistories(),
-        storageService.getDailySourceLimits(),
-        storageService.getExpeditions(),
-        storageService.getResearch(),
-        storageService.getMissionProgress(),
-        storageService.getEconomy(),
-        storageService.ensureUserSalt()
-      ]);
+    const [
+      monsters,
+      scanHistories,
+      dailySourceLimits,
+      expeditions,
+      research,
+      missionProgress,
+      economy,
+      discoveryRecords,
+      characterRecords,
+      userSalt
+    ] = await Promise.all([
+      storageService.getMonsters(),
+      storageService.getScanHistories(),
+      storageService.getDailySourceLimits(),
+      storageService.getExpeditions(),
+      storageService.getResearch(),
+      storageService.getMissionProgress(),
+      storageService.getEconomy(),
+      storageService.getDiscoveryRecords(),
+      storageService.getCharacterRecords(),
+      storageService.ensureUserSalt()
+    ]);
     const syncedExpeditions = expeditions.map((expedition) => ({
       ...expedition,
       status: getExpeditionDisplayStatus(expedition)
@@ -178,6 +212,8 @@ export const useMonsterStore = create<MonsterStore>((set, get) => ({
       research,
       missionProgress,
       economy: economyWithTitles,
+      discoveryRecords,
+      characterRecords,
       userSalt,
       hydrated: true
     });
@@ -192,7 +228,8 @@ export const useMonsterStore = create<MonsterStore>((set, get) => ({
 
     // 同じコードは同じローカル日付では1回だけ処理可能（3秒のカメラ重複制限とは別のゲームルール）。
     // 同日2回目以降は「発見済みブロック」：新規発見・新個体・DP・研究ポイントを一切付与しない。
-    const alreadyDiscoveredToday = state.dailySourceLimits.some((limit) => limit.key === limitKey);
+    const isDebugScanBypass = FEATURE_FLAGS.DEBUG_MODE;
+    const alreadyDiscoveredToday = !isDebugScanBypass && state.dailySourceLimits.some((limit) => limit.key === limitKey);
 
     if (alreadyDiscoveredToday) {
       const family = pickFamilyFromHash(sourceHash);
@@ -271,22 +308,130 @@ export const useMonsterStore = create<MonsterStore>((set, get) => ({
       rareInput,
       forcedType
     });
+
+    // ===== サーバーモード：公式発見はサーバーが確定する（§2/§4）。ローカル抽選・ローカル採番は使わない =====
+    if (isServerMode) {
+      const reachable = await isApiReachable();
+      if (!reachable) {
+        // オフラインでは新規スキャンを成立させない（§3）。呼び出し側でオフライン表示に変換する。
+        throw new ApiUnavailableError();
+      }
+      const activePrefecture = getActivePrefecture();
+      const resp = await postScan({
+        userId: getActiveServerUserId(userSalt),
+        sourceHash,
+        scanType: scanSource === "qr" ? "qr" : "barcode",
+        localDate: scanDate,
+        prefectureCode: activePrefecture?.code,
+        prefectureName: activePrefecture?.name
+      });
+      if (resp.status === "duplicate") {
+        const family = pickFamilyFromHash(sourceHash);
+        return { kind: "duplicate", scanSource, familyId: family.id, researchPoints: 0, dpEarned: 0, dpBalanceAfter: state.economy.dpBalance, dpBreakdown: [] };
+      }
+      const dto = resp.discoveryRecord;
+      // サーバー確定の rarity を丸めずに保持（legendary/secret も normal に落とさない・段3）。
+      const serverRarity: CharacterRarity =
+        dto.rarity === "rare"
+          ? "rare"
+          : dto.rarity === "legendary"
+            ? "legendary"
+            : dto.rarity === "secret"
+              ? "secret"
+              : "normal";
+      // 表示用の器は generated を流用し、キャラ情報はサーバー確定値で上書き（画像は imageKey=公式characterId）。
+      const serverMonster: UserMonster = {
+        ...generated.monster,
+        characterId: dto.characterId,
+        displayName: dto.characterName,
+        imageKey: dto.characterId,
+        worldGroup: (dto.worldGroup || undefined) as WorldGroup | undefined,
+        characterRarity: serverRarity,
+        rarityTier: serverRarity === "normal" ? "normal" : "hiddenRare",
+        firstDiscoveredAt: dto.discoveredAt,
+        lastDiscoveredAt: dto.discoveredAt,
+        discoveryCount: 1,
+        rareId: undefined
+      };
+      const serverRecord: DiscoveryRecord = {
+        id: dto.id,
+        certificateId: dto.certificateId,
+        characterId: dto.characterId,
+        characterName: dto.characterName,
+        imageKey: dto.characterId,
+        worldGroup: dto.worldGroup,
+        rarity: dto.rarity,
+        discoveredAt: dto.discoveredAt,
+        localDate: scanDate,
+        isNewForUser: dto.isNewForUser,
+        isRediscovery: dto.isRediscovery,
+        difficultyRank: dto.difficultyRank,
+        characterDiscoveryNo: dto.characterDiscoveryNo,
+        numberBadges: dto.numberBadges,
+        primaryNumberBadge: dto.primaryNumberBadge,
+        grantedCharacterTitles: dto.grantedCharacterTitles,
+        strongestProof: dto.strongestProof,
+        discoveryRankLabel: dto.discoveryRankLabel,
+        dpGained: dto.dpGained,
+        numberSource: "server",
+        prefectureName: dto.prefectureName,
+        legendaryUnlockedNow: dto.legendaryUnlockedNow
+      };
+      const existingRec = await storageService.getCharacterRecordById(dto.characterId);
+      const charRecord = applyDiscoveryToCharacterRecord(existingRec, serverRecord);
+      const serverEconomy: EconomyStateData = { ...state.economy, dpBalance: dto.dpBalanceAfter };
+      await storageService.saveMonster(serverMonster);
+      await storageService.saveDiscoveryRecord(serverRecord);
+      await storageService.saveCharacterRecord(charRecord);
+      await storageService.saveEconomy(serverEconomy);
+      set((current) => ({
+        monsters: dto.isRediscovery
+          ? [serverMonster, ...current.monsters.filter((m) => getCharacterIdForMonster(m) !== dto.characterId)]
+          : [serverMonster, ...current.monsters],
+        economy: serverEconomy,
+        discoveryRecords: [serverRecord, ...current.discoveryRecords.filter((r) => r.id !== serverRecord.id)],
+        characterRecords: [charRecord, ...current.characterRecords.filter((r) => r.characterId !== charRecord.characterId)]
+      }));
+      return {
+        kind: dto.isNewForUser ? "first" : "rediscovery",
+        scanSource,
+        monster: serverMonster,
+        dpEarned: dto.dpGained,
+        dpBalanceAfter: dto.dpBalanceAfter,
+        dpBreakdown: [],
+        discoveryRecordId: serverRecord.id
+      };
+    }
+
     // 新モデル（領域>ワールド）：解放済みワールドから均等抽選（ブースト補正込み）→ そのワールドの
     // 「画像実在」キャラを1体。未発見優先はしない（所持済みも候補）。rare のみ wantRare。
     let catalogOffset = 700;
     const catalogRng = () => valueFromHash(variantSeed, 0, 99999, catalogOffset++) / 100000;
     // レア固定デバッグ時は、レアが実際に出現し得るワールド（画像実在の通常＋レアが両方ある）に限定する。
     const rareWorlds = rareReadyWorldGroups();
+    const unlockedWorldsForSpawn = state.economy.unlocks.unlockedWorldGroups;
+    const rareUnlockedWorlds = unlockedWorldsForSpawn.filter((world) => rareWorlds.includes(world));
     const unlockedForSpawn =
-      debugForceRarity === "rare" && rareWorlds.length > 0
-        ? rareWorlds
-        : effectiveUnlockedWorldGroups(state.economy.unlocks.unlockedWorldGroups);
-    const worldPick = selectWorldSpawn({
+      debugForceRarity === "rare" && rareUnlockedWorlds.length > 0
+        ? rareUnlockedWorlds
+        : unlockedWorldsForSpawn;
+    let worldPick = selectWorldSpawn({
       unlockedWorldGroups: unlockedForSpawn,
       activeBoost: state.economy.unlocks.activeWorldBoost,
       wantRare: discoveryType === "rare",
       rng: catalogRng
     });
+    if (!worldPick) {
+      worldPick = selectWorldSpawn({
+        unlockedWorldGroups: unlockedForSpawn,
+        activeBoost: undefined,
+        wantRare: discoveryType === "rare",
+        rng: catalogRng
+      });
+    }
+    if (!worldPick) {
+      throw new Error("No image-ready character in unlocked worlds.");
+    }
     const catalogChar = worldPick ? (worldPick.kind === "rare" ? worldPick.rare : worldPick.character) : undefined;
     const catalogIsRare = worldPick?.kind === "rare";
 
@@ -348,7 +493,7 @@ export const useMonsterStore = create<MonsterStore>((set, get) => ({
       scanDate,
       recordedAt: scannedAt.toISOString()
     };
-    const nextDailyLimits = [limitRecord, ...state.dailySourceLimits].slice(0, 500);
+    const nextDailyLimits = isDebugScanBypass ? state.dailySourceLimits : [limitRecord, ...state.dailySourceLimits].slice(0, 500);
     const nextMonsters = isRediscovery
       ? [monster, ...state.monsters.filter((item) => item.id !== monster.id)]
       : [monster, ...state.monsters];
@@ -378,11 +523,34 @@ export const useMonsterStore = create<MonsterStore>((set, get) => ({
     await storageService.saveScanHistory(scanHistory);
     await storageService.saveDailySourceLimits(nextDailyLimits);
     await storageService.saveEconomy(finalEconomy);
+
+    // 発見記録ドメイン：公式発見番号の採番・発見証明の発行・キャラ記録の更新（§9/§15/§18/§23）。
+    // 採番/番号価値/難度/最強の証は discoveryRecordService に集約。dpGained は実際の付与額を記録する。
+    const discoveryRarity: DiscoveryRarity = monster.characterRarity === "rare" || catalogIsRare ? "rare" : "normal";
+    const proofRoll = valueFromHash(variantSeed, 0, 999999, 8888) / 1000000;
+    const { record, characterRecord } = await recordDiscovery({
+      id: `disc_${sourceHash.slice(0, 6)}_${variantSeed.slice(0, 6)}_${Date.now()}`,
+      characterId,
+      characterName: monster.displayName,
+      imageKey: monster.imageKey,
+      worldGroup: monster.worldGroup,
+      rarity: discoveryRarity,
+      discoveredAt,
+      localDate: scanDate,
+      dpGained: totalDp,
+      roll01: proofRoll
+    });
+
     set((current) => ({
       monsters: isRediscovery ? [monster, ...current.monsters.filter((item) => item.id !== monster.id)] : [monster, ...current.monsters],
       scanHistories: [scanHistory, ...current.scanHistories],
       dailySourceLimits: nextDailyLimits,
-      economy: finalEconomy
+      economy: finalEconomy,
+      discoveryRecords: [record, ...current.discoveryRecords.filter((item) => item.id !== record.id)],
+      characterRecords: [
+        characterRecord,
+        ...current.characterRecords.filter((item) => item.characterId !== characterRecord.characterId)
+      ]
     }));
 
     return {
@@ -391,8 +559,35 @@ export const useMonsterStore = create<MonsterStore>((set, get) => ({
       monster,
       dpEarned: totalDp,
       dpBalanceAfter: finalEconomy.dpBalance,
-      dpBreakdown: rewardLines
+      dpBreakdown: rewardLines,
+      discoveryRecordId: record.id
     };
+  },
+
+  getCharacterRecord(characterId) {
+    return get().characterRecords.find((record) => record.characterId === characterId);
+  },
+
+  getDiscoveryRecordsForCharacter(characterId) {
+    return get().discoveryRecords.filter((record) => record.characterId === characterId);
+  },
+
+  getDiscoveryRecordById(recordId) {
+    return get().discoveryRecords.find((record) => record.id === recordId);
+  },
+
+  async applyServerDiscoveries(records) {
+    // 古い順にキャラ記録を畳んで再構築（発見回数・代表・称号を復元）。
+    const asc = [...records].sort((a, b) => (a.discoveredAt < b.discoveredAt ? -1 : a.discoveredAt > b.discoveredAt ? 1 : 0));
+    const charMap = new Map<string, CharacterRecord>();
+    for (const rec of asc) {
+      charMap.set(rec.characterId, applyDiscoveryToCharacterRecord(charMap.get(rec.characterId), rec));
+    }
+    const discoveryRecords = [...records].sort((a, b) => (a.discoveredAt > b.discoveredAt ? -1 : a.discoveredAt < b.discoveredAt ? 1 : 0));
+    const characterRecords = [...charMap.values()];
+    await storageService.saveDiscoveryRecords(discoveryRecords);
+    await storageService.saveCharacterRecords(characterRecords);
+    set({ discoveryRecords, characterRecords });
   },
 
   async processDetectedCodes(codes, regionKey, scannedAt = new Date()) {
@@ -429,7 +624,8 @@ export const useMonsterStore = create<MonsterStore>((set, get) => ({
             monster: result.monster,
             dpEarned: result.dpEarned,
             dpBalanceAfter: result.dpBalanceAfter,
-            dpBreakdown: result.dpBreakdown
+            dpBreakdown: result.dpBreakdown,
+            discoveryRecordId: result.discoveryRecordId
           });
         }
       } catch {
@@ -1126,6 +1322,8 @@ export const useMonsterStore = create<MonsterStore>((set, get) => ({
       research: [],
       missionProgress: [],
       economy: createDefaultEconomyState(),
+      discoveryRecords: [],
+      characterRecords: [],
       userSalt
     });
   }

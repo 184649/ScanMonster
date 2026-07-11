@@ -6,6 +6,8 @@ import { createDefaultEconomyState, normalizeEconomyState } from "../data/econom
 import type { EconomyStateData } from "../types/economy";
 import type { ActiveExpedition } from "../types/expedition";
 import type { DailySourceLimit, ScanHistory } from "../types/scan";
+import type { AccountState } from "../types/account";
+import type { CharacterRecord, DiscoveryRecord } from "../types/discoveryRecord";
 import type { UserMonster } from "../types/monster";
 import type { MissionProgress } from "../types/mission";
 import type { UserProfile } from "../types/profile";
@@ -184,6 +186,66 @@ export const storageService = {
     return profile.userSalt;
   },
 
+  // ===== 発見記録ドメイン（フェーズ1） =====
+
+  /** キャラ別発見番号の採番カウンター（counterKey -> BIGINT相当のstring）。 */
+  async getDiscoveryCounters(): Promise<Record<string, string>> {
+    return readJson<Record<string, string>>(STORAGE_KEYS.DISCOVERY_COUNTERS, {});
+  },
+
+  async saveDiscoveryCounters(counters: Record<string, string>): Promise<void> {
+    await writeJson(STORAGE_KEYS.DISCOVERY_COUNTERS, counters);
+  },
+
+  /** 全発見証明（新しい順）。 */
+  async getDiscoveryRecords(): Promise<DiscoveryRecord[]> {
+    return readJson<DiscoveryRecord[]>(STORAGE_KEYS.DISCOVERY_RECORDS, []);
+  },
+
+  async saveDiscoveryRecord(record: DiscoveryRecord): Promise<void> {
+    const records = await storageService.getDiscoveryRecords();
+    await writeJson(STORAGE_KEYS.DISCOVERY_RECORDS, [record, ...records.filter((item) => item.id !== record.id)]);
+  },
+
+  /** 発見証明一覧を丸ごと置き換える（引継ぎ同期用）。 */
+  async saveDiscoveryRecords(records: DiscoveryRecord[]): Promise<void> {
+    await writeJson(STORAGE_KEYS.DISCOVERY_RECORDS, records);
+  },
+
+  async getCharacterRecords(): Promise<CharacterRecord[]> {
+    return readJson<CharacterRecord[]>(STORAGE_KEYS.CHARACTER_RECORDS, []);
+  },
+
+  /** キャラ記録一覧を丸ごと置き換える（引継ぎ同期用）。 */
+  async saveCharacterRecords(records: CharacterRecord[]): Promise<void> {
+    await writeJson(STORAGE_KEYS.CHARACTER_RECORDS, records);
+  },
+
+  async getAccount(): Promise<AccountState | null> {
+    return readJson<AccountState | null>(STORAGE_KEYS.ACCOUNT, null);
+  },
+
+  async saveAccount(account: AccountState | null): Promise<void> {
+    if (account) {
+      await writeJson(STORAGE_KEYS.ACCOUNT, account);
+    } else {
+      await AsyncStorage.removeItem(STORAGE_KEYS.ACCOUNT);
+    }
+  },
+
+  async getCharacterRecordById(characterId: string): Promise<CharacterRecord | undefined> {
+    const records = await storageService.getCharacterRecords();
+    return records.find((record) => record.characterId === characterId);
+  },
+
+  async saveCharacterRecord(record: CharacterRecord): Promise<void> {
+    const records = await storageService.getCharacterRecords();
+    await writeJson(
+      STORAGE_KEYS.CHARACTER_RECORDS,
+      [record, ...records.filter((item) => item.characterId !== record.characterId)]
+    );
+  },
+
   async getDailySourceLimits(): Promise<DailySourceLimit[]> {
     return readJson<DailySourceLimit[]>(STORAGE_KEYS.DAILY_LIMITS, []);
   },
@@ -205,6 +267,9 @@ export const storageService = {
       STORAGE_KEYS.MISSIONS,
       STORAGE_KEYS.RESEARCH,
       STORAGE_KEYS.ECONOMY,
+      STORAGE_KEYS.DISCOVERY_COUNTERS,
+      STORAGE_KEYS.DISCOVERY_RECORDS,
+      STORAGE_KEYS.CHARACTER_RECORDS,
       LEGACY_STORAGE_KEYS.monsters,
       LEGACY_STORAGE_KEYS.histories,
       LEGACY_STORAGE_KEYS.settings

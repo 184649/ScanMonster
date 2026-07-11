@@ -3928,3 +3928,10 @@ export const CATALOG_RARES: CatalogRare[] = [
     "description": ""
   }
 ];
+
+// CATALOG_NORMALS は CATALOG_CHARACTERS の別名（normal 一覧）。段3で normal/rare/legendary を明示分離。
+export const CATALOG_NORMALS: CatalogCharacter[] = CATALOG_CHARACTERS;
+
+// 伝説キャラ（段3）。normalコンプリート後のみUI表示すること（未解放時は一切示唆しない）。
+// 素材投入後に `npm run gen:catalog` で再生成される（現状は未投入のため空）。
+export const CATALOG_LEGENDARIES: CatalogRare[] = [];

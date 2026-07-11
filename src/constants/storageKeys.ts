@@ -9,5 +9,11 @@ export const STORAGE_KEYS = {
   MISSIONS: "scanmonster:missions",
   RESEARCH: "scanmonster:research",
   ECONOMY: "scanmonster:economy",
-  SETTINGS: "scanmonster:settings"
+  SETTINGS: "scanmonster:settings",
+  // 発見記録ドメイン（フェーズ1）。
+  DISCOVERY_COUNTERS: "scanmonster:discoveryCounters",
+  DISCOVERY_RECORDS: "scanmonster:discoveryRecords",
+  CHARACTER_RECORDS: "scanmonster:characterRecords",
+  // アカウント連携（サーバー採番の正規userId・トークン）。
+  ACCOUNT: "scanmonster:account"
 } as const;
