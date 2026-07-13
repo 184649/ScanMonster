@@ -16,6 +16,7 @@ import {
   getWorldRates
 } from "../data/worlds";
 import { useMonsterStore } from "../stores/monsterStore";
+import { colors } from "../theme";
 
 // ルート名（HabitatUnlock）は維持。中身は「ワールド解放＋ワールドブースト」の統合画面。
 export const HabitatUnlockScreen = () => {
@@ -124,7 +125,7 @@ export const HabitatUnlockScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 18,
@@ -135,17 +136,17 @@ const styles = StyleSheet.create({
     gap: 6
   },
   kicker: {
-    color: "#2FA84F",
+    color: colors.success,
     fontSize: 12,
     fontWeight: "900"
   },
   title: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 32,
     fontWeight: "900"
   },
   subtitle: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 14,
     lineHeight: 21,
     fontWeight: "700"
@@ -154,17 +155,17 @@ const styles = StyleSheet.create({
     gap: 5,
     borderRadius: 12,
     padding: 16,
-    backgroundColor: "#FFFBEB",
+    backgroundColor: colors.accentGoldSoft,
     borderWidth: 1,
-    borderColor: "#FCD34D"
+    borderColor: colors.accentGold
   },
   dpLabel: {
-    color: "#92400E",
+    color: colors.accentGoldInk,
     fontSize: 12,
     fontWeight: "900"
   },
   dpValue: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 30,
     fontWeight: "900"
   },
@@ -174,18 +175,18 @@ const styles = StyleSheet.create({
     fontWeight: "800"
   },
   boostText: {
-    color: "#166534",
+    color: colors.successDark,
     fontSize: 13,
     fontWeight: "900"
   },
   message: {
-    color: "#166534",
+    color: colors.successDark,
     fontSize: 13,
     lineHeight: 19,
     fontWeight: "800",
     borderRadius: 8,
     padding: 12,
-    backgroundColor: "#DCFCE7",
+    backgroundColor: colors.successSoft,
     borderWidth: 1,
     borderColor: "#BBF7D0"
   },
@@ -198,7 +199,7 @@ const styles = StyleSheet.create({
     padding: 14,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#D7E0EA"
+    borderColor: colors.border
   },
   cardUnlocked: {
     borderColor: "#BFE8C7",
@@ -216,18 +217,18 @@ const styles = StyleSheet.create({
     gap: 4
   },
   cardTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 18,
     fontWeight: "900"
   },
   cardText: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 13,
     lineHeight: 19,
     fontWeight: "700"
   },
   rateText: {
-    color: "#2FA84F",
+    color: colors.success,
     fontSize: 12,
     fontWeight: "900"
   },
@@ -240,7 +241,7 @@ const styles = StyleSheet.create({
     borderColor: "#BFDBFE"
   },
   noteTitle: {
-    color: "#1D4ED8",
+    color: colors.primary,
     fontSize: 15,
     fontWeight: "900"
   },

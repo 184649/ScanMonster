@@ -2,7 +2,7 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import { CameraView, scanFromURLAsync, useCameraPermissions } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
 import { Camera, MapPin, ShieldCheck } from "../components/icons";
-import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Linking, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
@@ -19,6 +19,7 @@ import { useMonsterStore } from "../stores/monsterStore";
 import { useSettingsStore } from "../stores/settingsStore";
 import type { DetectedCode, DiscoveryResult, DiscoveryResultRef } from "../types/discovery";
 import type { ScanOutcome } from "../types/scanPresentation";
+import { colors } from "../theme";
 
 type ScanEvent = {
   data: string;
@@ -297,7 +298,7 @@ export const ScanScreen = () => {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.centerContent}>
-          <MapPin color="#1D4ED8" size={42} strokeWidth={2.3} />
+          <MapPin color={colors.primary} size={42} strokeWidth={2.3} />
           <Text style={styles.title}>地域設定が必要です</Text>
           <Text style={styles.message}>時間帯・季節・地域で個体差を作るため、まず地方を選択してください。</Text>
           <PrimaryButton label="地域を設定" icon={MapPin} onPress={() => navigation.navigate("RegionSettings")} />
@@ -310,7 +311,7 @@ export const ScanScreen = () => {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.centerContent}>
-          <ActivityIndicator color="#2563EB" />
+          <ActivityIndicator color={colors.primary} />
           <Text style={styles.message}>カメラ権限を確認しています。</Text>
         </View>
       </SafeAreaView>
@@ -318,13 +319,24 @@ export const ScanScreen = () => {
   }
 
   if (!permission.granted) {
+    // canAskAgain=false（恒久拒否）の場合、requestPermission はダイアログを出せず無反応になる。
+    // その時は端末の設定アプリへ誘導する（ユーザーが詰まらないように）。
+    const blockedForever = !permission.canAskAgain;
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.centerContent}>
-          <Camera color="#1D4ED8" size={42} strokeWidth={2.3} />
+          <Camera color={colors.primary} size={42} strokeWidth={2.3} />
           <Text style={styles.title}>カメラを使います</Text>
-          <Text style={styles.message}>バーコードやQRコードを読み取るため、カメラ権限を許可してください。</Text>
-          <PrimaryButton label="カメラ権限を許可" icon={ShieldCheck} onPress={() => void requestPermission()} />
+          <Text style={styles.message}>
+            {blockedForever
+              ? "カメラ権限がオフのため読み取れません。端末の「設定」からこのアプリのカメラを許可してください。"
+              : "バーコードやQRコードを読み取るため、カメラ権限を許可してください。"}
+          </Text>
+          {blockedForever ? (
+            <PrimaryButton label="設定を開く" icon={ShieldCheck} onPress={() => void Linking.openSettings()} />
+          ) : (
+            <PrimaryButton label="カメラ権限を許可" icon={ShieldCheck} onPress={() => void requestPermission()} />
+          )}
           {FEATURE_FLAGS.ENABLE_PHOTO_IMPORT ? (
             <PrimaryButton label="写真から読み込む" variant="secondary" onPress={() => void handlePickImage()} />
           ) : null}
@@ -415,13 +427,13 @@ const cornerBase = {
   position: "absolute" as const,
   width: 44,
   height: 44,
-  borderColor: "#FACC15"
+  borderColor: colors.warn
 };
 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 18,
@@ -439,18 +451,18 @@ const styles = StyleSheet.create({
     gap: 6
   },
   kicker: {
-    color: "#2FA84F",
+    color: colors.success,
     fontSize: 12,
     fontWeight: "900"
   },
   title: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 28,
     fontWeight: "900",
     textAlign: "center"
   },
   message: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 14,
     lineHeight: 21,
     textAlign: "center"
@@ -459,7 +471,7 @@ const styles = StyleSheet.create({
     height: 360,
     borderRadius: 8,
     overflow: "hidden",
-    backgroundColor: "#0F172A",
+    backgroundColor: colors.ink,
     borderWidth: 2,
     borderColor: "#DBEAFE"
   },
@@ -510,7 +522,7 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   infoText: {
-    color: "#166534",
+    color: colors.successDark,
     fontSize: 14,
     lineHeight: 21,
     fontWeight: "800",
@@ -527,10 +539,10 @@ const styles = StyleSheet.create({
     padding: 14,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   hintText: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 13,
     lineHeight: 20,
     fontWeight: "700",
@@ -540,18 +552,18 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
     gap: 3,
-    backgroundColor: "#0F172A",
+    backgroundColor: colors.ink,
     borderWidth: 1,
-    borderColor: "#334155"
+    borderColor: colors.textBody
   },
   debugTitle: {
-    color: "#FACC15",
+    color: colors.warn,
     fontSize: 12,
     fontWeight: "900",
     marginBottom: 4
   },
   debugLine: {
-    color: "#E2E8F0",
+    color: colors.border,
     fontSize: 12,
     fontWeight: "700"
   }

@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { colors } from "../theme";
 
 type IconProps = {
   color?: string;
@@ -14,7 +15,7 @@ type DexProgressCardProps = {
   icon?: ComponentType<IconProps>;
 };
 
-export const DexProgressCard = ({ label, value, accent = "#2563EB", icon: Icon }: DexProgressCardProps) => {
+export const DexProgressCard = ({ label, value, accent = colors.primary, icon: Icon }: DexProgressCardProps) => {
   return (
     <View style={styles.card}>
       <View style={[styles.iconBox, { backgroundColor: `${accent}18` }]}>
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     gap: 8,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   iconBox: {
     width: 38,
@@ -45,12 +46,12 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   label: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 12,
     fontWeight: "800"
   },
   value: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 22,
     fontWeight: "900"
   }

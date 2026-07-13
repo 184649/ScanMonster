@@ -1125,7 +1125,20 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
 
 export const CATALOG_NORMALS: CatalogCharacter[] = CATALOG_CHARACTERS;
 
-export const CATALOG_RARES: CatalogRare[] = [];
+export const CATALOG_RARES: CatalogRare[] = [
+  {
+    "id": "ground_rare_white_tiger",
+    "realmGroup": "life",
+    "worldGroup": "ground",
+    "no": 2,
+    "name": "白虎",
+    "speciesJa": "白虎",
+    "speciesEn": "White Tiger",
+    "hasImage": true,
+    "releaseStatus": "initial",
+    "description": ""
+  }
+];
 
 export const CATALOG_LEGENDARIES: CatalogRare[] = [
   {
@@ -1136,6 +1149,42 @@ export const CATALOG_LEGENDARIES: CatalogRare[] = [
     "name": "フェンリル",
     "speciesJa": "フェンリル",
     "speciesEn": "Fenrir",
+    "hasImage": true,
+    "releaseStatus": "initial",
+    "description": ""
+  },
+  {
+    "id": "ground_rare_tsuchinoko",
+    "realmGroup": "life",
+    "worldGroup": "ground",
+    "no": 3,
+    "name": "ツチノコ",
+    "speciesJa": "ツチノコ",
+    "speciesEn": "Tsuchinoko",
+    "hasImage": true,
+    "releaseStatus": "initial",
+    "description": ""
+  },
+  {
+    "id": "ground_rare_yeti",
+    "realmGroup": "life",
+    "worldGroup": "ground",
+    "no": 4,
+    "name": "イエティ",
+    "speciesJa": "イエティ",
+    "speciesEn": "Yeti",
+    "hasImage": true,
+    "releaseStatus": "initial",
+    "description": ""
+  },
+  {
+    "id": "ground_rare_underground_dweller",
+    "realmGroup": "life",
+    "worldGroup": "ground",
+    "no": 5,
+    "name": "地底人",
+    "speciesJa": "地底人",
+    "speciesEn": "Underground Dweller",
     "hasImage": true,
     "releaseStatus": "initial",
     "description": ""

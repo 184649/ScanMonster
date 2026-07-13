@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 
+import { colors, radius } from "../theme";
+
 type TagChipProps = {
   label: string;
   color?: string;
 };
 
-export const TagChip = ({ label, color = "#DBEAFE" }: TagChipProps) => {
+export const TagChip = ({ label, color = colors.primarySoft }: TagChipProps) => {
   return (
     <View style={[styles.chip, { backgroundColor: color }]}>
       <Text style={styles.text}>{label}</Text>
@@ -15,12 +17,12 @@ export const TagChip = ({ label, color = "#DBEAFE" }: TagChipProps) => {
 
 const styles = StyleSheet.create({
   chip: {
-    borderRadius: 999,
+    borderRadius: radius.pill,
     paddingHorizontal: 10,
     paddingVertical: 6
   },
   text: {
-    color: "#16324F",
+    color: colors.navy,
     fontSize: 12,
     fontWeight: "700"
   }

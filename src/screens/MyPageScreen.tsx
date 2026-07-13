@@ -10,6 +10,7 @@ import { getTitleById } from "../data/titles";
 import { createDexSummary } from "../services/dexService";
 import { useMonsterStore } from "../stores/monsterStore";
 import { useProfileStore } from "../stores/profileStore";
+import { colors } from "../theme";
 
 export const MyPageScreen = () => {
   const navigation = useNavigation<any>();
@@ -101,7 +102,7 @@ export const MyPageScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 18,
@@ -112,12 +113,12 @@ const styles = StyleSheet.create({
     gap: 4
   },
   kicker: {
-    color: "#2FA84F",
+    color: colors.success,
     fontSize: 12,
     fontWeight: "900"
   },
   title: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 30,
     fontWeight: "900"
   },
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
     padding: 14,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#D7E0EA"
+    borderColor: colors.border
   },
   profileBody: {
     flex: 1,
@@ -137,12 +138,12 @@ const styles = StyleSheet.create({
     minWidth: 0
   },
   profileName: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 21,
     fontWeight: "900"
   },
   profileMeta: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 13,
     fontWeight: "800"
   },
@@ -155,17 +156,17 @@ const styles = StyleSheet.create({
     gap: 4,
     borderRadius: 12,
     padding: 14,
-    backgroundColor: "#FFFBEB",
+    backgroundColor: colors.accentGoldSoft,
     borderWidth: 1,
-    borderColor: "#FCD34D"
+    borderColor: colors.accentGold
   },
   statLabel: {
-    color: "#92400E",
+    color: colors.accentGoldInk,
     fontSize: 12,
     fontWeight: "900"
   },
   statValue: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 22,
     fontWeight: "900"
   },
@@ -181,15 +182,15 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   dexValue: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 20,
     fontWeight: "900"
   },
   dexLabel: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 12,
     fontWeight: "800"
   },
@@ -199,15 +200,15 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   sectionTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 18,
     fontWeight: "900"
   },
   panelText: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 14,
     lineHeight: 21,
     fontWeight: "700"
@@ -221,7 +222,7 @@ const styles = StyleSheet.create({
     borderColor: "#BBF7D0"
   },
   privacyText: {
-    color: "#166534",
+    color: colors.successDark,
     fontSize: 13,
     lineHeight: 20,
     fontWeight: "700"

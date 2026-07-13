@@ -8,6 +8,7 @@ import { getFamilyById } from "../data/monsterFamilies";
 import { createResearchSummaries } from "../services/researchService";
 import { useMonsterStore } from "../stores/monsterStore";
 import { useNavigation } from "@react-navigation/native";
+import { colors } from "../theme";
 
 export const ResearchScreen = () => {
   const navigation = useNavigation<any>();
@@ -28,7 +29,7 @@ export const ResearchScreen = () => {
 
         {summaries.length === 0 ? (
           <View style={styles.emptyPanel}>
-            <Sparkles color="#2FA84F" size={34} strokeWidth={2.4} />
+            <Sparkles color={colors.success} size={34} strokeWidth={2.4} />
             <Text style={styles.emptyTitle}>研究データはまだありません</Text>
             <Text style={styles.emptyText}>モンスターをスキャンして同じ種族を集めると、種族研究が進みます。</Text>
             <PrimaryButton label="スキャンへ" icon={ScanLine} onPress={() => navigation.navigate("MainTabs", { screen: "Scan" })} />
@@ -69,7 +70,7 @@ export const ResearchScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 18,
@@ -80,12 +81,12 @@ const styles = StyleSheet.create({
     gap: 6
   },
   kicker: {
-    color: "#2FA84F",
+    color: colors.success,
     fontSize: 12,
     fontWeight: "900"
   },
   title: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 34,
     fontWeight: "900",
     textAlign: "center"
@@ -103,15 +104,15 @@ const styles = StyleSheet.create({
     padding: 18,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   emptyTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 18,
     fontWeight: "900"
   },
   emptyText: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 13,
     lineHeight: 19,
     fontWeight: "700",
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
     padding: 12,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   researchBody: {
     flex: 1,
@@ -138,7 +139,7 @@ const styles = StyleSheet.create({
     gap: 8
   },
   familyName: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 16,
     fontWeight: "900"
   },
@@ -147,13 +148,13 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     paddingHorizontal: 9,
     paddingVertical: 5,
-    color: "#166534",
-    backgroundColor: "#DCFCE7",
+    color: colors.successDark,
+    backgroundColor: colors.successSoft,
     fontSize: 11,
     fontWeight: "900"
   },
   metaText: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 12,
     fontWeight: "800"
   },
@@ -161,20 +162,20 @@ const styles = StyleSheet.create({
     height: 8,
     borderRadius: 999,
     overflow: "hidden",
-    backgroundColor: "#E2E8F0"
+    backgroundColor: colors.border
   },
   progressFill: {
     height: "100%",
     borderRadius: 999,
-    backgroundColor: "#2FA84F"
+    backgroundColor: colors.success
   },
   nextReward: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 12,
     fontWeight: "900"
   },
   hintText: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 11,
     lineHeight: 16,
     fontWeight: "700"

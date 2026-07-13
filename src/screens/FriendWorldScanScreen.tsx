@@ -17,6 +17,7 @@ import { hapticReveal } from "../services/hapticsService";
 import { playSound } from "../services/soundService";
 import { getLocalDateKey } from "../utils/dateUtils";
 import { parseFriendQrPayload } from "../utils/friendQrPayload";
+import { colors } from "../theme";
 
 const friendScannerSettings = { barcodeTypes: ["qr"] };
 
@@ -82,7 +83,7 @@ export const FriendWorldScanScreen = () => {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.center}>
-          <ActivityIndicator color="#2563EB" />
+          <ActivityIndicator color={colors.primary} />
           <Text style={styles.message}>カメラ権限を確認しています。</Text>
         </View>
       </SafeAreaView>
@@ -93,7 +94,7 @@ export const FriendWorldScanScreen = () => {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.center}>
-          <Camera color="#1D4ED8" size={42} strokeWidth={2.3} />
+          <Camera color={colors.primary} size={42} strokeWidth={2.3} />
           <Text style={styles.title}>カメラを使います</Text>
           <Text style={styles.message}>フレンドQRを読み取るため、カメラ権限を許可してください。</Text>
           <PrimaryButton label="カメラ権限を許可" icon={ShieldCheck} onPress={() => void requestPermission()} />
@@ -125,14 +126,14 @@ export const FriendWorldScanScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: "#F7FAFF" },
+  safeArea: { flex: 1, backgroundColor: colors.screenBg },
   content: { padding: 18, gap: 14, paddingBottom: 34 },
   center: { flex: 1, alignItems: "center", justifyContent: "center", padding: 24, gap: 14 },
   header: { gap: 6 },
   kicker: { color: "#DB2777", fontSize: 12, fontWeight: "900" },
-  title: { color: "#0F172A", fontSize: 26, fontWeight: "900" },
-  message: { color: "#64748B", fontSize: 14, lineHeight: 21, textAlign: "center" },
-  cameraFrame: { height: 340, borderRadius: 8, overflow: "hidden", backgroundColor: "#0F172A", borderWidth: 2, borderColor: "#FBCFE8" },
+  title: { color: colors.ink, fontSize: 26, fontWeight: "900" },
+  message: { color: colors.textMuted, fontSize: 14, lineHeight: 21, textAlign: "center" },
+  cameraFrame: { height: 340, borderRadius: 8, overflow: "hidden", backgroundColor: colors.ink, borderWidth: 2, borderColor: "#FBCFE8" },
   camera: { flex: 1 },
   error: { color: "#B91C1C", fontSize: 14, fontWeight: "800", textAlign: "center" }
 });

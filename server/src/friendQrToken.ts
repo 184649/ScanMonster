@@ -12,7 +12,16 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 
 export const FRIEND_QR_TTL_SECONDS = 60;
 
-const secret = (): string => process.env.FRIEND_QR_SECRET || "worldawn-dev-friendqr-secret-change-me";
+/** リポジトリ公開の開発用フォールバック。本番でこの値のまま使うと署名を誰でも偽造できる。 */
+export const DEFAULT_FRIEND_QR_SECRET = "worldawn-dev-friendqr-secret-change-me";
+
+/** 本番起動ガード用：秘密鍵が未設定または開発用既定のままなら true（＝偽造可能な危険状態）。 */
+export const isDefaultFriendQrSecret = (): boolean => {
+  const s = process.env.FRIEND_QR_SECRET;
+  return !s || s === DEFAULT_FRIEND_QR_SECRET;
+};
+
+const secret = (): string => process.env.FRIEND_QR_SECRET || DEFAULT_FRIEND_QR_SECRET;
 
 const b64url = (buf: Buffer): string =>
   buf.toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");

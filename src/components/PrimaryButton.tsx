@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { playSound } from "../services/soundService";
+import { colors, radius } from "../theme";
 import type { SoundId } from "../types/sound";
 
 type IconProps = {
@@ -32,7 +33,7 @@ export const PrimaryButton = ({
 }: PrimaryButtonProps) => {
   const isPrimary = variant === "primary";
   const isSecondary = variant === "secondary";
-  const contentColor = isPrimary ? "#FFFFFF" : isSecondary ? "#0F3D70" : "#1E40AF";
+  const contentColor = isPrimary ? colors.white : isSecondary ? colors.navy : colors.primaryInk;
 
   const handlePress = () => {
     if (soundId !== "none") {
@@ -72,19 +73,19 @@ export const PrimaryButton = ({
 const styles = StyleSheet.create({
   button: {
     minHeight: 52,
-    borderRadius: 8,
+    borderRadius: radius.md,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 18
   },
   primary: {
-    backgroundColor: "#1D4ED8"
+    backgroundColor: colors.primary
   },
   secondary: {
-    backgroundColor: "#FACC15"
+    backgroundColor: colors.warn
   },
   ghost: {
-    backgroundColor: "#EAF2FF"
+    backgroundColor: colors.primarySoft
   },
   disabled: {
     opacity: 0.55

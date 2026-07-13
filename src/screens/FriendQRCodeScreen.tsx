@@ -9,6 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import { DynamicFriendQr } from "../components/DynamicFriendQr";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { isServerMode } from "../config/apiConfig";
+import { colors } from "../theme";
 
 export const FriendQRCodeScreen = () => {
   const navigation = useNavigation<any>();
@@ -45,12 +46,12 @@ export const FriendQRCodeScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: "#F7FAFF" },
+  safeArea: { flex: 1, backgroundColor: colors.screenBg },
   content: { padding: 18, gap: 16, paddingBottom: 34, alignItems: "stretch" },
   header: { gap: 6 },
   kicker: { color: "#DB2777", fontSize: 12, fontWeight: "900" },
-  title: { color: "#071B46", fontSize: 28, fontWeight: "900" },
-  subtitle: { color: "#52627A", fontSize: 13, lineHeight: 20, fontWeight: "700" },
+  title: { color: colors.navy, fontSize: 28, fontWeight: "900" },
+  subtitle: { color: colors.textSlate, fontSize: 13, lineHeight: 20, fontWeight: "700" },
   qrCard: {
     alignItems: "center",
     gap: 12,
@@ -58,11 +59,11 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   qrWrap: { padding: 12, borderRadius: 12, backgroundColor: "#FFFFFF" },
-  hint: { color: "#64748B", fontSize: 12, fontWeight: "800" },
-  notice: { backgroundColor: "#FFFBEB", borderColor: "#FCD34D" },
-  noticeText: { color: "#92400E", fontSize: 13, fontWeight: "800", textAlign: "center" },
+  hint: { color: colors.textMuted, fontSize: 12, fontWeight: "800" },
+  notice: { backgroundColor: colors.accentGoldSoft, borderColor: colors.accentGold },
+  noticeText: { color: colors.accentGoldInk, fontSize: 13, fontWeight: "800", textAlign: "center" },
   actions: { gap: 10 }
 });

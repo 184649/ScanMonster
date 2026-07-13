@@ -2,6 +2,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { goBackOrHome, type SafeNavigation } from "../../utils/navigation";
+import { colors, radius } from "../../theme";
 
 type BackButtonProps = {
   navigation?: SafeNavigation;
@@ -39,21 +40,21 @@ const styles = StyleSheet.create({
     gap: 2,
     paddingHorizontal: 12,
     paddingVertical: 7,
-    borderRadius: 999,
-    backgroundColor: "#EEF2F7"
+    borderRadius: radius.pill,
+    backgroundColor: colors.borderFaint
   },
   pressed: {
     opacity: 0.65
   },
   chevron: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 18,
     fontWeight: "900",
     lineHeight: 20,
     marginTop: -1
   },
   text: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 14,
     fontWeight: "900"
   }

@@ -13,6 +13,7 @@ import { formatDiscoveryNo } from "../../services/numberValue.core";
 import type { DiscoveryRecord } from "../../types/discoveryRecord";
 import type { WorldGroup } from "../../types/worlds";
 import { formatDateTime } from "../../utils/dateUtils";
+import { colors } from "../../theme";
 
 const SERIF = Platform.select({ ios: "Georgia", android: "serif", default: "serif" });
 const NAVY = "#0B1B3B";
@@ -310,24 +311,24 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
-  compactHighlighted: { borderColor: "#FCD34D", backgroundColor: "#FFFBEB" },
+  compactHighlighted: { borderColor: colors.accentGold, backgroundColor: colors.accentGoldSoft },
   compactBody: { flex: 1, gap: 3, minWidth: 0 },
   compactTopRow: { flexDirection: "row", alignItems: "center", gap: 6 },
   diffBadge: { borderRadius: 6, paddingHorizontal: 7, paddingVertical: 2 },
   diffText: { fontSize: 12, fontWeight: "900" },
-  compactRank: { fontSize: 12, fontWeight: "900", color: "#334155" },
+  compactRank: { fontSize: 12, fontWeight: "900", color: colors.textBody },
   proofTag: {
     fontSize: 11,
     fontWeight: "900",
-    color: "#92400E",
+    color: colors.accentGoldInk,
     backgroundColor: "#FDE68A",
     borderRadius: 6,
     paddingHorizontal: 6,
     paddingVertical: 1,
     overflow: "hidden"
   },
-  compactNo: { color: "#0F172A", fontSize: 14, fontWeight: "900" },
-  compactMeta: { color: "#64748B", fontSize: 12, fontWeight: "700" }
+  compactNo: { color: colors.ink, fontSize: 14, fontWeight: "900" },
+  compactMeta: { color: colors.textMuted, fontSize: 12, fontWeight: "700" }
 });

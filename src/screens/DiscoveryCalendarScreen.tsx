@@ -9,6 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import { DiscoveryCertificateCard } from "../components/discovery/DiscoveryCertificateCard";
 import { groupDiscoveriesByDate } from "../services/discoveryQueries";
 import { useMonsterStore } from "../stores/monsterStore";
+import { colors } from "../theme";
 
 export const DiscoveryCalendarScreen = () => {
   const navigation = useNavigation<any>();
@@ -50,16 +51,16 @@ export const DiscoveryCalendarScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: "#F7FAFF" },
+  safeArea: { flex: 1, backgroundColor: colors.screenBg },
   content: { padding: 18, gap: 14, paddingBottom: 34 },
   header: { gap: 6 },
-  kicker: { color: "#2FA84F", fontSize: 12, fontWeight: "900" },
-  title: { color: "#071B46", fontSize: 30, fontWeight: "900" },
-  subtitle: { color: "#52627A", fontSize: 14, fontWeight: "700" },
-  empty: { color: "#64748B", fontSize: 14, fontWeight: "700", textAlign: "center", padding: 24 },
+  kicker: { color: colors.success, fontSize: 12, fontWeight: "900" },
+  title: { color: colors.navy, fontSize: 30, fontWeight: "900" },
+  subtitle: { color: colors.textSlate, fontSize: 14, fontWeight: "700" },
+  empty: { color: colors.textMuted, fontSize: 14, fontWeight: "700", textAlign: "center", padding: 24 },
   dayBlock: { gap: 8 },
   dayHeader: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 6 },
-  dayDate: { color: "#0F172A", fontSize: 16, fontWeight: "900" },
+  dayDate: { color: colors.ink, fontSize: 16, fontWeight: "900" },
   markers: { flexDirection: "row", alignItems: "center", gap: 6, flexWrap: "wrap" },
   marker: {
     fontSize: 11,
@@ -69,8 +70,8 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
     overflow: "hidden"
   },
-  markerGold: { backgroundColor: "#FDE68A", color: "#92400E" },
+  markerGold: { backgroundColor: "#FDE68A", color: colors.accentGoldInk },
   markerRare: { backgroundColor: "#EDE9FE", color: "#6D28D9" },
-  markerNumber: { backgroundColor: "#DBEAFE", color: "#1D4ED8" },
-  dayCount: { color: "#64748B", fontSize: 12, fontWeight: "800" }
+  markerNumber: { backgroundColor: "#DBEAFE", color: colors.primary },
+  dayCount: { color: colors.textMuted, fontSize: 12, fontWeight: "800" }
 });

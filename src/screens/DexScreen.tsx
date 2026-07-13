@@ -15,6 +15,7 @@ import { completedNormalWorlds, visibleLegendaryEntries } from "../services/lege
 import { monstersByCatalogId } from "../services/worldDex";
 import { useMonsterStore } from "../stores/monsterStore";
 import type { WorldGroup } from "../types/worlds";
+import { colors } from "../theme";
 
 type Chip = { key: string; label: string; match: (c: (typeof CATALOG_CHARACTERS)[number]) => boolean };
 type CardItem = { id: string; no: number; name: string; worldGroup: string; speciesJa: string; speciesEn: string; hasImage: boolean };
@@ -73,7 +74,7 @@ export const DexScreen = () => {
             value={query}
             onChangeText={setQuery}
             placeholder="名前やキーワードで検索"
-            placeholderTextColor="#94A3B8"
+            placeholderTextColor={colors.textFaint}
           />
         </View>
         <View style={styles.chips}>
@@ -128,9 +129,9 @@ export const DexScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: "#F7FAFF" },
+  safeArea: { flex: 1, backgroundColor: colors.screenBg },
   headerArea: { paddingHorizontal: 16, paddingTop: 6, gap: 12 },
-  title: { color: "#071B46", fontSize: 24, fontWeight: "900", textAlign: "center" },
+  title: { color: colors.navy, fontSize: 24, fontWeight: "900", textAlign: "center" },
   searchBar: {
     flexDirection: "row",
     alignItems: "center",
@@ -140,14 +141,14 @@ const styles = StyleSheet.create({
     height: 46,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   searchIcon: { fontSize: 15 },
-  searchInput: { flex: 1, fontSize: 15, fontWeight: "700", color: "#0F172A" },
+  searchInput: { flex: 1, fontSize: 15, fontWeight: "700", color: colors.ink },
   chips: { flexDirection: "row", gap: 8 },
-  chip: { borderRadius: 999, paddingHorizontal: 16, paddingVertical: 8, backgroundColor: "#FFFFFF", borderWidth: 1, borderColor: "#E2E8F0" },
-  chipActive: { backgroundColor: "#1D4ED8", borderColor: "#1D4ED8" },
-  chipText: { color: "#334155", fontSize: 13, fontWeight: "900" },
+  chip: { borderRadius: 999, paddingHorizontal: 16, paddingVertical: 8, backgroundColor: "#FFFFFF", borderWidth: 1, borderColor: colors.border },
+  chipActive: { backgroundColor: colors.primary, borderColor: colors.primary },
+  chipText: { color: colors.textBody, fontSize: 13, fontWeight: "900" },
   chipTextActive: { color: "#FFFFFF" },
   grid: { padding: 12, paddingBottom: 24 },
   rowWrap: { gap: 8, marginBottom: 8 },
@@ -158,16 +159,16 @@ const styles = StyleSheet.create({
     padding: 8,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#EEF2F7",
+    borderColor: colors.borderFaint,
     alignItems: "flex-start"
   },
-  cardUnfound: { backgroundColor: "#F8FAFC", borderStyle: "dashed" },
-  cardNo: { color: "#94A3B8", fontSize: 11, fontWeight: "900" },
-  cardName: { color: "#0F172A", fontSize: 14, fontWeight: "900", alignSelf: "stretch" },
+  cardUnfound: { backgroundColor: colors.surfaceMuted, borderStyle: "dashed" },
+  cardNo: { color: colors.textFaint, fontSize: 11, fontWeight: "900" },
+  cardName: { color: colors.ink, fontSize: 14, fontWeight: "900", alignSelf: "stretch" },
   thumb: { alignSelf: "center", paddingVertical: 2 },
   status: { fontSize: 11, fontWeight: "900" },
   statusOwned: { color: "#16A34A" },
-  statusUnfound: { color: "#94A3B8" },
-  cardWorld: { color: "#64748B", fontSize: 10, fontWeight: "800" },
-  footer: { color: "#94A3B8", fontSize: 12, fontWeight: "800", textAlign: "center", paddingVertical: 12 }
+  statusUnfound: { color: colors.textFaint },
+  cardWorld: { color: colors.textMuted, fontSize: 10, fontWeight: "800" },
+  footer: { color: colors.textFaint, fontSize: 12, fontWeight: "800", textAlign: "center", paddingVertical: 12 }
 });

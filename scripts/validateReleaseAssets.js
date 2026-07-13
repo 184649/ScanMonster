@@ -3,7 +3,7 @@
  *
  * canonical から releaseStatus=initial のキャラを集計し、画像の有無を検証する。
  * hasImage は releaseStatus を変更しない。initial なのに画像が無いキャラ（missing）が1体でもあれば非0終了。
- * 通常のユニットテスト（npm test）とは別。現状は4体欠損のため「FAILED as expected: 4 missing」となるのが正しい。
+ * 通常のユニットテスト（npm test）とは別。現状は初期89体すべて画像投入済みのため「OK（missing 0）」となるのが正しい。
  */
 const fs = require("fs");
 const path = require("path");

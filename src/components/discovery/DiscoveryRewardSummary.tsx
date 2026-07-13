@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 import { formatDP, formatEarnedDP } from "../../data/economy";
 import type { DPRewardLine } from "../../types/economy";
+import { colors } from "../../theme";
 
 type DiscoveryRewardSummaryProps = {
   rewardLines: DPRewardLine[];
@@ -48,9 +49,9 @@ const styles = StyleSheet.create({
     gap: 12,
     borderRadius: 8,
     padding: 14,
-    backgroundColor: "#FFFBEB",
+    backgroundColor: colors.accentGoldSoft,
     borderWidth: 1,
-    borderColor: "#FCD34D"
+    borderColor: colors.accentGold
   },
   header: {
     flexDirection: "row",
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     gap: 12
   },
   label: {
-    color: "#92400E",
+    color: colors.accentGoldInk,
     fontSize: 12,
     fontWeight: "900"
   },
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-end"
   },
   balance: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 18,
     fontWeight: "900"
   },
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   empty: {
-    color: "#92400E",
+    color: colors.accentGoldInk,
     fontSize: 13,
     fontWeight: "800"
   }

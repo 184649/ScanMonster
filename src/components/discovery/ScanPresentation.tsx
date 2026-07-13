@@ -22,6 +22,7 @@ import { useSettingsStore } from "../../stores/settingsStore";
 import type { DiscoveryResultRef } from "../../types/discovery";
 import type { ScanOutcome, ScanPresentationPhase } from "../../types/scanPresentation";
 import { AwakeningReveal } from "./AwakeningReveal";
+import { colors } from "../../theme";
 
 type Props = {
   /** 発見APIを実行して結果一覧（重複含む）を返す。 */
@@ -259,7 +260,7 @@ export const ScanPresentation = ({ run, onFinished }: Props) => {
 
 const styles = StyleSheet.create({
   overlay: { ...StyleSheet.absoluteFillObject, alignItems: "center", justifyContent: "center", zIndex: 50 },
-  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: "#071B46" },
+  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: colors.navy },
   center: { alignItems: "center", justifyContent: "center", width: 240, height: 240 },
   lockWrap: { alignItems: "center", gap: 16 },
   lockBox: { width: 160, height: 160, alignItems: "center", justifyContent: "center" },
@@ -270,10 +271,10 @@ const styles = StyleSheet.create({
   cBR: { right: 0, bottom: 0, borderBottomWidth: 4, borderRightWidth: 4 },
   lockDot: { width: 14, height: 14, borderRadius: 7, backgroundColor: "#E0F2FE" },
   analyzeRing: { position: "absolute", width: 150, height: 150, borderRadius: 75, borderWidth: 3, borderColor: "rgba(125,211,252,0.35)", borderTopColor: "#7DD3FC" },
-  analyzeRingInner: { position: "absolute", width: 104, height: 104, borderRadius: 52, borderWidth: 3, borderColor: "rgba(250,204,21,0.25)", borderBottomColor: "#FACC15" },
+  analyzeRingInner: { position: "absolute", width: 104, height: 104, borderRadius: 52, borderWidth: 3, borderColor: "rgba(250,204,21,0.25)", borderBottomColor: colors.warn },
   convDot: { position: "absolute", width: 8, height: 8, borderRadius: 4, backgroundColor: "#BAE6FD" },
   coreDot: { position: "absolute", width: 20, height: 20, borderRadius: 10, backgroundColor: "#FFFFFF" },
-  orbOuter: { position: "absolute", width: 180, height: 180, borderRadius: 90, backgroundColor: "#1D4ED8" },
+  orbOuter: { position: "absolute", width: 180, height: 180, borderRadius: 90, backgroundColor: colors.primary },
   orbInner: { position: "absolute", width: 96, height: 96, borderRadius: 48, backgroundColor: "#DBEAFE" },
   phaseText: { color: "#E0F2FE", fontSize: 16, fontWeight: "900", letterSpacing: 2 },
   phaseTextLight: { position: "absolute", bottom: -6, color: "rgba(224,242,254,0.92)", fontSize: 15, fontWeight: "800" },

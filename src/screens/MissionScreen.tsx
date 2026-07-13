@@ -10,6 +10,7 @@ import { showComingSoon } from "../utils/showComingSoon";
 import { useMonsterStore } from "../stores/monsterStore";
 import { useSettingsStore } from "../stores/settingsStore";
 import { calculateConsecutiveScanDays, getLocalDateKey, isSameLocalDate } from "../utils/dateUtils";
+import { colors } from "../theme";
 
 type Mission = {
   id: string;
@@ -203,7 +204,7 @@ export const MissionScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 18,
@@ -214,12 +215,12 @@ const styles = StyleSheet.create({
     gap: 6
   },
   kicker: {
-    color: "#2FA84F",
+    color: colors.success,
     fontSize: 12,
     fontWeight: "900"
   },
   title: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 34,
     fontWeight: "900",
     textAlign: "center"
@@ -245,7 +246,7 @@ const styles = StyleSheet.create({
     gap: 10
   },
   streakTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 20,
     fontWeight: "900"
   },
@@ -265,7 +266,7 @@ const styles = StyleSheet.create({
     gap: 6
   },
   dayText: {
-    color: "#334155",
+    color: colors.textBody,
     fontSize: 11,
     fontWeight: "800"
   },
@@ -275,7 +276,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#E2E8F0"
+    backgroundColor: colors.border
   },
   dayCircleDone: {
     backgroundColor: "#67BD4A"
@@ -293,7 +294,7 @@ const styles = StyleSheet.create({
     padding: 14,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   sectionHeader: {
     flexDirection: "row",
@@ -309,13 +310,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#EEF2FF"
   },
   sectionTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 18,
     fontWeight: "900",
     flex: 1
   },
   sectionCount: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 13,
     fontWeight: "900"
   },
@@ -324,7 +325,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
     borderTopWidth: 1,
-    borderTopColor: "#EEF2F7",
+    borderTopColor: colors.borderFaint,
     paddingTop: 12
   },
   checkDot: {
@@ -337,8 +338,8 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   checkDotComplete: {
-    backgroundColor: "#2FA84F",
-    borderColor: "#2FA84F"
+    backgroundColor: colors.success,
+    borderColor: colors.success
   },
   missionBody: {
     flex: 1,
@@ -346,25 +347,25 @@ const styles = StyleSheet.create({
     gap: 5
   },
   missionTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 14,
     fontWeight: "900"
   },
   missionSubtitle: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 11,
     fontWeight: "700"
   },
   progressTrack: {
     height: 7,
     borderRadius: 999,
-    backgroundColor: "#E2E8F0",
+    backgroundColor: colors.border,
     overflow: "hidden"
   },
   progressFill: {
     height: "100%",
     borderRadius: 999,
-    backgroundColor: "#2FA84F"
+    backgroundColor: colors.success
   },
   rewardBlock: {
     alignItems: "flex-end",
@@ -377,7 +378,7 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   rewardText: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 11,
     fontWeight: "900"
   },
@@ -387,10 +388,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 10,
-    backgroundColor: "#2FA84F"
+    backgroundColor: colors.success
   },
   claimedButton: {
-    backgroundColor: "#E2E8F0"
+    backgroundColor: colors.border
   },
   claimText: {
     color: "#FFFFFF",
@@ -398,16 +399,16 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   claimedText: {
-    color: "#52627A"
+    color: colors.textSlate
   },
   messageBox: {
-    color: "#166534",
+    color: colors.successDark,
     fontSize: 13,
     lineHeight: 19,
     fontWeight: "800",
     borderRadius: 8,
     padding: 12,
-    backgroundColor: "#DCFCE7",
+    backgroundColor: colors.successSoft,
     borderWidth: 1,
     borderColor: "#BBF7D0"
   },

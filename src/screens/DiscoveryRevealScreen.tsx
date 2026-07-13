@@ -10,6 +10,7 @@ import {
 import { DiscoveryRewardSummary } from "../components/discovery/DiscoveryRewardSummary";
 import { PrimaryButton } from "../components/PrimaryButton";
 import type { DPRewardLine } from "../types/economy";
+import { colors } from "../theme";
 
 type DiscoveryRevealScreenProps = {
   resultType: DiscoveryCoreResultType;
@@ -57,7 +58,7 @@ export const DiscoveryRevealScreen = ({
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#071B46"
+    backgroundColor: colors.navy
   },
   animationArea: {
     flex: 1,
@@ -66,6 +67,6 @@ const styles = StyleSheet.create({
   summaryArea: {
     gap: 12,
     padding: 16,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   }
 });

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Svg, { Path, Rect } from "react-native-svg";
 
 import { generateQrMatrix } from "../utils/qrCode";
+import { colors } from "../theme";
 
 type FriendQrCodeProps = {
   /** QRに載せる文字列（フレンドペイロード）。 */
@@ -34,7 +35,7 @@ const buildPath = (modules: boolean[][]): string => {
 export const FriendQrCode = ({
   value,
   size = 220,
-  color = "#0F172A",
+  color = colors.ink,
   background = "#FFFFFF",
   quietZone = 4
 }: FriendQrCodeProps) => {
@@ -76,12 +77,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 12,
-    backgroundColor: "#F1F5F9",
+    backgroundColor: colors.borderFaint,
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   fallbackText: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 12,
     fontWeight: "800"
   }

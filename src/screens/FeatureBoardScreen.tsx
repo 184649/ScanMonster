@@ -13,12 +13,14 @@ import { getFeatureRequests, postFeatureRequest, postReaction, type FeatureReque
 import { getActiveServerUserId } from "../services/activeUser";
 import { playSound } from "../services/soundService";
 import { useMonsterStore } from "../stores/monsterStore";
+import { colors } from "../theme";
 
 export const FeatureBoardScreen = () => {
   const userSalt = useMonsterStore((s) => s.userSalt);
   const [items, setItems] = useState<FeatureRequestItem[]>([]);
   const [sort, setSort] = useState<"top" | "new">("top");
   const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -51,10 +53,12 @@ export const FeatureBoardScreen = () => {
   );
 
   const submit = () => {
+    if (submitting) return;
     if (title.trim().length < 3) {
       setError("タイトルは3文字以上で入力してください。");
       return;
     }
+    setSubmitting(true);
     void (async () => {
       try {
         await postFeatureRequest(userId(), { title: title.trim(), body: body.trim() });
@@ -64,6 +68,8 @@ export const FeatureBoardScreen = () => {
         await load(sort);
       } catch {
         setError("投稿に失敗しました。");
+      } finally {
+        setSubmitting(false);
       }
     })();
   };
@@ -110,9 +116,9 @@ export const FeatureBoardScreen = () => {
 
         <View style={styles.panel}>
           <Text style={styles.sectionTitle}>要望を投稿</Text>
-          <TextInput style={styles.input} value={title} onChangeText={setTitle} placeholder="タイトル（例：ダークモードが欲しい）" placeholderTextColor="#94A3B8" maxLength={120} />
-          <TextInput style={[styles.input, styles.inputMulti]} value={body} onChangeText={setBody} placeholder="詳しい説明（任意）" placeholderTextColor="#94A3B8" multiline maxLength={2000} />
-          <PrimaryButton label="投稿する" onPress={submit} />
+          <TextInput style={styles.input} value={title} onChangeText={setTitle} placeholder="タイトル（例：ダークモードが欲しい）" placeholderTextColor={colors.textFaint} maxLength={120} />
+          <TextInput style={[styles.input, styles.inputMulti]} value={body} onChangeText={setBody} placeholder="詳しい説明（任意）" placeholderTextColor={colors.textFaint} multiline maxLength={2000} />
+          <PrimaryButton label="投稿する" loading={submitting} onPress={submit} />
         </View>
 
         {error ? <Text style={styles.error}>{error}</Text> : null}
@@ -126,7 +132,7 @@ export const FeatureBoardScreen = () => {
           </Pressable>
         </View>
 
-        {loading ? <ActivityIndicator color="#2563EB" style={{ marginVertical: 16 }} /> : null}
+        {loading ? <ActivityIndicator color={colors.primary} style={{ marginVertical: 16 }} /> : null}
         {!loading && items.length === 0 ? <Text style={styles.empty}>まだ投稿がありません。最初の要望を投稿しましょう。</Text> : null}
 
         {items.map((item) => (
@@ -148,16 +154,16 @@ export const FeatureBoardScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: "#F7FAFF" },
+  safeArea: { flex: 1, backgroundColor: colors.screenBg },
   center: { flex: 1, alignItems: "center", justifyContent: "center", padding: 24, gap: 12 },
   content: { padding: 16, gap: 12, paddingBottom: 40 },
   header: { gap: 6 },
-  kicker: { color: "#2FA84F", fontSize: 12, fontWeight: "900" },
-  title: { color: "#071B46", fontSize: 30, fontWeight: "900" },
-  subtitle: { color: "#52627A", fontSize: 13, lineHeight: 20, fontWeight: "700" },
-  notice: { color: "#92400E", fontSize: 14, fontWeight: "800", textAlign: "center" },
-  panel: { gap: 10, borderRadius: 12, padding: 16, backgroundColor: "#FFFFFF", borderWidth: 1, borderColor: "#E2E8F0" },
-  sectionTitle: { color: "#071B46", fontSize: 17, fontWeight: "900" },
+  kicker: { color: colors.success, fontSize: 12, fontWeight: "900" },
+  title: { color: colors.navy, fontSize: 30, fontWeight: "900" },
+  subtitle: { color: colors.textSlate, fontSize: 13, lineHeight: 20, fontWeight: "700" },
+  notice: { color: colors.accentGoldInk, fontSize: 14, fontWeight: "800", textAlign: "center" },
+  panel: { gap: 10, borderRadius: 12, padding: 16, backgroundColor: "#FFFFFF", borderWidth: 1, borderColor: colors.border },
+  sectionTitle: { color: colors.navy, fontSize: 17, fontWeight: "900" },
   input: {
     minHeight: 48,
     borderRadius: 8,
@@ -165,19 +171,19 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     fontSize: 15,
     fontWeight: "700",
-    color: "#0F172A",
-    backgroundColor: "#F8FAFC",
+    color: colors.ink,
+    backgroundColor: colors.surfaceMuted,
     borderWidth: 1,
     borderColor: "#CBD5E1"
   },
   inputMulti: { minHeight: 80, textAlignVertical: "top" },
   error: { color: "#B91C1C", fontSize: 13, fontWeight: "800", textAlign: "center" },
   sortRow: { flexDirection: "row", gap: 8 },
-  sortBtn: { borderRadius: 999, paddingHorizontal: 16, paddingVertical: 7, backgroundColor: "#EAF2FF" },
-  sortActive: { backgroundColor: "#1D4ED8" },
-  sortText: { color: "#1E40AF", fontSize: 13, fontWeight: "900" },
+  sortBtn: { borderRadius: 999, paddingHorizontal: 16, paddingVertical: 7, backgroundColor: colors.primarySoft },
+  sortActive: { backgroundColor: colors.primary },
+  sortText: { color: colors.primaryInk, fontSize: 13, fontWeight: "900" },
   sortTextActive: { color: "#FFFFFF" },
-  empty: { color: "#64748B", fontSize: 14, fontWeight: "700", textAlign: "center", padding: 20 },
+  empty: { color: colors.textMuted, fontSize: 14, fontWeight: "700", textAlign: "center", padding: 20 },
   card: {
     flexDirection: "row",
     gap: 12,
@@ -185,25 +191,25 @@ const styles = StyleSheet.create({
     padding: 14,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0",
+    borderColor: colors.border,
     alignItems: "center"
   },
   cardBody: { flex: 1, gap: 3, minWidth: 0 },
-  cardTitle: { color: "#0F172A", fontSize: 16, fontWeight: "900" },
-  cardText: { color: "#475569", fontSize: 13, fontWeight: "700", lineHeight: 19 },
-  cardMeta: { color: "#94A3B8", fontSize: 11, fontWeight: "800" },
+  cardTitle: { color: colors.ink, fontSize: 16, fontWeight: "900" },
+  cardText: { color: colors.textBody, fontSize: 13, fontWeight: "700", lineHeight: 19 },
+  cardMeta: { color: colors.textFaint, fontSize: 11, fontWeight: "800" },
   reactBtn: {
     alignItems: "center",
     justifyContent: "center",
     minWidth: 56,
     borderRadius: 10,
     paddingVertical: 8,
-    backgroundColor: "#F1F5F9",
+    backgroundColor: colors.borderFaint,
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
-  reactActive: { backgroundColor: "#DCFCE7", borderColor: "#86EFAC" },
-  reactIcon: { color: "#64748B", fontSize: 14, fontWeight: "900" },
-  reactIconActive: { color: "#166534" },
-  reactCount: { color: "#475569", fontSize: 15, fontWeight: "900" }
+  reactActive: { backgroundColor: colors.successSoft, borderColor: "#86EFAC" },
+  reactIcon: { color: colors.textMuted, fontSize: 14, fontWeight: "900" },
+  reactIconActive: { color: colors.successDark },
+  reactCount: { color: colors.textBody, fontSize: 15, fontWeight: "900" }
 });

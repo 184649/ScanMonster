@@ -1,5 +1,10 @@
 # Initial Release Missing Character Assets
 
+> **解決済み（2026-07-14）**：本書の不足4体（White Tiger / Tsuchinoko / Yeti / Underground Dweller）は
+> `assets/characters/ground/<英名>/<英名>.png` に 1024×1024 透過PNGが投入され、resolver で解決される。
+> `npm run validate:release-assets` は **89/89/0（OK）**、`gen:catalog`/`gen:seed` は **89 buildable** を出力する。
+> 以下は経緯の記録として保持する。Underground Dweller の外見は生成画像で確定した（旧「unresolved」は解消）。
+
 調査日: 2026-07-11
 
 ## 判定根拠

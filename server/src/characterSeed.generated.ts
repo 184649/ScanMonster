@@ -330,6 +330,30 @@ export const SEED_CHARACTERS: SeedCharacter[] = [
     "world": "ground"
   },
   {
+    "id": "ground_rare_tsuchinoko",
+    "name": "ツチノコ",
+    "rarity": "legendary",
+    "world": "ground"
+  },
+  {
+    "id": "ground_rare_underground_dweller",
+    "name": "地底人",
+    "rarity": "legendary",
+    "world": "ground"
+  },
+  {
+    "id": "ground_rare_white_tiger",
+    "name": "白虎",
+    "rarity": "rare",
+    "world": "ground"
+  },
+  {
+    "id": "ground_rare_yeti",
+    "name": "イエティ",
+    "rarity": "legendary",
+    "world": "ground"
+  },
+  {
     "id": "ground_red_panda",
     "name": "レッサン",
     "rarity": "normal",

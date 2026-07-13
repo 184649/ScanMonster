@@ -10,6 +10,7 @@ import { getReadableBarcodeType } from "../services/scannerService";
 import { useMonsterStore } from "../stores/monsterStore";
 import { formatFullDateTime } from "../utils/dateUtils";
 import { shortHash } from "../utils/randomFromHash";
+import { colors } from "../theme";
 
 export const ScanHistoryScreen = () => {
   const navigation = useNavigation<any>();
@@ -45,7 +46,7 @@ export const ScanHistoryScreen = () => {
                 >
                   <View style={styles.historyHeader}>
                     <View style={styles.iconBox}>
-                      <Clock3 color="#1D4ED8" size={20} strokeWidth={2.4} />
+                      <Clock3 color={colors.primary} size={20} strokeWidth={2.4} />
                     </View>
                     <View style={styles.historyTitleBlock}>
                       <Text style={styles.historyTitle}>{monster?.displayName ?? "生成個体不明"}</Text>
@@ -53,13 +54,13 @@ export const ScanHistoryScreen = () => {
                     </View>
                   </View>
                   <View style={styles.hashRow}>
-                    <Hash color="#64748B" size={16} strokeWidth={2.4} />
+                    <Hash color={colors.textMuted} size={16} strokeWidth={2.4} />
                     <Text style={styles.hashText}>{shortHash(history.sourceHash, 14)}</Text>
                   </View>
                   <View style={styles.tagRow}>
-                    <TagChip label={history.sourceType === "qr" ? "QRコード" : "バーコード"} color="#EAF2FF" />
-                    <TagChip label={getReadableBarcodeType(history.barcodeType)} color="#F1F5F9" />
-                    <TagChip label={history.regionName} color="#DCFCE7" />
+                    <TagChip label={history.sourceType === "qr" ? "QRコード" : "バーコード"} color={colors.primarySoft} />
+                    <TagChip label={getReadableBarcodeType(history.barcodeType)} color={colors.borderFaint} />
+                    <TagChip label={history.regionName} color={colors.successSoft} />
                     <TagChip label={SEASON_LABELS[history.season]} color="#FEF3C7" />
                     <TagChip label={TIME_SLOT_LABELS[history.timeSlot]} color="#E0E7FF" />
                   </View>
@@ -76,7 +77,7 @@ export const ScanHistoryScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 18,
@@ -87,17 +88,17 @@ const styles = StyleSheet.create({
     gap: 6
   },
   kicker: {
-    color: "#1D4ED8",
+    color: colors.primary,
     fontSize: 12,
     fontWeight: "900"
   },
   title: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 32,
     fontWeight: "900"
   },
   subtitle: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 14,
     lineHeight: 21
   },
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
     padding: 14,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   pressed: {
     opacity: 0.8,
@@ -127,19 +128,19 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#EAF2FF"
+    backgroundColor: colors.primarySoft
   },
   historyTitleBlock: {
     flex: 1,
     minWidth: 0
   },
   historyTitle: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 16,
     fontWeight: "900"
   },
   historyDate: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 12,
     fontWeight: "700",
     marginTop: 2
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
     gap: 6
   },
   hashText: {
-    color: "#475569",
+    color: colors.textBody,
     fontSize: 13,
     fontWeight: "900"
   },

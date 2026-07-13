@@ -26,11 +26,11 @@
 - 決定順：`byId[id] > worldDefault[world] > "future"`。
 - **hasImage は releaseStatus を決定・降格しない**。initial なのに画像が無いキャラは `initial` のまま **missing** として扱う（future にしない）。
 - 現状 worldDefault：ground=initial / sky=initial / waterside=future / bug=future / phantom=future / planet=future（**暫定・要承認**）。
-- **現状：canonical initial=89（ground74+sky15）/ asset complete=85 / missing=4**（White Tiger・Tsuchinoko・Yeti・Underground Dweller。すべて ground、releaseStatus=initial）。
+- **現状：canonical initial=89（ground74+sky15）/ asset complete=89 / missing=0**。旧不足4体（White Tiger・Tsuchinoko・Yeti・Underground Dweller、すべて ground・releaseStatus=initial）は **画像投入済みで解決**（2026-07-14）。
 
 ## release gate（画像欠損時の安全動作）
 
-- `npm run validate:release-assets` … canonical から 89/85/4 を集計し、**missing が1体でもあれば非0終了**（現状 4 欠損で FAILED が正）。通常の `npm test` とは別。
+- `npm run validate:release-assets` … canonical から initial/asset-complete/missing を集計し、**missing が1体でもあれば非0終了**（現状 89/89/0 で OK）。通常の `npm test` とは別。
 - `npm run gen:catalog` / `gen:seed` … **initial 画像欠損があれば既定で中止**（既存生成物を壊さない・server/appを不一致に部分再生成しない＝§14 原子性）。`WORLDAWN_ALLOW_INCOMPLETE=1` で「画像がある initial のみ（=85 buildable）」の安全ビルドを生成できる。
 - 画像解決は **実効 rarity** フォルダで行う：`assets/characters/<world>/<effRarity>/<英名>.png`（例 legendary は `ground/legendary/Tsuchinoko.png`）または旧構造 `assets/characters/<world>/<英名>/<英名>.png`。
 - **4画像を配置後**：`npm run gen:catalog && npm run gen:seed` を実行すると server seed / app catalog / image が同一の 89 集合から一括再生成される。

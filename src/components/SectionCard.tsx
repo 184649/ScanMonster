@@ -4,6 +4,8 @@
 import type { ReactNode } from "react";
 import { StyleSheet, Text, View, type ViewStyle } from "react-native";
 
+import { cardShadow, colors, radius } from "../theme";
+
 type Props = {
   title?: string;
   right?: ReactNode;
@@ -27,17 +29,13 @@ export const SectionCard = ({ title, right, children, bare = false, style }: Pro
 
 const styles = StyleSheet.create({
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 8 },
-  title: { color: "#94A3B8", fontSize: 13, fontWeight: "900" },
+  title: { color: colors.textFaint, fontSize: 13, fontWeight: "900" },
   card: {
-    borderRadius: 16,
-    backgroundColor: "#FFFFFF",
+    borderRadius: radius.lg,
+    backgroundColor: colors.surface,
     borderWidth: 1,
-    borderColor: "#EEF2F7",
+    borderColor: colors.borderFaint,
     overflow: "hidden",
-    shadowColor: "#0F172A",
-    shadowOpacity: 0.05,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 3 },
-    elevation: 1
+    ...cardShadow
   }
 });

@@ -10,6 +10,7 @@ import { MonsterAvatar } from "../components/MonsterAvatar";
 import { PrimaryButton } from "../components/PrimaryButton";
 import type { FriendQrScanResult } from "../services/apiClient";
 import { goBackOrHome } from "../utils/navigation";
+import { colors } from "../theme";
 
 export const FriendQRResultScreen = () => {
   const navigation = useNavigation<any>();
@@ -72,13 +73,13 @@ export const FriendQRResultScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: "#F7FAFF" },
+  safeArea: { flex: 1, backgroundColor: colors.screenBg },
   content: { padding: 18, gap: 16, paddingBottom: 34 },
   hero: { alignItems: "center", gap: 10 },
   badge: { borderRadius: 999, paddingHorizontal: 14, paddingVertical: 7, backgroundColor: "#FCE7F3" },
   badgeText: { color: "#BE185D", fontSize: 13, fontWeight: "900" },
-  name: { color: "#0F172A", fontSize: 24, fontWeight: "900", textAlign: "center" },
-  no: { color: "#94A3B8", fontSize: 14, fontWeight: "900", textAlign: "center" },
+  name: { color: colors.ink, fontSize: 24, fontWeight: "900", textAlign: "center" },
+  no: { color: colors.textFaint, fontSize: 14, fontWeight: "900", textAlign: "center" },
   sub: { color: "#DB2777", fontSize: 14, fontWeight: "800", textAlign: "center" },
   effectCard: {
     gap: 6,
@@ -92,8 +93,8 @@ const styles = StyleSheet.create({
   effectTitle: { color: "#C2410C", fontSize: 18, fontWeight: "900" },
   effectText: { color: "#7C2D12", fontSize: 14, fontWeight: "700", textAlign: "center", lineHeight: 20 },
   newTag: {
-    color: "#166534",
-    backgroundColor: "#DCFCE7",
+    color: colors.successDark,
+    backgroundColor: colors.successSoft,
     borderRadius: 8,
     paddingHorizontal: 10,
     paddingVertical: 3,

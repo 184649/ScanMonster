@@ -3,6 +3,8 @@
  */
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
+import { colors, radius } from "../theme";
+
 type Props = {
   emoji: string;
   label: string;
@@ -31,20 +33,20 @@ export const MenuListItem = ({ emoji, label, sub, onPress, comingSoon = false, l
 
 const styles = StyleSheet.create({
   row: { flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 16, paddingVertical: 14 },
-  divider: { borderBottomWidth: 1, borderBottomColor: "#F1F5F9" },
-  pressed: { backgroundColor: "#F8FAFC" },
+  divider: { borderBottomWidth: 1, borderBottomColor: colors.borderFaint },
+  pressed: { backgroundColor: colors.surfaceMuted },
   emoji: { fontSize: 20, width: 26, textAlign: "center" },
   body: { flex: 1, gap: 2, minWidth: 0 },
-  label: { color: "#0F172A", fontSize: 16, fontWeight: "800" },
-  muted: { color: "#94A3B8" },
-  sub: { color: "#64748B", fontSize: 12, fontWeight: "700" },
-  chevron: { color: "#CBD5E1", fontSize: 24, fontWeight: "900" },
+  label: { color: colors.ink, fontSize: 16, fontWeight: "800" },
+  muted: { color: colors.textFaint },
+  sub: { color: colors.textMuted, fontSize: 12, fontWeight: "700" },
+  chevron: { color: colors.textFaint, fontSize: 24, fontWeight: "900" },
   badge: {
-    color: "#94A3B8",
+    color: colors.textFaint,
     fontSize: 11,
     fontWeight: "900",
-    backgroundColor: "#F1F5F9",
-    borderRadius: 6,
+    backgroundColor: colors.borderFaint,
+    borderRadius: radius.sm,
     paddingHorizontal: 8,
     paddingVertical: 3,
     overflow: "hidden"

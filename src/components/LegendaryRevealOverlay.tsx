@@ -4,6 +4,7 @@
  * 二重表示防止は呼び出し側（legendaryReveal の永続化）で担保する。
  */
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { colors } from "../theme";
 
 export const LegendaryRevealOverlay = ({ visible, onClose }: { visible: boolean; onClose: () => void }) => (
   <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
@@ -35,17 +36,17 @@ const styles = StyleSheet.create({
     gap: 14,
     backgroundColor: "#0B1220",
     borderWidth: 1,
-    borderColor: "#FCD34D"
+    borderColor: colors.accentGold
   },
   spark: { fontSize: 44 },
-  title: { color: "#FCD34D", fontSize: 22, fontWeight: "900", textAlign: "center" },
-  body: { color: "#E2E8F0", fontSize: 14, fontWeight: "700", textAlign: "center", lineHeight: 22 },
+  title: { color: colors.accentGold, fontSize: 22, fontWeight: "900", textAlign: "center" },
+  body: { color: colors.border, fontSize: 14, fontWeight: "700", textAlign: "center", lineHeight: 22 },
   button: {
     marginTop: 6,
     borderRadius: 999,
     paddingHorizontal: 30,
     paddingVertical: 12,
-    backgroundColor: "#FCD34D"
+    backgroundColor: colors.accentGold
   },
   buttonText: { color: "#0B1220", fontSize: 15, fontWeight: "900" }
 });

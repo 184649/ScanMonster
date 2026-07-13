@@ -5,6 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { USER_TITLES, getTitleById } from "../data/titles";
 import { useMonsterStore } from "../stores/monsterStore";
+import { colors } from "../theme";
 
 export const TitlesScreen = () => {
   const economy = useMonsterStore((state) => state.economy);
@@ -64,7 +65,7 @@ export const TitlesScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 18,
@@ -80,12 +81,12 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   title: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 32,
     fontWeight: "900"
   },
   subtitle: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 14,
     lineHeight: 21,
     fontWeight: "700"
@@ -104,24 +105,24 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   activeTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 22,
     fontWeight: "900"
   },
   activeText: {
-    color: "#475569",
+    color: colors.textBody,
     fontSize: 13,
     lineHeight: 19,
     fontWeight: "700"
   },
   message: {
-    color: "#166534",
+    color: colors.successDark,
     fontSize: 13,
     lineHeight: 19,
     fontWeight: "800",
     borderRadius: 8,
     padding: 12,
-    backgroundColor: "#DCFCE7",
+    backgroundColor: colors.successSoft,
     borderWidth: 1,
     borderColor: "#BBF7D0"
   },
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
     padding: 14,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   titleCardUnlocked: {
     borderColor: "#BFE8C7"
@@ -143,20 +144,20 @@ const styles = StyleSheet.create({
     gap: 4
   },
   titleName: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 17,
     fontWeight: "900"
   },
   lockedText: {
-    color: "#94A3B8"
+    color: colors.textFaint
   },
   condition: {
-    color: "#2FA84F",
+    color: colors.success,
     fontSize: 12,
     fontWeight: "900"
   },
   description: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 13,
     lineHeight: 19,
     fontWeight: "700"

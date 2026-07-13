@@ -19,6 +19,7 @@ import { effectiveUnlockedWorldGroups } from "../services/worldAccess";
 import { getWorldDexView, getWorldTabs, monstersByCatalogId, type WorldDexEntry } from "../services/worldDex";
 import { useMonsterStore } from "../stores/monsterStore";
 import type { WorldGroup } from "../types/worlds";
+import { colors } from "../theme";
 
 const screenWidth = Dimensions.get("window").width;
 const GAP = 10;
@@ -87,7 +88,7 @@ export const WorldDexScreen = () => {
                 thumb
                 showRarity={false}
                 showElementFrame={false}
-                backgroundColor={isRareEntry(entry) ? "#FEF3C7" : "#F1F5F9"}
+                backgroundColor={isRareEntry(entry) ? "#FEF3C7" : colors.borderFaint}
               />
             </View>
           ) : entry.hasImage ? (
@@ -136,7 +137,7 @@ export const WorldDexScreen = () => {
               onPress={() => setSelected(tab.key)}
               style={[styles.tab, active && styles.tabActive, locked && styles.tabLocked]}
             >
-              {locked ? <LockKeyhole color={active ? "#FFFFFF" : "#94A3B8"} size={13} strokeWidth={2.6} /> : null}
+              {locked ? <LockKeyhole color={active ? "#FFFFFF" : colors.textFaint} size={13} strokeWidth={2.6} /> : null}
               <Text style={[styles.tabText, active && styles.tabTextActive]}>{tab.label}</Text>
             </Pressable>
           );
@@ -192,23 +193,23 @@ export const WorldDexScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: "#F7FAFF" },
+  safeArea: { flex: 1, backgroundColor: colors.screenBg },
   fixedHeader: {
     gap: 12,
     paddingHorizontal: HORIZONTAL_PADDING,
     paddingTop: 8,
     paddingBottom: 12,
-    backgroundColor: "#F7FAFF",
+    backgroundColor: colors.screenBg,
     borderBottomWidth: 1,
-    borderBottomColor: "#E2E8F0"
+    borderBottomColor: colors.border
   },
   content: { paddingHorizontal: HORIZONTAL_PADDING, paddingTop: 14, paddingBottom: 36 },
   columnWrap: { gap: GAP, marginBottom: GAP },
   header: { alignItems: "center", gap: 4 },
-  title: { color: "#071B46", fontSize: 30, fontWeight: "900" },
-  progress: { color: "#52627A", fontSize: 15, fontWeight: "900" },
-  progressStrong: { color: "#2FA84F" },
-  progressSub: { color: "#94A3B8", fontSize: 12, fontWeight: "800" },
+  title: { color: colors.navy, fontSize: 30, fontWeight: "900" },
+  progress: { color: colors.textSlate, fontSize: 15, fontWeight: "900" },
+  progressStrong: { color: colors.success },
+  progressSub: { color: colors.textFaint, fontSize: 12, fontWeight: "800" },
   tabRow: { gap: 8, paddingRight: HORIZONTAL_PADDING },
   tab: {
     flexDirection: "row",
@@ -219,21 +220,21 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#D7E0EA",
+    borderColor: colors.border,
     justifyContent: "center"
   },
-  tabActive: { backgroundColor: "#2FA84F", borderColor: "#2FA84F" },
+  tabActive: { backgroundColor: colors.success, borderColor: colors.success },
   tabLocked: { opacity: 0.7 },
-  tabText: { color: "#071B46", fontSize: 14, fontWeight: "900" },
+  tabText: { color: colors.navy, fontSize: 14, fontWeight: "900" },
   tabTextActive: { color: "#FFFFFF" },
   lockedBanner: {
     borderRadius: 8,
     padding: 12,
-    backgroundColor: "#F1F5F9",
+    backgroundColor: colors.borderFaint,
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
-  lockedBannerText: { color: "#64748B", fontSize: 13, fontWeight: "800", lineHeight: 18 },
+  lockedBannerText: { color: colors.textMuted, fontSize: 13, fontWeight: "800", lineHeight: 18 },
   grid: { flexDirection: "row", flexWrap: "wrap", gap: GAP },
   card: {
     minHeight: 150,
@@ -241,15 +242,15 @@ const styles = StyleSheet.create({
     padding: 8,
     backgroundColor: "#FFFFFF",
     borderWidth: 1.2,
-    borderColor: "#D7E0EA",
+    borderColor: colors.border,
     alignItems: "center",
     gap: 2
   },
-  rareCard: { borderColor: "#FCD34D", backgroundColor: "#FFFBEB" },
-  cardLocked: { backgroundColor: "#F8FAFC", borderColor: "#E2E8F0" },
-  cardPreparing: { backgroundColor: "#F8FAFC", borderStyle: "dashed" },
+  rareCard: { borderColor: colors.accentGold, backgroundColor: colors.accentGoldSoft },
+  cardLocked: { backgroundColor: colors.surfaceMuted, borderColor: colors.border },
+  cardPreparing: { backgroundColor: colors.surfaceMuted, borderStyle: "dashed" },
   pressed: { opacity: 0.82, transform: [{ scale: 0.99 }] },
-  cardNo: { color: "#94A3B8", fontSize: 11, fontWeight: "900", alignSelf: "flex-start" },
+  cardNo: { color: colors.textFaint, fontSize: 11, fontWeight: "900", alignSelf: "flex-start" },
   avatarWrap: { alignItems: "center", justifyContent: "center" },
   mysteryRoot: {
     position: "relative",
@@ -257,7 +258,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     overflow: "hidden",
     borderRadius: 8,
-    backgroundColor: "#E2E8F0"
+    backgroundColor: colors.border
   },
   mysteryGlow: {
     position: "absolute",
@@ -273,7 +274,7 @@ const styles = StyleSheet.create({
     width: "54%",
     height: "34%",
     borderRadius: 999,
-    backgroundColor: "#334155"
+    backgroundColor: colors.textBody
   },
   mysteryHead: {
     position: "absolute",
@@ -282,7 +283,7 @@ const styles = StyleSheet.create({
     width: "32%",
     height: "32%",
     borderRadius: 999,
-    backgroundColor: "#334155"
+    backgroundColor: colors.textBody
   },
   mysteryEarLeft: {
     position: "absolute",
@@ -291,7 +292,7 @@ const styles = StyleSheet.create({
     width: "28%",
     height: "28%",
     borderRadius: 999,
-    backgroundColor: "#334155",
+    backgroundColor: colors.textBody,
     transform: [{ rotate: "-18deg" }]
   },
   mysteryEarRight: {
@@ -301,7 +302,7 @@ const styles = StyleSheet.create({
     width: "24%",
     height: "24%",
     borderRadius: 999,
-    backgroundColor: "#334155",
+    backgroundColor: colors.textBody,
     transform: [{ rotate: "18deg" }]
   },
   mysteryTail: {
@@ -311,7 +312,7 @@ const styles = StyleSheet.create({
     width: "24%",
     height: "11%",
     borderRadius: 999,
-    backgroundColor: "#334155",
+    backgroundColor: colors.textBody,
     transform: [{ rotate: "-28deg" }]
   },
   mysteryFootLeft: {
@@ -321,7 +322,7 @@ const styles = StyleSheet.create({
     width: "13%",
     height: "10%",
     borderRadius: 999,
-    backgroundColor: "#334155"
+    backgroundColor: colors.textBody
   },
   mysteryFootRight: {
     position: "absolute",
@@ -330,10 +331,10 @@ const styles = StyleSheet.create({
     width: "13%",
     height: "10%",
     borderRadius: 999,
-    backgroundColor: "#334155"
+    backgroundColor: colors.textBody
   },
   mysteryMark: {
-    color: "#F8FAFC",
+    color: colors.surfaceMuted,
     fontSize: 32,
     fontWeight: "900"
   },
@@ -341,13 +342,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#E2E8F0",
+    backgroundColor: colors.border,
     paddingHorizontal: 6
   },
-  placeholderMark: { color: "#64748B", fontSize: 13, fontWeight: "900", textAlign: "center" },
-  cardName: { color: "#071B46", fontSize: 12, fontWeight: "900", marginTop: 2 },
-  cardSpecies: { color: "#64748B", fontSize: 10, fontWeight: "800" },
+  placeholderMark: { color: colors.textMuted, fontSize: 13, fontWeight: "900", textAlign: "center" },
+  cardName: { color: colors.navy, fontSize: 12, fontWeight: "900", marginTop: 2 },
+  cardSpecies: { color: colors.textMuted, fontSize: 10, fontWeight: "800" },
   rareSection: { gap: 10, marginTop: 8 },
   rareTitle: { color: "#B45309", fontSize: 16, fontWeight: "900" },
-  note: { color: "#94A3B8", fontSize: 12, fontWeight: "800", textAlign: "center", marginTop: 14, lineHeight: 18 }
+  note: { color: colors.textFaint, fontSize: 12, fontWeight: "800", textAlign: "center", marginTop: 14, lineHeight: 18 }
 });

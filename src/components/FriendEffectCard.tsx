@@ -10,6 +10,7 @@ import { isServerMode } from "../config/apiConfig";
 import { getActiveServerUserId } from "../services/activeUser";
 import { getFriendEffect } from "../services/apiClient";
 import { useMonsterStore } from "../stores/monsterStore";
+import { colors } from "../theme";
 
 const DEFAULT_MESSAGE = "フレンドQRを読むと、珍しい発見に近づくことがあります";
 
@@ -54,12 +55,12 @@ const styles = StyleSheet.create({
     padding: 14,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   cardActive: {
     backgroundColor: "#FFF7ED",
     borderColor: "#FDBA74"
   },
   title: { color: "#C2410C", fontSize: 14, fontWeight: "900" },
-  message: { color: "#52627A", fontSize: 13, lineHeight: 19, fontWeight: "700" }
+  message: { color: colors.textSlate, fontSize: 13, lineHeight: 19, fontWeight: "700" }
 });

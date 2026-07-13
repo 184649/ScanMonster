@@ -7,6 +7,7 @@ import { PrimaryButton } from "../components/PrimaryButton";
 import { REGIONS, getRegionOption } from "../data/regions";
 import { useSettingsStore } from "../stores/settingsStore";
 import { goBackOrHome } from "../utils/navigation";
+import { colors } from "../theme";
 
 const statusLabels = {
   idle: "待機中",
@@ -44,7 +45,7 @@ export const RegionSettingsScreen = () => {
         <View style={styles.currentPanel}>
           <View style={styles.currentHeader}>
             <View style={styles.currentIcon}>
-              {detecting ? <ActivityIndicator color="#1D4ED8" /> : <MapPin color="#1D4ED8" size={24} strokeWidth={2.4} />}
+              {detecting ? <ActivityIndicator color={colors.primary} /> : <MapPin color={colors.primary} size={24} strokeWidth={2.4} />}
             </View>
             <View style={styles.currentBody}>
               <Text style={styles.currentLabel}>現在の地域</Text>
@@ -86,7 +87,7 @@ export const RegionSettingsScreen = () => {
               return (
                 <View key={region.key} style={[styles.regionCard, selected && styles.selectedCard]}>
                   <View style={styles.regionIcon}>
-                    <MapPin color={selected ? "#1D4ED8" : "#64748B"} size={18} strokeWidth={2.4} />
+                    <MapPin color={selected ? colors.primary : colors.textMuted} size={18} strokeWidth={2.4} />
                   </View>
                   <View style={styles.regionBody}>
                     <Text style={styles.regionName}>{region.name}</Text>
@@ -106,7 +107,7 @@ export const RegionSettingsScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 18,
@@ -117,17 +118,17 @@ const styles = StyleSheet.create({
     gap: 6
   },
   kicker: {
-    color: "#1D4ED8",
+    color: colors.primary,
     fontSize: 12,
     fontWeight: "900"
   },
   title: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 32,
     fontWeight: "900"
   },
   subtitle: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 14,
     lineHeight: 21
   },
@@ -150,29 +151,29 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#EAF2FF"
+    backgroundColor: colors.primarySoft
   },
   currentBody: {
     flex: 1,
     minWidth: 0
   },
   currentLabel: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 12,
     fontWeight: "800"
   },
   currentRegion: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 22,
     fontWeight: "900"
   },
   statusText: {
-    color: "#1D4ED8",
+    color: colors.primary,
     fontSize: 13,
     fontWeight: "800"
   },
   detailText: {
-    color: "#475569",
+    color: colors.textBody,
     fontSize: 13,
     lineHeight: 19,
     fontWeight: "700"
@@ -189,7 +190,7 @@ const styles = StyleSheet.create({
     gap: 10,
     borderRadius: 8,
     padding: 14,
-    backgroundColor: "#FFFBEB",
+    backgroundColor: colors.accentGoldSoft,
     borderWidth: 1,
     borderColor: "#FDE68A"
   },
@@ -204,7 +205,7 @@ const styles = StyleSheet.create({
     gap: 12
   },
   sectionTitle: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 18,
     fontWeight: "900"
   },
@@ -219,11 +220,11 @@ const styles = StyleSheet.create({
     padding: 14,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   selectedCard: {
     borderColor: "#93C5FD",
-    backgroundColor: "#EAF2FF"
+    backgroundColor: colors.primarySoft
   },
   regionIcon: {
     width: 38,
@@ -231,7 +232,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#F1F5F9"
+    backgroundColor: colors.borderFaint
   },
   regionBody: {
     flex: 1,
@@ -239,12 +240,12 @@ const styles = StyleSheet.create({
     gap: 3
   },
   regionName: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 16,
     fontWeight: "900"
   },
   regionDescription: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 13,
     lineHeight: 18,
     fontWeight: "600"

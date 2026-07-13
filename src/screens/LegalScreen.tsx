@@ -8,6 +8,7 @@ import { useRoute } from "@react-navigation/native";
 
 import { LEGAL_BODY, LEGAL_TITLES, LEGAL_UPDATED, type LegalDoc } from "../data/legalText";
 import type { RootStackParamList } from "../types/navigation";
+import { colors } from "../theme";
 
 export const LegalScreen = () => {
   const route = useRoute<any>();
@@ -25,9 +26,9 @@ export const LegalScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: "#F7FAFF" },
+  safeArea: { flex: 1, backgroundColor: colors.screenBg },
   content: { padding: 18, paddingBottom: 40, gap: 8 },
-  title: { color: "#071B46", fontSize: 22, fontWeight: "900" },
-  updated: { color: "#94A3B8", fontSize: 12, fontWeight: "800" },
-  body: { color: "#334155", fontSize: 13, lineHeight: 21, fontWeight: "600", marginTop: 6 }
+  title: { color: colors.navy, fontSize: 22, fontWeight: "900" },
+  updated: { color: colors.textFaint, fontSize: 12, fontWeight: "800" },
+  body: { color: colors.textBody, fontSize: 13, lineHeight: 21, fontWeight: "600", marginTop: 6 }
 });

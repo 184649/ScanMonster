@@ -4,6 +4,7 @@ import { useIsFocused } from "@react-navigation/native";
 
 import { getCharacterFrameSet, type MotionName } from "../assets/characterFrames";
 import { FEATURE_FLAGS } from "../constants/featureFlags";
+import { colors } from "../theme";
 
 type Scene = "scan" | "detail";
 
@@ -264,7 +265,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(15,23,42,0.75)"
   },
   debugText: {
-    color: "#FACC15",
+    color: colors.warn,
     fontSize: 11,
     fontWeight: "900"
   }

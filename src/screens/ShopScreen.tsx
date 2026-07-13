@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 
 import { PrimaryButton } from "../components/PrimaryButton";
+import { colors } from "../theme";
 
 const shopItems = [
   { title: "姿の開放", body: "きらめく姿や夜明けの姿をDPで開放できます。", price: "DP" },
@@ -34,7 +35,7 @@ export const ShopScreen = () => {
         <View style={styles.list}>
           {shopItems.map((item) => (
             <View key={item.title} style={styles.itemCard}>
-              <GalleryVerticalEnd color="#2FA84F" size={26} strokeWidth={2.4} />
+              <GalleryVerticalEnd color={colors.success} size={26} strokeWidth={2.4} />
               <View style={styles.itemBody}>
                 <Text style={styles.itemTitle}>{item.title}</Text>
                 <Text style={styles.itemText}>{item.body}</Text>
@@ -53,7 +54,7 @@ export const ShopScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 18,
@@ -64,12 +65,12 @@ const styles = StyleSheet.create({
     gap: 6
   },
   kicker: {
-    color: "#2FA84F",
+    color: colors.success,
     fontSize: 12,
     fontWeight: "900"
   },
   title: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 34,
     fontWeight: "900",
     textAlign: "center"
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
     gap: 4
   },
   heroTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 18,
     fontWeight: "900"
   },
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
     padding: 14,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   itemBody: {
     flex: 1,
@@ -123,18 +124,18 @@ const styles = StyleSheet.create({
     gap: 3
   },
   itemTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 15,
     fontWeight: "900"
   },
   itemText: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 12,
     lineHeight: 18,
     fontWeight: "700"
   },
   price: {
-    color: "#2FA84F",
+    color: colors.success,
     fontSize: 13,
     fontWeight: "900"
   }

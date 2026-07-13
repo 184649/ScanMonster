@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { MenuListItem } from "../components/MenuListItem";
 import { SectionCard } from "../components/SectionCard";
+import { colors } from "../theme";
 
 export const MenuScreen = () => {
   const navigation = useNavigation<any>();
@@ -18,6 +19,10 @@ export const MenuScreen = () => {
     <SafeAreaView style={styles.safeArea} edges={["top", "left", "right"]}>
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>メニュー</Text>
+
+        <SectionCard title="毎日の楽しみ">
+          <MenuListItem emoji="🎯" label="ミッション" sub="今日のミッションと連続記録でDPを伸ばそう" onPress={go("Mission")} last />
+        </SectionCard>
 
         <SectionCard title="データ">
           <MenuListItem emoji="☁️" label="データ引き継ぎ" sub="端末変更でも発見記録を引き継げます" onPress={go("Account")} />
@@ -52,8 +57,8 @@ export const MenuScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: "#F7FAFF" },
+  safeArea: { flex: 1, backgroundColor: colors.screenBg },
   content: { padding: 16, gap: 18, paddingBottom: 34 },
-  title: { color: "#071B46", fontSize: 24, fontWeight: "900", textAlign: "center", paddingVertical: 6 },
+  title: { color: colors.navy, fontSize: 24, fontWeight: "900", textAlign: "center", paddingVertical: 6 },
   footer: { color: "#CBD5E1", fontSize: 12, fontWeight: "900", textAlign: "center", marginTop: 4 }
 });

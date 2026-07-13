@@ -19,6 +19,7 @@ import { useMonsterStore } from "../stores/monsterStore";
 import type { RootStackParamList } from "../types/navigation";
 import type { RealmGroup, WorldGroup } from "../types/worlds";
 import { goBackOrHome } from "../utils/navigation";
+import { colors } from "../theme";
 
 // レアリティ表示は共通モジュール characterRarityLabel を使用（legendary=「伝説」・段3）。
 
@@ -200,7 +201,7 @@ export const MonsterDetailScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 16,
@@ -222,7 +223,7 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#D7E0EA"
+    borderColor: colors.border
   },
   noPill: {
     borderRadius: 999,
@@ -233,19 +234,19 @@ const styles = StyleSheet.create({
     borderColor: "#86EFAC"
   },
   noPillText: {
-    color: "#166534",
+    color: colors.successDark,
     fontSize: 14,
     fontWeight: "900",
     letterSpacing: 0.5
   },
   title: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 30,
     fontWeight: "900",
     textAlign: "center"
   },
   subtitle: {
-    color: "#2FA84F",
+    color: colors.success,
     fontSize: 15,
     fontWeight: "900",
     textAlign: "center"
@@ -261,37 +262,37 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     paddingHorizontal: 12,
     paddingVertical: 7,
-    color: "#166534",
-    backgroundColor: "#DCFCE7",
+    color: colors.successDark,
+    backgroundColor: colors.successSoft,
     fontSize: 13,
     fontWeight: "900"
   },
   badgeFav: {
-    color: "#92400E",
+    color: colors.accentGoldInk,
     backgroundColor: "#FEF3C7"
   },
   profileBox: {
     gap: 4,
     borderRadius: 8,
     padding: 12,
-    backgroundColor: "#F8FAFC",
+    backgroundColor: colors.surfaceMuted,
     borderWidth: 1,
-    borderColor: "#EEF2F7"
+    borderColor: colors.borderFaint
   },
-  profileTitle: { color: "#071B46", fontSize: 14, fontWeight: "900", marginBottom: 2 },
-  profileMotif: { color: "#0F172A", fontSize: 14, fontWeight: "900" },
-  profileLine: { color: "#334155", fontSize: 13, fontWeight: "700" },
-  profileNote: { color: "#94A3B8", fontSize: 11, fontWeight: "700" },
+  profileTitle: { color: colors.navy, fontSize: 14, fontWeight: "900", marginBottom: 2 },
+  profileMotif: { color: colors.ink, fontSize: 14, fontWeight: "900" },
+  profileLine: { color: colors.textBody, fontSize: 13, fontWeight: "700" },
+  profileNote: { color: colors.textFaint, fontSize: 11, fontWeight: "700" },
   panel: {
     gap: 12,
     borderRadius: 12,
     padding: 16,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   sectionTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 18,
     fontWeight: "900"
   },
@@ -300,7 +301,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: "#E2E8F0",
+    borderColor: colors.border,
     overflow: "hidden"
   },
   recordItem: {
@@ -311,21 +312,21 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRightWidth: 1,
     borderBottomWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   recordLabel: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 12,
     fontWeight: "800"
   },
   recordValue: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 14,
     lineHeight: 19,
     fontWeight: "900"
   },
   body: {
-    color: "#334155",
+    color: colors.textBody,
     fontSize: 14,
     lineHeight: 22,
     fontWeight: "700"

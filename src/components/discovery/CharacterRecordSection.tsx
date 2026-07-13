@@ -10,6 +10,7 @@ import { useMonsterStore } from "../../stores/monsterStore";
 import type { DifficultyRank, DiscoveryRecord } from "../../types/discoveryRecord";
 import { formatFullDateTime } from "../../utils/dateUtils";
 import { DiscoveryCertificateCard } from "./DiscoveryCertificateCard";
+import { colors } from "../../theme";
 
 /** 常に表示する特別な発見証明か（§20.1）。 */
 const isSpecialCertificate = (record: DiscoveryRecord): boolean =>
@@ -150,25 +151,25 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
-  sectionTitle: { color: "#071B46", fontSize: 18, fontWeight: "900" },
+  sectionTitle: { color: colors.navy, fontSize: 18, fontWeight: "900" },
   statRow: { flexDirection: "row", gap: 12 },
   stat: {
     flex: 1,
     gap: 4,
     borderRadius: 8,
     padding: 12,
-    backgroundColor: "#F8FAFC",
+    backgroundColor: colors.surfaceMuted,
     borderWidth: 1,
-    borderColor: "#EEF2F7"
+    borderColor: colors.borderFaint
   },
-  statLabel: { color: "#64748B", fontSize: 12, fontWeight: "800" },
-  statValue: { color: "#071B46", fontSize: 18, fontWeight: "900" },
+  statLabel: { color: colors.textMuted, fontSize: 12, fontWeight: "800" },
+  statValue: { color: colors.navy, fontSize: 18, fontWeight: "900" },
   diffBadge: { alignSelf: "flex-start", borderRadius: 6, paddingHorizontal: 10, paddingVertical: 3 },
   diffText: { fontSize: 16, fontWeight: "900" },
   dateRow: { gap: 2 },
-  dateText: { color: "#64748B", fontSize: 12, fontWeight: "700" },
+  dateText: { color: colors.textMuted, fontSize: 12, fontWeight: "700" },
   titleRow: { flexDirection: "row", flexWrap: "wrap", gap: 6 },
   titleChip: {
     borderRadius: 8,
@@ -176,13 +177,13 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     fontSize: 12,
     fontWeight: "900",
-    backgroundColor: "#EAF2FF",
-    color: "#1E40AF",
+    backgroundColor: colors.primarySoft,
+    color: colors.primaryInk,
     overflow: "hidden"
   },
-  titleChipStrongest: { backgroundColor: "#FDE68A", color: "#92400E" },
-  foldButton: { borderRadius: 8, paddingVertical: 12, alignItems: "center", backgroundColor: "#EAF2FF" },
-  foldText: { color: "#1E40AF", fontSize: 14, fontWeight: "900" },
+  titleChipStrongest: { backgroundColor: "#FDE68A", color: colors.accentGoldInk },
+  foldButton: { borderRadius: 8, paddingVertical: 12, alignItems: "center", backgroundColor: colors.primarySoft },
+  foldText: { color: colors.primaryInk, fontSize: 14, fontWeight: "900" },
   listHeader: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
-  foldToggle: { color: "#1E40AF", fontSize: 13, fontWeight: "900" }
+  foldToggle: { color: colors.primaryInk, fontSize: 13, fontWeight: "900" }
 });

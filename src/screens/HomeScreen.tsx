@@ -3,6 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 
 import { MonsterAvatar } from "../components/MonsterAvatar";
+import { DailyStreakCard } from "../components/DailyStreakCard";
 import { FriendEffectCard } from "../components/FriendEffectCard";
 import { DiscoveryCertificateCard } from "../components/discovery/DiscoveryCertificateCard";
 import { PrimaryButton } from "../components/PrimaryButton";
@@ -17,6 +18,7 @@ import { createDexSummary } from "../services/dexService";
 import { topDiscoveryOfDay } from "../services/discoveryQueries";
 import { useMonsterStore } from "../stores/monsterStore";
 import { formatDateTime, getLocalDateKey } from "../utils/dateUtils";
+import { colors, radius } from "../theme";
 
 type InfoCardProps = {
   title: string;
@@ -86,6 +88,15 @@ export const HomeScreen = () => {
           </View>
         </View>
 
+        <DailyStreakCard
+          loginStreakDays={economy.login.streakDays}
+          todayEarnedDP={economy.login.todayEarnedDP}
+          weeklyStreakDay={economy.scanStreak.weeklyStreakDay}
+          totalScanStreakDays={economy.scanStreak.totalScanStreakDays}
+          bestScanStreakDays={economy.scanStreak.bestScanStreakDays}
+          onPress={() => navigation.navigate("Mission")}
+        />
+
         <View style={styles.todayPanel}>
           <Text style={styles.sectionTitle}>今日の一番発見</Text>
           {todayTop ? (
@@ -116,7 +127,7 @@ export const HomeScreen = () => {
             title="図鑑"
             value={`${summary.discoveredFamilies} / ${summary.totalFamilies}`}
             body="発見したキャラ"
-            accent="#2FA84F"
+            accent={colors.success}
             onPress={() => navigation.navigate("WorldDex")}
           />
           <InfoCard
@@ -199,7 +210,7 @@ export const HomeScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 18,
@@ -213,21 +224,21 @@ const styles = StyleSheet.create({
     gap: 12
   },
   logo: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 38,
     fontWeight: "900"
   },
   logoGreen: {
-    color: "#35AD4D"
+    color: colors.success
   },
   kicker: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 13,
     fontWeight: "800"
   },
   titleBadge: {
     width: 116,
-    borderRadius: 12,
+    borderRadius: radius.md,
     padding: 10,
     backgroundColor: "#F5F3FF",
     borderWidth: 1,
@@ -239,7 +250,7 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   titleBadgeText: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 13,
     fontWeight: "900"
   },
@@ -247,36 +258,36 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
-    borderRadius: 12,
+    borderRadius: radius.md,
     padding: 12,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.surface,
     borderWidth: 1,
-    borderColor: "#D7E0EA"
+    borderColor: colors.border
   },
   playerBody: {
     flex: 1,
     gap: 4
   },
   playerName: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 18,
     fontWeight: "900"
   },
   playerMeta: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 13,
     fontWeight: "800"
   },
   todayPanel: {
     gap: 12,
-    borderRadius: 12,
+    borderRadius: radius.md,
     padding: 16,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.surface,
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   todayEmpty: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 13,
     lineHeight: 20,
     fontWeight: "700"
@@ -286,19 +297,19 @@ const styles = StyleSheet.create({
   },
   dpPanel: {
     gap: 10,
-    borderRadius: 12,
+    borderRadius: radius.md,
     padding: 16,
-    backgroundColor: "#FFFBEB",
+    backgroundColor: colors.accentGoldSoft,
     borderWidth: 1,
-    borderColor: "#FCD34D"
+    borderColor: colors.accentGold
   },
   dpLabel: {
-    color: "#92400E",
+    color: colors.accentGoldInk,
     fontSize: 12,
     fontWeight: "900"
   },
   dpValue: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 32,
     fontWeight: "900"
   },
@@ -316,9 +327,9 @@ const styles = StyleSheet.create({
   infoCard: {
     width: "48%",
     minHeight: 130,
-    borderRadius: 12,
+    borderRadius: radius.md,
     padding: 13,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.surface,
     borderWidth: 1.4
   },
   infoTitle: {
@@ -326,13 +337,13 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   infoValue: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 25,
     fontWeight: "900",
     marginTop: 10
   },
   infoBody: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 12,
     lineHeight: 18,
     fontWeight: "800",
@@ -340,14 +351,14 @@ const styles = StyleSheet.create({
   },
   boostPanel: {
     gap: 6,
-    borderRadius: 12,
+    borderRadius: radius.md,
     padding: 14,
     backgroundColor: "#F0FDF4",
     borderWidth: 1,
     borderColor: "#BBF7D0"
   },
   sectionTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 18,
     fontWeight: "900"
   },
@@ -358,7 +369,7 @@ const styles = StyleSheet.create({
     fontWeight: "800"
   },
   boostSub: {
-    color: "#166534",
+    color: colors.successDark,
     fontSize: 12,
     fontWeight: "900"
   },
@@ -371,7 +382,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   moreText: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 13,
     fontWeight: "900"
   },
@@ -382,37 +393,37 @@ const styles = StyleSheet.create({
   recentCard: {
     width: 118,
     gap: 4,
-    borderRadius: 12,
+    borderRadius: radius.md,
     padding: 9,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.surface,
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   recentName: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 13,
     fontWeight: "900"
   },
   recentMeta: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 11,
     fontWeight: "800"
   },
   emptyCard: {
     gap: 10,
-    borderRadius: 12,
+    borderRadius: radius.md,
     padding: 16,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.surface,
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   emptyTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 16,
     fontWeight: "900"
   },
   emptyText: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 13,
     lineHeight: 19,
     fontWeight: "700"

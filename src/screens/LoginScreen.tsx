@@ -8,6 +8,7 @@ import { MonsterAvatar } from "../components/MonsterAvatar";
 import { isServerMode } from "../config/apiConfig";
 import { useAuthStore } from "../stores/authStore";
 import { useProfileStore } from "../stores/profileStore";
+import { colors } from "../theme";
 
 const MAX_NAME_LENGTH = 16;
 
@@ -80,7 +81,7 @@ export const LoginScreen = () => {
               value={name}
               onChangeText={(text) => setName(text.slice(0, MAX_NAME_LENGTH))}
               placeholder="トレーナー名（任意）"
-              placeholderTextColor="#94A3B8"
+              placeholderTextColor={colors.textFaint}
               maxLength={MAX_NAME_LENGTH}
               returnKeyType="done"
               onSubmitEditing={() => handleStart(name)}
@@ -106,7 +107,7 @@ export const LoginScreen = () => {
                     value={email}
                     onChangeText={setEmail}
                     placeholder="メールアドレス"
-                    placeholderTextColor="#94A3B8"
+                    placeholderTextColor={colors.textFaint}
                     autoCapitalize="none"
                     keyboardType="email-address"
                   />
@@ -115,7 +116,7 @@ export const LoginScreen = () => {
                     value={password}
                     onChangeText={setPassword}
                     placeholder="パスワード"
-                    placeholderTextColor="#94A3B8"
+                    placeholderTextColor={colors.textFaint}
                     secureTextEntry
                   />
                   {loginError ? <Text style={styles.error}>{loginError}</Text> : null}
@@ -142,7 +143,7 @@ export const LoginScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   flex: {
     flex: 1
@@ -158,22 +159,22 @@ const styles = StyleSheet.create({
     gap: 8
   },
   logo: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 44,
     fontWeight: "900",
     marginTop: 6
   },
   logoGreen: {
-    color: "#35AD4D"
+    color: colors.success
   },
   tagline: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 15,
     fontWeight: "900",
     textAlign: "center"
   },
   subTagline: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 13,
     fontWeight: "700",
     textAlign: "center"
@@ -184,15 +185,15 @@ const styles = StyleSheet.create({
     padding: 18,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   cardTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 20,
     fontWeight: "900"
   },
   cardBody: {
-    color: "#475569",
+    color: colors.textBody,
     fontSize: 13,
     lineHeight: 20,
     fontWeight: "700"
@@ -203,20 +204,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     fontSize: 16,
     fontWeight: "700",
-    color: "#0F172A",
-    backgroundColor: "#F8FAFC",
+    color: colors.ink,
+    backgroundColor: colors.surfaceMuted,
     borderWidth: 1,
     borderColor: "#CBD5E1"
   },
   counter: {
-    color: "#94A3B8",
+    color: colors.textFaint,
     fontSize: 11,
     fontWeight: "800",
     textAlign: "right",
     marginTop: -4
   },
   notice: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 12,
     lineHeight: 18,
     fontWeight: "700",

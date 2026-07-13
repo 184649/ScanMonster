@@ -29,6 +29,7 @@ export type RootStackParamList = {
   DiscoveryCalendar: undefined;
   HabitatUnlock: undefined;
   Titles: undefined;
+  Mission: undefined;
   Research: undefined;
   RegionSettings: undefined;
   Settings: undefined;

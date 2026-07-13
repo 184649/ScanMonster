@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { PrimaryButton } from "../components/PrimaryButton";
 import { ScanLine } from "../components/icons";
+import { colors } from "../theme";
 
 export const ExpeditionScreen = () => {
   const navigation = useNavigation<any>();
@@ -30,7 +31,7 @@ export const ExpeditionScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     flexGrow: 1,
@@ -43,21 +44,21 @@ const styles = StyleSheet.create({
     padding: 18,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   kicker: {
-    color: "#2FA84F",
+    color: colors.success,
     fontSize: 12,
     fontWeight: "900"
   },
   title: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 28,
     fontWeight: "900",
     textAlign: "center"
   },
   description: {
-    color: "#475569",
+    color: colors.textBody,
     fontSize: 14,
     lineHeight: 22,
     fontWeight: "700",

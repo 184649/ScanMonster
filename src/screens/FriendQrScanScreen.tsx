@@ -10,6 +10,7 @@ import { PrimaryButton } from "../components/PrimaryButton";
 import { DP_ABBR } from "../data/economy";
 import { useProfileStore } from "../stores/profileStore";
 import { formatFriendCode, parseFriendPayload } from "../utils/friendCode";
+import { colors } from "../theme";
 
 type ScanState = "scanning" | "processing" | "done";
 
@@ -80,7 +81,7 @@ export const FriendQrScanScreen = () => {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.center}>
-          <ActivityIndicator color="#2563EB" />
+          <ActivityIndicator color={colors.primary} />
           <Text style={styles.message}>カメラ権限を確認しています。</Text>
         </View>
       </SafeAreaView>
@@ -91,7 +92,7 @@ export const FriendQrScanScreen = () => {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.center}>
-          <Camera color="#1D4ED8" size={42} strokeWidth={2.3} />
+          <Camera color={colors.primary} size={42} strokeWidth={2.3} />
           <Text style={styles.title}>カメラを使います</Text>
           <Text style={styles.message}>フレンドQRを読み取るため、カメラ権限を許可してください。</Text>
           <PrimaryButton label="カメラ権限を許可" icon={ShieldCheck} onPress={() => void requestPermission()} />
@@ -151,13 +152,13 @@ const corner = {
   position: "absolute" as const,
   width: 40,
   height: 40,
-  borderColor: "#2FA84F"
+  borderColor: colors.success
 };
 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 18,
@@ -175,17 +176,17 @@ const styles = StyleSheet.create({
     gap: 6
   },
   kicker: {
-    color: "#2FA84F",
+    color: colors.success,
     fontSize: 12,
     fontWeight: "900"
   },
   title: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 26,
     fontWeight: "900"
   },
   message: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 14,
     lineHeight: 21
   },
@@ -193,7 +194,7 @@ const styles = StyleSheet.create({
     height: 340,
     borderRadius: 8,
     overflow: "hidden",
-    backgroundColor: "#0F172A",
+    backgroundColor: colors.ink,
     borderWidth: 2,
     borderColor: "#DBEAFE"
   },
@@ -234,8 +235,8 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   resultOk: {
-    color: "#166534",
-    backgroundColor: "#DCFCE7",
+    color: colors.successDark,
+    backgroundColor: colors.successSoft,
     borderWidth: 1,
     borderColor: "#BBF7D0"
   },
@@ -253,10 +254,10 @@ const styles = StyleSheet.create({
     padding: 14,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   hintText: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 13,
     lineHeight: 20,
     fontWeight: "700",

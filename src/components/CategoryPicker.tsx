@@ -2,6 +2,7 @@ import { Pressable, ScrollView, StyleSheet, Text } from "react-native";
 
 import { SCAN_CATEGORY_EMOJI, SCAN_CATEGORY_LABELS, SCAN_CATEGORY_ORDER } from "../data/economy";
 import type { ScanCategory } from "../types/category";
+import { colors } from "../theme";
 
 type CategoryPickerProps = {
   value: ScanCategory;
@@ -47,13 +48,13 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     paddingHorizontal: 12,
     paddingVertical: 8,
-    backgroundColor: "#F1F5F9",
+    backgroundColor: colors.borderFaint,
     borderWidth: 1.4,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   chipSelected: {
     backgroundColor: "#EAF7ED",
-    borderColor: "#35AD4D"
+    borderColor: colors.success
   },
   pressed: {
     opacity: 0.7
@@ -62,12 +63,12 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   label: {
-    color: "#475569",
+    color: colors.textBody,
     fontSize: 13,
     fontWeight: "800"
   },
   labelSelected: {
-    color: "#166534",
+    color: colors.successDark,
     fontWeight: "900"
   }
 });

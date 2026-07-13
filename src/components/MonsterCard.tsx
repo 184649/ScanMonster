@@ -5,6 +5,7 @@ import { getElementMeta, SEASON_LABELS, TIME_SLOT_LABELS } from "../data/element
 import { getFamilyById } from "../data/monsterFamilies";
 import type { UserMonster } from "../types/monster";
 import { formatDateTime } from "../utils/dateUtils";
+import { colors, radius } from "../theme";
 import { MonsterAvatar } from "./MonsterAvatar";
 import { TagChip } from "./TagChip";
 
@@ -41,10 +42,17 @@ export const MonsterCard = ({
               {family.name} / {monster.dna.individualVariantName ?? monster.dna.contextVariant.variantName}
             </Text>
           </View>
-          <Pressable accessibilityRole="button" onPress={onToggleFavorite} hitSlop={12} style={styles.favoriteButton}>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={monster.favorite ? "お気に入りを解除" : "お気に入りに追加"}
+            accessibilityState={{ selected: monster.favorite }}
+            onPress={onToggleFavorite}
+            hitSlop={12}
+            style={styles.favoriteButton}
+          >
             <Heart
-              color={monster.favorite ? "#DC2626" : "#94A3B8"}
-              fill={monster.favorite ? "#DC2626" : "transparent"}
+              color={monster.favorite ? colors.danger : colors.textFaint}
+              fill={monster.favorite ? colors.danger : "transparent"}
               size={20}
               strokeWidth={2.4}
             />
@@ -52,7 +60,7 @@ export const MonsterCard = ({
         </View>
         <View style={styles.metaRow}>
           <TagChip label={`★${monster.dna.rarity}`} color="#FEF3C7" />
-          {monster.dna.individualVariantName ? <TagChip label={monster.dna.individualVariantName} color="#F1F5F9" /> : null}
+          {monster.dna.individualVariantName ? <TagChip label={monster.dna.individualVariantName} color={colors.borderFaint} /> : null}
           <TagChip label={primary.label} color={primary.softColor} />
           {secondary ? <TagChip label={secondary.label} color={secondary.softColor} /> : null}
         </View>
@@ -76,11 +84,11 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
     gap: 12,
-    borderRadius: 8,
+    borderRadius: radius.md,
     padding: 12,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.surface,
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   pressed: {
     opacity: 0.8,
@@ -102,12 +110,12 @@ const styles = StyleSheet.create({
     minWidth: 0
   },
   name: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 16,
     fontWeight: "900"
   },
   family: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 12,
     fontWeight: "700",
     marginTop: 2
@@ -129,12 +137,12 @@ const styles = StyleSheet.create({
     gap: 8
   },
   detailText: {
-    color: "#475569",
+    color: colors.textBody,
     fontSize: 12,
     fontWeight: "700"
   },
   sameSource: {
-    color: "#1D4ED8",
+    color: colors.primary,
     fontSize: 12,
     fontWeight: "800"
   }

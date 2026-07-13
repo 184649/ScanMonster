@@ -6,6 +6,7 @@ import { getFamilyById } from "../data/monsterFamilies";
 import { getRareById } from "../data/rareMonsters";
 import type { UserMonster } from "../types/monster";
 import { MonsterAvatar } from "./MonsterAvatar";
+import { colors } from "../theme";
 
 type ShareCardProps = {
   monster: UserMonster;
@@ -76,12 +77,12 @@ const styles = StyleSheet.create({
     alignSelf: "stretch"
   },
   logo: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 20,
     fontWeight: "900"
   },
   logoGreen: {
-    color: "#35AD4D"
+    color: colors.success
   },
   tag: {
     color: "#2877D9",
@@ -96,13 +97,13 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   name: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 24,
     fontWeight: "900",
     textAlign: "center"
   },
   species: {
-    color: "#475569",
+    color: colors.textBody,
     fontSize: 13,
     fontWeight: "800",
     textAlign: "center"
@@ -117,18 +118,18 @@ const styles = StyleSheet.create({
     paddingVertical: 5
   },
   chipText: {
-    color: "#92400E",
+    color: colors.accentGoldInk,
     fontSize: 13,
     fontWeight: "900"
   },
   progress: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 13,
     fontWeight: "900",
     marginTop: 2
   },
   tagline: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 12,
     fontWeight: "700"
   }

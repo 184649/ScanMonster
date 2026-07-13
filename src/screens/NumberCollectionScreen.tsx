@@ -7,6 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { numberCollectionSummary } from "../services/discoveryQueries";
 import { useMonsterStore } from "../stores/monsterStore";
+import { colors } from "../theme";
 
 export const NumberCollectionScreen = () => {
   const records = useMonsterStore((state) => state.discoveryRecords);
@@ -46,12 +47,12 @@ export const NumberCollectionScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: "#F7FAFF" },
+  safeArea: { flex: 1, backgroundColor: colors.screenBg },
   content: { padding: 18, gap: 14, paddingBottom: 34 },
   header: { gap: 6 },
-  kicker: { color: "#2FA84F", fontSize: 12, fontWeight: "900" },
-  title: { color: "#071B46", fontSize: 30, fontWeight: "900" },
-  subtitle: { color: "#52627A", fontSize: 14, fontWeight: "700", lineHeight: 20 },
+  kicker: { color: colors.success, fontSize: 12, fontWeight: "900" },
+  title: { color: colors.navy, fontSize: 30, fontWeight: "900" },
+  subtitle: { color: colors.textSlate, fontSize: 14, fontWeight: "700", lineHeight: 20 },
   grid: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -63,13 +64,13 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0",
+    borderColor: colors.border,
     alignItems: "center",
     gap: 2
   },
-  cellLabel: { color: "#334155", fontSize: 14, fontWeight: "900" },
-  cellCount: { color: "#1D4ED8", fontSize: 30, fontWeight: "900" },
-  cellUnit: { color: "#64748B", fontSize: 12, fontWeight: "800" },
+  cellLabel: { color: colors.textBody, fontSize: 14, fontWeight: "900" },
+  cellCount: { color: colors.primary, fontSize: 30, fontWeight: "900" },
+  cellUnit: { color: colors.textMuted, fontSize: 12, fontWeight: "800" },
   note: {
     borderRadius: 12,
     padding: 14,

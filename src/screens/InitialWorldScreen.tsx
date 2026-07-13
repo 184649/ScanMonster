@@ -11,6 +11,7 @@ import {
 } from "../data/worlds";
 import { useMonsterStore } from "../stores/monsterStore";
 import type { WorldGroup } from "../types/worlds";
+import { colors } from "../theme";
 
 export const InitialWorldScreen = () => {
   const selectInitialWorldGroup = useMonsterStore((state) => state.selectInitialWorldGroup);
@@ -80,7 +81,7 @@ export const InitialWorldScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 20,
@@ -91,21 +92,21 @@ const styles = StyleSheet.create({
     gap: 8
   },
   logo: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 36,
     fontWeight: "900"
   },
   logoGreen: {
-    color: "#35AD4D"
+    color: colors.success
   },
   title: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 26,
     fontWeight: "900",
     lineHeight: 34
   },
   subtitle: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 14,
     lineHeight: 21,
     fontWeight: "700"
@@ -122,10 +123,10 @@ const styles = StyleSheet.create({
     gap: 12,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#D7E0EA"
+    borderColor: colors.border
   },
   cardActive: {
-    borderColor: "#35AD4D",
+    borderColor: colors.success,
     backgroundColor: "#F0FDF4"
   },
   pressed: {
@@ -140,12 +141,12 @@ const styles = StyleSheet.create({
     gap: 4
   },
   cardTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 18,
     fontWeight: "900"
   },
   cardText: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 13,
     lineHeight: 19,
     fontWeight: "700"
@@ -159,7 +160,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#CBD5E1"
   },
   radioActive: {
-    backgroundColor: "#35AD4D"
+    backgroundColor: colors.success
   },
   radioMark: {
     color: "#FFFFFF",
@@ -169,13 +170,13 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   message: {
-    color: "#166534",
+    color: colors.successDark,
     fontSize: 13,
     lineHeight: 19,
     fontWeight: "800",
     borderRadius: 8,
     padding: 12,
-    backgroundColor: "#DCFCE7",
+    backgroundColor: colors.successSoft,
     borderWidth: 1,
     borderColor: "#BBF7D0"
   },
@@ -183,12 +184,12 @@ const styles = StyleSheet.create({
     gap: 6,
     borderRadius: 12,
     padding: 14,
-    backgroundColor: "#FFFBEB",
+    backgroundColor: colors.accentGoldSoft,
     borderWidth: 1,
-    borderColor: "#FCD34D"
+    borderColor: colors.accentGold
   },
   noteTitle: {
-    color: "#92400E",
+    color: colors.accentGoldInk,
     fontSize: 15,
     fontWeight: "900"
   },

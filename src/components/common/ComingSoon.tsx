@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 
 import { PrimaryButton } from "../PrimaryButton";
+import { colors, radius } from "../../theme";
 
 type ComingSoonProps = {
   title?: string;
@@ -28,20 +29,20 @@ export const ComingSoon = ({
 const styles = StyleSheet.create({
   card: {
     gap: 12,
-    borderRadius: 8,
+    borderRadius: radius.lg,
     padding: 16,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.surface,
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   title: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 20,
     fontWeight: "900",
     textAlign: "center"
   },
   message: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 14,
     lineHeight: 21,
     fontWeight: "700",

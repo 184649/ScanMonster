@@ -13,6 +13,7 @@ import { getCharacterIdForMonster } from "../data/characters";
 import { createDexSummary } from "../services/dexService";
 import { useMonsterStore } from "../stores/monsterStore";
 import type { WorldGroup } from "../types/worlds";
+import { colors } from "../theme";
 
 const countByWorldGroup = (monsters: ReturnType<typeof useMonsterStore.getState>["monsters"], world: WorldGroup) =>
   new Set(
@@ -112,7 +113,7 @@ export const DexHomeScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 18,
@@ -123,19 +124,19 @@ const styles = StyleSheet.create({
     gap: 6
   },
   kicker: {
-    color: "#2FA84F",
+    color: colors.success,
     fontSize: 12,
     fontWeight: "900",
     textAlign: "center"
   },
   title: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 34,
     fontWeight: "900",
     textAlign: "center"
   },
   subtitle: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 14,
     lineHeight: 21,
     textAlign: "center",
@@ -157,12 +158,12 @@ const styles = StyleSheet.create({
     gap: 5
   },
   heroTitle: {
-    color: "#166534",
+    color: colors.successDark,
     fontSize: 20,
     fontWeight: "900"
   },
   heroValue: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 30,
     fontWeight: "900"
   },
@@ -188,24 +189,24 @@ const styles = StyleSheet.create({
     borderColor: "#DDD6FE"
   },
   unlockCard: {
-    backgroundColor: "#FFFBEB",
-    borderColor: "#FCD34D"
+    backgroundColor: colors.accentGoldSoft,
+    borderColor: colors.accentGold
   },
   cardEmoji: {
     fontSize: 26
   },
   cardTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 16,
     fontWeight: "900"
   },
   cardValue: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 22,
     fontWeight: "900"
   },
   cardBody: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 12,
     lineHeight: 18,
     fontWeight: "700"
@@ -216,10 +217,10 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   sectionTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 18,
     fontWeight: "900"
   },
@@ -230,7 +231,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 10,
     borderTopWidth: 1,
-    borderTopColor: "#EEF2F7",
+    borderTopColor: colors.borderFaint,
     paddingTop: 10
   },
   habitatNameBlock: {
@@ -238,22 +239,22 @@ const styles = StyleSheet.create({
     gap: 2
   },
   habitatName: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 14,
     fontWeight: "900"
   },
   habitatState: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 12,
     fontWeight: "800"
   },
   habitatCount: {
-    color: "#2FA84F",
+    color: colors.success,
     fontSize: 15,
     fontWeight: "900"
   },
   body: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 14,
     lineHeight: 21,
     fontWeight: "700"

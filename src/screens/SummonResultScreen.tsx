@@ -36,6 +36,7 @@ import type { ScanSource, UserMonster } from "../types/monster";
 import type { RootStackParamList } from "../types/navigation";
 import { formatDateTime } from "../utils/dateUtils";
 import { goBackOrHome } from "../utils/navigation";
+import { colors } from "../theme";
 
 const scanSourceLabel = (source: ScanSource): string => (source === "qr" ? "QRコード" : "バーコード");
 
@@ -46,9 +47,9 @@ const kindBadge = (kind: DiscoveryResultRef["kind"]): { label: string; color: st
     return { label: "NEW発見！", color: "#B45309", soft: "#FEF3C7" };
   }
   if (kind === "rediscovery") {
-    return { label: "再発見", color: "#166534", soft: "#DCFCE7" };
+    return { label: "再発見", color: colors.successDark, soft: colors.successSoft };
   }
-  return { label: "今日は発見済み", color: "#475569", soft: "#E2E8F0" };
+  return { label: "今日は発見済み", color: colors.textBody, soft: colors.border };
 };
 
 const StreakResultPanel = ({ streak }: { streak: ScanStreakView }) => {
@@ -212,8 +213,8 @@ export const SummonResultScreen = () => {
           <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
             <View style={styles.hero}>
               <MonsterAvatar familyId={family.id} size={150} showRarity={false} />
-              <View style={[styles.resultBadge, { backgroundColor: "#E2E8F0" }]}>
-                <Text style={[styles.resultBadgeText, { color: "#475569" }]}>発見済み</Text>
+              <View style={[styles.resultBadge, { backgroundColor: colors.border }]}>
+                <Text style={[styles.resultBadgeText, { color: colors.textBody }]}>発見済み</Text>
               </View>
               <Text style={styles.title}>今日はこのコードからは発見済み！</Text>
               <Text style={styles.subtitle}>
@@ -470,7 +471,7 @@ export const SummonResultScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 18,
@@ -508,19 +509,19 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   title: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 28,
     fontWeight: "900",
     textAlign: "center"
   },
   species: {
-    color: "#2FA84F",
+    color: colors.success,
     fontSize: 14,
     fontWeight: "900",
     textAlign: "center"
   },
   subtitle: {
-    color: "#475569",
+    color: colors.textBody,
     fontSize: 14,
     lineHeight: 21,
     textAlign: "center"
@@ -537,7 +538,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0",
+    borderColor: colors.border,
     overflow: "hidden"
   },
   metaItem: {
@@ -548,15 +549,15 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRightWidth: 1,
     borderBottomWidth: 1,
-    borderColor: "#EEF2F7"
+    borderColor: colors.borderFaint
   },
   metaLabel: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 12,
     fontWeight: "800"
   },
   metaValue: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 15,
     fontWeight: "900"
   },
@@ -569,12 +570,12 @@ const styles = StyleSheet.create({
     borderColor: "#BBF7D0"
   },
   streakPanelGold: {
-    backgroundColor: "#FFFBEB",
-    borderColor: "#FCD34D",
+    backgroundColor: colors.accentGoldSoft,
+    borderColor: colors.accentGold,
     alignItems: "center"
   },
   streakPanelTitle: {
-    color: "#166534",
+    color: colors.successDark,
     fontSize: 16,
     fontWeight: "900"
   },
@@ -584,7 +585,7 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   streakPanelText: {
-    color: "#334155",
+    color: colors.textBody,
     fontSize: 14,
     fontWeight: "800"
   },
@@ -594,7 +595,7 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   streakPanelNext: {
-    color: "#475569",
+    color: colors.textBody,
     fontSize: 13,
     fontWeight: "800"
   },
@@ -607,7 +608,7 @@ const styles = StyleSheet.create({
     borderColor: "#BFE8C7"
   },
   memoTitle: {
-    color: "#166534",
+    color: colors.successDark,
     fontSize: 15,
     fontWeight: "900"
   },
@@ -635,7 +636,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1
   },
   discoveryHeadSub: {
-    color: "#475569",
+    color: colors.textBody,
     fontSize: 14,
     fontWeight: "800"
   },
@@ -651,7 +652,7 @@ const styles = StyleSheet.create({
   regionBannerTitle: { color: "#0E7490", fontSize: 18, fontWeight: "900" },
   regionBannerText: { color: "#155E75", fontSize: 14, fontWeight: "800" },
   sectionTitle: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 18,
     fontWeight: "900"
   },
@@ -665,7 +666,7 @@ const styles = StyleSheet.create({
     padding: 12,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   resultBody: {
     flex: 1,
@@ -682,12 +683,12 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   resultName: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 18,
     fontWeight: "900"
   },
   resultSub: {
-    color: "#475569",
+    color: colors.textBody,
     fontSize: 13,
     fontWeight: "700"
   }

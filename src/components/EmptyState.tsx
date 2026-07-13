@@ -1,6 +1,8 @@
 import type { ComponentType } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
+import { colors, radius } from "../theme";
+
 type IconProps = {
   color?: string;
   size?: number;
@@ -18,7 +20,7 @@ export const EmptyState = ({ title, message, icon: Icon }: EmptyStateProps) => {
     <View style={styles.container}>
       {Icon ? (
         <View style={styles.iconBox}>
-          <Icon color="#2563EB" size={30} strokeWidth={2.2} />
+          <Icon color={colors.primary} size={30} strokeWidth={2.2} />
         </View>
       ) : null}
       <Text style={styles.title}>{title}</Text>
@@ -37,19 +39,19 @@ const styles = StyleSheet.create({
   iconBox: {
     width: 58,
     height: 58,
-    borderRadius: 8,
+    borderRadius: radius.md,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#EAF2FF"
+    backgroundColor: colors.primarySoft
   },
   title: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 18,
     fontWeight: "900",
     textAlign: "center"
   },
   message: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 14,
     lineHeight: 20,
     textAlign: "center"

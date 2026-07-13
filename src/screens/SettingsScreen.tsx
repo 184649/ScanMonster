@@ -10,6 +10,7 @@ import { playSound } from "../services/soundService";
 import { DEFAULT_SOUND_SETTINGS } from "../types/sound";
 import { useMonsterStore } from "../stores/monsterStore";
 import { useSettingsStore } from "../stores/settingsStore";
+import { colors } from "../theme";
 
 const VOLUME_STEPS = [0.2, 0.4, 0.6, 0.8, 1.0];
 
@@ -243,7 +244,7 @@ export const SettingsScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 18,
@@ -254,12 +255,12 @@ const styles = StyleSheet.create({
     gap: 6
   },
   kicker: {
-    color: "#1D4ED8",
+    color: colors.primary,
     fontSize: 12,
     fontWeight: "900"
   },
   title: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 32,
     fontWeight: "900"
   },
@@ -269,27 +270,27 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   sectionTitle: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 18,
     fontWeight: "900"
   },
   description: {
-    color: "#475569",
+    color: colors.textBody,
     fontSize: 14,
     lineHeight: 21,
     fontWeight: "600"
   },
   messageBox: {
-    color: "#166534",
+    color: colors.successDark,
     fontSize: 13,
     lineHeight: 19,
     fontWeight: "800",
     borderRadius: 8,
     padding: 12,
-    backgroundColor: "#DCFCE7",
+    backgroundColor: colors.successSoft,
     borderWidth: 1,
     borderColor: "#BBF7D0"
   }

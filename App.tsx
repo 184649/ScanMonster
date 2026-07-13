@@ -173,6 +173,7 @@ export default function App() {
             <Stack.Screen name="DiscoveryCalendar" component={DiscoveryCalendarScreen} options={{ title: "発見カレンダー" }} />
             <Stack.Screen name="HabitatUnlock" component={HabitatUnlockScreen} options={{ title: "カテゴリ解放" }} />
             <Stack.Screen name="Titles" component={TitlesScreen} options={{ title: "称号" }} />
+            <Stack.Screen name="Mission" component={MissionScreen} options={{ title: "ミッション" }} />
             <Stack.Screen name="Research" component={ResearchScreen} options={{ title: "研究（準備中）" }} />
             <Stack.Screen name="RegionSettings" component={RegionSettingsScreen} options={{ title: "地域設定" }} />
             <Stack.Screen name="Settings" component={SettingsScreen} options={{ title: "設定" }} />

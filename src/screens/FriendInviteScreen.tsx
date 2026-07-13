@@ -11,6 +11,7 @@ import { PrimaryButton } from "../components/PrimaryButton";
 import { DP_ABBR } from "../data/economy";
 import { useProfileStore } from "../stores/profileStore";
 import { buildFriendPayload, buildInviteMessage, formatFriendCode } from "../utils/friendCode";
+import { colors } from "../theme";
 
 export const FriendInviteScreen = () => {
   const navigation = useNavigation<any>();
@@ -91,7 +92,7 @@ export const FriendInviteScreen = () => {
               value={inputCode}
               onChangeText={setInputCode}
               placeholder="例: WD34-K7QP"
-              placeholderTextColor="#94A3B8"
+              placeholderTextColor={colors.textFaint}
               autoCapitalize="characters"
               autoCorrect={false}
               editable={!alreadyInvited}
@@ -135,7 +136,7 @@ export const FriendInviteScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   flex: {
     flex: 1
@@ -149,17 +150,17 @@ const styles = StyleSheet.create({
     gap: 6
   },
   kicker: {
-    color: "#2FA84F",
+    color: colors.success,
     fontSize: 12,
     fontWeight: "900"
   },
   title: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 28,
     fontWeight: "900"
   },
   lead: {
-    color: "#475569",
+    color: colors.textBody,
     fontSize: 13,
     lineHeight: 20,
     fontWeight: "700"
@@ -172,8 +173,8 @@ const styles = StyleSheet.create({
     fontWeight: "800"
   },
   messageOk: {
-    color: "#166534",
-    backgroundColor: "#DCFCE7",
+    color: colors.successDark,
+    backgroundColor: colors.successSoft,
     borderWidth: 1,
     borderColor: "#BBF7D0"
   },
@@ -189,15 +190,15 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   cardTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 17,
     fontWeight: "900"
   },
   cardNote: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 12,
     lineHeight: 18,
     fontWeight: "700"
@@ -208,13 +209,13 @@ const styles = StyleSheet.create({
     paddingVertical: 6
   },
   codeLabel: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 12,
     fontWeight: "900",
     textAlign: "center"
   },
   codeValue: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 26,
     fontWeight: "900",
     letterSpacing: 3,
@@ -227,13 +228,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "800",
     letterSpacing: 2,
-    color: "#0F172A",
-    backgroundColor: "#F8FAFC",
+    color: colors.ink,
+    backgroundColor: colors.surfaceMuted,
     borderWidth: 1,
     borderColor: "#CBD5E1"
   },
   doneNote: {
-    color: "#166534",
+    color: colors.successDark,
     fontSize: 13,
     fontWeight: "800"
   },
@@ -242,7 +243,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 12,
     borderTopWidth: 1,
-    borderTopColor: "#EEF2F7",
+    borderTopColor: colors.borderFaint,
     paddingTop: 10
   },
   friendAvatar: {
@@ -251,10 +252,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#EAF2FF"
+    backgroundColor: colors.primarySoft
   },
   friendAvatarText: {
-    color: "#1D4ED8",
+    color: colors.primary,
     fontSize: 16,
     fontWeight: "900"
   },
@@ -263,18 +264,18 @@ const styles = StyleSheet.create({
     minWidth: 0
   },
   friendName: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 15,
     fontWeight: "900"
   },
   friendCode: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 12,
     fontWeight: "800",
     letterSpacing: 1
   },
   friendSource: {
-    color: "#94A3B8",
+    color: colors.textFaint,
     fontSize: 11,
     fontWeight: "900"
   }

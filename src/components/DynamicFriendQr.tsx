@@ -8,6 +8,7 @@ import QRCode from "react-native-qrcode-svg";
 
 import { postFriendQrToken } from "../services/apiClient";
 import { buildFriendQrPayload } from "../utils/friendQrPayload";
+import { colors } from "../theme";
 
 export const DynamicFriendQr = ({ size = 220 }: { size?: number }) => {
   const [payload, setPayload] = useState<string | null>(null);
@@ -46,11 +47,11 @@ export const DynamicFriendQr = ({ size = 220 }: { size?: number }) => {
   if (!payload) {
     return (
       <View style={[styles.box, { width: size, height: size }]}>
-        <ActivityIndicator color="#2563EB" />
+        <ActivityIndicator color={colors.primary} />
       </View>
     );
   }
-  return <QRCode value={payload} size={size} backgroundColor="#FFFFFF" color="#0F172A" />;
+  return <QRCode value={payload} size={size} backgroundColor="#FFFFFF" color={colors.ink} />;
 };
 
 const styles = StyleSheet.create({

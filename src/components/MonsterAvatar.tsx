@@ -6,6 +6,7 @@ import { getElementMeta } from "../data/elements";
 import { getFamilyById, MONSTER_FAMILIES } from "../data/monsterFamilies";
 import { getRareById } from "../data/rareMonsters";
 import type { ElementType, MonsterFamily, RareMonster, UserMonster } from "../types/monster";
+import { colors } from "../theme";
 
 type MonsterAvatarProps = {
   familyId?: string;
@@ -170,7 +171,7 @@ const styles = StyleSheet.create({
   },
   silhouetteImage: {
     opacity: 0.68,
-    tintColor: "#334155"
+    tintColor: colors.textBody
   },
   fallbackRoot: {
     position: "relative",
@@ -220,7 +221,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(7, 27, 70, 0.82)"
   },
   rarityText: {
-    color: "#FACC15",
+    color: colors.warn,
     fontSize: 10,
     fontWeight: "900",
     textAlign: "center"

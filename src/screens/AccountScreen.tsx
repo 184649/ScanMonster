@@ -10,6 +10,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { isServerMode } from "../config/apiConfig";
 import { useAuthStore } from "../stores/authStore";
+import { colors } from "../theme";
 
 export const AccountScreen = () => {
   const account = useAuthStore((s) => s.account);
@@ -86,7 +87,7 @@ export const AccountScreen = () => {
               value={email}
               onChangeText={setEmail}
               placeholder="メールアドレス"
-              placeholderTextColor="#94A3B8"
+              placeholderTextColor={colors.textFaint}
               autoCapitalize="none"
               keyboardType="email-address"
             />
@@ -95,7 +96,7 @@ export const AccountScreen = () => {
               value={password}
               onChangeText={setPassword}
               placeholder="パスワード（6文字以上）"
-              placeholderTextColor="#94A3B8"
+              placeholderTextColor={colors.textFaint}
               secureTextEntry
             />
             <PrimaryButton
@@ -135,7 +136,7 @@ export const AccountScreen = () => {
               value={code}
               onChangeText={setCode}
               placeholder="引継ぎコードを入力"
-              placeholderTextColor="#94A3B8"
+              placeholderTextColor={colors.textFaint}
               autoCapitalize="characters"
             />
             <PrimaryButton
@@ -151,33 +152,33 @@ export const AccountScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: "#F7FAFF" },
+  safeArea: { flex: 1, backgroundColor: colors.screenBg },
   content: { padding: 16, gap: 12, paddingBottom: 40 },
   header: { gap: 6 },
-  kicker: { color: "#2FA84F", fontSize: 12, fontWeight: "900" },
-  title: { color: "#071B46", fontSize: 30, fontWeight: "900" },
-  subtitle: { color: "#52627A", fontSize: 13, lineHeight: 20, fontWeight: "700" },
+  kicker: { color: colors.success, fontSize: 12, fontWeight: "900" },
+  title: { color: colors.navy, fontSize: 30, fontWeight: "900" },
+  subtitle: { color: colors.textSlate, fontSize: 13, lineHeight: 20, fontWeight: "700" },
   panel: {
     gap: 12,
     borderRadius: 12,
     padding: 16,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
-  notice: { backgroundColor: "#FFFBEB", borderColor: "#FCD34D" },
-  noticeText: { color: "#92400E", fontSize: 13, lineHeight: 19, fontWeight: "800" },
-  sectionTitle: { color: "#071B46", fontSize: 17, fontWeight: "900" },
-  statusOk: { color: "#166534", fontSize: 15, fontWeight: "900" },
-  body: { color: "#334155", fontSize: 13, lineHeight: 20, fontWeight: "700" },
-  hint: { color: "#94A3B8", fontSize: 12, lineHeight: 18, fontWeight: "700" },
+  notice: { backgroundColor: colors.accentGoldSoft, borderColor: colors.accentGold },
+  noticeText: { color: colors.accentGoldInk, fontSize: 13, lineHeight: 19, fontWeight: "800" },
+  sectionTitle: { color: colors.navy, fontSize: 17, fontWeight: "900" },
+  statusOk: { color: colors.successDark, fontSize: 15, fontWeight: "900" },
+  body: { color: colors.textBody, fontSize: 13, lineHeight: 20, fontWeight: "700" },
+  hint: { color: colors.textFaint, fontSize: 12, lineHeight: 18, fontWeight: "700" },
   message: {
-    color: "#1E40AF",
+    color: colors.primaryInk,
     fontSize: 13,
     fontWeight: "800",
     borderRadius: 8,
     padding: 12,
-    backgroundColor: "#EAF2FF"
+    backgroundColor: colors.primarySoft
   },
   input: {
     height: 50,
@@ -185,18 +186,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     fontSize: 15,
     fontWeight: "700",
-    color: "#0F172A",
-    backgroundColor: "#F8FAFC",
+    color: colors.ink,
+    backgroundColor: colors.surfaceMuted,
     borderWidth: 1,
     borderColor: "#CBD5E1"
   },
   code: {
-    color: "#1D4ED8",
+    color: colors.primary,
     fontSize: 24,
     fontWeight: "900",
     letterSpacing: 4,
     textAlign: "center",
     paddingVertical: 6
   },
-  divider: { height: 1, backgroundColor: "#EEF2F7", marginVertical: 2 }
+  divider: { height: 1, backgroundColor: colors.borderFaint, marginVertical: 2 }
 });

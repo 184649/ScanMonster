@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { DiscoveryCertificateCard } from "../components/discovery/DiscoveryCertificateCard";
 import { useMonsterStore } from "../stores/monsterStore";
+import { colors } from "../theme";
 
 export const DiscoveryLogScreen = () => {
   const navigation = useNavigation<any>();
@@ -39,14 +40,14 @@ export const DiscoveryLogScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: "#F7FAFF" },
+  safeArea: { flex: 1, backgroundColor: colors.screenBg },
   content: { padding: 18, gap: 10, paddingBottom: 34 },
   header: { gap: 6, marginBottom: 4 },
-  kicker: { color: "#2FA84F", fontSize: 12, fontWeight: "900" },
-  title: { color: "#071B46", fontSize: 30, fontWeight: "900" },
-  subtitle: { color: "#52627A", fontSize: 14, fontWeight: "700" },
+  kicker: { color: colors.success, fontSize: 12, fontWeight: "900" },
+  title: { color: colors.navy, fontSize: 30, fontWeight: "900" },
+  subtitle: { color: colors.textSlate, fontSize: 14, fontWeight: "700" },
   empty: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 14,
     fontWeight: "700",
     textAlign: "center",

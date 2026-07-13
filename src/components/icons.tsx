@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
+import { colors } from "../theme";
 
 export type IconProps = {
   color?: string;
@@ -34,7 +35,7 @@ type IconName =
 
 const makeIcon =
   (name: IconName) =>
-  ({ color = "#1D4ED8", size = 22, fill }: IconProps) => {
+  ({ color = colors.primary, size = 22, fill }: IconProps) => {
     const fontSize = Math.max(9, Math.round(size * 0.36));
     const backgroundColor = fill && fill !== "transparent" ? fill : "transparent";
 

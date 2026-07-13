@@ -12,6 +12,7 @@ import { INITIAL_WORLD_GROUPS, WORLD_GROUP_EMOJI, WORLD_GROUP_LABELS } from "../
 import { completedNormalWorlds } from "../services/legendaryVisibility.core";
 import { ownedCatalogIds } from "../services/worldDex.core";
 import { useMonsterStore } from "../stores/monsterStore";
+import { colors } from "../theme";
 
 type Item = { label: string; emoji?: string; note?: string; onPress?: () => void };
 type Category = { key: string; title: string; desc: string; items: Item[] };
@@ -107,24 +108,24 @@ export const WorldListScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: "#F7FAFF" },
+  safeArea: { flex: 1, backgroundColor: colors.screenBg },
   content: { padding: 16, gap: 12, paddingBottom: 34 },
   header: { gap: 6 },
-  kicker: { color: "#2FA84F", fontSize: 12, fontWeight: "900" },
-  title: { color: "#071B46", fontSize: 30, fontWeight: "900" },
-  subtitle: { color: "#52627A", fontSize: 13, fontWeight: "700" },
-  category: { borderRadius: 12, backgroundColor: "#FFFFFF", borderWidth: 1, borderColor: "#E2E8F0", overflow: "hidden" },
+  kicker: { color: colors.success, fontSize: 12, fontWeight: "900" },
+  title: { color: colors.navy, fontSize: 30, fontWeight: "900" },
+  subtitle: { color: colors.textSlate, fontSize: 13, fontWeight: "700" },
+  category: { borderRadius: 12, backgroundColor: "#FFFFFF", borderWidth: 1, borderColor: colors.border, overflow: "hidden" },
   catHeader: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     padding: 14,
-    backgroundColor: "#F8FAFC"
+    backgroundColor: colors.surfaceMuted
   },
   catHeadBody: { flex: 1, gap: 2, minWidth: 0 },
-  catTitle: { color: "#071B46", fontSize: 16, fontWeight: "900" },
-  catDesc: { color: "#64748B", fontSize: 12, fontWeight: "700" },
-  catToggle: { color: "#1E40AF", fontSize: 13, fontWeight: "900", marginLeft: 8 },
+  catTitle: { color: colors.navy, fontSize: 16, fontWeight: "900" },
+  catDesc: { color: colors.textMuted, fontSize: 12, fontWeight: "700" },
+  catToggle: { color: colors.primaryInk, fontSize: 13, fontWeight: "900", marginLeft: 8 },
   item: {
     flexDirection: "row",
     alignItems: "center",
@@ -132,12 +133,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 12,
     borderTopWidth: 1,
-    borderTopColor: "#EEF2F7"
+    borderTopColor: colors.borderFaint
   },
   itemStatic: { opacity: 0.95 },
   itemEmoji: { fontSize: 22 },
   itemBody: { flex: 1, gap: 2, minWidth: 0 },
-  itemLabel: { color: "#0F172A", fontSize: 15, fontWeight: "900" },
-  itemNote: { color: "#64748B", fontSize: 12, fontWeight: "700", lineHeight: 17 },
-  chevron: { color: "#94A3B8", fontSize: 22, fontWeight: "900" }
+  itemLabel: { color: colors.ink, fontSize: 15, fontWeight: "900" },
+  itemNote: { color: colors.textMuted, fontSize: 12, fontWeight: "700", lineHeight: 17 },
+  chevron: { color: colors.textFaint, fontSize: 22, fontWeight: "900" }
 });

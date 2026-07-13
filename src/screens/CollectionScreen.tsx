@@ -14,6 +14,7 @@ import { useMonsterStore } from "../stores/monsterStore";
 import type { ElementType, UserMonster } from "../types/monster";
 import type { RegionKey } from "../types/region";
 import { getMonsterDisplayNameWithForm } from "../utils/formStage";
+import { colors } from "../theme";
 
 const screenWidth = Dimensions.get("window").width;
 const CARD_GAP = 12;
@@ -142,7 +143,7 @@ export const CollectionScreen = () => {
             onPress={() => setSortKey(sortKey === "obtainedDesc" ? "rarityDesc" : "obtainedDesc")}
           />
           <View style={styles.filterIcon}>
-            <Filter color="#071B46" size={18} strokeWidth={2.4} />
+            <Filter color={colors.navy} size={18} strokeWidth={2.4} />
           </View>
         </ScrollView>
 
@@ -203,7 +204,7 @@ export const CollectionScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 18,
@@ -215,17 +216,17 @@ const styles = StyleSheet.create({
     gap: 6
   },
   title: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 32,
     fontWeight: "900"
   },
   progressText: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 16,
     fontWeight: "900"
   },
   progressStrong: {
-    color: "#2FA84F"
+    color: colors.success
   },
   filterRow: {
     gap: 10,
@@ -239,14 +240,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#D7E0EA"
+    borderColor: colors.border
   },
   filterChipActive: {
-    backgroundColor: "#2FA84F",
-    borderColor: "#2FA84F"
+    backgroundColor: colors.success,
+    borderColor: colors.success
   },
   filterText: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 13,
     fontWeight: "900"
   },
@@ -261,7 +262,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#D7E0EA"
+    borderColor: colors.border
   },
   sectionHeader: {
     flexDirection: "row",
@@ -270,12 +271,12 @@ const styles = StyleSheet.create({
     gap: 10
   },
   sectionTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 19,
     fontWeight: "900"
   },
   moreText: {
-    color: "#52627A",
+    color: colors.textSlate,
     fontSize: 13,
     fontWeight: "900"
   },
@@ -305,12 +306,12 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   monsterName: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 15,
     fontWeight: "900"
   },
   variantName: {
-    color: "#334155",
+    color: colors.textBody,
     fontSize: 12,
     fontWeight: "800"
   },
@@ -320,7 +321,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   dateText: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 12,
     fontWeight: "800"
   },
@@ -344,10 +345,10 @@ const styles = StyleSheet.create({
     padding: 12,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   raritySummaryText: {
-    color: "#334155",
+    color: colors.textBody,
     fontSize: 12,
     fontWeight: "900"
   }

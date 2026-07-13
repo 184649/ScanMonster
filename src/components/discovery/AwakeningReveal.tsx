@@ -4,6 +4,7 @@ import { Animated, Dimensions, Easing, Pressable, StyleSheet, Text, View, type I
 import { getCharacterImage, getCharacterThumb } from "../../assets/characterImages.generated";
 import { getMonsterImageSource } from "../../assets/monsterImages";
 import type { RevealTier } from "../../services/scanPresentation.core";
+import { colors } from "../../theme";
 
 type Props = {
   imageKey?: string;
@@ -23,7 +24,7 @@ const RAYS = Array.from({ length: RAY_COUNT }, (_, i) => i);
 
 const THEME: Record<RevealTier, { glow: string; ray: string; flash: string; banner: string; border: string; label: string }> = {
   normal: { glow: "#BBF7D0", ray: "#86EFAC", flash: "#FFFFFF", banner: "rgba(22, 101, 52, 0.94)", border: "#BBF7D0", label: "いきもの出現！" },
-  rare: { glow: "#FDE68A", ray: "#FCD34D", flash: "#FDE68A", banner: "rgba(180, 83, 9, 0.96)", border: "#FDE68A", label: "★ レア出現！ ★" },
+  rare: { glow: "#FDE68A", ray: colors.accentGold, flash: "#FDE68A", banner: "rgba(180, 83, 9, 0.96)", border: "#FDE68A", label: "★ レア出現！ ★" },
   secret: { glow: "#C4B5FD", ray: "#A78BFA", flash: "#DDD6FE", banner: "rgba(76, 29, 149, 0.96)", border: "#C4B5FD", label: "☆ 未知の出現！ ☆" },
   friend: { glow: "#FBCFE8", ray: "#F9A8D4", flash: "#FCE7F3", banner: "rgba(157, 23, 77, 0.94)", border: "#FBCFE8", label: "縁の出現！" }
 };
@@ -225,7 +226,7 @@ export const AwakeningReveal = ({ imageKey, isRare, tier, celebrate = false, onD
 
 const styles = StyleSheet.create({
   overlay: { ...StyleSheet.absoluteFillObject, alignItems: "center", justifyContent: "center", zIndex: 50 },
-  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: "#071B46" },
+  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: colors.navy },
   center: { alignItems: "center", justifyContent: "center", width: CHAR + 160, height: CHAR + 160 },
   halo: { position: "absolute", width: CHAR + 130, height: CHAR + 130, borderRadius: (CHAR + 130) / 2, borderWidth: 2, borderStyle: "dashed" },
   rays: { position: "absolute", width: CHAR * 2, height: CHAR * 2, alignItems: "center", justifyContent: "center" },

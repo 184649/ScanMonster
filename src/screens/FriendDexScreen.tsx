@@ -7,6 +7,7 @@ import { PrimaryButton } from "../components/PrimaryButton";
 import { useProfileStore } from "../stores/profileStore";
 import { formatFriendCode } from "../utils/friendCode";
 import { formatDateTime } from "../utils/dateUtils";
+import { colors } from "../theme";
 
 /**
  * フレンド図鑑：フレンドQRでつながった相手ごとに1枠。
@@ -87,7 +88,7 @@ export const FriendDexScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: colors.screenBg
   },
   content: {
     padding: 18,
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   title: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 30,
     fontWeight: "900"
   },
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   statValue: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 22,
     fontWeight: "900"
   },
@@ -142,15 +143,15 @@ const styles = StyleSheet.create({
     padding: 18,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   emptyTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 17,
     fontWeight: "900"
   },
   emptyText: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 13,
     lineHeight: 20,
     fontWeight: "700"
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
     padding: 14,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E2E8F0"
+    borderColor: colors.border
   },
   entryAvatar: {
     width: 46,
@@ -183,12 +184,12 @@ const styles = StyleSheet.create({
     minWidth: 0
   },
   entryTitle: {
-    color: "#071B46",
+    color: colors.navy,
     fontSize: 16,
     fontWeight: "900"
   },
   entryText: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 12,
     lineHeight: 18,
     fontWeight: "700"
@@ -203,20 +204,20 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     paddingHorizontal: 10,
     paddingVertical: 4,
-    backgroundColor: "#F1F5F9"
+    backgroundColor: colors.borderFaint
   },
   pendingText: {
-    color: "#64748B",
+    color: colors.textMuted,
     fontSize: 11,
     fontWeight: "900"
   },
   entryMeta: {
-    color: "#94A3B8",
+    color: colors.textFaint,
     fontSize: 11,
     fontWeight: "800"
   },
   footnote: {
-    color: "#94A3B8",
+    color: colors.textFaint,
     fontSize: 12,
     lineHeight: 18,
     fontWeight: "700"

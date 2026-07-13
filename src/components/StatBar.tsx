@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View, type DimensionValue } from "react-native";
 
+import { colors, radius } from "../theme";
+
 type StatBarProps = {
   label: string;
   value: number;
@@ -7,7 +9,7 @@ type StatBarProps = {
   color?: string;
 };
 
-export const StatBar = ({ label, value, max = 100, color = "#2563EB" }: StatBarProps) => {
+export const StatBar = ({ label, value, max = 100, color = colors.primary }: StatBarProps) => {
   const width = `${Math.min(100, Math.max(8, (value / max) * 100))}%` as DimensionValue;
 
   return (
@@ -33,23 +35,23 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   label: {
-    color: "#475569",
+    color: colors.textBody,
     fontSize: 12,
     fontWeight: "800"
   },
   value: {
-    color: "#0F172A",
+    color: colors.ink,
     fontSize: 13,
     fontWeight: "800"
   },
   track: {
     height: 8,
-    borderRadius: 999,
-    backgroundColor: "#E2E8F0",
+    borderRadius: radius.pill,
+    backgroundColor: colors.border,
     overflow: "hidden"
   },
   fill: {
     height: "100%",
-    borderRadius: 999
+    borderRadius: radius.pill
   }
 });

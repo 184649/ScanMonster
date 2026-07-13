@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ImageSourcePropType } from "react-native";
 import { Animated, Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { colors } from "../../theme";
 
 export type DiscoveryCoreResultType = "already_discovered" | "new_variant" | "new_species" | "rare";
 export type DiscoveryCoreSourceType = "barcode" | "qr";
@@ -99,7 +100,7 @@ export const DiscoveryCoreAnimation = ({
   const characterOpacity = progress.interpolate({ inputRange: [0, 0.72, 0.9, 1], outputRange: [0, 0, 1, 1] });
   const characterScale = progress.interpolate({ inputRange: [0, 0.72, 1], outputRange: [0.82, 0.82, 1] });
   const coreOpacity = progress.interpolate({ inputRange: [0, 0.82, 1], outputRange: [1, 1, 0] });
-  const rareGlow = resultType === "rare" ? "#FACC15" : resultType === "new_species" ? "#5EEAD4" : "#93C5FD";
+  const rareGlow = resultType === "rare" ? colors.warn : resultType === "new_species" ? "#5EEAD4" : "#93C5FD";
 
   return (
     <View style={styles.root}>
@@ -174,7 +175,7 @@ export const DiscoveryCoreAnimation = ({
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: "#071B46"
+    backgroundColor: colors.navy
   },
   backdrop: {
     ...StyleSheet.absoluteFillObject,

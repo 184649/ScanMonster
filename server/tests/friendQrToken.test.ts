@@ -1,7 +1,13 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
-import { FRIEND_QR_TTL_SECONDS, issueFriendQrToken, verifyFriendQrToken } from "../src/friendQrToken.ts";
+import {
+  DEFAULT_FRIEND_QR_SECRET,
+  FRIEND_QR_TTL_SECONDS,
+  isDefaultFriendQrSecret,
+  issueFriendQrToken,
+  verifyFriendQrToken
+} from "../src/friendQrToken.ts";
 
 describe("動的フレンドQRトークン（Phase 2・純粋）", () => {
   it("有効トークンは owner を解決できる", () => {
@@ -51,5 +57,20 @@ describe("動的フレンドQRトークン（Phase 2・純粋）", () => {
     const t = issueFriendQrToken("usr_owner");
     assert.equal(verifyFriendQrToken(t).ok, true);
     assert.equal(verifyFriendQrToken(t).ok, true);
+  });
+
+  it("本番ガード：秘密鍵が未設定/既定なら危険と判定する（偽造防止の起動ガード用）", () => {
+    const saved = process.env.FRIEND_QR_SECRET;
+    try {
+      delete process.env.FRIEND_QR_SECRET;
+      assert.equal(isDefaultFriendQrSecret(), true, "未設定は危険");
+      process.env.FRIEND_QR_SECRET = DEFAULT_FRIEND_QR_SECRET;
+      assert.equal(isDefaultFriendQrSecret(), true, "既定値のままは危険");
+      process.env.FRIEND_QR_SECRET = "a-strong-random-production-secret";
+      assert.equal(isDefaultFriendQrSecret(), false, "強い値なら安全");
+    } finally {
+      if (saved === undefined) delete process.env.FRIEND_QR_SECRET;
+      else process.env.FRIEND_QR_SECRET = saved;
+    }
   });
 });
