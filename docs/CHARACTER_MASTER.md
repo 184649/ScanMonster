@@ -52,7 +52,7 @@
 
 ## 手順
 
-- **新キャラ追加**：`Character.xlsx` に行を足す → `npm run export:master` で `character_master.json` を再生成 → classificationでrarity/releaseStatusを確認 → 画像を配置 → `gen:catalog` と `gen:seed` を実行。
+- **新キャラ追加**：`character_master.json` に行を足す → 画像を配置 → `gen:catalog` と `gen:seed` を実行。
 - **rarity 修正**：`rarity-overrides.json` に `id→rarity` を追加（**id は変えない**）→ 再生成。
 - **world 変更**：原則しない（id が world を含むため）。必要時は監査で影響評価。
 - **secret 追加**：`rarity: "secret"` は通常 catalog（NORMALS/RARES/LEGENDARIES）に**出さない**（`catalogBuild` は secrets を別バケットにし、generator は書き出さない）。未発見ユーザーに件数・名前・シルエットを漏らさない。
@@ -61,37 +61,3 @@
 ## ID と rarity（技術的負債）
 
 既存 id は `ground_rare_fenrir` のように rarity を含むものがある。rarity を legendary に修正しても **id は据え置く**（`discovery_records`・公式番号・証明との関連を壊さないため）。id と実効 rarity の不一致は**既知の負債**として許容し、破壊的 rename はしない（将来の新キャラは `ground_fenrir` のような rarity 非依存 id を推奨）。
-
-## Character.xlsx ロスター拡張（2026-07-11）
-
-確定済みの基本4ワールドへ、既存行を削除・並べ替えずにキャラクターを追記した。normalは各ワールド最低100体を満たす。rareは「実在する希少種・希少個体」を原則とし、伝説・空想上の存在は追加していない。
-
-| world | normal（変更前→変更後） | rare（変更前→変更後） | 追加行 |
-|---|---:|---:|---|
-| ground | 69 → **100** | 5 → **7** | `Character.xlsx` ground `A77:G109` |
-| waterside | 116 → **121** | 7 → **9** | `Character.xlsx` waterside `A125:G131` |
-| sky | 15 → **100** | 0 → **2** | `Character.xlsx` sky `A17:G103` |
-| bug | 100 → **105** | 2 → **4** | `Character.xlsx` bug `A104:G110` |
-
-追加normalの選定方針：
-
-- ground：既存69体と重複しない哺乳類・爬虫類を追加し、体型・生態・地域の幅を広げる。
-- waterside：海生哺乳類、軟体動物、エイ、節足動物を追加し、既存の魚中心ロスターを補完する。
-- sky：猛禽、水鳥、海鳥、地上性鳥類、樹上性鳥類、小型鳴禽を追加し、normalを100体へ拡張する。
-- bug：大型甲虫、蛾、カマキリ、クモを追加し、既存100体と英名が重複しないようにする。
-
-追加rare：
-
-| world | rare additions |
-|---|---|
-| ground | Saola / Iberian Lynx |
-| waterside | Vaquita / Axolotl |
-| sky | Kakapo / Japanese Crested Ibis |
-| bug | Lord Howe Island Stick Insect / Queen Alexandra's Birdwing |
-
-### 公開状態の注意
-
-- 今回の変更は `Character.xlsx` のロスター拡張であり、画像生成・公開承認を意味しない。
-- `ground` / `sky` はclassificationの`worldDefault=initial`であるため、`export:master`前に新規IDの`releaseStatus`を`byId`で明示し、意図せずinitial母集団へ入らないようにする。
-- `waterside` / `bug`も、画像・QA・公開時期が確定するまでは既存のreleaseStatus方針を維持する。
-- phantom / planetシートは将来ワールドとして内容を保持し、Excel上ではグレー表示にした。行削除・world変更・releaseStatus変更は行っていない。
