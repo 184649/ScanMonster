@@ -34,7 +34,7 @@ export const WorldListScreen = () => {
         label: WORLD_GROUP_LABELS[world],
         emoji: WORLD_GROUP_EMOJI[world],
         note: completed.has(world) ? "✨ 新たな気配を確認" : undefined,
-        onPress: () => navigation.navigate("MainTabs", { screen: "Dex" })
+        onPress: () => navigation.navigate("WorldDex")
       }))
     },
     {

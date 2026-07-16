@@ -146,3 +146,9 @@ type Character = {
 - レアはカテゴリ解放済みの範囲からしか出ない
 - 商品名やOCR結果に依存しない
 - 位置情報で出現を制御しない
+
+## Phase 0.5 追記（2026-07-14）：ID と分類の扱い
+
+- キャラクターの **character ID は永久識別子**であり、**デザイン変更・rarity 変更・画像差し替えでは変更しない**。
+- **ID から rarity を読み取らない**（`ground_rare_fenrir` は legendary）。分類は rarity フィールド／`character-classification.json` で判定する。
+- 対象が確定できない行（英名・rarity 未定）は **`Character.xlsx` の `unresolved` シート**へ退避し、正式6シートへは入れない。推測で対象を確定しない（例：ground 旧76行目の「麒麟」）。

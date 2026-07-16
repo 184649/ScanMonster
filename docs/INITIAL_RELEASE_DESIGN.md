@@ -165,3 +165,11 @@ type OwnedCharacter = {
 - 同日同コード制限は `sourceHash + localDate`
 - 正確な位置情報は保存しない
 - 位置情報を出現制御に使わない
+
+## Phase 0.5 追記（2026-07-14）：初期89体の固定
+
+- **初期リリース対象は89体で固定**（ground 74 / sky 15、rarity内訳 normal 84 / rare 1 / legendary 4）。ID 集合は `server/src/characterSeed.generated.ts` と完全一致。
+- `releaseStatus.worldDefault` は **全 world `future`**。**initial は `byId` に明示された89件だけ**。Excel へ行を追加しても**自動で initial にならない**（Phase 0.5 で新規134行を追加したが initial は89のまま）。
+- **画像不足を理由に initial を future へ降格しない**（missing として release gate で失敗させる）。
+- 生成前ガードが **initial 件数・rarity構成・world構成の変化**を検出して中止する。意図的な変更時のみ `WORLDAWN_ALLOW_INITIAL_CHANGE=1`。
+- **リリース可否**：現在 `validate:release-assets` は **`ground_sheep` の原画破損により失敗（非0終了）**。この状態はリリース不可。

@@ -128,13 +128,18 @@ const buildCatalog = ({ root, charactersDir, master, classification = {} }) => {
       const en = (row.speciesEn || row["英名"] || "").trim();
       if (!en) continue;
 
-      // id は「manifest の rarity」から決めて安定させる（rarity 上書きしても id は変わらない・§9）。
       const manifestRarity = String(row.rarity || "").trim().toLowerCase();
-      const isRareM = manifestRarity === "rare";
-      const isLegendaryM = manifestRarity === "legendary";
-      const prefix = isLegendaryM ? `${worldGroup}_legendary` : isRareM ? `${worldGroup}_rare` : worldGroup;
-      let id = `${prefix}_${slug(en)}`;
-      if (seenIds.has(id)) id = `${id}_${row.no || seenIds.size}`;
+
+      // character ID は master の明示 id（＝Character.xlsx の id 列）が正本（Phase 0.5）。
+      // **rarity から ID を組み立てない**（rarity を変えても ID は不変）。
+      // 旧 master（id 列なし）との後方互換のためだけに、id が無い場合は旧規則へフォールバックする。
+      let id = String(row.id || "").trim();
+      if (!id) {
+        const prefix =
+          manifestRarity === "legendary" ? `${worldGroup}_legendary` : manifestRarity === "rare" ? `${worldGroup}_rare` : worldGroup;
+        id = `${prefix}_${slug(en)}`;
+        if (seenIds.has(id)) id = `${id}_${row.no || seenIds.size}`;
+      }
       seenIds.add(id);
 
       // 実効 rarity（classification.rarity による分類修正。id は据え置き）。

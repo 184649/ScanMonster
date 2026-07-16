@@ -30,6 +30,19 @@ export type CatalogRare = {
 
 export const CATALOG_CHARACTERS: CatalogCharacter[] = [
   {
+    "id": "ground_aardvark",
+    "realmGroup": "life",
+    "worldGroup": "ground",
+    "no": 67,
+    "name": "ツチブタン",
+    "speciesJa": "ツチブタ",
+    "speciesEn": "Aardvark",
+    "hasImage": true,
+    "releaseStatus": "initial",
+    "description": "11",
+    "status": "○"
+  },
+  {
     "id": "ground_alpaca",
     "realmGroup": "life",
     "worldGroup": "ground",
@@ -39,7 +52,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Alpaca",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -52,7 +65,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Anteater",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -65,7 +78,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Armadillo",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -78,8 +91,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Badger",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_bear",
@@ -91,7 +104,20 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Bear",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
+    "status": "○"
+  },
+  {
+    "id": "ground_bison",
+    "realmGroup": "life",
+    "worldGroup": "ground",
+    "no": 68,
+    "name": "バイソン",
+    "speciesJa": "バイソン",
+    "speciesEn": "Bison",
+    "hasImage": true,
+    "releaseStatus": "initial",
+    "description": "11",
     "status": "○"
   },
   {
@@ -104,7 +130,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Camel",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -117,7 +143,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Cat",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -130,7 +156,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Chameleon",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -143,7 +169,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Cheetah",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -156,8 +182,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Chimpanzee",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_cow",
@@ -169,7 +195,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Cow",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -182,7 +208,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Deer",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -195,7 +221,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Dog",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -208,7 +234,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Donkey",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -221,7 +247,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Elephant",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -234,8 +260,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Ferret",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_fox",
@@ -247,7 +273,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Fox",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -260,8 +286,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Gecko",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_giraffe",
@@ -273,7 +299,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Giraffe",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -286,8 +312,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Goat",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_gorilla",
@@ -299,7 +325,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Gorilla",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -312,7 +338,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Hamster",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -325,8 +351,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Hedgehog",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_horse",
@@ -338,7 +364,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Horse",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -351,8 +377,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Hyena",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_iguana",
@@ -364,8 +390,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Iguana",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_jaguar",
@@ -377,8 +403,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Jaguar",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_kangaroo",
@@ -390,8 +416,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Kangaroo",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_koala",
@@ -403,7 +429,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Koala",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -416,8 +442,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Lemur",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_leopard",
@@ -429,8 +455,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Leopard",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_lion",
@@ -442,8 +468,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Lion",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_lizard",
@@ -455,8 +481,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Lizard",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_llama",
@@ -468,8 +494,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Llama",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_mandrill",
@@ -481,8 +507,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Mandrill",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_marmot",
@@ -494,8 +520,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Marmot",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_marten",
@@ -507,8 +533,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Marten",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_meerkat",
@@ -520,8 +546,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Meerkat",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_mole",
@@ -533,8 +559,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Mole",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_monkey",
@@ -546,8 +572,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Monkey",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_moose",
@@ -559,8 +585,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Moose",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_mouse",
@@ -572,8 +598,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Mouse",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_okapi",
@@ -585,8 +611,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Okapi",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_orangutan",
@@ -598,8 +624,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Orangutan",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_panda",
@@ -611,8 +637,21 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Panda",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
+  },
+  {
+    "id": "ground_pangolin",
+    "realmGroup": "life",
+    "worldGroup": "ground",
+    "no": 66,
+    "name": "センザンコ",
+    "speciesJa": "センザンコウ",
+    "speciesEn": "Pangolin",
+    "hasImage": true,
+    "releaseStatus": "initial",
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_porcupine",
@@ -624,8 +663,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Porcupine",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_prairie_dog",
@@ -637,8 +676,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Prairie Dog",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_rabbit",
@@ -650,7 +689,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Rabbit",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -663,8 +702,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Raccoon",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_raccoon_dog",
@@ -676,7 +715,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Raccoon Dog",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -689,8 +728,21 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Red Panda",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
+  },
+  {
+    "id": "ground_reindeer",
+    "realmGroup": "life",
+    "worldGroup": "ground",
+    "no": 69,
+    "name": "トナカイン",
+    "speciesJa": "トナカイ",
+    "speciesEn": "Reindeer",
+    "hasImage": true,
+    "releaseStatus": "initial",
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_rhinoceros",
@@ -702,8 +754,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Rhinoceros",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_serow",
@@ -715,8 +767,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Serow",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_sheep",
@@ -728,8 +780,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Sheep",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_skunk",
@@ -741,8 +793,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Skunk",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_sloth",
@@ -754,8 +806,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Sloth",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_snake",
@@ -767,8 +819,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Snake",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_squirrel",
@@ -780,7 +832,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Squirrel",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -793,8 +845,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Tapir",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_tiger",
@@ -806,8 +858,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Tiger",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_vicuna",
@@ -819,8 +871,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Vicuna",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_weasel",
@@ -832,8 +884,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Weasel",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_wild_boar",
@@ -845,8 +897,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Wild Boar",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_wolf",
@@ -858,8 +910,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Wolf",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "ground_zebra",
@@ -871,60 +923,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Zebra",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
-  },
-  {
-    "id": "ground_pangolin",
-    "realmGroup": "life",
-    "worldGroup": "ground",
-    "no": 66,
-    "name": "センザンコ",
-    "speciesJa": "センザンコウ",
-    "speciesEn": "Pangolin",
-    "hasImage": true,
-    "releaseStatus": "initial",
-    "description": "",
-    "status": ""
-  },
-  {
-    "id": "ground_aardvark",
-    "realmGroup": "life",
-    "worldGroup": "ground",
-    "no": 67,
-    "name": "ツチブタン",
-    "speciesJa": "ツチブタ",
-    "speciesEn": "Aardvark",
-    "hasImage": true,
-    "releaseStatus": "initial",
-    "description": "",
-    "status": ""
-  },
-  {
-    "id": "ground_bison",
-    "realmGroup": "life",
-    "worldGroup": "ground",
-    "no": 68,
-    "name": "バイソン",
-    "speciesJa": "バイソン",
-    "speciesEn": "Bison",
-    "hasImage": true,
-    "releaseStatus": "initial",
-    "description": "",
-    "status": ""
-  },
-  {
-    "id": "ground_reindeer",
-    "realmGroup": "life",
-    "worldGroup": "ground",
-    "no": 69,
-    "name": "トナカイン",
-    "speciesJa": "トナカイ",
-    "speciesEn": "Reindeer",
-    "hasImage": true,
-    "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "○"
   },
   {
     "id": "sky_bat",
@@ -936,7 +936,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Bat",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -949,7 +949,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Cockatoo",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -962,7 +962,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Crane",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -975,7 +975,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Crow",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -988,7 +988,7 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Eagle",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
+    "description": "11",
     "status": "○"
   },
   {
@@ -1001,8 +1001,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Flamingo",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "11"
   },
   {
     "id": "sky_hawk",
@@ -1014,8 +1014,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Hawk",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "11"
   },
   {
     "id": "sky_ostrich",
@@ -1027,8 +1027,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Ostrich",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "11"
   },
   {
     "id": "sky_owl",
@@ -1040,8 +1040,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Owl",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "11"
   },
   {
     "id": "sky_parakeet",
@@ -1053,8 +1053,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Parakeet",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "11"
   },
   {
     "id": "sky_peacock",
@@ -1066,8 +1066,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Peacock",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "11"
   },
   {
     "id": "sky_pigeon",
@@ -1079,8 +1079,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Pigeon",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "11"
   },
   {
     "id": "sky_sparrow",
@@ -1092,8 +1092,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Sparrow",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "11"
   },
   {
     "id": "sky_swallow",
@@ -1105,8 +1105,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Swallow",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "11"
   },
   {
     "id": "sky_swan",
@@ -1118,8 +1118,8 @@ export const CATALOG_CHARACTERS: CatalogCharacter[] = [
     "speciesEn": "Swan",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": "",
-    "status": ""
+    "description": "11",
+    "status": "11"
   }
 ];
 
@@ -1136,7 +1136,7 @@ export const CATALOG_RARES: CatalogRare[] = [
     "speciesEn": "White Tiger",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": ""
+    "description": "11"
   }
 ];
 
@@ -1151,7 +1151,7 @@ export const CATALOG_LEGENDARIES: CatalogRare[] = [
     "speciesEn": "Fenrir",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": ""
+    "description": "11"
   },
   {
     "id": "ground_rare_tsuchinoko",
@@ -1163,19 +1163,7 @@ export const CATALOG_LEGENDARIES: CatalogRare[] = [
     "speciesEn": "Tsuchinoko",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": ""
-  },
-  {
-    "id": "ground_rare_yeti",
-    "realmGroup": "life",
-    "worldGroup": "ground",
-    "no": 4,
-    "name": "イエティ",
-    "speciesJa": "イエティ",
-    "speciesEn": "Yeti",
-    "hasImage": true,
-    "releaseStatus": "initial",
-    "description": ""
+    "description": "11"
   },
   {
     "id": "ground_rare_underground_dweller",
@@ -1187,6 +1175,18 @@ export const CATALOG_LEGENDARIES: CatalogRare[] = [
     "speciesEn": "Underground Dweller",
     "hasImage": true,
     "releaseStatus": "initial",
-    "description": ""
+    "description": "11"
+  },
+  {
+    "id": "ground_rare_yeti",
+    "realmGroup": "life",
+    "worldGroup": "ground",
+    "no": 4,
+    "name": "イエティ",
+    "speciesJa": "イエティ",
+    "speciesEn": "Yeti",
+    "hasImage": true,
+    "releaseStatus": "initial",
+    "description": "11"
   }
 ];

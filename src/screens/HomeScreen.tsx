@@ -89,10 +89,9 @@ export const HomeScreen = () => {
         </View>
 
         <DailyStreakCard
-          loginStreakDays={economy.login.streakDays}
+          scanStreakDays={economy.scanStreak.totalScanStreakDays}
           todayEarnedDP={economy.login.todayEarnedDP}
           weeklyStreakDay={economy.scanStreak.weeklyStreakDay}
-          totalScanStreakDays={economy.scanStreak.totalScanStreakDays}
           bestScanStreakDays={economy.scanStreak.bestScanStreakDays}
           onPress={() => navigation.navigate("Mission")}
         />
@@ -119,7 +118,7 @@ export const HomeScreen = () => {
           <Text style={styles.dpLabel}>所持ドーンポイント</Text>
           <Text style={styles.dpValue}>{formatDP(economy.dpBalance)}</Text>
           <Text style={styles.dpDescription}>{DP_DESCRIPTION}</Text>
-          <PrimaryButton label="カテゴリ解放・気配ブースト" onPress={() => navigation.navigate("HabitatUnlock")} />
+          <PrimaryButton label="ワールド解放・ブースト" onPress={() => navigation.navigate("HabitatUnlock")} />
         </View>
 
         <View style={styles.infoGrid}>
@@ -167,7 +166,7 @@ export const HomeScreen = () => {
 
         <View style={styles.actions}>
           <PrimaryButton label="スキャンする" onPress={() => navigation.navigate("Scan")} />
-          <PrimaryButton label="図鑑を見る" variant="secondary" onPress={() => navigation.navigate("MainTabs", { screen: "Dex" })} />
+          <PrimaryButton label="図鑑を見る" variant="secondary" onPress={() => navigation.navigate("WorldDex")} />
           <PrimaryButton label="ワールド一覧" variant="ghost" onPress={() => navigation.navigate("WorldList")} />
           <PrimaryButton label="フレンドQR" variant="ghost" onPress={() => navigation.navigate("FriendQRCode")} />
           <PrimaryButton label="称号を見る" variant="ghost" onPress={() => navigation.navigate("Titles")} />

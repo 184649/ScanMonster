@@ -9,7 +9,7 @@ import { getRegionOption } from "../data/regions";
 import { showComingSoon } from "../utils/showComingSoon";
 import { useMonsterStore } from "../stores/monsterStore";
 import { useSettingsStore } from "../stores/settingsStore";
-import { calculateConsecutiveScanDays, getLocalDateKey, isSameLocalDate } from "../utils/dateUtils";
+import { getLocalDateKey, isSameLocalDate } from "../utils/dateUtils";
 import { colors } from "../theme";
 
 type Mission = {
@@ -34,6 +34,7 @@ export const MissionScreen = () => {
   const [message, setMessage] = useState<string | null>(null);
   const monsters = useMonsterStore((state) => state.monsters);
   const histories = useMonsterStore((state) => state.scanHistories);
+  const economy = useMonsterStore((state) => state.economy);
   const claimMissionReward = useMonsterStore((state) => state.claimMissionReward);
   const isMissionRewardClaimed = useMonsterStore((state) => state.isMissionRewardClaimed);
   const selectedRegionKey = useSettingsStore((state) => state.settings.selectedRegionKey ?? "unknown");
@@ -45,7 +46,9 @@ export const MissionScreen = () => {
   const rareFinds = monsters.filter((monster) => monster.dna.rarity >= 3).length;
   const hiddenRareFinds = new Set(monsters.map((monster) => monster.rareId).filter(Boolean)).size;
   const qrFinds = histories.filter((history) => history.sourceType === "qr").length;
-  const scanStreak = calculateConsecutiveScanDays(histories.map((history) => history.scannedAt), today);
+  // 連続発見は正本 economy.scanStreak を用いる（Home の DailyStreakCard / SummonResult と一致させる）。
+  const scanStreak = economy.scanStreak.totalScanStreakDays;
+  const weeklyStreakDay = economy.scanStreak.weeklyStreakDay;
 
   const missions: Mission[] = [
     {
@@ -118,7 +121,7 @@ export const MissionScreen = () => {
         <View style={styles.streakCard}>
           <View style={styles.streakHeader}>
             <View>
-              <Text style={styles.streakTitle}>連続スキャン {scanStreak}日目!</Text>
+              <Text style={styles.streakTitle}>連続発見 {scanStreak}日目!</Text>
               <Text style={styles.streakSubtitle}>{scanStreak > 0 ? "明日も続けると報酬UP" : "今日の1回目から始めよう"}</Text>
             </View>
             <Trophy color="#F97316" size={34} strokeWidth={2.4} />
@@ -130,8 +133,8 @@ export const MissionScreen = () => {
                 <View
                   style={[
                     styles.dayCircle,
-                    index < Math.min(scanStreak, 7) && styles.dayCircleDone,
-                    index === Math.min(scanStreak, 7) - 1 && styles.dayCircleCurrent
+                    index < Math.min(weeklyStreakDay, 7) && styles.dayCircleDone,
+                    index === Math.min(weeklyStreakDay, 7) - 1 && styles.dayCircleCurrent
                   ]}
                 >
                   {index < Math.min(scanStreak, 7) ? <CheckCircle2 color="#FFFFFF" size={18} strokeWidth={2.4} /> : null}

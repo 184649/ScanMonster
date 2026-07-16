@@ -11,7 +11,6 @@ import { BackButton } from "./src/components/common/BackButton";
 import { AccountScreen } from "./src/screens/AccountScreen";
 import { CollectionScreen } from "./src/screens/CollectionScreen";
 import { FeatureBoardScreen } from "./src/screens/FeatureBoardScreen";
-import { DexScreen } from "./src/screens/DexScreen";
 import { FriendScreen } from "./src/screens/FriendScreen";
 import { MenuScreen } from "./src/screens/MenuScreen";
 import { DiscoveryCalendarScreen } from "./src/screens/DiscoveryCalendarScreen";
@@ -100,7 +99,7 @@ const MainTabs = () => {
       />
       <Tab.Screen
         name="Dex"
-        component={DexScreen}
+        component={WorldDexScreen}
         options={{
           title: "図鑑",
           tabBarIcon: ({ color, size, focused }) => <TabEmojiIcon emoji="📖" color={color} size={size} focused={focused} />
@@ -171,7 +170,7 @@ export default function App() {
             <Stack.Screen name="DiscoveryLog" component={DiscoveryLogScreen} options={{ title: "発見ログ" }} />
             <Stack.Screen name="NumberCollection" component={NumberCollectionScreen} options={{ title: "番号コレクション" }} />
             <Stack.Screen name="DiscoveryCalendar" component={DiscoveryCalendarScreen} options={{ title: "発見カレンダー" }} />
-            <Stack.Screen name="HabitatUnlock" component={HabitatUnlockScreen} options={{ title: "カテゴリ解放" }} />
+            <Stack.Screen name="HabitatUnlock" component={HabitatUnlockScreen} options={{ title: "ワールド解放" }} />
             <Stack.Screen name="Titles" component={TitlesScreen} options={{ title: "称号" }} />
             <Stack.Screen name="Mission" component={MissionScreen} options={{ title: "ミッション" }} />
             <Stack.Screen name="Research" component={ResearchScreen} options={{ title: "研究（準備中）" }} />

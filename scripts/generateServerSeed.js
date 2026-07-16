@@ -14,6 +14,7 @@ const fs = require("fs");
 const path = require("path");
 
 const { buildCatalog, loadClassification } = require("./catalogBuild");
+const { assertGenerationSafe } = require("./masterGuards");
 
 const root = path.join(__dirname, "..");
 const charactersDir = path.join(root, "assets", "characters");
@@ -22,6 +23,10 @@ const classification = loadClassification(charactersDir);
 const out = path.join(root, "server", "src", "characterSeed.generated.ts");
 
 const built = buildCatalog({ root, charactersDir, master, classification });
+
+// Phase 0 ガード：world混入 / 空欄・未知rarity / legendary潰れ / ID重複rarity / initial件数変動 / initial未登録ID を生成前に検出する。
+assertGenerationSafe("gen:seed", { master, classification, built });
+
 const { characters, rares, legendaries, missingInitialAssets: missing } = built;
 
 // release gate（§14 原子性）：initial 画像欠損時は既定で中止し、server/app を不一致に部分再生成しない。
