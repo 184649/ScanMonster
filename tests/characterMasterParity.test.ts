@@ -59,10 +59,13 @@ describe("初期リリース 89/89/0（hasImageで降格しない・全画像投
 });
 
 describe("rarity 分類（21 legendary 維持・実在は rare）", () => {
-  it("classification.rarity は 21 件で全て legendary", () => {
-    const vals = Object.values(classification.rarity as Record<string, string>);
-    assert.equal(vals.length, 21);
-    assert.ok(vals.every((v) => v === "legendary"));
+  it("classification.rarity は legendary 21 件 ＋ 既存互換の rare 1 件（White Tiger）", () => {
+    const map = classification.rarity as Record<string, string>;
+    const vals = Object.values(map);
+    assert.equal(vals.length, 22);
+    assert.equal(vals.filter((v) => v === "legendary").length, 21);
+    // Phase 0.5: Excel は normal だが既存 catalog/seed/DB は rare のため、既存互換として rare で固定中（要決定）。
+    assert.equal(map["ground_rare_white_tiger"], "rare");
   });
   it("Fenrir/Kraken/Tsuchinoko/Yeti/Underground Dweller は legendary", () => {
     for (const id of [

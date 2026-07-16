@@ -19,6 +19,7 @@ const fs = require("fs");
 const path = require("path");
 
 const { buildCatalog, loadClassification } = require("./catalogBuild");
+const { assertGenerationSafe } = require("./masterGuards");
 
 const root = path.join(__dirname, "..");
 const charactersDir = path.join(root, "assets", "characters");
@@ -32,6 +33,9 @@ const master = JSON.parse(fs.readFileSync(masterPath, "utf8"));
 const classification = loadClassification(charactersDir);
 // secrets は通常 catalog に出さない（秘匿）。future/inactive/qa も初期リリース catalog に出さない。
 const built = buildCatalog({ root, charactersDir, master, classification });
+
+// Phase 0 ガード：world混入 / 空欄・未知rarity / legendary潰れ / ID重複rarity / initial件数変動 / initial未登録ID を生成前に検出する。
+assertGenerationSafe("gen:catalog", { master, classification, built });
 
 // release gate：initial なのに画像が無い（missing）場合、既定では生成を中止して既存の生成物を壊さない（§14/§26）。
 // hasImage で releaseStatus を降格しない。欠損は release gate（validate:release-assets）で失敗させる。

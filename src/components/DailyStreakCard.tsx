@@ -8,15 +8,13 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { colors, radius } from "../theme";
 
 type Props = {
-  /** 連続ログイン日数（economy.login.streakDays）。 */
-  loginStreakDays: number;
-  /** 今日のログインボーナスで得たDP（economy.login.todayEarnedDP）。0なら受取済み表示にしない。 */
+  /** 通算の連続発見日数（economy.scanStreak.totalScanStreakDays）。見出し。 */
+  scanStreakDays: number;
+  /** 今日のログインボーナスで得たDP（economy.login.todayEarnedDP）。0なら表示しない。 */
   todayEarnedDP: number;
-  /** 週内の連続発見日数 1〜7（economy.scanStreak.weeklyStreakDay）。 */
+  /** 週間報酬サイクル内の連続発見日数 1〜7（economy.scanStreak.weeklyStreakDay）。7日ドット用。 */
   weeklyStreakDay: number;
-  /** 通算の連続発見日数（economy.scanStreak.totalScanStreakDays）。 */
-  totalScanStreakDays: number;
-  /** 過去最高の連続発見日数（economy.scanStreak.bestScanStreakDays）。 */
+  /** 過去最高の連続発見日数（economy.scanStreak.bestScanStreakDays。常に scanStreakDays 以上）。 */
   bestScanStreakDays: number;
   onPress: () => void;
 };
@@ -24,22 +22,23 @@ type Props = {
 const WEEK = [1, 2, 3, 4, 5, 6, 7];
 
 export const DailyStreakCard = ({
-  loginStreakDays,
+  scanStreakDays,
   todayEarnedDP,
   weeklyStreakDay,
-  totalScanStreakDays,
   bestScanStreakDays,
   onPress
 }: Props) => {
+  const streak = Math.max(0, scanStreakDays || 0);
   const day = Math.min(7, Math.max(0, weeklyStreakDay || 0));
   const remaining = 7 - day;
+  // 7日ドットは「週間報酬サイクル」の進捗。見出しは通算連続なので、文言もサイクル基準で統一する。
   const weekMessage =
-    day >= 7 ? "今週の連続発見コンプリート！" : day <= 0 ? "今日発見すると連続記録がスタート" : `あと${remaining}日で1週間達成`;
+    day >= 7 ? "週間ボーナス達成！明日から新しい週" : day <= 0 ? "今日発見すると連続記録がスタート" : `週間ボーナスまであと${remaining}日`;
 
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={`連続ログイン${loginStreakDays}日。詳細を見る`}
+      accessibilityLabel={`連続発見${streak}日。ミッションを見る`}
       onPress={onPress}
       style={({ pressed }) => [styles.card, pressed && styles.pressed]}
     >
@@ -48,18 +47,18 @@ export const DailyStreakCard = ({
           <Text style={styles.flame}>🔥</Text>
           <View>
             <Text style={styles.streakNum}>
-              {Math.max(0, loginStreakDays)}
-              <Text style={styles.streakUnit}> 日連続</Text>
+              {streak}
+              <Text style={styles.streakUnit}> 日連続発見</Text>
             </Text>
             <Text style={styles.streakSub}>
-              {loginStreakDays >= 2 ? "毎日プレイ中！この調子で続けよう" : "毎日ひらくとボーナスが育つ"}
+              {streak >= 2 ? "毎日発見中！この調子で続けよう" : "今日発見して記録をのばそう"}
             </Text>
           </View>
         </View>
         {todayEarnedDP > 0 ? (
           <View style={styles.bonusBadge}>
             <Text style={styles.bonusText}>＋{todayEarnedDP} DP</Text>
-            <Text style={styles.bonusLabel}>今日のボーナス</Text>
+            <Text style={styles.bonusLabel}>ログインボーナス</Text>
           </View>
         ) : (
           <Text style={styles.chevron}>›</Text>
@@ -80,7 +79,7 @@ export const DailyStreakCard = ({
 
       <View style={styles.footRow}>
         <Text style={styles.weekMessage}>{weekMessage}</Text>
-        <Text style={styles.best}>最高 {Math.max(bestScanStreakDays, totalScanStreakDays)}日</Text>
+        <Text style={styles.best}>最高 {Math.max(bestScanStreakDays, streak)}日</Text>
       </View>
     </Pressable>
   );

@@ -1,2957 +1,4624 @@
 {
   "ground": [
     {
+      "id": "ground_aardvark",
+      "no": 67,
+      "name": "ツチブタン",
+      "speciesJa": "ツチブタ",
+      "speciesEn": "Aardvark",
+      "rarity": "normal",
+      "status": "○",
+      "description": "11"
+    },
+    {
+      "id": "ground_alpaca",
       "no": 1,
       "name": "モコアルパ",
       "speciesJa": "アルパカ",
       "speciesEn": "Alpaca",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_anteater",
       "no": 2,
       "name": "アリクイノ",
       "speciesJa": "アリクイ",
       "speciesEn": "Anteater",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_armadillo",
       "no": 3,
       "name": "アルマジロロ",
       "speciesJa": "アルマジロ",
       "speciesEn": "Armadillo",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_badger",
       "no": 4,
       "name": "アナグマル",
       "speciesJa": "アナグマ",
       "speciesEn": "Badger",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_bear",
       "no": 5,
       "name": "コグマル",
       "speciesJa": "クマ",
       "speciesEn": "Bear",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_bison",
+      "no": 68,
+      "name": "バイソン",
+      "speciesJa": "バイソン",
+      "speciesEn": "Bison",
+      "rarity": "normal",
+      "status": "○",
+      "description": "11"
+    },
+    {
+      "id": "ground_camel",
       "no": 6,
       "name": "ラクダム",
       "speciesJa": "ラクダ",
       "speciesEn": "Camel",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_cat",
       "no": 7,
       "name": "ヒカリネコ",
       "speciesJa": "猫",
       "speciesEn": "Cat",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_chameleon",
       "no": 8,
       "name": "カメレオンヌ",
       "speciesJa": "カメレオン",
       "speciesEn": "Chameleon",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_cheetah",
       "no": 9,
       "name": "チータス",
       "speciesJa": "チーター",
       "speciesEn": "Cheetah",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_chimpanzee",
       "no": 10,
       "name": "チンパル",
       "speciesJa": "チンパンジー",
       "speciesEn": "Chimpanzee",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_cow",
       "no": 11,
       "name": "ウシモー",
       "speciesJa": "牛",
       "speciesEn": "Cow",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_deer",
       "no": 12,
       "name": "コモレビシカ",
       "speciesJa": "鹿",
       "speciesEn": "Deer",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_dog",
       "no": 13,
       "name": "モリイヌ",
       "speciesJa": "犬",
       "speciesEn": "Dog",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_donkey",
       "no": 14,
       "name": "ロバロン",
       "speciesJa": "ロバ",
       "speciesEn": "Donkey",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_elephant",
       "no": 15,
       "name": "ゾウノコ",
       "speciesJa": "ゾウ",
       "speciesEn": "Elephant",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_rare_fenrir",
+      "no": 1,
+      "name": "フェンリル",
+      "speciesJa": "フェンリル",
+      "speciesEn": "Fenrir",
+      "rarity": "legendary",
+      "status": "○",
+      "description": "11"
+    },
+    {
+      "id": "ground_ferret",
       "no": 16,
       "name": "フェレッタ",
       "speciesJa": "フェレット",
       "speciesEn": "Ferret",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_fox",
       "no": 17,
       "name": "ユキギツネ",
       "speciesJa": "キツネ",
       "speciesEn": "Fox",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_gecko",
       "no": 18,
       "name": "ヤモリン",
       "speciesJa": "ヤモリ",
       "speciesEn": "Gecko",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_giraffe",
       "no": 19,
       "name": "キリンネ",
       "speciesJa": "キリン",
       "speciesEn": "Giraffe",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_goat",
       "no": 20,
       "name": "ヤギノコ",
       "speciesJa": "ヤギ",
       "speciesEn": "Goat",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_gorilla",
       "no": 21,
       "name": "ゴリマル",
       "speciesJa": "ゴリラ",
       "speciesEn": "Gorilla",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_hamster",
       "no": 22,
       "name": "ハナハム",
       "speciesJa": "ハムスター",
       "speciesEn": "Hamster",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_hedgehog",
       "no": 23,
       "name": "ハリネズン",
       "speciesJa": "ハリネズミ",
       "speciesEn": "Hedgehog",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_horse",
       "no": 24,
       "name": "ウマカゼ",
       "speciesJa": "馬",
       "speciesEn": "Horse",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_hyena",
       "no": 25,
       "name": "ハイエニャ",
       "speciesJa": "ハイエナ",
       "speciesEn": "Hyena",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_iguana",
       "no": 26,
       "name": "イグアロン",
       "speciesJa": "イグアナ",
       "speciesEn": "Iguana",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_jaguar",
       "no": 27,
       "name": "ジャガロン",
       "speciesJa": "ジャガー",
       "speciesEn": "Jaguar",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_kangaroo",
       "no": 28,
       "name": "カンガルン",
       "speciesJa": "カンガルー",
       "speciesEn": "Kangaroo",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_koala",
       "no": 29,
       "name": "コアラン",
       "speciesJa": "コアラ",
       "speciesEn": "Koala",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_lemur",
       "no": 30,
       "name": "キツネザルン",
       "speciesJa": "キツネザル",
       "speciesEn": "Lemur",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_leopard",
       "no": 31,
       "name": "ヒョウテン",
       "speciesJa": "ヒョウ",
       "speciesEn": "Leopard",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_lion",
       "no": 32,
       "name": "コライオン",
       "speciesJa": "ライオン",
       "speciesEn": "Lion",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_lizard",
       "no": 33,
       "name": "リクトカゲ",
       "speciesJa": "トカゲ",
       "speciesEn": "Lizard",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_llama",
       "no": 34,
       "name": "ラマロン",
       "speciesJa": "ラマ",
       "speciesEn": "Llama",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_mandrill",
       "no": 35,
       "name": "マンドリルン",
       "speciesJa": "マンドリル",
       "speciesEn": "Mandrill",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_marmot",
       "no": 36,
       "name": "マーモル",
       "speciesJa": "マーモット",
       "speciesEn": "Marmot",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_marten",
       "no": 37,
       "name": "テンテン",
       "speciesJa": "テン",
       "speciesEn": "Marten",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_meerkat",
       "no": 38,
       "name": "ミーアミィ",
       "speciesJa": "ミーアキャット",
       "speciesEn": "Meerkat",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_mole",
       "no": 39,
       "name": "モグリット",
       "speciesJa": "モグラ",
       "speciesEn": "Mole",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_monkey",
       "no": 40,
       "name": "サルッコ",
       "speciesJa": "サル",
       "speciesEn": "Monkey",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_moose",
       "no": 41,
       "name": "ムースン",
       "speciesJa": "ムース",
       "speciesEn": "Moose",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_mouse",
       "no": 42,
       "name": "ドングリネズ",
       "speciesJa": "ネズミ",
       "speciesEn": "Mouse",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_okapi",
       "no": 43,
       "name": "オカピン",
       "speciesJa": "オカピ",
       "speciesEn": "Okapi",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_orangutan",
       "no": 44,
       "name": "オランゴ",
       "speciesJa": "オランウータン",
       "speciesEn": "Orangutan",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_panda",
       "no": 45,
       "name": "パンダル",
       "speciesJa": "パンダ",
       "speciesEn": "Panda",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_pangolin",
+      "no": 66,
+      "name": "センザンコ",
+      "speciesJa": "センザンコウ",
+      "speciesEn": "Pangolin",
+      "rarity": "normal",
+      "status": "○",
+      "description": "11"
+    },
+    {
+      "id": "ground_porcupine",
       "no": 46,
       "name": "ヤマアラシン",
       "speciesJa": "ヤマアラシ",
       "speciesEn": "Porcupine",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_prairie_dog",
       "no": 47,
       "name": "プレリード",
       "speciesJa": "プレーリードッグ",
       "speciesEn": "Prairie Dog",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_rabbit",
       "no": 48,
       "name": "ツキウサ",
       "speciesJa": "うさぎ",
       "speciesEn": "Rabbit",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_raccoon",
       "no": 49,
       "name": "ホシアライ",
       "speciesJa": "アライグマ",
       "speciesEn": "Raccoon",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_raccoon_dog",
       "no": 50,
       "name": "マメタヌキ",
       "speciesJa": "タヌキ",
       "speciesEn": "Raccoon Dog",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_red_panda",
       "no": 51,
       "name": "レッサン",
       "speciesJa": "レッサーパンダ",
       "speciesEn": "Red Panda",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_reindeer",
+      "no": 69,
+      "name": "トナカイン",
+      "speciesJa": "トナカイ",
+      "speciesEn": "Reindeer",
+      "rarity": "normal",
+      "status": "○",
+      "description": "11"
+    },
+    {
+      "id": "ground_rhinoceros",
       "no": 52,
       "name": "サイガン",
       "speciesJa": "サイ",
       "speciesEn": "Rhinoceros",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_serow",
       "no": 53,
       "name": "カモシカゼ",
       "speciesJa": "カモシカ",
       "speciesEn": "Serow",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_sheep",
       "no": 54,
       "name": "ツノヒツジ",
       "speciesJa": "羊",
       "speciesEn": "Sheep",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_skunk",
       "no": 55,
       "name": "スカンクー",
       "speciesJa": "スカンク",
       "speciesEn": "Skunk",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_sloth",
       "no": 56,
       "name": "ナマケロン",
       "speciesJa": "ナマケモノ",
       "speciesEn": "Sloth",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_snake",
       "no": 57,
       "name": "ヘビマキ",
       "speciesJa": "ヘビ",
       "speciesEn": "Snake",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_squirrel",
       "no": 58,
       "name": "コノハリス",
       "speciesJa": "リス",
       "speciesEn": "Squirrel",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "ground_tapir",
       "no": 59,
       "name": "バクミィ",
       "speciesJa": "バク",
       "speciesEn": "Tapir",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_tiger",
       "no": 60,
       "name": "トラマル",
       "speciesJa": "トラ",
       "speciesEn": "Tiger",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_rare_tsuchinoko",
+      "no": 3,
+      "name": "ツチノコ",
+      "speciesJa": "ツチノコ",
+      "speciesEn": "Tsuchinoko",
+      "rarity": "legendary",
+      "status": "○",
+      "description": "11"
+    },
+    {
+      "id": "ground_rare_underground_dweller",
+      "no": 5,
+      "name": "地底人",
+      "speciesJa": "地底人",
+      "speciesEn": "Underground Dweller",
+      "rarity": "legendary",
+      "status": "○",
+      "description": "11"
+    },
+    {
+      "id": "ground_vicuna",
       "no": 61,
       "name": "ビクーニャル",
       "speciesJa": "ビクーニャ",
       "speciesEn": "Vicuna",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_weasel",
       "no": 62,
       "name": "イタチル",
       "speciesJa": "イタチ",
       "speciesEn": "Weasel",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
-      "no": 63,
-      "name": "イノマル",
-      "speciesJa": "イノシシ",
-      "speciesEn": "Wild Boar",
-      "rarity": "normal",
-      "status": "",
-      "description": ""
-    },
-    {
-      "no": 64,
-      "name": "オオカミン",
-      "speciesJa": "オオカミ",
-      "speciesEn": "Wolf",
-      "rarity": "normal",
-      "status": "",
-      "description": ""
-    },
-    {
-      "no": 65,
-      "name": "シマウマル",
-      "speciesJa": "シマウマ",
-      "speciesEn": "Zebra",
-      "rarity": "normal",
-      "status": "",
-      "description": ""
-    },
-    {
-      "no": 66,
-      "name": "センザンコ",
-      "speciesJa": "センザンコウ",
-      "speciesEn": "Pangolin",
-      "rarity": "normal",
-      "status": "",
-      "description": ""
-    },
-    {
-      "no": 67,
-      "name": "ツチブタン",
-      "speciesJa": "ツチブタ",
-      "speciesEn": "Aardvark",
-      "rarity": "normal",
-      "status": "",
-      "description": ""
-    },
-    {
-      "no": 68,
-      "name": "バイソン",
-      "speciesJa": "バイソン",
-      "speciesEn": "Bison",
-      "rarity": "normal",
-      "status": "",
-      "description": ""
-    },
-    {
-      "no": 69,
-      "name": "トナカイン",
-      "speciesJa": "トナカイ",
-      "speciesEn": "Reindeer",
-      "rarity": "normal",
-      "status": "",
-      "description": ""
-    },
-    {
-      "no": 1,
-      "name": "フェンリル",
-      "speciesJa": "フェンリル",
-      "speciesEn": "Fenrir",
-      "rarity": "rare",
-      "status": "",
-      "description": ""
-    },
-    {
+      "id": "ground_rare_white_tiger",
       "no": 2,
       "name": "白虎",
       "speciesJa": "白虎",
       "speciesEn": "White Tiger",
       "rarity": "rare",
-      "status": "",
-      "description": ""
+      "status": "○",
+      "description": "11"
     },
     {
-      "no": 3,
-      "name": "ツチノコ",
-      "speciesJa": "ツチノコ",
-      "speciesEn": "Tsuchinoko",
-      "rarity": "rare",
-      "status": "",
-      "description": ""
+      "id": "ground_wild_boar",
+      "no": 63,
+      "name": "イノマル",
+      "speciesJa": "イノシシ",
+      "speciesEn": "Wild Boar",
+      "rarity": "normal",
+      "status": "○",
+      "description": "11"
     },
     {
+      "id": "ground_wolf",
+      "no": 64,
+      "name": "オオカミン",
+      "speciesJa": "オオカミ",
+      "speciesEn": "Wolf",
+      "rarity": "normal",
+      "status": "○",
+      "description": "11"
+    },
+    {
+      "id": "ground_rare_yeti",
       "no": 4,
       "name": "イエティ",
       "speciesJa": "イエティ",
       "speciesEn": "Yeti",
-      "rarity": "rare",
-      "status": "",
-      "description": ""
+      "rarity": "legendary",
+      "status": "○",
+      "description": "11"
     },
     {
-      "no": 5,
-      "name": "地底人",
-      "speciesJa": "地底人",
-      "speciesEn": "Underground Dweller",
+      "id": "ground_zebra",
+      "no": 65,
+      "name": "シマウマル",
+      "speciesJa": "シマウマ",
+      "speciesEn": "Zebra",
+      "rarity": "normal",
+      "status": "○",
+      "description": "11"
+    },
+    {
+      "id": "ground_wombat",
+      "no": 70,
+      "name": "ウォンバル",
+      "speciesJa": "ウォンバット",
+      "speciesEn": "Wombat",
+      "rarity": "normal",
+      "status": "○",
+      "description": "ずんぐりした体で穴掘りが得意な草食動物"
+    },
+    {
+      "id": "ground_fennec_fox",
+      "no": 71,
+      "name": "フェネックル",
+      "speciesJa": "フェネック",
+      "speciesEn": "Fennec Fox",
+      "rarity": "normal",
+      "status": "○",
+      "description": "大きな耳で砂漠の気配を聞き取る小型のキツネ"
+    },
+    {
+      "id": "ground_mongoose",
+      "no": 72,
+      "name": "マングロン",
+      "speciesJa": "マングース",
+      "speciesEn": "Mongoose",
+      "rarity": "normal",
+      "status": "○",
+      "description": "素早い身のこなしで獲物を追う小型の肉食獣"
+    },
+    {
+      "id": "ground_musk_ox",
+      "no": 73,
+      "name": "ムスクオ",
+      "speciesJa": "ジャコウウシ",
+      "speciesEn": "Musk Ox",
+      "rarity": "normal",
+      "status": "○",
+      "description": "寒冷地に適応した長い毛と大きな角を持つ"
+    },
+    {
+      "id": "ground_komodo_dragon",
+      "no": 74,
+      "name": "コモドラ",
+      "speciesJa": "コモドオオトカゲ",
+      "speciesEn": "Komodo Dragon",
+      "rarity": "normal",
+      "status": "",
+      "description": "大型で力強い陸生のオオトカゲ"
+    },
+    {
+      "id": "ground_yak",
+      "no": 75,
+      "name": "ヤクーン",
+      "speciesJa": "ヤク",
+      "speciesEn": "Yak",
+      "rarity": "normal",
+      "status": "",
+      "description": "高地の寒さに強い長い毛を持つウシ科動物"
+    },
+    {
+      "id": "ground_water_buffalo",
+      "no": 76,
+      "name": "スイギュン",
+      "speciesJa": "スイギュウ",
+      "speciesEn": "Water Buffalo",
+      "rarity": "normal",
+      "status": "",
+      "description": "大きな角と頑丈な体を持つウシ科動物"
+    },
+    {
+      "id": "ground_antelope",
+      "no": 77,
+      "name": "アンテロン",
+      "speciesJa": "アンテロープ",
+      "speciesEn": "Antelope",
+      "rarity": "normal",
+      "status": "",
+      "description": "しなやかな脚と角を持つ草原の草食動物"
+    },
+    {
+      "id": "ground_gazelle",
+      "no": 78,
+      "name": "ガゼルン",
+      "speciesJa": "ガゼル",
+      "speciesEn": "Gazelle",
+      "rarity": "normal",
+      "status": "",
+      "description": "軽やかな跳躍を得意とする細身の草食動物"
+    },
+    {
+      "id": "ground_oryx",
+      "no": 79,
+      "name": "オリクスン",
+      "speciesJa": "オリックス",
+      "speciesEn": "Oryx",
+      "rarity": "normal",
+      "status": "",
+      "description": "まっすぐ長い角を持つ乾燥地の草食動物"
+    },
+    {
+      "id": "ground_ibex",
+      "no": 80,
+      "name": "アイベックスン",
+      "speciesJa": "アイベックス",
+      "speciesEn": "Ibex",
+      "rarity": "normal",
+      "status": "",
+      "description": "反り返る大きな角で岩山を進むヤギの仲間"
+    },
+    {
+      "id": "ground_lynx",
+      "no": 81,
+      "name": "オオヤマネコン",
+      "speciesJa": "オオヤマネコ",
+      "speciesEn": "Lynx",
+      "rarity": "normal",
+      "status": "",
+      "description": "耳先の房毛と短い尾を持つ森林のネコ科動物"
+    },
+    {
+      "id": "ground_bobcat",
+      "no": 82,
+      "name": "ボブキャトン",
+      "speciesJa": "ボブキャット",
+      "speciesEn": "Bobcat",
+      "rarity": "normal",
+      "status": "",
+      "description": "短い尾と斑点模様を持つ中型のネコ科動物"
+    },
+    {
+      "id": "ground_cougar",
+      "no": 83,
+      "name": "クーガロン",
+      "speciesJa": "ピューマ",
+      "speciesEn": "Cougar",
+      "rarity": "normal",
+      "status": "",
+      "description": "長い尾としなやかな体を持つ大型のネコ科動物"
+    },
+    {
+      "id": "ground_serval",
+      "no": 84,
+      "name": "サーバルン",
+      "speciesJa": "サーバル",
+      "speciesEn": "Serval",
+      "rarity": "normal",
+      "status": "",
+      "description": "長い脚と大きな耳で草原を駆けるネコ科動物"
+    },
+    {
+      "id": "ground_caracal",
+      "no": 85,
+      "name": "カラカルン",
+      "speciesJa": "カラカル",
+      "speciesEn": "Caracal",
+      "rarity": "normal",
+      "status": "",
+      "description": "黒い耳房と高い跳躍力を持つネコ科動物"
+    },
+    {
+      "id": "ground_jackal",
+      "no": 86,
+      "name": "ジャッカルン",
+      "speciesJa": "ジャッカル",
+      "speciesEn": "Jackal",
+      "rarity": "normal",
+      "status": "",
+      "description": "大きな耳と細身の体を持つイヌ科動物"
+    },
+    {
+      "id": "ground_coyote",
+      "no": 87,
+      "name": "コヨーテン",
+      "speciesJa": "コヨーテ",
+      "speciesEn": "Coyote",
+      "rarity": "normal",
+      "status": "",
+      "description": "乾燥地にも適応する機敏なイヌ科動物"
+    },
+    {
+      "id": "ground_wolverine",
+      "no": 88,
+      "name": "クズリオン",
+      "speciesJa": "クズリ",
+      "speciesEn": "Wolverine",
+      "rarity": "normal",
+      "status": "",
+      "description": "小柄ながら力強い体を持つイタチ科動物"
+    },
+    {
+      "id": "ground_chipmunk",
+      "no": 89,
+      "name": "シマリスン",
+      "speciesJa": "シマリス",
+      "speciesEn": "Chipmunk",
+      "rarity": "normal",
+      "status": "",
+      "description": "背中の縞と頬袋が特徴の小型げっ歯類"
+    },
+    {
+      "id": "ground_groundhog",
+      "no": 90,
+      "name": "グラウンドン",
+      "speciesJa": "ウッドチャック",
+      "speciesEn": "Groundhog",
+      "rarity": "normal",
+      "status": "",
+      "description": "地面に巣穴を掘るずんぐりしたげっ歯類"
+    },
+    {
+      "id": "ground_jerboa",
+      "no": 91,
+      "name": "トビネズン",
+      "speciesJa": "トビネズミ",
+      "speciesEn": "Jerboa",
+      "rarity": "normal",
+      "status": "",
+      "description": "長い後脚で砂地を跳ねる小型げっ歯類"
+    },
+    {
+      "id": "ground_gerbil",
+      "no": 92,
+      "name": "スナネズン",
+      "speciesJa": "スナネズミ",
+      "speciesEn": "Gerbil",
+      "rarity": "normal",
+      "status": "",
+      "description": "乾燥地で暮らす長い尾の小型げっ歯類"
+    },
+    {
+      "id": "ground_pika",
+      "no": 93,
+      "name": "ナキウサン",
+      "speciesJa": "ナキウサギ",
+      "speciesEn": "Pika",
+      "rarity": "normal",
+      "status": "",
+      "description": "丸い耳と短い脚を持つ高山の小型動物"
+    },
+    {
+      "id": "ground_quokka",
+      "no": 94,
+      "name": "クオッカン",
+      "speciesJa": "クオッカ",
+      "speciesEn": "Quokka",
+      "rarity": "normal",
+      "status": "",
+      "description": "丸い顔と小柄な体を持つ有袋類"
+    },
+    {
+      "id": "ground_tasmanian_devil",
+      "no": 95,
+      "name": "タスマニン",
+      "speciesJa": "タスマニアデビル",
+      "speciesEn": "Tasmanian Devil",
+      "rarity": "normal",
+      "status": "",
+      "description": "力強い顎を持つ小型の肉食有袋類"
+    },
+    {
+      "id": "ground_opossum",
+      "no": 96,
+      "name": "オポッサン",
+      "speciesJa": "オポッサム",
+      "speciesEn": "Opossum",
+      "rarity": "normal",
+      "status": "",
+      "description": "長い尾と袋を持つ夜行性の有袋類"
+    },
+    {
+      "id": "ground_aye_aye",
+      "no": 97,
+      "name": "アイアイーン",
+      "speciesJa": "アイアイ",
+      "speciesEn": "Aye-aye",
+      "rarity": "normal",
+      "status": "",
+      "description": "大きな耳と細長い指を持つ夜行性の霊長類"
+    },
+    {
+      "id": "ground_gibbon",
+      "no": 98,
+      "name": "テナガル",
+      "speciesJa": "テナガザル",
+      "speciesEn": "Gibbon",
+      "rarity": "normal",
+      "status": "",
+      "description": "長い腕で樹上を移動する小型の類人猿"
+    },
+    {
+      "id": "ground_baboon",
+      "no": 99,
+      "name": "ヒヒロン",
+      "speciesJa": "ヒヒ",
+      "speciesEn": "Baboon",
+      "rarity": "normal",
+      "status": "",
+      "description": "長い口吻と力強い四肢を持つ霊長類"
+    },
+    {
+      "id": "ground_kinkajou",
+      "no": 100,
+      "name": "キンカジン",
+      "speciesJa": "キンカジュー",
+      "speciesEn": "Kinkajou",
+      "rarity": "normal",
+      "status": "",
+      "description": "物をつかめる尾で樹上を移動する哺乳類"
+    },
+    {
+      "id": "ground_saola",
+      "no": 6,
+      "name": "サオラン",
+      "speciesJa": "サオラ",
+      "speciesEn": "Saola",
       "rarity": "rare",
       "status": "",
-      "description": ""
+      "description": "発見例が非常に少ない希少なウシ科動物"
+    },
+    {
+      "id": "ground_iberian_lynx",
+      "no": 7,
+      "name": "イベリンス",
+      "speciesJa": "イベリアオオヤマネコ",
+      "speciesEn": "Iberian Lynx",
+      "rarity": "rare",
+      "status": "",
+      "description": "個体数が限られるイベリア半島固有のヤマネコ"
     }
   ],
   "waterside": [
     {
+      "id": "waterside_beaver",
       "no": 1,
       "name": "ビーバロン",
       "speciesJa": "ビーバー",
       "speciesEn": "Beaver",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "waterside_capybara",
       "no": 2,
       "name": "カピバロン",
       "speciesJa": "カピバラ",
       "speciesEn": "Capybara",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_crocodile",
       "no": 3,
       "name": "ワニワニ",
       "speciesJa": "ワニ",
       "speciesEn": "Crocodile",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "waterside_dolphin",
       "no": 4,
       "name": "イルカルン",
       "speciesJa": "イルカ",
       "speciesEn": "Dolphin",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "waterside_frog",
       "no": 5,
       "name": "カエルン",
       "speciesJa": "カエル",
       "speciesEn": "Frog",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "waterside_hippopotamus",
       "no": 6,
       "name": "カバプク",
       "speciesJa": "カバ",
       "speciesEn": "Hippopotamus",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "waterside_newt",
       "no": 7,
       "name": "イモリット",
       "speciesJa": "イモリ",
       "speciesEn": "Newt",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_otter",
       "no": 8,
       "name": "ミズカワウソ",
       "speciesJa": "カワウソ",
       "speciesEn": "Otter",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_penguin",
       "no": 9,
       "name": "ペンギロン",
       "speciesJa": "ペンギン",
       "speciesEn": "Penguin",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_platypus",
       "no": 10,
       "name": "カモノハシン",
       "speciesJa": "カモノハシ",
       "speciesEn": "Platypus",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_salamander",
       "no": 11,
       "name": "サンショウル",
       "speciesJa": "サンショウウオ",
       "speciesEn": "Salamander",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_sea_otter",
       "no": 12,
       "name": "ラッコミィ",
       "speciesJa": "ラッコ",
       "speciesEn": "Sea Otter",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_seal",
       "no": 13,
       "name": "アザラル",
       "speciesJa": "アザラシ",
       "speciesEn": "Seal",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_turtle",
       "no": 14,
       "name": "カメロン",
       "speciesJa": "カメ",
       "speciesEn": "Turtle",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_walrus",
       "no": 15,
       "name": "セイウチン",
       "speciesJa": "セイウチ",
       "speciesEn": "Walrus",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_whale",
       "no": 16,
       "name": "クジラコ",
       "speciesJa": "クジラ",
       "speciesEn": "Whale",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_medaka",
       "no": 17,
       "name": "メダカリ",
       "speciesJa": "メダカ",
       "speciesEn": "Medaka",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_goldfish",
       "no": 18,
       "name": "キンギョン",
       "speciesJa": "金魚",
       "speciesEn": "Goldfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_carp",
       "no": 19,
       "name": "コイマル",
       "speciesJa": "鯉",
       "speciesEn": "Carp",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_crucian_carp",
       "no": 20,
       "name": "フナッコ",
       "speciesJa": "フナ",
       "speciesEn": "Crucian Carp",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_loach",
       "no": 21,
       "name": "ドジョリン",
       "speciesJa": "ドジョウ",
       "speciesEn": "Loach",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_catfish",
       "no": 22,
       "name": "ナマズン",
       "speciesJa": "ナマズ",
       "speciesEn": "Catfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_sweetfish",
       "no": 23,
       "name": "アユミン",
       "speciesJa": "アユ",
       "speciesEn": "Sweetfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_yamame_trout",
       "no": 24,
       "name": "ヤマメル",
       "speciesJa": "ヤマメ",
       "speciesEn": "Yamame Trout",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_char",
       "no": 25,
       "name": "イワナゴ",
       "speciesJa": "イワナ",
       "speciesEn": "Char",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_salmon",
       "no": 26,
       "name": "サケノコ",
       "speciesJa": "サケ",
       "speciesEn": "Salmon",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_trout",
       "no": 27,
       "name": "マスラン",
       "speciesJa": "マス",
       "speciesEn": "Trout",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_wakasagi_smelt",
       "no": 28,
       "name": "ワカサギン",
       "speciesJa": "ワカサギ",
       "speciesEn": "Wakasagi Smelt",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_eel",
       "no": 29,
       "name": "ウナギリ",
       "speciesJa": "ウナギ",
       "speciesEn": "Eel",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_conger_eel",
       "no": 30,
       "name": "アナゴン",
       "speciesJa": "アナゴ",
       "speciesEn": "Conger Eel",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_pike_conger",
       "no": 31,
       "name": "ハモニィ",
       "speciesJa": "ハモ",
       "speciesEn": "Pike Conger",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_sea_bream",
       "no": 32,
       "name": "タイマル",
       "speciesJa": "タイ",
       "speciesEn": "Sea Bream",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_sea_bass",
       "no": 33,
       "name": "スズキン",
       "speciesJa": "スズキ",
       "speciesEn": "Sea Bass",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_horse_mackerel",
       "no": 34,
       "name": "アジロン",
       "speciesJa": "アジ",
       "speciesEn": "Horse Mackerel",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_mackerel",
       "no": 35,
       "name": "サバラン",
       "speciesJa": "サバ",
       "speciesEn": "Mackerel",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_sardine",
       "no": 36,
       "name": "イワシィ",
       "speciesJa": "イワシ",
       "speciesEn": "Sardine",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_pacific_saury",
       "no": 37,
       "name": "サンマル",
       "speciesJa": "サンマ",
       "speciesEn": "Pacific Saury",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_bonito",
       "no": 38,
       "name": "カツオン",
       "speciesJa": "カツオ",
       "speciesEn": "Bonito",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_tuna",
       "no": 39,
       "name": "マグロン",
       "speciesJa": "マグロ",
       "speciesEn": "Tuna",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_yellowtail",
       "no": 40,
       "name": "ブリッツ",
       "speciesJa": "ブリ",
       "speciesEn": "Yellowtail",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_greater_amberjack",
       "no": 41,
       "name": "カンパチン",
       "speciesJa": "カンパチ",
       "speciesEn": "Greater Amberjack",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_flounder",
       "no": 42,
       "name": "ヒラメル",
       "speciesJa": "ヒラメ",
       "speciesEn": "Flounder",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_flatfish",
       "no": 43,
       "name": "カレイン",
       "speciesJa": "カレイ",
       "speciesEn": "Flatfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_pufferfish",
       "no": 44,
       "name": "フグマル",
       "speciesJa": "フグ",
       "speciesEn": "Pufferfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_porcupinefish",
       "no": 45,
       "name": "ハリセン",
       "speciesJa": "ハリセンボン",
       "speciesEn": "Porcupinefish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_ocean_sunfish",
       "no": 46,
       "name": "マンボロン",
       "speciesJa": "マンボウ",
       "speciesEn": "Ocean Sunfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_flying_fish",
       "no": 47,
       "name": "トビウオン",
       "speciesJa": "トビウオ",
       "speciesEn": "Flying Fish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_marlin",
       "no": 48,
       "name": "カジキル",
       "speciesJa": "カジキ",
       "speciesEn": "Marlin",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_shark",
       "no": 49,
       "name": "サメチビ",
       "speciesJa": "サメ",
       "speciesEn": "Shark",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_ray",
       "no": 50,
       "name": "エイミィ",
       "speciesJa": "エイ",
       "speciesEn": "Ray",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_seahorse",
       "no": 51,
       "name": "タツノコ",
       "speciesJa": "タツノオトシゴ",
       "speciesEn": "Seahorse",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_clownfish",
       "no": 52,
       "name": "クマノミン",
       "speciesJa": "クマノミ",
       "speciesEn": "Clownfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_blue_tang",
       "no": 53,
       "name": "ナンヨウル",
       "speciesJa": "ナンヨウハギ",
       "speciesEn": "Blue Tang",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_butterflyfish",
       "no": 54,
       "name": "チョウチョウオ",
       "speciesJa": "チョウチョウウオ",
       "speciesEn": "Butterflyfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_moorish_idol",
       "no": 55,
       "name": "ツノダシン",
       "speciesJa": "ツノダシ",
       "speciesEn": "Moorish Idol",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_boxfish",
       "no": 56,
       "name": "ハコフグン",
       "speciesJa": "ハコフグ",
       "speciesEn": "Boxfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_lionfish",
       "no": 57,
       "name": "ミノカサゴン",
       "speciesJa": "ミノカサゴ",
       "speciesEn": "Lionfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_rockfish",
       "no": 58,
       "name": "カサゴロ",
       "speciesJa": "カサゴ",
       "speciesEn": "Rockfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_black_rockfish",
       "no": 59,
       "name": "メバルン",
       "speciesJa": "メバル",
       "speciesEn": "Black Rockfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_greenling",
       "no": 60,
       "name": "アイナメル",
       "speciesJa": "アイナメ",
       "speciesEn": "Greenling",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_gunnel",
       "no": 61,
       "name": "ギンポン",
       "speciesJa": "ギンポ",
       "speciesEn": "Gunnel",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_wrasse",
       "no": 62,
       "name": "ベラッコ",
       "speciesJa": "ベラ",
       "speciesEn": "Wrasse",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_parrotfish",
       "no": 63,
       "name": "ブダイン",
       "speciesJa": "ブダイ",
       "speciesEn": "Parrotfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_goby",
       "no": 64,
       "name": "ハゼピョン",
       "speciesJa": "ハゼ",
       "speciesEn": "Goby",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_mudskipper",
       "no": 65,
       "name": "ムツゴロウル",
       "speciesJa": "ムツゴロウ",
       "speciesEn": "Mudskipper",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_anglerfish",
       "no": 66,
       "name": "アンコウラ",
       "speciesJa": "アンコウ",
       "speciesEn": "Anglerfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_oarfish",
       "no": 67,
       "name": "リュウグウル",
       "speciesJa": "リュウグウノツカイ",
       "speciesEn": "Oarfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_coelacanth",
       "no": 68,
       "name": "シーラカン",
       "speciesJa": "シーラカンス",
       "speciesEn": "Coelacanth",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_arapaima",
       "no": 69,
       "name": "ピラルクン",
       "speciesJa": "ピラルク",
       "speciesEn": "Arapaima",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_arowana",
       "no": 70,
       "name": "アロワナン",
       "speciesJa": "アロワナ",
       "speciesEn": "Arowana",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_piranha",
       "no": 71,
       "name": "ピラニャン",
       "speciesJa": "ピラニア",
       "speciesEn": "Piranha",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_neon_tetra",
       "no": 72,
       "name": "ネオンテト",
       "speciesJa": "ネオンテトラ",
       "speciesEn": "Neon Tetra",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_guppy",
       "no": 73,
       "name": "グッピィ",
       "speciesJa": "グッピー",
       "speciesEn": "Guppy",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_betta",
       "no": 74,
       "name": "ベタリス",
       "speciesJa": "ベタ",
       "speciesEn": "Betta",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_angelfish",
       "no": 75,
       "name": "エンゼルン",
       "speciesJa": "エンゼルフィッシュ",
       "speciesEn": "Angelfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_discus",
       "no": 76,
       "name": "ディスカン",
       "speciesJa": "ディスカス",
       "speciesEn": "Discus",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_pleco",
       "no": 77,
       "name": "プレコロ",
       "speciesJa": "プレコ",
       "speciesEn": "Pleco",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_corydoras",
       "no": 78,
       "name": "コリドラン",
       "speciesJa": "コリドラス",
       "speciesEn": "Corydoras",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_archerfish",
       "no": 79,
       "name": "テッポウオ",
       "speciesJa": "テッポウウオ",
       "speciesEn": "Archerfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_jellyfish",
       "no": 80,
       "name": "クラゲミィ",
       "speciesJa": "クラゲ",
       "speciesEn": "Jellyfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_octopus",
       "no": 81,
       "name": "タコマル",
       "speciesJa": "タコ",
       "speciesEn": "Octopus",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_squid",
       "no": 82,
       "name": "イカリン",
       "speciesJa": "イカ",
       "speciesEn": "Squid",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_clam",
       "no": 83,
       "name": "アサリィ",
       "speciesJa": "アサリ",
       "speciesEn": "Clam",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_common_orient_clam",
       "no": 84,
       "name": "ハマグリン",
       "speciesJa": "ハマグリ",
       "speciesEn": "Common Orient Clam",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_scallop",
       "no": 85,
       "name": "ホタテロン",
       "speciesJa": "ホタテ",
       "speciesEn": "Scallop",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_turban_shell",
       "no": 86,
       "name": "サザエン",
       "speciesJa": "サザエ",
       "speciesEn": "Turban Shell",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_sea_slug",
       "no": 87,
       "name": "ウミウシィ",
       "speciesJa": "ウミウシ",
       "speciesEn": "Sea Slug",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_sea_cucumber",
       "no": 88,
       "name": "ナマコロ",
       "speciesJa": "ナマコ",
       "speciesEn": "Sea Cucumber",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_starfish",
       "no": 89,
       "name": "ヒトデン",
       "speciesJa": "ヒトデ",
       "speciesEn": "Starfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_sea_urchin",
       "no": 90,
       "name": "ウニマル",
       "speciesJa": "ウニ",
       "speciesEn": "Sea Urchin",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_coral",
       "no": 91,
       "name": "サンゴン",
       "speciesJa": "サンゴ",
       "speciesEn": "Coral",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_sea_anemone",
       "no": 92,
       "name": "イソギン",
       "speciesJa": "イソギンチャク",
       "speciesEn": "Sea Anemone",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_orca",
       "no": 93,
       "name": "シャチロン",
       "speciesJa": "シャチ",
       "speciesEn": "Orca",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_crab",
       "no": 94,
       "name": "カニマル",
       "speciesJa": "カニ",
       "speciesEn": "Crab",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_hermit_crab",
       "no": 95,
       "name": "ヤドカリス",
       "speciesJa": "ヤドカリ",
       "speciesEn": "Hermit Crab",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_shrimp",
       "no": 96,
       "name": "エビチョコ",
       "speciesJa": "エビ",
       "speciesEn": "Shrimp",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_lobster",
       "no": 97,
       "name": "ロブスタン",
       "speciesJa": "ロブスター",
       "speciesEn": "Lobster",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_lumpsucker",
       "no": 98,
       "name": "ダンゴウオン",
       "speciesJa": "ダンゴウオ",
       "speciesEn": "Lumpsucker",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_spotted_garden_eel",
       "no": 99,
       "name": "チンアナゴン",
       "speciesJa": "チンアナゴ",
       "speciesEn": "Spotted Garden Eel",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_moray_eel",
       "no": 100,
       "name": "ウツボル",
       "speciesJa": "ウツボ",
       "speciesEn": "Moray Eel",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_filefish",
       "no": 101,
       "name": "カワハギン",
       "speciesJa": "カワハギ",
       "speciesEn": "Filefish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_devil_stinger",
       "no": 102,
       "name": "オニオコゼン",
       "speciesJa": "オニオコゼ",
       "speciesEn": "Devil Stinger",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_barracuda",
       "no": 103,
       "name": "カマスン",
       "speciesJa": "カマス",
       "speciesEn": "Barracuda",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_largescale_blackfish",
       "no": 104,
       "name": "メジナル",
       "speciesJa": "メジナ",
       "speciesEn": "Largescale Blackfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_sillago",
       "no": 105,
       "name": "キスピィ",
       "speciesJa": "キス",
       "speciesEn": "Sillago",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_snapper",
       "no": 106,
       "name": "フエダイン",
       "speciesJa": "フエダイ",
       "speciesEn": "Snapper",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_cod",
       "no": 107,
       "name": "タラマル",
       "speciesJa": "タラ",
       "speciesEn": "Cod",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_herring",
       "no": 108,
       "name": "ニシンル",
       "speciesJa": "ニシン",
       "speciesEn": "Herring",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_mullet",
       "no": 109,
       "name": "ボラロン",
       "speciesJa": "ボラ",
       "speciesEn": "Mullet",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_grouper",
       "no": 110,
       "name": "ハタノコ",
       "speciesJa": "ハタ",
       "speciesEn": "Grouper",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_pike",
       "no": 111,
       "name": "カワカマスン",
       "speciesJa": "カワカマス",
       "speciesEn": "Pike",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_tilapia",
       "no": 112,
       "name": "ティラピィ",
       "speciesJa": "ティラピア",
       "speciesEn": "Tilapia",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_silver_stripe_round_herring",
       "no": 113,
       "name": "キビナゴン",
       "speciesJa": "キビナゴ",
       "speciesEn": "Silver-stripe Round Herring",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_hake",
       "no": 114,
       "name": "メルルーサン",
       "speciesJa": "メルルーサ",
       "speciesEn": "Hake",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_sea_hare",
       "no": 115,
       "name": "アメフラシィ",
       "speciesJa": "アメフラシ",
       "speciesEn": "Sea Hare",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_krill",
       "no": 116,
       "name": "オキアミン",
       "speciesJa": "オキアミ",
       "speciesEn": "Krill",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "waterside_rare_kraken",
       "no": 1,
       "name": "クラーケン",
       "speciesJa": "クラーケン",
       "speciesEn": "Kraken",
-      "rarity": "rare",
+      "rarity": "legendary",
       "status": "",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "waterside_rare_sea_dragon",
       "no": 2,
       "name": "海竜",
       "speciesJa": "海竜",
       "speciesEn": "Sea Dragon",
-      "rarity": "rare",
+      "rarity": "legendary",
       "status": "",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "waterside_rare_megalodon",
       "no": 3,
       "name": "メガロドン",
       "speciesJa": "メガロドン",
       "speciesEn": "Megalodon",
       "rarity": "rare",
       "status": "",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "waterside_rare_coelacanth",
       "no": 4,
       "name": "シーラカンス",
       "speciesJa": "シーラカンス",
       "speciesEn": "Coelacanth",
       "rarity": "rare",
       "status": "",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "waterside_rare_megamouth_shark",
       "no": 5,
       "name": "メガマウス",
       "speciesJa": "メガマウス",
       "speciesEn": "Megamouth Shark",
       "rarity": "rare",
       "status": "",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "waterside_rare_nessie",
       "no": 6,
       "name": "ネッシー",
       "speciesJa": "ネッシー",
       "speciesEn": "Nessie",
-      "rarity": "rare",
+      "rarity": "legendary",
       "status": "",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "waterside_rare_merlion",
       "no": 7,
       "name": "マーライオン",
       "speciesJa": "マーライオン",
       "speciesEn": "Merlion",
+      "rarity": "legendary",
+      "status": "",
+      "description": "11"
+    },
+    {
+      "id": "waterside_manatee",
+      "no": 117,
+      "name": "マナティン",
+      "speciesJa": "マナティー",
+      "speciesEn": "Manatee",
+      "rarity": "normal",
+      "status": "",
+      "description": "穏やかに水草を食べる大型の水生哺乳類"
+    },
+    {
+      "id": "waterside_dugong",
+      "no": 118,
+      "name": "ジュゴロン",
+      "speciesJa": "ジュゴン",
+      "speciesEn": "Dugong",
+      "rarity": "normal",
+      "status": "",
+      "description": "海草を食べて暮らす丸みのある海生哺乳類"
+    },
+    {
+      "id": "waterside_nautilus",
+      "no": 119,
+      "name": "オウムガイン",
+      "speciesJa": "オウムガイ",
+      "speciesEn": "Nautilus",
+      "rarity": "normal",
+      "status": "",
+      "description": "渦巻く殻と多数の触手を持つ頭足類"
+    },
+    {
+      "id": "waterside_manta_ray",
+      "no": 120,
+      "name": "マンタロン",
+      "speciesJa": "オニイトマキエイ",
+      "speciesEn": "Manta Ray",
+      "rarity": "normal",
+      "status": "",
+      "description": "大きな胸びれで海中を滑空する大型のエイ"
+    },
+    {
+      "id": "waterside_horseshoe_crab",
+      "no": 121,
+      "name": "カブトガニン",
+      "speciesJa": "カブトガニ",
+      "speciesEn": "Horseshoe Crab",
+      "rarity": "normal",
+      "status": "",
+      "description": "丸い甲羅と長い尾剣を持つ古い系統の節足動物"
+    },
+    {
+      "id": "waterside_vaquita",
+      "no": 8,
+      "name": "バキータン",
+      "speciesJa": "コガシラネズミイルカ",
+      "speciesEn": "Vaquita",
       "rarity": "rare",
       "status": "",
-      "description": ""
+      "description": "生息数が極めて少ない小型のネズミイルカ"
+    },
+    {
+      "id": "waterside_axolotl",
+      "no": 9,
+      "name": "アホロトン",
+      "speciesJa": "メキシコサンショウウオ",
+      "speciesEn": "Axolotl",
+      "rarity": "rare",
+      "status": "",
+      "description": "外鰓を残したまま成長する希少な両生類"
     }
   ],
   "sky": [
     {
+      "id": "sky_bat",
       "no": 1,
       "name": "コウモリン",
       "speciesJa": "コウモリ",
       "speciesEn": "Bat",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "sky_cockatoo",
       "no": 2,
       "name": "オウムン",
       "speciesJa": "オウム",
       "speciesEn": "Cockatoo",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "sky_crane",
       "no": 3,
       "name": "ツルミヤ",
       "speciesJa": "ツル",
       "speciesEn": "Crane",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "sky_crow",
       "no": 4,
       "name": "カラスケ",
       "speciesJa": "カラス",
       "speciesEn": "Crow",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "sky_eagle",
       "no": 5,
       "name": "ワシノスケ",
       "speciesJa": "ワシ",
       "speciesEn": "Eagle",
       "rarity": "normal",
       "status": "○",
-      "description": ""
+      "description": "11"
     },
     {
+      "id": "sky_flamingo",
       "no": 6,
       "name": "フラミン",
       "speciesJa": "フラミンゴ",
       "speciesEn": "Flamingo",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "sky_hawk",
       "no": 7,
       "name": "タカマル",
       "speciesJa": "タカ",
       "speciesEn": "Hawk",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "sky_ostrich",
       "no": 8,
       "name": "ダチョラン",
       "speciesJa": "ダチョウ",
       "speciesEn": "Ostrich",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "sky_owl",
       "no": 9,
       "name": "フクロウル",
       "speciesJa": "フクロウ",
       "speciesEn": "Owl",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "sky_parakeet",
       "no": 10,
       "name": "インコロ",
       "speciesJa": "インコ",
       "speciesEn": "Parakeet",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "sky_peacock",
       "no": 11,
       "name": "クジャックン",
       "speciesJa": "クジャク",
       "speciesEn": "Peacock",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "sky_pigeon",
       "no": 12,
       "name": "ハトポッポ",
       "speciesJa": "ハト",
       "speciesEn": "Pigeon",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "sky_sparrow",
       "no": 13,
       "name": "スズメル",
       "speciesJa": "スズメ",
       "speciesEn": "Sparrow",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "sky_swallow",
       "no": 14,
       "name": "ツバメロ",
       "speciesJa": "ツバメ",
       "speciesEn": "Swallow",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "sky_swan",
       "no": 15,
       "name": "ハクチョル",
       "speciesJa": "白鳥",
       "speciesEn": "Swan",
       "rarity": "normal",
+      "status": "11",
+      "description": "11"
+    },
+    {
+      "id": "sky_kingfisher",
+      "no": 16,
+      "name": "カワセミン",
+      "speciesJa": "カワセミ",
+      "speciesEn": "Kingfisher",
+      "rarity": "normal",
       "status": "",
-      "description": ""
+      "description": "鮮やかな羽と鋭いくちばしで水面へ飛び込む鳥"
+    },
+    {
+      "id": "sky_albatross",
+      "no": 17,
+      "name": "アルバトン",
+      "speciesJa": "アホウドリ",
+      "speciesEn": "Albatross",
+      "rarity": "normal",
+      "status": "",
+      "description": "長い翼で海上を悠々と滑空する大型の海鳥"
+    },
+    {
+      "id": "sky_hornbill",
+      "no": 18,
+      "name": "サイチョロン",
+      "speciesJa": "サイチョウ",
+      "speciesEn": "Hornbill",
+      "rarity": "normal",
+      "status": "",
+      "description": "大きなくちばしと頭上のカスクが目立つ鳥"
+    },
+    {
+      "id": "sky_kestrel",
+      "no": 19,
+      "name": "ゲンボウル",
+      "speciesJa": "チョウゲンボウ",
+      "speciesEn": "Kestrel",
+      "rarity": "normal",
+      "status": "",
+      "description": "空中で静止して獲物を探す小型の猛禽"
+    },
+    {
+      "id": "sky_hummingbird",
+      "no": 20,
+      "name": "ハチドリン",
+      "speciesJa": "ハチドリ",
+      "speciesEn": "Hummingbird",
+      "rarity": "normal",
+      "status": "",
+      "description": "高速で羽ばたき空中に留まれる小型の鳥"
+    },
+    {
+      "id": "sky_falcon",
+      "no": 21,
+      "name": "ハヤブサン",
+      "speciesJa": "ハヤブサ",
+      "speciesEn": "Falcon",
+      "rarity": "normal",
+      "status": "",
+      "description": "高速で急降下する鋭い翼の猛禽"
+    },
+    {
+      "id": "sky_vulture",
+      "no": 22,
+      "name": "ハゲワシン",
+      "speciesJa": "ハゲワシ",
+      "speciesEn": "Vulture",
+      "rarity": "normal",
+      "status": "",
+      "description": "広い翼で上昇気流に乗る大型の鳥"
+    },
+    {
+      "id": "sky_condor",
+      "no": 23,
+      "name": "コンドルン",
+      "speciesJa": "コンドル",
+      "speciesEn": "Condor",
+      "rarity": "normal",
+      "status": "",
+      "description": "巨大な翼で山岳を滑空する鳥"
+    },
+    {
+      "id": "sky_kite",
+      "no": 24,
+      "name": "トビマル",
+      "speciesJa": "トビ",
+      "speciesEn": "Kite",
+      "rarity": "normal",
+      "status": "",
+      "description": "長い翼と尾で軽やかに旋回する猛禽"
+    },
+    {
+      "id": "sky_harrier",
+      "no": 25,
+      "name": "チュウヒン",
+      "speciesJa": "チュウヒ",
+      "speciesEn": "Harrier",
+      "rarity": "normal",
+      "status": "",
+      "description": "低空を滑るように飛んで獲物を探す猛禽"
+    },
+    {
+      "id": "sky_osprey",
+      "no": 26,
+      "name": "ミサゴン",
+      "speciesJa": "ミサゴ",
+      "speciesEn": "Osprey",
+      "rarity": "normal",
+      "status": "",
+      "description": "水面へ飛び込み魚を捕らえる猛禽"
+    },
+    {
+      "id": "sky_buzzard",
+      "no": 27,
+      "name": "ノスリン",
+      "speciesJa": "ノスリ",
+      "speciesEn": "Buzzard",
+      "rarity": "normal",
+      "status": "",
+      "description": "幅広い翼で空を巡回する猛禽"
+    },
+    {
+      "id": "sky_secretarybird",
+      "no": 28,
+      "name": "ヘビクイン",
+      "speciesJa": "ヘビクイワシ",
+      "speciesEn": "Secretarybird",
+      "rarity": "normal",
+      "status": "",
+      "description": "長い脚で地上の獲物を追う大型の鳥"
+    },
+    {
+      "id": "sky_shoebill",
+      "no": 29,
+      "name": "ハシビロン",
+      "speciesJa": "ハシビロコウ",
+      "speciesEn": "Shoebill",
+      "rarity": "normal",
+      "status": "",
+      "description": "靴のように大きなくちばしを持つ鳥"
+    },
+    {
+      "id": "sky_stork",
+      "no": 30,
+      "name": "コウノトリン",
+      "speciesJa": "コウノトリ",
+      "speciesEn": "Stork",
+      "rarity": "normal",
+      "status": "",
+      "description": "長い脚とくちばしで湿地を歩く大型の鳥"
+    },
+    {
+      "id": "sky_heron",
+      "no": 31,
+      "name": "サギロン",
+      "speciesJa": "サギ",
+      "speciesEn": "Heron",
+      "rarity": "normal",
+      "status": "",
+      "description": "長い首を折り畳んで飛ぶ水辺の鳥"
+    },
+    {
+      "id": "sky_egret",
+      "no": 32,
+      "name": "シラサギン",
+      "speciesJa": "シラサギ",
+      "speciesEn": "Egret",
+      "rarity": "normal",
+      "status": "",
+      "description": "白い羽と長い脚を持つ水辺の鳥"
+    },
+    {
+      "id": "sky_sacred_ibis",
+      "no": 33,
+      "name": "クロトキン",
+      "speciesJa": "アフリカクロトキ",
+      "speciesEn": "Sacred Ibis",
+      "rarity": "normal",
+      "status": "",
+      "description": "曲がった長いくちばしを持つ水辺の鳥"
+    },
+    {
+      "id": "sky_spoonbill",
+      "no": 34,
+      "name": "ヘラサギン",
+      "speciesJa": "ヘラサギ",
+      "speciesEn": "Spoonbill",
+      "rarity": "normal",
+      "status": "",
+      "description": "へら状のくちばしで水中を探る鳥"
+    },
+    {
+      "id": "sky_great_cormorant",
+      "no": 35,
+      "name": "カワウン",
+      "speciesJa": "カワウ",
+      "speciesEn": "Great Cormorant",
+      "rarity": "normal",
+      "status": "",
+      "description": "潜水して魚を追う黒い水鳥"
+    },
+    {
+      "id": "sky_pelican",
+      "no": 36,
+      "name": "ペリカン",
+      "speciesJa": "ペリカン",
+      "speciesEn": "Pelican",
+      "rarity": "normal",
+      "status": "",
+      "description": "大きなのど袋で魚をすくう水鳥"
+    },
+    {
+      "id": "sky_gannet",
+      "no": 37,
+      "name": "カツオドリン",
+      "speciesJa": "カツオドリ",
+      "speciesEn": "Gannet",
+      "rarity": "normal",
+      "status": "",
+      "description": "海へ垂直に飛び込む大型の海鳥"
+    },
+    {
+      "id": "sky_blue_footed_booby",
+      "no": 38,
+      "name": "アオアシン",
+      "speciesJa": "アオアシカツオドリ",
+      "speciesEn": "Blue-footed Booby",
+      "rarity": "normal",
+      "status": "",
+      "description": "鮮やかな青い足を持つ海鳥"
+    },
+    {
+      "id": "sky_frigatebird",
+      "no": 39,
+      "name": "グンカンドン",
+      "speciesJa": "グンカンドリ",
+      "speciesEn": "Frigatebird",
+      "rarity": "normal",
+      "status": "",
+      "description": "細長い翼と二又の尾を持つ海鳥"
+    },
+    {
+      "id": "sky_petrel",
+      "no": 40,
+      "name": "ウミツバメン",
+      "speciesJa": "ウミツバメ",
+      "speciesEn": "Petrel",
+      "rarity": "normal",
+      "status": "",
+      "description": "波の上を軽やかに飛ぶ小型の海鳥"
+    },
+    {
+      "id": "sky_shearwater",
+      "no": 41,
+      "name": "ミズナギン",
+      "speciesJa": "ミズナギドリ",
+      "speciesEn": "Shearwater",
+      "rarity": "normal",
+      "status": "",
+      "description": "長い翼で海面すれすれを滑空する鳥"
+    },
+    {
+      "id": "sky_puffin",
+      "no": 42,
+      "name": "パフィン",
+      "speciesJa": "ニシツノメドリ",
+      "speciesEn": "Puffin",
+      "rarity": "normal",
+      "status": "",
+      "description": "色鮮やかなくちばしを持つ海鳥"
+    },
+    {
+      "id": "sky_auk",
+      "no": 43,
+      "name": "ウミスズメン",
+      "speciesJa": "ウミスズメ",
+      "speciesEn": "Auk",
+      "rarity": "normal",
+      "status": "",
+      "description": "短い翼で海中を泳ぐ小型の海鳥"
+    },
+    {
+      "id": "sky_guillemot",
+      "no": 44,
+      "name": "ウミガラスン",
+      "speciesJa": "ウミガラス",
+      "speciesEn": "Guillemot",
+      "rarity": "normal",
+      "status": "",
+      "description": "直立姿勢と細いくちばしを持つ海鳥"
+    },
+    {
+      "id": "sky_tern",
+      "no": 45,
+      "name": "アジサシン",
+      "speciesJa": "アジサシ",
+      "speciesEn": "Tern",
+      "rarity": "normal",
+      "status": "",
+      "description": "細い翼と二又の尾で海上を飛ぶ鳥"
+    },
+    {
+      "id": "sky_gull",
+      "no": 46,
+      "name": "カモメル",
+      "speciesJa": "カモメ",
+      "speciesEn": "Gull",
+      "rarity": "normal",
+      "status": "",
+      "description": "海辺を広く飛び回る身近な海鳥"
+    },
+    {
+      "id": "sky_skua",
+      "no": 47,
+      "name": "トウゾクン",
+      "speciesJa": "トウゾクカモメ",
+      "speciesEn": "Skua",
+      "rarity": "normal",
+      "status": "",
+      "description": "力強い飛行で他の海鳥を追う鳥"
+    },
+    {
+      "id": "sky_loon",
+      "no": 48,
+      "name": "アビロン",
+      "speciesJa": "アビ",
+      "speciesEn": "Loon",
+      "rarity": "normal",
+      "status": "",
+      "description": "水中を巧みに泳ぐ流線型の水鳥"
+    },
+    {
+      "id": "sky_grebe",
+      "no": 49,
+      "name": "カイツブリン",
+      "speciesJa": "カイツブリ",
+      "speciesEn": "Grebe",
+      "rarity": "normal",
+      "status": "",
+      "description": "水面を走って助走する小型の水鳥"
+    },
+    {
+      "id": "sky_coot",
+      "no": 50,
+      "name": "オオバン",
+      "speciesJa": "オオバン",
+      "speciesEn": "Coot",
+      "rarity": "normal",
+      "status": "",
+      "description": "白い額板と大きな足を持つ水鳥"
+    },
+    {
+      "id": "sky_moorhen",
+      "no": 51,
+      "name": "バンチャン",
+      "speciesJa": "バン",
+      "speciesEn": "Moorhen",
+      "rarity": "normal",
+      "status": "",
+      "description": "赤い額板と長い指を持つ水鳥"
+    },
+    {
+      "id": "sky_goose",
+      "no": 52,
+      "name": "ガチョン",
+      "speciesJa": "ガン",
+      "speciesEn": "Goose",
+      "rarity": "normal",
+      "status": "",
+      "description": "群れで隊列を組んで渡る大型の水鳥"
+    },
+    {
+      "id": "sky_duck",
+      "no": 53,
+      "name": "カモル",
+      "speciesJa": "カモ",
+      "speciesEn": "Duck",
+      "rarity": "normal",
+      "status": "",
+      "description": "水面を泳ぐ幅広いくちばしの鳥"
+    },
+    {
+      "id": "sky_mallard",
+      "no": 54,
+      "name": "マガモン",
+      "speciesJa": "マガモ",
+      "speciesEn": "Mallard",
+      "rarity": "normal",
+      "status": "",
+      "description": "緑色の頭が目立つ代表的なカモ"
+    },
+    {
+      "id": "sky_teal",
+      "no": 55,
+      "name": "コガモン",
+      "speciesJa": "コガモ",
+      "speciesEn": "Teal",
+      "rarity": "normal",
+      "status": "",
+      "description": "小柄で素早く飛ぶカモの仲間"
+    },
+    {
+      "id": "sky_eider",
+      "no": 56,
+      "name": "ケワタガモン",
+      "speciesJa": "ケワタガモ",
+      "speciesEn": "Eider",
+      "rarity": "normal",
+      "status": "",
+      "description": "柔らかな羽毛を持つ寒冷地の海鳥"
+    },
+    {
+      "id": "sky_shelduck",
+      "no": 57,
+      "name": "ツクシガモン",
+      "speciesJa": "ツクシガモ",
+      "speciesEn": "Shelduck",
+      "rarity": "normal",
+      "status": "",
+      "description": "白黒と赤褐色の模様を持つ大型のカモ"
+    },
+    {
+      "id": "sky_pheasant",
+      "no": 58,
+      "name": "キジマル",
+      "speciesJa": "キジ",
+      "speciesEn": "Pheasant",
+      "rarity": "normal",
+      "status": "",
+      "description": "長い尾羽と鮮やかな羽色を持つ鳥"
+    },
+    {
+      "id": "sky_quail",
+      "no": 59,
+      "name": "ウズラン",
+      "speciesJa": "ウズラ",
+      "speciesEn": "Quail",
+      "rarity": "normal",
+      "status": "",
+      "description": "丸い体で地上を素早く走る小型の鳥"
+    },
+    {
+      "id": "sky_partridge",
+      "no": 60,
+      "name": "ヤマウズラン",
+      "speciesJa": "ヤマウズラ",
+      "speciesEn": "Partridge",
+      "rarity": "normal",
+      "status": "",
+      "description": "地上で暮らす丸みのあるキジ科の鳥"
+    },
+    {
+      "id": "sky_turkey",
+      "no": 61,
+      "name": "シチメンチョ",
+      "speciesJa": "シチメンチョウ",
+      "speciesEn": "Turkey",
+      "rarity": "normal",
+      "status": "",
+      "description": "大きな体と扇状の尾羽を持つ鳥"
+    },
+    {
+      "id": "sky_guinea_fowl",
+      "no": 62,
+      "name": "ホロホロン",
+      "speciesJa": "ホロホロチョウ",
+      "speciesEn": "Guinea Fowl",
+      "rarity": "normal",
+      "status": "",
+      "description": "細かな斑点模様の羽を持つ鳥"
+    },
+    {
+      "id": "sky_ptarmigan",
+      "no": 63,
+      "name": "ライチョン",
+      "speciesJa": "ライチョウ",
+      "speciesEn": "Ptarmigan",
+      "rarity": "normal",
+      "status": "",
+      "description": "季節で羽色を変える高山の鳥"
+    },
+    {
+      "id": "sky_grouse",
+      "no": 64,
+      "name": "グラウスン",
+      "speciesJa": "ライチョウ類",
+      "speciesEn": "Grouse",
+      "rarity": "normal",
+      "status": "",
+      "description": "羽毛に覆われた脚を持つ地上性の鳥"
+    },
+    {
+      "id": "sky_bustard",
+      "no": 65,
+      "name": "ノガン",
+      "speciesJa": "ノガン",
+      "speciesEn": "Bustard",
+      "rarity": "normal",
+      "status": "",
+      "description": "草原を歩く大型で重厚な鳥"
+    },
+    {
+      "id": "sky_sandgrouse",
+      "no": 66,
+      "name": "サケイロン",
+      "speciesJa": "サケイ",
+      "speciesEn": "Sandgrouse",
+      "rarity": "normal",
+      "status": "",
+      "description": "乾燥地を高速で飛ぶ地上性の鳥"
+    },
+    {
+      "id": "sky_woodpecker",
+      "no": 67,
+      "name": "キツツキン",
+      "speciesJa": "キツツキ",
+      "speciesEn": "Woodpecker",
+      "rarity": "normal",
+      "status": "",
+      "description": "硬いくちばしで木の幹を叩く鳥"
+    },
+    {
+      "id": "sky_toucan",
+      "no": 68,
+      "name": "オオハシン",
+      "speciesJa": "オオハシ",
+      "speciesEn": "Toucan",
+      "rarity": "normal",
+      "status": "",
+      "description": "大きく色鮮やかなくちばしを持つ鳥"
+    },
+    {
+      "id": "sky_hoopoe",
+      "no": 69,
+      "name": "ヤツガシラン",
+      "speciesJa": "ヤツガシラ",
+      "speciesEn": "Hoopoe",
+      "rarity": "normal",
+      "status": "",
+      "description": "扇状に開く冠羽を持つ鳥"
+    },
+    {
+      "id": "sky_bee_eater",
+      "no": 70,
+      "name": "ハチクイン",
+      "speciesJa": "ハチクイ",
+      "speciesEn": "Bee-eater",
+      "rarity": "normal",
+      "status": "",
+      "description": "細長いくちばしで飛ぶ昆虫を捕らえる鳥"
+    },
+    {
+      "id": "sky_roller",
+      "no": 71,
+      "name": "ブッポウソン",
+      "speciesJa": "ブッポウソウ",
+      "speciesEn": "Roller",
+      "rarity": "normal",
+      "status": "",
+      "description": "青い羽と回転する求愛飛行が特徴の鳥"
+    },
+    {
+      "id": "sky_swift",
+      "no": 72,
+      "name": "アマツバメン",
+      "speciesJa": "アマツバメ",
+      "speciesEn": "Swift",
+      "rarity": "normal",
+      "status": "",
+      "description": "鎌形の翼で長時間飛び続ける鳥"
+    },
+    {
+      "id": "sky_nightjar",
+      "no": 73,
+      "name": "ヨタカン",
+      "speciesJa": "ヨタカ",
+      "speciesEn": "Nightjar",
+      "rarity": "normal",
+      "status": "",
+      "description": "大きな口で夜の昆虫を捕らえる鳥"
+    },
+    {
+      "id": "sky_cuckoo",
+      "no": 74,
+      "name": "カッコル",
+      "speciesJa": "カッコウ",
+      "speciesEn": "Cuckoo",
+      "rarity": "normal",
+      "status": "",
+      "description": "特徴的な鳴き声で知られる渡り鳥"
+    },
+    {
+      "id": "sky_roadrunner",
+      "no": 75,
+      "name": "ミチバシリン",
+      "speciesJa": "オオミチバシリ",
+      "speciesEn": "Roadrunner",
+      "rarity": "normal",
+      "status": "",
+      "description": "地上を高速で走るカッコウの仲間"
+    },
+    {
+      "id": "sky_african_grey_parrot",
+      "no": 76,
+      "name": "ヨウムン",
+      "speciesJa": "ヨウム",
+      "speciesEn": "African Grey Parrot",
+      "rarity": "normal",
+      "status": "",
+      "description": "知能が高く灰色の羽を持つ大型インコ"
+    },
+    {
+      "id": "sky_macaw",
+      "no": 77,
+      "name": "コンゴウインコン",
+      "speciesJa": "コンゴウインコ",
+      "speciesEn": "Macaw",
+      "rarity": "normal",
+      "status": "",
+      "description": "長い尾と鮮やかな羽を持つ大型インコ"
+    },
+    {
+      "id": "sky_lorikeet",
+      "no": 78,
+      "name": "ロリキートン",
+      "speciesJa": "ヒインコ",
+      "speciesEn": "Lorikeet",
+      "rarity": "normal",
+      "status": "",
+      "description": "花蜜を好む鮮やかな色のインコ"
+    },
+    {
+      "id": "sky_lovebird",
+      "no": 79,
+      "name": "ボタンインコン",
+      "speciesJa": "ボタンインコ",
+      "speciesEn": "Lovebird",
+      "rarity": "normal",
+      "status": "",
+      "description": "仲間との結びつきが強い小型インコ"
+    },
+    {
+      "id": "sky_canary",
+      "no": 80,
+      "name": "カナリアン",
+      "speciesJa": "カナリア",
+      "speciesEn": "Canary",
+      "rarity": "normal",
+      "status": "",
+      "description": "明るい羽色と美しいさえずりを持つ鳥"
+    },
+    {
+      "id": "sky_finch",
+      "no": 81,
+      "name": "フィンチン",
+      "speciesJa": "フィンチ",
+      "speciesEn": "Finch",
+      "rarity": "normal",
+      "status": "",
+      "description": "小さなくちばしで種子を食べる小鳥"
+    },
+    {
+      "id": "sky_goldfinch",
+      "no": 82,
+      "name": "ゴシキヒワン",
+      "speciesJa": "ゴシキヒワ",
+      "speciesEn": "Goldfinch",
+      "rarity": "normal",
+      "status": "",
+      "description": "赤い顔と黄色い翼帯を持つ小鳥"
+    },
+    {
+      "id": "sky_robin",
+      "no": 83,
+      "name": "コマドリン",
+      "speciesJa": "ヨーロッパコマドリ",
+      "speciesEn": "Robin",
+      "rarity": "normal",
+      "status": "",
+      "description": "橙色の胸を持つ小型のさえずり鳥"
+    },
+    {
+      "id": "sky_bluebird",
+      "no": 84,
+      "name": "ルリツグミン",
+      "speciesJa": "ルリツグミ",
+      "speciesEn": "Bluebird",
+      "rarity": "normal",
+      "status": "",
+      "description": "鮮やかな青い羽を持つ小鳥"
+    },
+    {
+      "id": "sky_starling",
+      "no": 85,
+      "name": "ムクドリン",
+      "speciesJa": "ムクドリ",
+      "speciesEn": "Starling",
+      "rarity": "normal",
+      "status": "",
+      "description": "群れで複雑な飛行を見せる鳥"
+    },
+    {
+      "id": "sky_myna",
+      "no": 86,
+      "name": "キュウカン",
+      "speciesJa": "キュウカンチョウ",
+      "speciesEn": "Myna",
+      "rarity": "normal",
+      "status": "",
+      "description": "声まねが得意な黒い羽の鳥"
+    },
+    {
+      "id": "sky_magpie",
+      "no": 87,
+      "name": "カササギン",
+      "speciesJa": "カササギ",
+      "speciesEn": "Magpie",
+      "rarity": "normal",
+      "status": "",
+      "description": "長い尾と白黒の羽を持つ賢い鳥"
+    },
+    {
+      "id": "sky_jay",
+      "no": 88,
+      "name": "カケスン",
+      "speciesJa": "カケス",
+      "speciesEn": "Jay",
+      "rarity": "normal",
+      "status": "",
+      "description": "青い翼斑と大きな声を持つカラス科の鳥"
+    },
+    {
+      "id": "sky_raven",
+      "no": 89,
+      "name": "ワタリガラスン",
+      "speciesJa": "ワタリガラス",
+      "speciesEn": "Raven",
+      "rarity": "normal",
+      "status": "",
+      "description": "大型で知能の高い黒いカラス科の鳥"
+    },
+    {
+      "id": "sky_shrike",
+      "no": 90,
+      "name": "モズキン",
+      "speciesJa": "モズ",
+      "speciesEn": "Shrike",
+      "rarity": "normal",
+      "status": "",
+      "description": "鉤状のくちばしを持つ小型の狩猟鳥"
+    },
+    {
+      "id": "sky_wagtail",
+      "no": 91,
+      "name": "セキレイン",
+      "speciesJa": "セキレイ",
+      "speciesEn": "Wagtail",
+      "rarity": "normal",
+      "status": "",
+      "description": "長い尾を上下に振りながら歩く鳥"
+    },
+    {
+      "id": "sky_warbler",
+      "no": 92,
+      "name": "ウグイスン",
+      "speciesJa": "ウグイス",
+      "speciesEn": "Warbler",
+      "rarity": "normal",
+      "status": "",
+      "description": "茂みで美しくさえずる小型の鳥"
+    },
+    {
+      "id": "sky_flycatcher",
+      "no": 93,
+      "name": "ヒタキン",
+      "speciesJa": "ヒタキ",
+      "speciesEn": "Flycatcher",
+      "rarity": "normal",
+      "status": "",
+      "description": "枝から飛び出して昆虫を捕らえる鳥"
+    },
+    {
+      "id": "sky_nuthatch",
+      "no": 94,
+      "name": "ゴジュウカラン",
+      "speciesJa": "ゴジュウカラ",
+      "speciesEn": "Nuthatch",
+      "rarity": "normal",
+      "status": "",
+      "description": "木の幹を頭から下へ移動できる鳥"
+    },
+    {
+      "id": "sky_treecreeper",
+      "no": 95,
+      "name": "キバシリン",
+      "speciesJa": "キバシリ",
+      "speciesEn": "Treecreeper",
+      "rarity": "normal",
+      "status": "",
+      "description": "木の幹をらせん状に登る小型の鳥"
+    },
+    {
+      "id": "sky_wren",
+      "no": 96,
+      "name": "ミソサザイン",
+      "speciesJa": "ミソサザイ",
+      "speciesEn": "Wren",
+      "rarity": "normal",
+      "status": "",
+      "description": "小さな体に力強い声を持つ鳥"
+    },
+    {
+      "id": "sky_thrush",
+      "no": 97,
+      "name": "ツグミン",
+      "speciesJa": "ツグミ",
+      "speciesEn": "Thrush",
+      "rarity": "normal",
+      "status": "",
+      "description": "胸の斑点と跳ねるような歩き方が特徴の鳥"
+    },
+    {
+      "id": "sky_blackbird",
+      "no": 98,
+      "name": "クロウタドリン",
+      "speciesJa": "クロウタドリ",
+      "speciesEn": "Blackbird",
+      "rarity": "normal",
+      "status": "",
+      "description": "黒い羽と黄色いくちばしを持つ鳥"
+    },
+    {
+      "id": "sky_oriole",
+      "no": 99,
+      "name": "コウライウグイン",
+      "speciesJa": "コウライウグイス",
+      "speciesEn": "Oriole",
+      "rarity": "normal",
+      "status": "",
+      "description": "黄色と黒の鮮やかな羽を持つ鳥"
+    },
+    {
+      "id": "sky_bunting",
+      "no": 100,
+      "name": "ホオジロン",
+      "speciesJa": "ホオジロ",
+      "speciesEn": "Bunting",
+      "rarity": "normal",
+      "status": "",
+      "description": "頬の模様と澄んださえずりを持つ小鳥"
+    },
+    {
+      "id": "sky_kakapo",
+      "no": 1,
+      "name": "カカポン",
+      "speciesJa": "カカポ",
+      "speciesEn": "Kakapo",
+      "rarity": "rare",
+      "status": "",
+      "description": "飛べない夜行性の希少な大型オウム"
+    },
+    {
+      "id": "sky_japanese_crested_ibis",
+      "no": 2,
+      "name": "トキリン",
+      "speciesJa": "トキ",
+      "speciesEn": "Japanese Crested Ibis",
+      "rarity": "rare",
+      "status": "",
+      "description": "淡い朱色の翼を持つ希少な鳥"
     }
   ],
   "bug": [
     {
+      "id": "bug_ladybug",
       "no": 1,
       "name": "テントム",
       "speciesJa": "テントウムシ",
       "speciesEn": "Ladybug",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_rhinoceros_beetle",
       "no": 2,
       "name": "カブトン",
       "speciesJa": "カブトムシ",
       "speciesEn": "Rhinoceros Beetle",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_stag_beetle",
       "no": 3,
       "name": "クワガロン",
       "speciesJa": "クワガタ",
       "speciesEn": "Stag Beetle",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_scarab_beetle",
       "no": 4,
       "name": "コガネン",
       "speciesJa": "コガネムシ",
       "speciesEn": "Scarab Beetle",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_jewel_beetle",
       "no": 5,
       "name": "タマムシィ",
       "speciesJa": "タマムシ",
       "speciesEn": "Jewel Beetle",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_bronze_beetle",
       "no": 6,
       "name": "カナブンブン",
       "speciesJa": "カナブン",
       "speciesEn": "Bronze Beetle",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_flower_chafer",
       "no": 7,
       "name": "ハナムグリン",
       "speciesJa": "ハナムグリ",
       "speciesEn": "Flower Chafer",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_butterfly",
       "no": 8,
       "name": "チョウミィ",
       "speciesJa": "蝶",
       "speciesEn": "Butterfly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_moth",
       "no": 9,
       "name": "ガミィ",
       "speciesJa": "蛾",
       "speciesEn": "Moth",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_silkworm",
       "no": 10,
       "name": "カイコロ",
       "speciesJa": "カイコ",
       "speciesEn": "Silkworm",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_honeybee",
       "no": 11,
       "name": "ハチミィ",
       "speciesJa": "ミツバチ",
       "speciesEn": "Honeybee",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_carpenter_bee",
       "no": 12,
       "name": "クマンバチン",
       "speciesJa": "クマバチ",
       "speciesEn": "Carpenter Bee",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_hornet",
       "no": 13,
       "name": "スズメバチン",
       "speciesJa": "スズメバチ",
       "speciesEn": "Hornet",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_paper_wasp",
       "no": 14,
       "name": "アシナガン",
       "speciesJa": "アシナガバチ",
       "speciesEn": "Paper Wasp",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_ant",
       "no": 15,
       "name": "アリッコ",
       "speciesJa": "アリ",
       "speciesEn": "Ant",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_termite",
       "no": 16,
       "name": "シロアリム",
       "speciesJa": "シロアリ",
       "speciesEn": "Termite",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_mantis",
       "no": 17,
       "name": "カマキリン",
       "speciesJa": "カマキリ",
       "speciesEn": "Mantis",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_grasshopper",
       "no": 18,
       "name": "バッタロン",
       "speciesJa": "バッタ",
       "speciesEn": "Grasshopper",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_katydid",
       "no": 19,
       "name": "キリギリン",
       "speciesJa": "キリギリス",
       "speciesEn": "Katydid",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_cricket",
       "no": 20,
       "name": "コオロギン",
       "speciesJa": "コオロギ",
       "speciesEn": "Cricket",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_bell_cricket",
       "no": 21,
       "name": "スズムシィ",
       "speciesJa": "スズムシ",
       "speciesEn": "Bell Cricket",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_pine_cricket",
       "no": 22,
       "name": "マツムシン",
       "speciesJa": "マツムシ",
       "speciesEn": "Pine Cricket",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_cicada",
       "no": 23,
       "name": "セミマル",
       "speciesJa": "セミ",
       "speciesEn": "Cicada",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_dragonfly",
       "no": 24,
       "name": "トンボル",
       "speciesJa": "トンボ",
       "speciesEn": "Dragonfly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_firefly",
       "no": 25,
       "name": "ホタルン",
       "speciesJa": "ホタル",
       "speciesEn": "Firefly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_giant_water_bug",
       "no": 26,
       "name": "タガメン",
       "speciesJa": "タガメ",
       "speciesEn": "Giant Water Bug",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_diving_beetle",
       "no": 27,
       "name": "ゲンゴロン",
       "speciesJa": "ゲンゴロウ",
       "speciesEn": "Diving Beetle",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_whirligig_beetle",
       "no": 28,
       "name": "ミズスマシン",
       "speciesJa": "ミズスマシ",
       "speciesEn": "Whirligig Beetle",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_water_strider",
       "no": 29,
       "name": "アメンボウ",
       "speciesJa": "アメンボ",
       "speciesEn": "Water Strider",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_scorpion",
       "no": 30,
       "name": "サソリオン",
       "speciesJa": "サソリ",
       "speciesEn": "Scorpion",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_centipede",
       "no": 31,
       "name": "ムカデン",
       "speciesJa": "ムカデ",
       "speciesEn": "Centipede",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_millipede",
       "no": 32,
       "name": "ヤスデロ",
       "speciesJa": "ヤスデ",
       "speciesEn": "Millipede",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_pill_bug",
       "no": 33,
       "name": "ダンゴロン",
       "speciesJa": "ダンゴムシ",
       "speciesEn": "Pill Bug",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_stick_insect",
       "no": 34,
       "name": "ナナフシン",
       "speciesJa": "ナナフシ",
       "speciesEn": "Stick Insect",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_leaf_insect",
       "no": 35,
       "name": "コノハムシ",
       "speciesJa": "コノハムシ",
       "speciesEn": "Leaf Insect",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_leaf_beetle",
       "no": 36,
       "name": "ハムシィ",
       "speciesJa": "ハムシ",
       "speciesEn": "Leaf Beetle",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_weevil",
       "no": 37,
       "name": "ゾウムシン",
       "speciesJa": "ゾウムシ",
       "speciesEn": "Weevil",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_longhorn_beetle",
       "no": 38,
       "name": "カミキリン",
       "speciesJa": "カミキリムシ",
       "speciesEn": "Longhorn Beetle",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_tiger_beetle",
       "no": 39,
       "name": "ハンミョン",
       "speciesJa": "ハンミョウ",
       "speciesEn": "Tiger Beetle",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_ground_beetle",
       "no": 40,
       "name": "オサムシン",
       "speciesJa": "オサムシ",
       "speciesEn": "Ground Beetle",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_dung_beetle",
       "no": 41,
       "name": "タマオシン",
       "speciesJa": "フンコロガシ",
       "speciesEn": "Dung Beetle",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_earwig",
       "no": 42,
       "name": "ハサミムシ",
       "speciesJa": "ハサミムシ",
       "speciesEn": "Earwig",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_silverfish",
       "no": 43,
       "name": "シミミィ",
       "speciesJa": "シミ",
       "speciesEn": "Silverfish",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_springtail",
       "no": 44,
       "name": "トビムシン",
       "speciesJa": "トビムシ",
       "speciesEn": "Springtail",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_aphid",
       "no": 45,
       "name": "アブラン",
       "speciesJa": "アブラムシ",
       "speciesEn": "Aphid",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_caterpillar",
       "no": 46,
       "name": "イモムシィ",
       "speciesJa": "芋虫",
       "speciesEn": "Caterpillar",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_bagworm",
       "no": 47,
       "name": "ミノムシン",
       "speciesJa": "ミノムシ",
       "speciesEn": "Bagworm",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_leafroller",
       "no": 48,
       "name": "ハマキムシ",
       "speciesJa": "ハマキムシ",
       "speciesEn": "Leafroller",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_antlion",
       "no": 49,
       "name": "ウスバカゲ",
       "speciesJa": "ウスバカゲロウ",
       "speciesEn": "Antlion",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_mayfly",
       "no": 50,
       "name": "カゲロウル",
       "speciesJa": "カゲロウ",
       "speciesEn": "Mayfly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_stonefly",
       "no": 51,
       "name": "カワゲラン",
       "speciesJa": "カワゲラ",
       "speciesEn": "Stonefly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_cockroach",
       "no": 52,
       "name": "ゴキリス",
       "speciesJa": "ゴキブリ",
       "speciesEn": "Cockroach",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_mosquito",
       "no": 53,
       "name": "カミィ",
       "speciesJa": "カ",
       "speciesEn": "Mosquito",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_fly",
       "no": 54,
       "name": "ハエルン",
       "speciesJa": "ハエ",
       "speciesEn": "Fly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_horsefly",
       "no": 55,
       "name": "アブロン",
       "speciesJa": "アブ",
       "speciesEn": "Horsefly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_blackfly",
       "no": 56,
       "name": "ブユミィ",
       "speciesJa": "ブユ",
       "speciesEn": "Blackfly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_crane_fly",
       "no": 57,
       "name": "ガガンボル",
       "speciesJa": "ガガンボ",
       "speciesEn": "Crane Fly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_stink_bug",
       "no": 58,
       "name": "カメムシン",
       "speciesJa": "カメムシ",
       "speciesEn": "Stink Bug",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_cave_cricket",
       "no": 59,
       "name": "カマドウマル",
       "speciesJa": "カマドウマ",
       "speciesEn": "Cave Cricket",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_leafhopper",
       "no": 60,
       "name": "ヨコバイン",
       "speciesJa": "ヨコバイ",
       "speciesEn": "Leafhopper",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_planthopper",
       "no": 61,
       "name": "ウンカル",
       "speciesJa": "ウンカ",
       "speciesEn": "Planthopper",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_scale_insect",
       "no": 62,
       "name": "カイガラム",
       "speciesJa": "カイガラムシ",
       "speciesEn": "Scale Insect",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_bark_beetle",
       "no": 63,
       "name": "キクイムシン",
       "speciesJa": "キクイムシ",
       "speciesEn": "Bark Beetle",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_mole_cricket",
       "no": 64,
       "name": "オケラン",
       "speciesJa": "オケラ",
       "speciesEn": "Mole Cricket",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_click_beetle",
       "no": 65,
       "name": "コメツキン",
       "speciesJa": "コメツキムシ",
       "speciesEn": "Click Beetle",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_spittlebug",
       "no": 66,
       "name": "アワフキン",
       "speciesJa": "アワフキムシ",
       "speciesEn": "Spittlebug",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_sawfly",
       "no": 67,
       "name": "ハバチル",
       "speciesJa": "ハバチ",
       "speciesEn": "Sawfly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_spider",
       "no": 68,
       "name": "クモマル",
       "speciesJa": "クモ",
       "speciesEn": "Spider",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_mite",
       "no": 69,
       "name": "ダニミィ",
       "speciesJa": "ダニ",
       "speciesEn": "Mite",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_tick",
       "no": 70,
       "name": "マダニン",
       "speciesJa": "マダニ",
       "speciesEn": "Tick",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_flea",
       "no": 71,
       "name": "ノミピョン",
       "speciesJa": "ノミ",
       "speciesEn": "Flea",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_louse",
       "no": 72,
       "name": "シラミン",
       "speciesJa": "シラミ",
       "speciesEn": "Louse",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_booklouse",
       "no": 73,
       "name": "チャタテム",
       "speciesJa": "チャタテムシ",
       "speciesEn": "Booklouse",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_whitefly",
       "no": 74,
       "name": "コナジラミィ",
       "speciesJa": "コナジラミ",
       "speciesEn": "Whitefly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_lacewing",
       "no": 75,
       "name": "クサカゲロウル",
       "speciesJa": "クサカゲロウ",
       "speciesEn": "Lacewing",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_dobsonfly",
       "no": 76,
       "name": "ヘビトンボン",
       "speciesJa": "ヘビトンボ",
       "speciesEn": "Dobsonfly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_alderfly",
       "no": 77,
       "name": "センブリン",
       "speciesJa": "センブリ",
       "speciesEn": "Alderfly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_caddisfly",
       "no": 78,
       "name": "トビケラン",
       "speciesJa": "トビケラ",
       "speciesEn": "Caddisfly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_thrips",
       "no": 79,
       "name": "アザミウマル",
       "speciesJa": "アザミウマ",
       "speciesEn": "Thrips",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_rove_beetle",
       "no": 80,
       "name": "ハネカクシン",
       "speciesJa": "ハネカクシ",
       "speciesEn": "Rove Beetle",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_firebrat",
       "no": 81,
       "name": "マダラシミィ",
       "speciesJa": "マダラシミ",
       "speciesEn": "Firebrat",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_robber_fly",
       "no": 82,
       "name": "ムシヒキアブン",
       "speciesJa": "ムシヒキアブ",
       "speciesEn": "Robber Fly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_hoverfly",
       "no": 83,
       "name": "ハナアブル",
       "speciesJa": "ハナアブ",
       "speciesEn": "Hoverfly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_ichneumon_wasp",
       "no": 84,
       "name": "ヒメバチン",
       "speciesJa": "ヒメバチ",
       "speciesEn": "Ichneumon Wasp",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_lace_bug",
       "no": 85,
       "name": "グンバイムシ",
       "speciesJa": "グンバイムシ",
       "speciesEn": "Lace Bug",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_assassin_bug",
       "no": 86,
       "name": "サシガメン",
       "speciesJa": "サシガメ",
       "speciesEn": "Assassin Bug",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_bed_bug",
       "no": 87,
       "name": "トコジラミィ",
       "speciesJa": "トコジラミ",
       "speciesEn": "Bed Bug",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_water_scorpion",
       "no": 88,
       "name": "ミズカマキリ",
       "speciesJa": "ミズカマキリ",
       "speciesEn": "Water Scorpion",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_water_boatman",
       "no": 89,
       "name": "ミズムシン",
       "speciesJa": "ミズムシ",
       "speciesEn": "Water Boatman",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_backswimmer",
       "no": 90,
       "name": "マツモムシィ",
       "speciesJa": "マツモムシ",
       "speciesEn": "Backswimmer",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_velvet_worm",
       "no": 91,
       "name": "カギムシン",
       "speciesJa": "カギムシ",
       "speciesEn": "Velvet Worm",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_pseudoscorpion",
       "no": 92,
       "name": "カニムシン",
       "speciesJa": "カニムシ",
       "speciesEn": "Pseudoscorpion",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_harvestman",
       "no": 93,
       "name": "ザトウムシィ",
       "speciesJa": "ザトウムシ",
       "speciesEn": "Harvestman",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_house_centipede",
       "no": 94,
       "name": "ゲジゲジン",
       "speciesJa": "ゲジ",
       "speciesEn": "House Centipede",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_symphylan",
       "no": 95,
       "name": "コムカデン",
       "speciesJa": "コムカデ",
       "speciesEn": "Symphylan",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_pauropod",
       "no": 96,
       "name": "エダヒゲムシ",
       "speciesJa": "エダヒゲムシ",
       "speciesEn": "Pauropod",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_bristletail",
       "no": 97,
       "name": "イシノミィ",
       "speciesJa": "イシノミ",
       "speciesEn": "Bristletail",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_snakefly",
       "no": 98,
       "name": "ラクダムシン",
       "speciesJa": "ラクダムシ",
       "speciesEn": "Snakefly",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_webspinner",
       "no": 99,
       "name": "シロアリモドキ",
       "speciesJa": "シロアリモドキ",
       "speciesEn": "Webspinner",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_horntail",
       "no": 100,
       "name": "ハバチモドキ",
       "speciesJa": "キバチ",
       "speciesEn": "Horntail",
       "rarity": "normal",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_rare_phantom_insect",
       "no": 1,
       "name": "幻虫",
       "speciesJa": "幻虫",
       "speciesEn": "Phantom Insect",
       "rarity": "rare",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "bug_rare_kesaran_pasaran",
       "no": 2,
       "name": "ケサランパサラン",
       "speciesJa": "ケサランパサラン",
       "speciesEn": "Kesaran Pasaran",
       "rarity": "rare",
+      "status": "11",
+      "description": "11"
+    },
+    {
+      "id": "bug_goliath_beetle",
+      "no": 101,
+      "name": "ゴライアトン",
+      "speciesJa": "ゴライアスオオツノハナムグリ",
+      "speciesEn": "Goliath Beetle",
+      "rarity": "normal",
       "status": "",
-      "description": ""
+      "description": "大きな体と力強い脚を持つ大型甲虫"
+    },
+    {
+      "id": "bug_atlas_moth",
+      "no": 102,
+      "name": "ヨナグニン",
+      "speciesJa": "ヨナグニサン",
+      "speciesEn": "Atlas Moth",
+      "rarity": "normal",
+      "status": "",
+      "description": "大きな翅と蛇の頭を思わせる翅端を持つ蛾"
+    },
+    {
+      "id": "bug_orchid_mantis",
+      "no": 103,
+      "name": "ハナカマリン",
+      "speciesJa": "ハナカマキリ",
+      "speciesEn": "Orchid Mantis",
+      "rarity": "normal",
+      "status": "",
+      "description": "花びらに似た姿で身を隠すカマキリ"
+    },
+    {
+      "id": "bug_tarantula",
+      "no": 104,
+      "name": "タランチュン",
+      "speciesJa": "タランチュラ",
+      "speciesEn": "Tarantula",
+      "rarity": "normal",
+      "status": "",
+      "description": "太い脚と密な毛を持つ大型のクモ"
+    },
+    {
+      "id": "bug_atlas_beetle",
+      "no": 105,
+      "name": "コーカサトン",
+      "speciesJa": "コーカサスオオカブト",
+      "speciesEn": "Atlas Beetle",
+      "rarity": "normal",
+      "status": "",
+      "description": "三本の大きな角が特徴の大型カブトムシ"
+    },
+    {
+      "id": "bug_lord_howe_island_stick_insect",
+      "no": 3,
+      "name": "ロードハウン",
+      "speciesJa": "ロードハウナナフシ",
+      "speciesEn": "Lord Howe Island Stick Insect",
+      "rarity": "rare",
+      "status": "",
+      "description": "限られた地域に生き残る大型の希少ナナフシ"
+    },
+    {
+      "id": "bug_queen_alexandra_s_birdwing",
+      "no": 4,
+      "name": "アレクサンドラ",
+      "speciesJa": "アレクサンドラトリバネアゲハ",
+      "speciesEn": "Queen Alexandra's Birdwing",
+      "rarity": "rare",
+      "status": "",
+      "description": "世界最大級で生息域が限られる希少なチョウ"
     }
   ],
   "phantom": [
     {
+      "id": "phantom_rare_dragon",
       "no": 1,
       "name": "ドラゴン",
       "speciesJa": "ドラゴン",
       "speciesEn": "Dragon",
       "rarity": "rare",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "phantom_rare_ghost",
       "no": 2,
       "name": "ゴースト",
       "speciesJa": "ゴースト",
       "speciesEn": "Ghost",
       "rarity": "rare",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "phantom_rare_phoenix",
       "no": 3,
       "name": "フェニックス",
       "speciesJa": "フェニックス",
       "speciesEn": "Phoenix",
       "rarity": "rare",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "phantom_rare_sphinx",
       "no": 4,
       "name": "スフィンクス",
       "speciesJa": "スフィンクス",
       "speciesEn": "Sphinx",
       "rarity": "rare",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "phantom_rare_moai",
       "no": 5,
       "name": "モアイ",
       "speciesJa": "モアイ",
       "speciesEn": "Moai",
       "rarity": "rare",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "phantom_rare_fairy",
       "no": 6,
       "name": "妖精",
       "speciesJa": "妖精",
       "speciesEn": "Fairy",
       "rarity": "rare",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "phantom_rare_dwarf",
       "no": 7,
       "name": "小人",
       "speciesJa": "小人",
       "speciesEn": "Dwarf",
       "rarity": "rare",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "phantom_rare_elf",
       "no": 8,
       "name": "エルフ",
       "speciesJa": "エルフ",
       "speciesEn": "Elf",
       "rarity": "rare",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "phantom_rare_unicorn",
       "no": 9,
       "name": "ユニコーン",
       "speciesJa": "ユニコーン",
       "speciesEn": "Unicorn",
       "rarity": "rare",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "phantom_rare_griffin",
       "no": 10,
       "name": "グリフォン",
       "speciesJa": "グリフォン",
       "speciesEn": "Griffin",
       "rarity": "rare",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "phantom_rare_pegasus",
       "no": 11,
       "name": "ペガサス",
       "speciesJa": "ペガサス",
       "speciesEn": "Pegasus",
       "rarity": "rare",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     }
   ],
   "planet": [
     {
+      "id": "planet_rare_alien",
       "no": 1,
       "name": "エイリアン",
       "speciesJa": "エイリアン",
       "speciesEn": "Alien",
       "rarity": "rare",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     },
     {
+      "id": "planet_rare_robot",
       "no": 2,
       "name": "ロボット",
       "speciesJa": "ロボット",
       "speciesEn": "Robot",
       "rarity": "rare",
-      "status": "",
-      "description": ""
+      "status": "11",
+      "description": "11"
     }
   ]
 }

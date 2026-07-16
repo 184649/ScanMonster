@@ -17,6 +17,8 @@
     "gen:catalog": "node scripts/generateCharacterData.js",
     "gen:seed": "node scripts/generateServerSeed.js",
     "validate:release-assets": "node scripts/validateReleaseAssets.js",
+    "validate:workbook": "python scripts/validateWorkbookStyles.py",
+    "validate:phase1-pilot": "node scripts/validatePhase1PilotAssets.js",
     "gen:sounds": "node scripts/generateSoundManifest.js"
   },
   "dependencies": {

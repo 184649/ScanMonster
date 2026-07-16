@@ -4,7 +4,13 @@
 
 ## 正本
 
-**真の編集原本は `assets/characters/Character.xlsx`**（`npm run export:master` → `character_master.json`）。ただし **Xlsx の rarity 列は normal|rare しか表現できず、legendary / releaseStatus を持てない**。そのため分類と公開状態は別レイヤが正本になる：
+**真の編集原本は `assets/characters/Character.xlsx`**（`npm run export:master` → `character_master.json`）。
+
+- **character ID は Xlsx の `id` 列が正本**（Phase 0.5）。**ID は rarity / releaseStatus / 画像フォルダ / 表示名が変わっても不変の永久識別子**。export は **ID を再計算しない**。
+- ⚠️ **ID 内の `rare` / `legendary` という文字列は、現在の rarity を意味しない**（例：`ground_rare_fenrir` の実効 rarity は **legendary**）。歴史的経緯であり、**分類名ではなく内部識別子**として扱う。
+- **Xlsx の rarity 列は `normal` / `rare` / `legendary` / `secret`**（旧表記 `legend` は**後方互換入力**として export 時に `legendary` へ正規化。正式6シートに `legend` は残っていない）。**空欄・未知の値は normal へ変換せず export 全体を失敗させる**。
+- **正式 world は6シートのみ**。`master_prompt` と `unresolved` は **export 対象外**（catalog / seed / releaseStatus / 画像検証 / 件数集計のいずれにも入らない）。
+- ただし **releaseStatus は Xlsx で表現しない**ため、公開状態は別レイヤが正本になる：
 
 - **`assets/characters/character_master.json`** … Xlsx由来のベース roster（英名/キャラ名/和名/rarity(normal|rare)/no）。**生成物なので手編集しない**（`export:master` で再生成される）。
 - **`assets/characters/character-classification.json`** … **legendary 分類（`rarity`）と `releaseStatus` の正本レイヤ**。Xlsxが表現できない情報を保持する第一級の正本（一時的なoverrideではない）。id を変えずに実効 rarity を上書きし、releaseStatus を明示する。
@@ -25,8 +31,36 @@
 
 - 決定順：`byId[id] > worldDefault[world] > "future"`。
 - **hasImage は releaseStatus を決定・降格しない**。initial なのに画像が無いキャラは `initial` のまま **missing** として扱う（future にしない）。
-- 現状 worldDefault：ground=initial / sky=initial / waterside=future / bug=future / phantom=future / planet=future（**暫定・要承認**）。
+- **worldDefault は全ワールド `future` 固定**（Phase 0）。**初期リリース対象は `byId` に明示された89件だけ**。→ **Excel に行を追加しても自動で initial にならない**。
+- 初期件数は生成前ガードで **89件に固定**。意図的に変更する場合のみ `WORLDAWN_ALLOW_INITIAL_CHANGE=1` を付けて `gen:catalog` / `gen:seed` を実行する。
 - **現状：canonical initial=89（ground74+sky15）/ asset complete=89 / missing=0**。旧不足4体（White Tiger・Tsuchinoko・Yeti・Underground Dweller、すべて ground・releaseStatus=initial）は **画像投入済みで解決**（2026-07-14）。
+
+## Phase 0.75：White Tiger の rarity 確定と Excel 書式保全（2026-07-14）
+
+- **White Tiger は `rare` で全データソース統一**（Excel / classification / master / catalog / server seed）。**実在する白変個体のため legendary にしない**。ID は `ground_rare_white_tiger` のまま不変。
+  - これにより **ground の normal 完成対象は 69件のまま**（legendary 解放条件は不変）、初期 rarity 構成も **normal 84 / rare 1 / legendary 4** を維持。
+  - classification の override（`rare`）は**既存互換ガードとして残置**。Excel も rare になったため二重に保護される。
+- ⚠️ **Character.xlsx を書き換えるときは必ず `openpyxl`（Python）を使うこと**。**SheetJS(Community) は書式を保存できない**ため、Node の `xlsx` で書き戻すと**列幅・太字・罫線・塗り・ヘッダ色がすべて失われる**（Phase 0.5 で実際に失われ、Phase 0.75 で HEAD 版から復元した）。
+  - 検証：**`npm run validate:workbook`**（`scripts/validateWorkbookStyles.py`）が列幅・太字・罫線・塗り・id列位置・rarity・ID重複・unresolved管理列・master_prompt を検査し、失われていれば非0終了する。
+- **Excel 列構成（正式6シート）**：`No / キャラ名 / 和名 / 英名 / **id** / rarity / 作成状況 / 説明 / 性格・愛着設計 / 必須身体特徴 / 固有デザインフック / 生物らしいポーズ / 本体配色 / WORLDAWNアクセント部位 / 個別生成プロンプト / プロンプト設計チェック`（16列）。id は**英名の直後**・**文字列書式(`@`)** で保存する。
+- **正式8シート**：`ground / waterside / sky / bug / phantom / planet / master_prompt / unresolved`。後ろ2枚は **export 対象外**。
+
+## Phase 0.5：character ID の恒久固定（2026-07-14）
+
+- **Xlsx 正式6シートに `id` 列を追加**（英名の直後＝E列）。既存 **327 ID をそのまま保存**（美化・作り直しをしない）、新規134行は **rarity 非依存の `world_slug(英名)`** を採番。
+- **export は `id` 列だけを使用**。旧「rarity から prefix を組み立てる」規則（`idFor`）は**正式 ID 決定から廃止**（比較・テスト用に残置）。`catalogBuild` も master の `id` を優先し、`id` が無い旧 master のみ旧規則へフォールバックする。
+- **確定 rarity**：`Fenrir` / `Tsuchinoko` / `Underground Dweller` / `Yeti` / `Kraken` / `Sea Dragon` / `Nessie` / `Merlion` = **legendary**、`Megalodon` / `Megamouth Shark` = **rare**（実在の絶滅種・希少種）。
+- **未完成行の退避**：ground 旧76行目（和名「麒麟」のみで英名・ID・rarity・no が未定）を **`unresolved` シートへ全セル保持のまま移動**し、`originalSheet` / `originalExcelRow` / `unresolvedReason` を付与。**対象は推測で確定しない**。
+- **生成前ガード追加**（`scripts/masterGuards.js`）：ID 空欄・ID 重複・英名空欄・rarity 由来の ID 再生成（`ground_legendary_*`）・同一IDに異なる英名・**初期89体の rarity 構成（normal84/rare1/legendary4）と world 構成（ground74/sky15）の変化**を検出して中止（exit 3）。
+- ⚠️ **未解決の矛盾**：`ground_rare_white_tiger` は **Xlsx=normal** だが既存 catalog / seed / DB は **rare**。rarity を変えると **legendary 解放条件（normal 完成判定）が変わる**ため、classification の**既存互換 override で rare に固定中**。正式な rarity は**要決定**。
+
+## Phase 0：マスター生成の安全化（2026-07-14）
+
+- **対象シートのホワイトリスト**：`export:master` は `ground/waterside/sky/bug/phantom/planet` の6枚だけを取り込む。`master_prompt` 等の管理シートは**worldとして取り込まない**（6枚が欠けていればエラー）。
+- **rarity 正規化**：正は `normal|rare|legendary|secret`。`legend`→`legendary` へ変換。**空欄・未知・スペルミスは normal へ自動変換せず、1件でもあれば export 全体を失敗**させ（シート名/Excel行/ID/英名/入力値を表示）、既存生成物を維持する。
+- **原子的出力**：全検証（ID重複なし・world正常・rarity正常・必須項目）を通過した場合のみ、一時ファイルから差し替える。失敗時は既存ファイルを一切変更しない。
+- **生成前ガード**（`scripts/masterGuards.js`／`gen:catalog`・`gen:seed` が共通利用）：不正world・空欄/未知rarity・legendaryの潰れ・同一IDの複数rarity所属・**initial件数の89からの変動**・initial指定なのにマスター未登録のID（＝ID変化）を検出して**中止**（exit 3）。
+- ⚠️ **既知のID変化リスク**：ID の prefix は manifest rarity 由来（`ground_rare_fenrir` ↔ `ground_legendary_fenrir`）。xlsx の `legend` を `legendary` として取り込むと**既存IDが変わる**ため、上記ガードが検出して停止する。移行時は要判断。
 
 ## release gate（画像欠損時の安全動作）
 

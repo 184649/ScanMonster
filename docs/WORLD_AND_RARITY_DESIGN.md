@@ -53,3 +53,18 @@ normal 96.8% / rare 3.0% / secret 0.2%
 - `server/tests/ratesFriend.test.ts`（基本確率・GPS無効時の再配分・Lv3上限・レベル単調増加・pickRarity が friend/variant/limited を出さない・フレンド効果レベル/連続日数）。
 - `server/tests/friendQr.int.test.ts`（friendQRのみ friend 抽選・新規判定・履歴保存・効果更新・自己QR拒否・数値非表示）。
 - `cd server && npm test` = 34 pass。
+
+## Phase 0.5 追記（2026-07-14）：rarity と character ID の分離
+
+- **character ID は rarity 非依存の永久識別子**。rarity を変更しても ID は変わらない（Xlsx の `id` 列が正本）。
+- **ID 内の `rare` / `legendary` は現在の rarity を意味しない**。例：`ground_rare_fenrir` の実効 rarity は **legendary**、`waterside_rare_megalodon` は **rare**。分類は必ず rarity フィールド／classification から判定すること。
+- 正式 rarity は **normal / rare / legendary / secret** の4値。`legend` は**後方互換の入力表記のみ**で、正式6シートには残っていない。
+- 確定分類：**legendary** = Fenrir / Tsuchinoko / Underground Dweller / Yeti / Kraken / Sea Dragon / Nessie / Merlion。**rare** = Megalodon / Megamouth Shark（実在の絶滅種・希少種のため空想化しない）。
+- **未解決**：White Tiger は Xlsx=normal だが既存 catalog/seed/DB は rare。normal にすると **ground の normal 完成判定（legendary 解放条件）が 69→70 に変わる**ため、既存互換 override で rare に固定中。要決定。
+
+## Phase 0.75 追記（2026-07-14）：White Tiger の確定
+
+- **White Tiger = `rare` で確定**（Excel / classification / master / catalog / server seed の全ソースで一致）。**実在する白変個体（leucistic）のため legendary にしない**。
+- ID は **`ground_rare_white_tiger` のまま不変**（`ground_white_tiger` / `ground_legendary_white_tiger` は生成しない）。
+- 影響：**ground の normal 完成対象は 69件のまま**＝**legendary 解放条件は変化しない**。初期 rarity 構成 normal 84 / rare 1 / legendary 4 も維持。
+- Phase 0.5 で「未解決の矛盾」としていた Excel(normal) と classification(rare) の不一致は**解消済み**。

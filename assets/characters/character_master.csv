@@ -1,328 +1,462 @@
-worldGroup,realmGroup,no,name,speciesJa,speciesEn,rarity,status,description
-ground,life,1,モコアルパ,アルパカ,Alpaca,normal,○,
-ground,life,2,アリクイノ,アリクイ,Anteater,normal,○,
-ground,life,3,アルマジロロ,アルマジロ,Armadillo,normal,○,
-ground,life,4,アナグマル,アナグマ,Badger,normal,,
-ground,life,5,コグマル,クマ,Bear,normal,○,
-ground,life,6,ラクダム,ラクダ,Camel,normal,○,
-ground,life,7,ヒカリネコ,猫,Cat,normal,○,
-ground,life,8,カメレオンヌ,カメレオン,Chameleon,normal,○,
-ground,life,9,チータス,チーター,Cheetah,normal,○,
-ground,life,10,チンパル,チンパンジー,Chimpanzee,normal,,
-ground,life,11,ウシモー,牛,Cow,normal,○,
-ground,life,12,コモレビシカ,鹿,Deer,normal,○,
-ground,life,13,モリイヌ,犬,Dog,normal,○,
-ground,life,14,ロバロン,ロバ,Donkey,normal,○,
-ground,life,15,ゾウノコ,ゾウ,Elephant,normal,○,
-ground,life,16,フェレッタ,フェレット,Ferret,normal,,
-ground,life,17,ユキギツネ,キツネ,Fox,normal,○,
-ground,life,18,ヤモリン,ヤモリ,Gecko,normal,,
-ground,life,19,キリンネ,キリン,Giraffe,normal,○,
-ground,life,20,ヤギノコ,ヤギ,Goat,normal,,
-ground,life,21,ゴリマル,ゴリラ,Gorilla,normal,○,
-ground,life,22,ハナハム,ハムスター,Hamster,normal,○,
-ground,life,23,ハリネズン,ハリネズミ,Hedgehog,normal,,
-ground,life,24,ウマカゼ,馬,Horse,normal,○,
-ground,life,25,ハイエニャ,ハイエナ,Hyena,normal,,
-ground,life,26,イグアロン,イグアナ,Iguana,normal,,
-ground,life,27,ジャガロン,ジャガー,Jaguar,normal,,
-ground,life,28,カンガルン,カンガルー,Kangaroo,normal,,
-ground,life,29,コアラン,コアラ,Koala,normal,○,
-ground,life,30,キツネザルン,キツネザル,Lemur,normal,,
-ground,life,31,ヒョウテン,ヒョウ,Leopard,normal,,
-ground,life,32,コライオン,ライオン,Lion,normal,,
-ground,life,33,リクトカゲ,トカゲ,Lizard,normal,,
-ground,life,34,ラマロン,ラマ,Llama,normal,,
-ground,life,35,マンドリルン,マンドリル,Mandrill,normal,,
-ground,life,36,マーモル,マーモット,Marmot,normal,,
-ground,life,37,テンテン,テン,Marten,normal,,
-ground,life,38,ミーアミィ,ミーアキャット,Meerkat,normal,,
-ground,life,39,モグリット,モグラ,Mole,normal,,
-ground,life,40,サルッコ,サル,Monkey,normal,,
-ground,life,41,ムースン,ムース,Moose,normal,,
-ground,life,42,ドングリネズ,ネズミ,Mouse,normal,,
-ground,life,43,オカピン,オカピ,Okapi,normal,,
-ground,life,44,オランゴ,オランウータン,Orangutan,normal,,
-ground,life,45,パンダル,パンダ,Panda,normal,,
-ground,life,46,ヤマアラシン,ヤマアラシ,Porcupine,normal,,
-ground,life,47,プレリード,プレーリードッグ,Prairie Dog,normal,,
-ground,life,48,ツキウサ,うさぎ,Rabbit,normal,○,
-ground,life,49,ホシアライ,アライグマ,Raccoon,normal,,
-ground,life,50,マメタヌキ,タヌキ,Raccoon Dog,normal,○,
-ground,life,51,レッサン,レッサーパンダ,Red Panda,normal,,
-ground,life,52,サイガン,サイ,Rhinoceros,normal,,
-ground,life,53,カモシカゼ,カモシカ,Serow,normal,,
-ground,life,54,ツノヒツジ,羊,Sheep,normal,,
-ground,life,55,スカンクー,スカンク,Skunk,normal,,
-ground,life,56,ナマケロン,ナマケモノ,Sloth,normal,,
-ground,life,57,ヘビマキ,ヘビ,Snake,normal,,
-ground,life,58,コノハリス,リス,Squirrel,normal,○,
-ground,life,59,バクミィ,バク,Tapir,normal,,
-ground,life,60,トラマル,トラ,Tiger,normal,,
-ground,life,61,ビクーニャル,ビクーニャ,Vicuna,normal,,
-ground,life,62,イタチル,イタチ,Weasel,normal,,
-ground,life,63,イノマル,イノシシ,Wild Boar,normal,,
-ground,life,64,オオカミン,オオカミ,Wolf,normal,,
-ground,life,65,シマウマル,シマウマ,Zebra,normal,,
-ground,life,66,センザンコ,センザンコウ,Pangolin,normal,,
-ground,life,67,ツチブタン,ツチブタ,Aardvark,normal,,
-ground,life,68,バイソン,バイソン,Bison,normal,,
-ground,life,69,トナカイン,トナカイ,Reindeer,normal,,
-ground,life,1,フェンリル,フェンリル,Fenrir,rare,,
-ground,life,2,白虎,白虎,White Tiger,rare,,
-ground,life,3,ツチノコ,ツチノコ,Tsuchinoko,rare,,
-ground,life,4,イエティ,イエティ,Yeti,rare,,
-ground,life,5,地底人,地底人,Underground Dweller,rare,,
-waterside,life,1,ビーバロン,ビーバー,Beaver,normal,○,
-waterside,life,2,カピバロン,カピバラ,Capybara,normal,,
-waterside,life,3,ワニワニ,ワニ,Crocodile,normal,○,
-waterside,life,4,イルカルン,イルカ,Dolphin,normal,○,
-waterside,life,5,カエルン,カエル,Frog,normal,○,
-waterside,life,6,カバプク,カバ,Hippopotamus,normal,○,
-waterside,life,7,イモリット,イモリ,Newt,normal,,
-waterside,life,8,ミズカワウソ,カワウソ,Otter,normal,,
-waterside,life,9,ペンギロン,ペンギン,Penguin,normal,,
-waterside,life,10,カモノハシン,カモノハシ,Platypus,normal,,
-waterside,life,11,サンショウル,サンショウウオ,Salamander,normal,,
-waterside,life,12,ラッコミィ,ラッコ,Sea Otter,normal,,
-waterside,life,13,アザラル,アザラシ,Seal,normal,,
-waterside,life,14,カメロン,カメ,Turtle,normal,,
-waterside,life,15,セイウチン,セイウチ,Walrus,normal,,
-waterside,life,16,クジラコ,クジラ,Whale,normal,,
-waterside,life,17,メダカリ,メダカ,Medaka,normal,,
-waterside,life,18,キンギョン,金魚,Goldfish,normal,,
-waterside,life,19,コイマル,鯉,Carp,normal,,
-waterside,life,20,フナッコ,フナ,Crucian Carp,normal,,
-waterside,life,21,ドジョリン,ドジョウ,Loach,normal,,
-waterside,life,22,ナマズン,ナマズ,Catfish,normal,,
-waterside,life,23,アユミン,アユ,Sweetfish,normal,,
-waterside,life,24,ヤマメル,ヤマメ,Yamame Trout,normal,,
-waterside,life,25,イワナゴ,イワナ,Char,normal,,
-waterside,life,26,サケノコ,サケ,Salmon,normal,,
-waterside,life,27,マスラン,マス,Trout,normal,,
-waterside,life,28,ワカサギン,ワカサギ,Wakasagi Smelt,normal,,
-waterside,life,29,ウナギリ,ウナギ,Eel,normal,,
-waterside,life,30,アナゴン,アナゴ,Conger Eel,normal,,
-waterside,life,31,ハモニィ,ハモ,Pike Conger,normal,,
-waterside,life,32,タイマル,タイ,Sea Bream,normal,,
-waterside,life,33,スズキン,スズキ,Sea Bass,normal,,
-waterside,life,34,アジロン,アジ,Horse Mackerel,normal,,
-waterside,life,35,サバラン,サバ,Mackerel,normal,,
-waterside,life,36,イワシィ,イワシ,Sardine,normal,,
-waterside,life,37,サンマル,サンマ,Pacific Saury,normal,,
-waterside,life,38,カツオン,カツオ,Bonito,normal,,
-waterside,life,39,マグロン,マグロ,Tuna,normal,,
-waterside,life,40,ブリッツ,ブリ,Yellowtail,normal,,
-waterside,life,41,カンパチン,カンパチ,Greater Amberjack,normal,,
-waterside,life,42,ヒラメル,ヒラメ,Flounder,normal,,
-waterside,life,43,カレイン,カレイ,Flatfish,normal,,
-waterside,life,44,フグマル,フグ,Pufferfish,normal,,
-waterside,life,45,ハリセン,ハリセンボン,Porcupinefish,normal,,
-waterside,life,46,マンボロン,マンボウ,Ocean Sunfish,normal,,
-waterside,life,47,トビウオン,トビウオ,Flying Fish,normal,,
-waterside,life,48,カジキル,カジキ,Marlin,normal,,
-waterside,life,49,サメチビ,サメ,Shark,normal,,
-waterside,life,50,エイミィ,エイ,Ray,normal,,
-waterside,life,51,タツノコ,タツノオトシゴ,Seahorse,normal,,
-waterside,life,52,クマノミン,クマノミ,Clownfish,normal,,
-waterside,life,53,ナンヨウル,ナンヨウハギ,Blue Tang,normal,,
-waterside,life,54,チョウチョウオ,チョウチョウウオ,Butterflyfish,normal,,
-waterside,life,55,ツノダシン,ツノダシ,Moorish Idol,normal,,
-waterside,life,56,ハコフグン,ハコフグ,Boxfish,normal,,
-waterside,life,57,ミノカサゴン,ミノカサゴ,Lionfish,normal,,
-waterside,life,58,カサゴロ,カサゴ,Rockfish,normal,,
-waterside,life,59,メバルン,メバル,Black Rockfish,normal,,
-waterside,life,60,アイナメル,アイナメ,Greenling,normal,,
-waterside,life,61,ギンポン,ギンポ,Gunnel,normal,,
-waterside,life,62,ベラッコ,ベラ,Wrasse,normal,,
-waterside,life,63,ブダイン,ブダイ,Parrotfish,normal,,
-waterside,life,64,ハゼピョン,ハゼ,Goby,normal,,
-waterside,life,65,ムツゴロウル,ムツゴロウ,Mudskipper,normal,,
-waterside,life,66,アンコウラ,アンコウ,Anglerfish,normal,,
-waterside,life,67,リュウグウル,リュウグウノツカイ,Oarfish,normal,,
-waterside,life,68,シーラカン,シーラカンス,Coelacanth,normal,,
-waterside,life,69,ピラルクン,ピラルク,Arapaima,normal,,
-waterside,life,70,アロワナン,アロワナ,Arowana,normal,,
-waterside,life,71,ピラニャン,ピラニア,Piranha,normal,,
-waterside,life,72,ネオンテト,ネオンテトラ,Neon Tetra,normal,,
-waterside,life,73,グッピィ,グッピー,Guppy,normal,,
-waterside,life,74,ベタリス,ベタ,Betta,normal,,
-waterside,life,75,エンゼルン,エンゼルフィッシュ,Angelfish,normal,,
-waterside,life,76,ディスカン,ディスカス,Discus,normal,,
-waterside,life,77,プレコロ,プレコ,Pleco,normal,,
-waterside,life,78,コリドラン,コリドラス,Corydoras,normal,,
-waterside,life,79,テッポウオ,テッポウウオ,Archerfish,normal,,
-waterside,life,80,クラゲミィ,クラゲ,Jellyfish,normal,,
-waterside,life,81,タコマル,タコ,Octopus,normal,,
-waterside,life,82,イカリン,イカ,Squid,normal,,
-waterside,life,83,アサリィ,アサリ,Clam,normal,,
-waterside,life,84,ハマグリン,ハマグリ,Common Orient Clam,normal,,
-waterside,life,85,ホタテロン,ホタテ,Scallop,normal,,
-waterside,life,86,サザエン,サザエ,Turban Shell,normal,,
-waterside,life,87,ウミウシィ,ウミウシ,Sea Slug,normal,,
-waterside,life,88,ナマコロ,ナマコ,Sea Cucumber,normal,,
-waterside,life,89,ヒトデン,ヒトデ,Starfish,normal,,
-waterside,life,90,ウニマル,ウニ,Sea Urchin,normal,,
-waterside,life,91,サンゴン,サンゴ,Coral,normal,,
-waterside,life,92,イソギン,イソギンチャク,Sea Anemone,normal,,
-waterside,life,93,シャチロン,シャチ,Orca,normal,,
-waterside,life,94,カニマル,カニ,Crab,normal,,
-waterside,life,95,ヤドカリス,ヤドカリ,Hermit Crab,normal,,
-waterside,life,96,エビチョコ,エビ,Shrimp,normal,,
-waterside,life,97,ロブスタン,ロブスター,Lobster,normal,,
-waterside,life,98,ダンゴウオン,ダンゴウオ,Lumpsucker,normal,,
-waterside,life,99,チンアナゴン,チンアナゴ,Spotted Garden Eel,normal,,
-waterside,life,100,ウツボル,ウツボ,Moray Eel,normal,,
-waterside,life,101,カワハギン,カワハギ,Filefish,normal,,
-waterside,life,102,オニオコゼン,オニオコゼ,Devil Stinger,normal,,
-waterside,life,103,カマスン,カマス,Barracuda,normal,,
-waterside,life,104,メジナル,メジナ,Largescale Blackfish,normal,,
-waterside,life,105,キスピィ,キス,Sillago,normal,,
-waterside,life,106,フエダイン,フエダイ,Snapper,normal,,
-waterside,life,107,タラマル,タラ,Cod,normal,,
-waterside,life,108,ニシンル,ニシン,Herring,normal,,
-waterside,life,109,ボラロン,ボラ,Mullet,normal,,
-waterside,life,110,ハタノコ,ハタ,Grouper,normal,,
-waterside,life,111,カワカマスン,カワカマス,Pike,normal,,
-waterside,life,112,ティラピィ,ティラピア,Tilapia,normal,,
-waterside,life,113,キビナゴン,キビナゴ,Silver-stripe Round Herring,normal,,
-waterside,life,114,メルルーサン,メルルーサ,Hake,normal,,
-waterside,life,115,アメフラシィ,アメフラシ,Sea Hare,normal,,
-waterside,life,116,オキアミン,オキアミ,Krill,normal,,
-waterside,life,1,クラーケン,クラーケン,Kraken,rare,,
-waterside,life,2,海竜,海竜,Sea Dragon,rare,,
-waterside,life,3,メガロドン,メガロドン,Megalodon,rare,,
-waterside,life,4,シーラカンス,シーラカンス,Coelacanth,rare,,
-waterside,life,5,メガマウス,メガマウス,Megamouth Shark,rare,,
-waterside,life,6,ネッシー,ネッシー,Nessie,rare,,
-waterside,life,7,マーライオン,マーライオン,Merlion,rare,,
-sky,life,1,コウモリン,コウモリ,Bat,normal,○,
-sky,life,2,オウムン,オウム,Cockatoo,normal,○,
-sky,life,3,ツルミヤ,ツル,Crane,normal,○,
-sky,life,4,カラスケ,カラス,Crow,normal,○,
-sky,life,5,ワシノスケ,ワシ,Eagle,normal,○,
-sky,life,6,フラミン,フラミンゴ,Flamingo,normal,,
-sky,life,7,タカマル,タカ,Hawk,normal,,
-sky,life,8,ダチョラン,ダチョウ,Ostrich,normal,,
-sky,life,9,フクロウル,フクロウ,Owl,normal,,
-sky,life,10,インコロ,インコ,Parakeet,normal,,
-sky,life,11,クジャックン,クジャク,Peacock,normal,,
-sky,life,12,ハトポッポ,ハト,Pigeon,normal,,
-sky,life,13,スズメル,スズメ,Sparrow,normal,,
-sky,life,14,ツバメロ,ツバメ,Swallow,normal,,
-sky,life,15,ハクチョル,白鳥,Swan,normal,,
-bug,life,1,テントム,テントウムシ,Ladybug,normal,,
-bug,life,2,カブトン,カブトムシ,Rhinoceros Beetle,normal,,
-bug,life,3,クワガロン,クワガタ,Stag Beetle,normal,,
-bug,life,4,コガネン,コガネムシ,Scarab Beetle,normal,,
-bug,life,5,タマムシィ,タマムシ,Jewel Beetle,normal,,
-bug,life,6,カナブンブン,カナブン,Bronze Beetle,normal,,
-bug,life,7,ハナムグリン,ハナムグリ,Flower Chafer,normal,,
-bug,life,8,チョウミィ,蝶,Butterfly,normal,,
-bug,life,9,ガミィ,蛾,Moth,normal,,
-bug,life,10,カイコロ,カイコ,Silkworm,normal,,
-bug,life,11,ハチミィ,ミツバチ,Honeybee,normal,,
-bug,life,12,クマンバチン,クマバチ,Carpenter Bee,normal,,
-bug,life,13,スズメバチン,スズメバチ,Hornet,normal,,
-bug,life,14,アシナガン,アシナガバチ,Paper Wasp,normal,,
-bug,life,15,アリッコ,アリ,Ant,normal,,
-bug,life,16,シロアリム,シロアリ,Termite,normal,,
-bug,life,17,カマキリン,カマキリ,Mantis,normal,,
-bug,life,18,バッタロン,バッタ,Grasshopper,normal,,
-bug,life,19,キリギリン,キリギリス,Katydid,normal,,
-bug,life,20,コオロギン,コオロギ,Cricket,normal,,
-bug,life,21,スズムシィ,スズムシ,Bell Cricket,normal,,
-bug,life,22,マツムシン,マツムシ,Pine Cricket,normal,,
-bug,life,23,セミマル,セミ,Cicada,normal,,
-bug,life,24,トンボル,トンボ,Dragonfly,normal,,
-bug,life,25,ホタルン,ホタル,Firefly,normal,,
-bug,life,26,タガメン,タガメ,Giant Water Bug,normal,,
-bug,life,27,ゲンゴロン,ゲンゴロウ,Diving Beetle,normal,,
-bug,life,28,ミズスマシン,ミズスマシ,Whirligig Beetle,normal,,
-bug,life,29,アメンボウ,アメンボ,Water Strider,normal,,
-bug,life,30,サソリオン,サソリ,Scorpion,normal,,
-bug,life,31,ムカデン,ムカデ,Centipede,normal,,
-bug,life,32,ヤスデロ,ヤスデ,Millipede,normal,,
-bug,life,33,ダンゴロン,ダンゴムシ,Pill Bug,normal,,
-bug,life,34,ナナフシン,ナナフシ,Stick Insect,normal,,
-bug,life,35,コノハムシ,コノハムシ,Leaf Insect,normal,,
-bug,life,36,ハムシィ,ハムシ,Leaf Beetle,normal,,
-bug,life,37,ゾウムシン,ゾウムシ,Weevil,normal,,
-bug,life,38,カミキリン,カミキリムシ,Longhorn Beetle,normal,,
-bug,life,39,ハンミョン,ハンミョウ,Tiger Beetle,normal,,
-bug,life,40,オサムシン,オサムシ,Ground Beetle,normal,,
-bug,life,41,タマオシン,フンコロガシ,Dung Beetle,normal,,
-bug,life,42,ハサミムシ,ハサミムシ,Earwig,normal,,
-bug,life,43,シミミィ,シミ,Silverfish,normal,,
-bug,life,44,トビムシン,トビムシ,Springtail,normal,,
-bug,life,45,アブラン,アブラムシ,Aphid,normal,,
-bug,life,46,イモムシィ,芋虫,Caterpillar,normal,,
-bug,life,47,ミノムシン,ミノムシ,Bagworm,normal,,
-bug,life,48,ハマキムシ,ハマキムシ,Leafroller,normal,,
-bug,life,49,ウスバカゲ,ウスバカゲロウ,Antlion,normal,,
-bug,life,50,カゲロウル,カゲロウ,Mayfly,normal,,
-bug,life,51,カワゲラン,カワゲラ,Stonefly,normal,,
-bug,life,52,ゴキリス,ゴキブリ,Cockroach,normal,,
-bug,life,53,カミィ,カ,Mosquito,normal,,
-bug,life,54,ハエルン,ハエ,Fly,normal,,
-bug,life,55,アブロン,アブ,Horsefly,normal,,
-bug,life,56,ブユミィ,ブユ,Blackfly,normal,,
-bug,life,57,ガガンボル,ガガンボ,Crane Fly,normal,,
-bug,life,58,カメムシン,カメムシ,Stink Bug,normal,,
-bug,life,59,カマドウマル,カマドウマ,Cave Cricket,normal,,
-bug,life,60,ヨコバイン,ヨコバイ,Leafhopper,normal,,
-bug,life,61,ウンカル,ウンカ,Planthopper,normal,,
-bug,life,62,カイガラム,カイガラムシ,Scale Insect,normal,,
-bug,life,63,キクイムシン,キクイムシ,Bark Beetle,normal,,
-bug,life,64,オケラン,オケラ,Mole Cricket,normal,,
-bug,life,65,コメツキン,コメツキムシ,Click Beetle,normal,,
-bug,life,66,アワフキン,アワフキムシ,Spittlebug,normal,,
-bug,life,67,ハバチル,ハバチ,Sawfly,normal,,
-bug,life,68,クモマル,クモ,Spider,normal,,
-bug,life,69,ダニミィ,ダニ,Mite,normal,,
-bug,life,70,マダニン,マダニ,Tick,normal,,
-bug,life,71,ノミピョン,ノミ,Flea,normal,,
-bug,life,72,シラミン,シラミ,Louse,normal,,
-bug,life,73,チャタテム,チャタテムシ,Booklouse,normal,,
-bug,life,74,コナジラミィ,コナジラミ,Whitefly,normal,,
-bug,life,75,クサカゲロウル,クサカゲロウ,Lacewing,normal,,
-bug,life,76,ヘビトンボン,ヘビトンボ,Dobsonfly,normal,,
-bug,life,77,センブリン,センブリ,Alderfly,normal,,
-bug,life,78,トビケラン,トビケラ,Caddisfly,normal,,
-bug,life,79,アザミウマル,アザミウマ,Thrips,normal,,
-bug,life,80,ハネカクシン,ハネカクシ,Rove Beetle,normal,,
-bug,life,81,マダラシミィ,マダラシミ,Firebrat,normal,,
-bug,life,82,ムシヒキアブン,ムシヒキアブ,Robber Fly,normal,,
-bug,life,83,ハナアブル,ハナアブ,Hoverfly,normal,,
-bug,life,84,ヒメバチン,ヒメバチ,Ichneumon Wasp,normal,,
-bug,life,85,グンバイムシ,グンバイムシ,Lace Bug,normal,,
-bug,life,86,サシガメン,サシガメ,Assassin Bug,normal,,
-bug,life,87,トコジラミィ,トコジラミ,Bed Bug,normal,,
-bug,life,88,ミズカマキリ,ミズカマキリ,Water Scorpion,normal,,
-bug,life,89,ミズムシン,ミズムシ,Water Boatman,normal,,
-bug,life,90,マツモムシィ,マツモムシ,Backswimmer,normal,,
-bug,life,91,カギムシン,カギムシ,Velvet Worm,normal,,
-bug,life,92,カニムシン,カニムシ,Pseudoscorpion,normal,,
-bug,life,93,ザトウムシィ,ザトウムシ,Harvestman,normal,,
-bug,life,94,ゲジゲジン,ゲジ,House Centipede,normal,,
-bug,life,95,コムカデン,コムカデ,Symphylan,normal,,
-bug,life,96,エダヒゲムシ,エダヒゲムシ,Pauropod,normal,,
-bug,life,97,イシノミィ,イシノミ,Bristletail,normal,,
-bug,life,98,ラクダムシン,ラクダムシ,Snakefly,normal,,
-bug,life,99,シロアリモドキ,シロアリモドキ,Webspinner,normal,,
-bug,life,100,ハバチモドキ,キバチ,Horntail,normal,,
-bug,life,1,幻虫,幻虫,Phantom Insect,rare,,
-bug,life,2,ケサランパサラン,ケサランパサラン,Kesaran Pasaran,rare,,
-phantom,life,1,ドラゴン,ドラゴン,Dragon,rare,,
-phantom,life,2,ゴースト,ゴースト,Ghost,rare,,
-phantom,life,3,フェニックス,フェニックス,Phoenix,rare,,
-phantom,life,4,スフィンクス,スフィンクス,Sphinx,rare,,
-phantom,life,5,モアイ,モアイ,Moai,rare,,
-phantom,life,6,妖精,妖精,Fairy,rare,,
-phantom,life,7,小人,小人,Dwarf,rare,,
-phantom,life,8,エルフ,エルフ,Elf,rare,,
-phantom,life,9,ユニコーン,ユニコーン,Unicorn,rare,,
-phantom,life,10,グリフォン,グリフォン,Griffin,rare,,
-phantom,life,11,ペガサス,ペガサス,Pegasus,rare,,
-planet,space,1,エイリアン,エイリアン,Alien,rare,,
-planet,space,2,ロボット,ロボット,Robot,rare,,
+worldGroup,realmGroup,id,no,name,speciesJa,speciesEn,rarity,status,description
+ground,life,ground_aardvark,67,ツチブタン,ツチブタ,Aardvark,normal,○,11
+ground,life,ground_alpaca,1,モコアルパ,アルパカ,Alpaca,normal,○,11
+ground,life,ground_anteater,2,アリクイノ,アリクイ,Anteater,normal,○,11
+ground,life,ground_armadillo,3,アルマジロロ,アルマジロ,Armadillo,normal,○,11
+ground,life,ground_badger,4,アナグマル,アナグマ,Badger,normal,○,11
+ground,life,ground_bear,5,コグマル,クマ,Bear,normal,○,11
+ground,life,ground_bison,68,バイソン,バイソン,Bison,normal,○,11
+ground,life,ground_camel,6,ラクダム,ラクダ,Camel,normal,○,11
+ground,life,ground_cat,7,ヒカリネコ,猫,Cat,normal,○,11
+ground,life,ground_chameleon,8,カメレオンヌ,カメレオン,Chameleon,normal,○,11
+ground,life,ground_cheetah,9,チータス,チーター,Cheetah,normal,○,11
+ground,life,ground_chimpanzee,10,チンパル,チンパンジー,Chimpanzee,normal,○,11
+ground,life,ground_cow,11,ウシモー,牛,Cow,normal,○,11
+ground,life,ground_deer,12,コモレビシカ,鹿,Deer,normal,○,11
+ground,life,ground_dog,13,モリイヌ,犬,Dog,normal,○,11
+ground,life,ground_donkey,14,ロバロン,ロバ,Donkey,normal,○,11
+ground,life,ground_elephant,15,ゾウノコ,ゾウ,Elephant,normal,○,11
+ground,life,ground_rare_fenrir,1,フェンリル,フェンリル,Fenrir,legendary,○,11
+ground,life,ground_ferret,16,フェレッタ,フェレット,Ferret,normal,○,11
+ground,life,ground_fox,17,ユキギツネ,キツネ,Fox,normal,○,11
+ground,life,ground_gecko,18,ヤモリン,ヤモリ,Gecko,normal,○,11
+ground,life,ground_giraffe,19,キリンネ,キリン,Giraffe,normal,○,11
+ground,life,ground_goat,20,ヤギノコ,ヤギ,Goat,normal,○,11
+ground,life,ground_gorilla,21,ゴリマル,ゴリラ,Gorilla,normal,○,11
+ground,life,ground_hamster,22,ハナハム,ハムスター,Hamster,normal,○,11
+ground,life,ground_hedgehog,23,ハリネズン,ハリネズミ,Hedgehog,normal,○,11
+ground,life,ground_horse,24,ウマカゼ,馬,Horse,normal,○,11
+ground,life,ground_hyena,25,ハイエニャ,ハイエナ,Hyena,normal,○,11
+ground,life,ground_iguana,26,イグアロン,イグアナ,Iguana,normal,○,11
+ground,life,ground_jaguar,27,ジャガロン,ジャガー,Jaguar,normal,○,11
+ground,life,ground_kangaroo,28,カンガルン,カンガルー,Kangaroo,normal,○,11
+ground,life,ground_koala,29,コアラン,コアラ,Koala,normal,○,11
+ground,life,ground_lemur,30,キツネザルン,キツネザル,Lemur,normal,○,11
+ground,life,ground_leopard,31,ヒョウテン,ヒョウ,Leopard,normal,○,11
+ground,life,ground_lion,32,コライオン,ライオン,Lion,normal,○,11
+ground,life,ground_lizard,33,リクトカゲ,トカゲ,Lizard,normal,○,11
+ground,life,ground_llama,34,ラマロン,ラマ,Llama,normal,○,11
+ground,life,ground_mandrill,35,マンドリルン,マンドリル,Mandrill,normal,○,11
+ground,life,ground_marmot,36,マーモル,マーモット,Marmot,normal,○,11
+ground,life,ground_marten,37,テンテン,テン,Marten,normal,○,11
+ground,life,ground_meerkat,38,ミーアミィ,ミーアキャット,Meerkat,normal,○,11
+ground,life,ground_mole,39,モグリット,モグラ,Mole,normal,○,11
+ground,life,ground_monkey,40,サルッコ,サル,Monkey,normal,○,11
+ground,life,ground_moose,41,ムースン,ムース,Moose,normal,○,11
+ground,life,ground_mouse,42,ドングリネズ,ネズミ,Mouse,normal,○,11
+ground,life,ground_okapi,43,オカピン,オカピ,Okapi,normal,○,11
+ground,life,ground_orangutan,44,オランゴ,オランウータン,Orangutan,normal,○,11
+ground,life,ground_panda,45,パンダル,パンダ,Panda,normal,○,11
+ground,life,ground_pangolin,66,センザンコ,センザンコウ,Pangolin,normal,○,11
+ground,life,ground_porcupine,46,ヤマアラシン,ヤマアラシ,Porcupine,normal,○,11
+ground,life,ground_prairie_dog,47,プレリード,プレーリードッグ,Prairie Dog,normal,○,11
+ground,life,ground_rabbit,48,ツキウサ,うさぎ,Rabbit,normal,○,11
+ground,life,ground_raccoon,49,ホシアライ,アライグマ,Raccoon,normal,○,11
+ground,life,ground_raccoon_dog,50,マメタヌキ,タヌキ,Raccoon Dog,normal,○,11
+ground,life,ground_red_panda,51,レッサン,レッサーパンダ,Red Panda,normal,○,11
+ground,life,ground_reindeer,69,トナカイン,トナカイ,Reindeer,normal,○,11
+ground,life,ground_rhinoceros,52,サイガン,サイ,Rhinoceros,normal,○,11
+ground,life,ground_serow,53,カモシカゼ,カモシカ,Serow,normal,○,11
+ground,life,ground_sheep,54,ツノヒツジ,羊,Sheep,normal,○,11
+ground,life,ground_skunk,55,スカンクー,スカンク,Skunk,normal,○,11
+ground,life,ground_sloth,56,ナマケロン,ナマケモノ,Sloth,normal,○,11
+ground,life,ground_snake,57,ヘビマキ,ヘビ,Snake,normal,○,11
+ground,life,ground_squirrel,58,コノハリス,リス,Squirrel,normal,○,11
+ground,life,ground_tapir,59,バクミィ,バク,Tapir,normal,○,11
+ground,life,ground_tiger,60,トラマル,トラ,Tiger,normal,○,11
+ground,life,ground_rare_tsuchinoko,3,ツチノコ,ツチノコ,Tsuchinoko,legendary,○,11
+ground,life,ground_rare_underground_dweller,5,地底人,地底人,Underground Dweller,legendary,○,11
+ground,life,ground_vicuna,61,ビクーニャル,ビクーニャ,Vicuna,normal,○,11
+ground,life,ground_weasel,62,イタチル,イタチ,Weasel,normal,○,11
+ground,life,ground_rare_white_tiger,2,白虎,白虎,White Tiger,rare,○,11
+ground,life,ground_wild_boar,63,イノマル,イノシシ,Wild Boar,normal,○,11
+ground,life,ground_wolf,64,オオカミン,オオカミ,Wolf,normal,○,11
+ground,life,ground_rare_yeti,4,イエティ,イエティ,Yeti,legendary,○,11
+ground,life,ground_zebra,65,シマウマル,シマウマ,Zebra,normal,○,11
+ground,life,ground_wombat,70,ウォンバル,ウォンバット,Wombat,normal,○,ずんぐりした体で穴掘りが得意な草食動物
+ground,life,ground_fennec_fox,71,フェネックル,フェネック,Fennec Fox,normal,○,大きな耳で砂漠の気配を聞き取る小型のキツネ
+ground,life,ground_mongoose,72,マングロン,マングース,Mongoose,normal,○,素早い身のこなしで獲物を追う小型の肉食獣
+ground,life,ground_musk_ox,73,ムスクオ,ジャコウウシ,Musk Ox,normal,○,寒冷地に適応した長い毛と大きな角を持つ
+ground,life,ground_komodo_dragon,74,コモドラ,コモドオオトカゲ,Komodo Dragon,normal,,大型で力強い陸生のオオトカゲ
+ground,life,ground_yak,75,ヤクーン,ヤク,Yak,normal,,高地の寒さに強い長い毛を持つウシ科動物
+ground,life,ground_water_buffalo,76,スイギュン,スイギュウ,Water Buffalo,normal,,大きな角と頑丈な体を持つウシ科動物
+ground,life,ground_antelope,77,アンテロン,アンテロープ,Antelope,normal,,しなやかな脚と角を持つ草原の草食動物
+ground,life,ground_gazelle,78,ガゼルン,ガゼル,Gazelle,normal,,軽やかな跳躍を得意とする細身の草食動物
+ground,life,ground_oryx,79,オリクスン,オリックス,Oryx,normal,,まっすぐ長い角を持つ乾燥地の草食動物
+ground,life,ground_ibex,80,アイベックスン,アイベックス,Ibex,normal,,反り返る大きな角で岩山を進むヤギの仲間
+ground,life,ground_lynx,81,オオヤマネコン,オオヤマネコ,Lynx,normal,,耳先の房毛と短い尾を持つ森林のネコ科動物
+ground,life,ground_bobcat,82,ボブキャトン,ボブキャット,Bobcat,normal,,短い尾と斑点模様を持つ中型のネコ科動物
+ground,life,ground_cougar,83,クーガロン,ピューマ,Cougar,normal,,長い尾としなやかな体を持つ大型のネコ科動物
+ground,life,ground_serval,84,サーバルン,サーバル,Serval,normal,,長い脚と大きな耳で草原を駆けるネコ科動物
+ground,life,ground_caracal,85,カラカルン,カラカル,Caracal,normal,,黒い耳房と高い跳躍力を持つネコ科動物
+ground,life,ground_jackal,86,ジャッカルン,ジャッカル,Jackal,normal,,大きな耳と細身の体を持つイヌ科動物
+ground,life,ground_coyote,87,コヨーテン,コヨーテ,Coyote,normal,,乾燥地にも適応する機敏なイヌ科動物
+ground,life,ground_wolverine,88,クズリオン,クズリ,Wolverine,normal,,小柄ながら力強い体を持つイタチ科動物
+ground,life,ground_chipmunk,89,シマリスン,シマリス,Chipmunk,normal,,背中の縞と頬袋が特徴の小型げっ歯類
+ground,life,ground_groundhog,90,グラウンドン,ウッドチャック,Groundhog,normal,,地面に巣穴を掘るずんぐりしたげっ歯類
+ground,life,ground_jerboa,91,トビネズン,トビネズミ,Jerboa,normal,,長い後脚で砂地を跳ねる小型げっ歯類
+ground,life,ground_gerbil,92,スナネズン,スナネズミ,Gerbil,normal,,乾燥地で暮らす長い尾の小型げっ歯類
+ground,life,ground_pika,93,ナキウサン,ナキウサギ,Pika,normal,,丸い耳と短い脚を持つ高山の小型動物
+ground,life,ground_quokka,94,クオッカン,クオッカ,Quokka,normal,,丸い顔と小柄な体を持つ有袋類
+ground,life,ground_tasmanian_devil,95,タスマニン,タスマニアデビル,Tasmanian Devil,normal,,力強い顎を持つ小型の肉食有袋類
+ground,life,ground_opossum,96,オポッサン,オポッサム,Opossum,normal,,長い尾と袋を持つ夜行性の有袋類
+ground,life,ground_aye_aye,97,アイアイーン,アイアイ,Aye-aye,normal,,大きな耳と細長い指を持つ夜行性の霊長類
+ground,life,ground_gibbon,98,テナガル,テナガザル,Gibbon,normal,,長い腕で樹上を移動する小型の類人猿
+ground,life,ground_baboon,99,ヒヒロン,ヒヒ,Baboon,normal,,長い口吻と力強い四肢を持つ霊長類
+ground,life,ground_kinkajou,100,キンカジン,キンカジュー,Kinkajou,normal,,物をつかめる尾で樹上を移動する哺乳類
+ground,life,ground_saola,6,サオラン,サオラ,Saola,rare,,発見例が非常に少ない希少なウシ科動物
+ground,life,ground_iberian_lynx,7,イベリンス,イベリアオオヤマネコ,Iberian Lynx,rare,,個体数が限られるイベリア半島固有のヤマネコ
+waterside,life,waterside_beaver,1,ビーバロン,ビーバー,Beaver,normal,○,11
+waterside,life,waterside_capybara,2,カピバロン,カピバラ,Capybara,normal,11,11
+waterside,life,waterside_crocodile,3,ワニワニ,ワニ,Crocodile,normal,○,11
+waterside,life,waterside_dolphin,4,イルカルン,イルカ,Dolphin,normal,○,11
+waterside,life,waterside_frog,5,カエルン,カエル,Frog,normal,○,11
+waterside,life,waterside_hippopotamus,6,カバプク,カバ,Hippopotamus,normal,○,11
+waterside,life,waterside_newt,7,イモリット,イモリ,Newt,normal,11,11
+waterside,life,waterside_otter,8,ミズカワウソ,カワウソ,Otter,normal,11,11
+waterside,life,waterside_penguin,9,ペンギロン,ペンギン,Penguin,normal,11,11
+waterside,life,waterside_platypus,10,カモノハシン,カモノハシ,Platypus,normal,11,11
+waterside,life,waterside_salamander,11,サンショウル,サンショウウオ,Salamander,normal,11,11
+waterside,life,waterside_sea_otter,12,ラッコミィ,ラッコ,Sea Otter,normal,11,11
+waterside,life,waterside_seal,13,アザラル,アザラシ,Seal,normal,11,11
+waterside,life,waterside_turtle,14,カメロン,カメ,Turtle,normal,11,11
+waterside,life,waterside_walrus,15,セイウチン,セイウチ,Walrus,normal,11,11
+waterside,life,waterside_whale,16,クジラコ,クジラ,Whale,normal,11,11
+waterside,life,waterside_medaka,17,メダカリ,メダカ,Medaka,normal,11,11
+waterside,life,waterside_goldfish,18,キンギョン,金魚,Goldfish,normal,11,11
+waterside,life,waterside_carp,19,コイマル,鯉,Carp,normal,11,11
+waterside,life,waterside_crucian_carp,20,フナッコ,フナ,Crucian Carp,normal,11,11
+waterside,life,waterside_loach,21,ドジョリン,ドジョウ,Loach,normal,11,11
+waterside,life,waterside_catfish,22,ナマズン,ナマズ,Catfish,normal,11,11
+waterside,life,waterside_sweetfish,23,アユミン,アユ,Sweetfish,normal,11,11
+waterside,life,waterside_yamame_trout,24,ヤマメル,ヤマメ,Yamame Trout,normal,11,11
+waterside,life,waterside_char,25,イワナゴ,イワナ,Char,normal,11,11
+waterside,life,waterside_salmon,26,サケノコ,サケ,Salmon,normal,11,11
+waterside,life,waterside_trout,27,マスラン,マス,Trout,normal,11,11
+waterside,life,waterside_wakasagi_smelt,28,ワカサギン,ワカサギ,Wakasagi Smelt,normal,11,11
+waterside,life,waterside_eel,29,ウナギリ,ウナギ,Eel,normal,11,11
+waterside,life,waterside_conger_eel,30,アナゴン,アナゴ,Conger Eel,normal,11,11
+waterside,life,waterside_pike_conger,31,ハモニィ,ハモ,Pike Conger,normal,11,11
+waterside,life,waterside_sea_bream,32,タイマル,タイ,Sea Bream,normal,11,11
+waterside,life,waterside_sea_bass,33,スズキン,スズキ,Sea Bass,normal,11,11
+waterside,life,waterside_horse_mackerel,34,アジロン,アジ,Horse Mackerel,normal,11,11
+waterside,life,waterside_mackerel,35,サバラン,サバ,Mackerel,normal,11,11
+waterside,life,waterside_sardine,36,イワシィ,イワシ,Sardine,normal,11,11
+waterside,life,waterside_pacific_saury,37,サンマル,サンマ,Pacific Saury,normal,11,11
+waterside,life,waterside_bonito,38,カツオン,カツオ,Bonito,normal,11,11
+waterside,life,waterside_tuna,39,マグロン,マグロ,Tuna,normal,11,11
+waterside,life,waterside_yellowtail,40,ブリッツ,ブリ,Yellowtail,normal,11,11
+waterside,life,waterside_greater_amberjack,41,カンパチン,カンパチ,Greater Amberjack,normal,11,11
+waterside,life,waterside_flounder,42,ヒラメル,ヒラメ,Flounder,normal,11,11
+waterside,life,waterside_flatfish,43,カレイン,カレイ,Flatfish,normal,11,11
+waterside,life,waterside_pufferfish,44,フグマル,フグ,Pufferfish,normal,11,11
+waterside,life,waterside_porcupinefish,45,ハリセン,ハリセンボン,Porcupinefish,normal,11,11
+waterside,life,waterside_ocean_sunfish,46,マンボロン,マンボウ,Ocean Sunfish,normal,11,11
+waterside,life,waterside_flying_fish,47,トビウオン,トビウオ,Flying Fish,normal,11,11
+waterside,life,waterside_marlin,48,カジキル,カジキ,Marlin,normal,11,11
+waterside,life,waterside_shark,49,サメチビ,サメ,Shark,normal,11,11
+waterside,life,waterside_ray,50,エイミィ,エイ,Ray,normal,11,11
+waterside,life,waterside_seahorse,51,タツノコ,タツノオトシゴ,Seahorse,normal,11,11
+waterside,life,waterside_clownfish,52,クマノミン,クマノミ,Clownfish,normal,11,11
+waterside,life,waterside_blue_tang,53,ナンヨウル,ナンヨウハギ,Blue Tang,normal,11,11
+waterside,life,waterside_butterflyfish,54,チョウチョウオ,チョウチョウウオ,Butterflyfish,normal,11,11
+waterside,life,waterside_moorish_idol,55,ツノダシン,ツノダシ,Moorish Idol,normal,11,11
+waterside,life,waterside_boxfish,56,ハコフグン,ハコフグ,Boxfish,normal,11,11
+waterside,life,waterside_lionfish,57,ミノカサゴン,ミノカサゴ,Lionfish,normal,11,11
+waterside,life,waterside_rockfish,58,カサゴロ,カサゴ,Rockfish,normal,11,11
+waterside,life,waterside_black_rockfish,59,メバルン,メバル,Black Rockfish,normal,11,11
+waterside,life,waterside_greenling,60,アイナメル,アイナメ,Greenling,normal,11,11
+waterside,life,waterside_gunnel,61,ギンポン,ギンポ,Gunnel,normal,11,11
+waterside,life,waterside_wrasse,62,ベラッコ,ベラ,Wrasse,normal,11,11
+waterside,life,waterside_parrotfish,63,ブダイン,ブダイ,Parrotfish,normal,11,11
+waterside,life,waterside_goby,64,ハゼピョン,ハゼ,Goby,normal,11,11
+waterside,life,waterside_mudskipper,65,ムツゴロウル,ムツゴロウ,Mudskipper,normal,11,11
+waterside,life,waterside_anglerfish,66,アンコウラ,アンコウ,Anglerfish,normal,11,11
+waterside,life,waterside_oarfish,67,リュウグウル,リュウグウノツカイ,Oarfish,normal,11,11
+waterside,life,waterside_coelacanth,68,シーラカン,シーラカンス,Coelacanth,normal,11,11
+waterside,life,waterside_arapaima,69,ピラルクン,ピラルク,Arapaima,normal,11,11
+waterside,life,waterside_arowana,70,アロワナン,アロワナ,Arowana,normal,11,11
+waterside,life,waterside_piranha,71,ピラニャン,ピラニア,Piranha,normal,11,11
+waterside,life,waterside_neon_tetra,72,ネオンテト,ネオンテトラ,Neon Tetra,normal,11,11
+waterside,life,waterside_guppy,73,グッピィ,グッピー,Guppy,normal,11,11
+waterside,life,waterside_betta,74,ベタリス,ベタ,Betta,normal,11,11
+waterside,life,waterside_angelfish,75,エンゼルン,エンゼルフィッシュ,Angelfish,normal,11,11
+waterside,life,waterside_discus,76,ディスカン,ディスカス,Discus,normal,11,11
+waterside,life,waterside_pleco,77,プレコロ,プレコ,Pleco,normal,11,11
+waterside,life,waterside_corydoras,78,コリドラン,コリドラス,Corydoras,normal,11,11
+waterside,life,waterside_archerfish,79,テッポウオ,テッポウウオ,Archerfish,normal,11,11
+waterside,life,waterside_jellyfish,80,クラゲミィ,クラゲ,Jellyfish,normal,11,11
+waterside,life,waterside_octopus,81,タコマル,タコ,Octopus,normal,11,11
+waterside,life,waterside_squid,82,イカリン,イカ,Squid,normal,11,11
+waterside,life,waterside_clam,83,アサリィ,アサリ,Clam,normal,11,11
+waterside,life,waterside_common_orient_clam,84,ハマグリン,ハマグリ,Common Orient Clam,normal,11,11
+waterside,life,waterside_scallop,85,ホタテロン,ホタテ,Scallop,normal,11,11
+waterside,life,waterside_turban_shell,86,サザエン,サザエ,Turban Shell,normal,11,11
+waterside,life,waterside_sea_slug,87,ウミウシィ,ウミウシ,Sea Slug,normal,11,11
+waterside,life,waterside_sea_cucumber,88,ナマコロ,ナマコ,Sea Cucumber,normal,11,11
+waterside,life,waterside_starfish,89,ヒトデン,ヒトデ,Starfish,normal,11,11
+waterside,life,waterside_sea_urchin,90,ウニマル,ウニ,Sea Urchin,normal,11,11
+waterside,life,waterside_coral,91,サンゴン,サンゴ,Coral,normal,11,11
+waterside,life,waterside_sea_anemone,92,イソギン,イソギンチャク,Sea Anemone,normal,11,11
+waterside,life,waterside_orca,93,シャチロン,シャチ,Orca,normal,11,11
+waterside,life,waterside_crab,94,カニマル,カニ,Crab,normal,11,11
+waterside,life,waterside_hermit_crab,95,ヤドカリス,ヤドカリ,Hermit Crab,normal,11,11
+waterside,life,waterside_shrimp,96,エビチョコ,エビ,Shrimp,normal,11,11
+waterside,life,waterside_lobster,97,ロブスタン,ロブスター,Lobster,normal,11,11
+waterside,life,waterside_lumpsucker,98,ダンゴウオン,ダンゴウオ,Lumpsucker,normal,11,11
+waterside,life,waterside_spotted_garden_eel,99,チンアナゴン,チンアナゴ,Spotted Garden Eel,normal,11,11
+waterside,life,waterside_moray_eel,100,ウツボル,ウツボ,Moray Eel,normal,11,11
+waterside,life,waterside_filefish,101,カワハギン,カワハギ,Filefish,normal,11,11
+waterside,life,waterside_devil_stinger,102,オニオコゼン,オニオコゼ,Devil Stinger,normal,11,11
+waterside,life,waterside_barracuda,103,カマスン,カマス,Barracuda,normal,11,11
+waterside,life,waterside_largescale_blackfish,104,メジナル,メジナ,Largescale Blackfish,normal,11,11
+waterside,life,waterside_sillago,105,キスピィ,キス,Sillago,normal,11,11
+waterside,life,waterside_snapper,106,フエダイン,フエダイ,Snapper,normal,11,11
+waterside,life,waterside_cod,107,タラマル,タラ,Cod,normal,11,11
+waterside,life,waterside_herring,108,ニシンル,ニシン,Herring,normal,11,11
+waterside,life,waterside_mullet,109,ボラロン,ボラ,Mullet,normal,11,11
+waterside,life,waterside_grouper,110,ハタノコ,ハタ,Grouper,normal,11,11
+waterside,life,waterside_pike,111,カワカマスン,カワカマス,Pike,normal,11,11
+waterside,life,waterside_tilapia,112,ティラピィ,ティラピア,Tilapia,normal,11,11
+waterside,life,waterside_silver_stripe_round_herring,113,キビナゴン,キビナゴ,Silver-stripe Round Herring,normal,11,11
+waterside,life,waterside_hake,114,メルルーサン,メルルーサ,Hake,normal,11,11
+waterside,life,waterside_sea_hare,115,アメフラシィ,アメフラシ,Sea Hare,normal,11,11
+waterside,life,waterside_krill,116,オキアミン,オキアミ,Krill,normal,11,11
+waterside,life,waterside_rare_kraken,1,クラーケン,クラーケン,Kraken,legendary,,11
+waterside,life,waterside_rare_sea_dragon,2,海竜,海竜,Sea Dragon,legendary,,11
+waterside,life,waterside_rare_megalodon,3,メガロドン,メガロドン,Megalodon,rare,,11
+waterside,life,waterside_rare_coelacanth,4,シーラカンス,シーラカンス,Coelacanth,rare,,11
+waterside,life,waterside_rare_megamouth_shark,5,メガマウス,メガマウス,Megamouth Shark,rare,,11
+waterside,life,waterside_rare_nessie,6,ネッシー,ネッシー,Nessie,legendary,,11
+waterside,life,waterside_rare_merlion,7,マーライオン,マーライオン,Merlion,legendary,,11
+waterside,life,waterside_manatee,117,マナティン,マナティー,Manatee,normal,,穏やかに水草を食べる大型の水生哺乳類
+waterside,life,waterside_dugong,118,ジュゴロン,ジュゴン,Dugong,normal,,海草を食べて暮らす丸みのある海生哺乳類
+waterside,life,waterside_nautilus,119,オウムガイン,オウムガイ,Nautilus,normal,,渦巻く殻と多数の触手を持つ頭足類
+waterside,life,waterside_manta_ray,120,マンタロン,オニイトマキエイ,Manta Ray,normal,,大きな胸びれで海中を滑空する大型のエイ
+waterside,life,waterside_horseshoe_crab,121,カブトガニン,カブトガニ,Horseshoe Crab,normal,,丸い甲羅と長い尾剣を持つ古い系統の節足動物
+waterside,life,waterside_vaquita,8,バキータン,コガシラネズミイルカ,Vaquita,rare,,生息数が極めて少ない小型のネズミイルカ
+waterside,life,waterside_axolotl,9,アホロトン,メキシコサンショウウオ,Axolotl,rare,,外鰓を残したまま成長する希少な両生類
+sky,life,sky_bat,1,コウモリン,コウモリ,Bat,normal,○,11
+sky,life,sky_cockatoo,2,オウムン,オウム,Cockatoo,normal,○,11
+sky,life,sky_crane,3,ツルミヤ,ツル,Crane,normal,○,11
+sky,life,sky_crow,4,カラスケ,カラス,Crow,normal,○,11
+sky,life,sky_eagle,5,ワシノスケ,ワシ,Eagle,normal,○,11
+sky,life,sky_flamingo,6,フラミン,フラミンゴ,Flamingo,normal,11,11
+sky,life,sky_hawk,7,タカマル,タカ,Hawk,normal,11,11
+sky,life,sky_ostrich,8,ダチョラン,ダチョウ,Ostrich,normal,11,11
+sky,life,sky_owl,9,フクロウル,フクロウ,Owl,normal,11,11
+sky,life,sky_parakeet,10,インコロ,インコ,Parakeet,normal,11,11
+sky,life,sky_peacock,11,クジャックン,クジャク,Peacock,normal,11,11
+sky,life,sky_pigeon,12,ハトポッポ,ハト,Pigeon,normal,11,11
+sky,life,sky_sparrow,13,スズメル,スズメ,Sparrow,normal,11,11
+sky,life,sky_swallow,14,ツバメロ,ツバメ,Swallow,normal,11,11
+sky,life,sky_swan,15,ハクチョル,白鳥,Swan,normal,11,11
+sky,life,sky_kingfisher,16,カワセミン,カワセミ,Kingfisher,normal,,鮮やかな羽と鋭いくちばしで水面へ飛び込む鳥
+sky,life,sky_albatross,17,アルバトン,アホウドリ,Albatross,normal,,長い翼で海上を悠々と滑空する大型の海鳥
+sky,life,sky_hornbill,18,サイチョロン,サイチョウ,Hornbill,normal,,大きなくちばしと頭上のカスクが目立つ鳥
+sky,life,sky_kestrel,19,ゲンボウル,チョウゲンボウ,Kestrel,normal,,空中で静止して獲物を探す小型の猛禽
+sky,life,sky_hummingbird,20,ハチドリン,ハチドリ,Hummingbird,normal,,高速で羽ばたき空中に留まれる小型の鳥
+sky,life,sky_falcon,21,ハヤブサン,ハヤブサ,Falcon,normal,,高速で急降下する鋭い翼の猛禽
+sky,life,sky_vulture,22,ハゲワシン,ハゲワシ,Vulture,normal,,広い翼で上昇気流に乗る大型の鳥
+sky,life,sky_condor,23,コンドルン,コンドル,Condor,normal,,巨大な翼で山岳を滑空する鳥
+sky,life,sky_kite,24,トビマル,トビ,Kite,normal,,長い翼と尾で軽やかに旋回する猛禽
+sky,life,sky_harrier,25,チュウヒン,チュウヒ,Harrier,normal,,低空を滑るように飛んで獲物を探す猛禽
+sky,life,sky_osprey,26,ミサゴン,ミサゴ,Osprey,normal,,水面へ飛び込み魚を捕らえる猛禽
+sky,life,sky_buzzard,27,ノスリン,ノスリ,Buzzard,normal,,幅広い翼で空を巡回する猛禽
+sky,life,sky_secretarybird,28,ヘビクイン,ヘビクイワシ,Secretarybird,normal,,長い脚で地上の獲物を追う大型の鳥
+sky,life,sky_shoebill,29,ハシビロン,ハシビロコウ,Shoebill,normal,,靴のように大きなくちばしを持つ鳥
+sky,life,sky_stork,30,コウノトリン,コウノトリ,Stork,normal,,長い脚とくちばしで湿地を歩く大型の鳥
+sky,life,sky_heron,31,サギロン,サギ,Heron,normal,,長い首を折り畳んで飛ぶ水辺の鳥
+sky,life,sky_egret,32,シラサギン,シラサギ,Egret,normal,,白い羽と長い脚を持つ水辺の鳥
+sky,life,sky_sacred_ibis,33,クロトキン,アフリカクロトキ,Sacred Ibis,normal,,曲がった長いくちばしを持つ水辺の鳥
+sky,life,sky_spoonbill,34,ヘラサギン,ヘラサギ,Spoonbill,normal,,へら状のくちばしで水中を探る鳥
+sky,life,sky_great_cormorant,35,カワウン,カワウ,Great Cormorant,normal,,潜水して魚を追う黒い水鳥
+sky,life,sky_pelican,36,ペリカン,ペリカン,Pelican,normal,,大きなのど袋で魚をすくう水鳥
+sky,life,sky_gannet,37,カツオドリン,カツオドリ,Gannet,normal,,海へ垂直に飛び込む大型の海鳥
+sky,life,sky_blue_footed_booby,38,アオアシン,アオアシカツオドリ,Blue-footed Booby,normal,,鮮やかな青い足を持つ海鳥
+sky,life,sky_frigatebird,39,グンカンドン,グンカンドリ,Frigatebird,normal,,細長い翼と二又の尾を持つ海鳥
+sky,life,sky_petrel,40,ウミツバメン,ウミツバメ,Petrel,normal,,波の上を軽やかに飛ぶ小型の海鳥
+sky,life,sky_shearwater,41,ミズナギン,ミズナギドリ,Shearwater,normal,,長い翼で海面すれすれを滑空する鳥
+sky,life,sky_puffin,42,パフィン,ニシツノメドリ,Puffin,normal,,色鮮やかなくちばしを持つ海鳥
+sky,life,sky_auk,43,ウミスズメン,ウミスズメ,Auk,normal,,短い翼で海中を泳ぐ小型の海鳥
+sky,life,sky_guillemot,44,ウミガラスン,ウミガラス,Guillemot,normal,,直立姿勢と細いくちばしを持つ海鳥
+sky,life,sky_tern,45,アジサシン,アジサシ,Tern,normal,,細い翼と二又の尾で海上を飛ぶ鳥
+sky,life,sky_gull,46,カモメル,カモメ,Gull,normal,,海辺を広く飛び回る身近な海鳥
+sky,life,sky_skua,47,トウゾクン,トウゾクカモメ,Skua,normal,,力強い飛行で他の海鳥を追う鳥
+sky,life,sky_loon,48,アビロン,アビ,Loon,normal,,水中を巧みに泳ぐ流線型の水鳥
+sky,life,sky_grebe,49,カイツブリン,カイツブリ,Grebe,normal,,水面を走って助走する小型の水鳥
+sky,life,sky_coot,50,オオバン,オオバン,Coot,normal,,白い額板と大きな足を持つ水鳥
+sky,life,sky_moorhen,51,バンチャン,バン,Moorhen,normal,,赤い額板と長い指を持つ水鳥
+sky,life,sky_goose,52,ガチョン,ガン,Goose,normal,,群れで隊列を組んで渡る大型の水鳥
+sky,life,sky_duck,53,カモル,カモ,Duck,normal,,水面を泳ぐ幅広いくちばしの鳥
+sky,life,sky_mallard,54,マガモン,マガモ,Mallard,normal,,緑色の頭が目立つ代表的なカモ
+sky,life,sky_teal,55,コガモン,コガモ,Teal,normal,,小柄で素早く飛ぶカモの仲間
+sky,life,sky_eider,56,ケワタガモン,ケワタガモ,Eider,normal,,柔らかな羽毛を持つ寒冷地の海鳥
+sky,life,sky_shelduck,57,ツクシガモン,ツクシガモ,Shelduck,normal,,白黒と赤褐色の模様を持つ大型のカモ
+sky,life,sky_pheasant,58,キジマル,キジ,Pheasant,normal,,長い尾羽と鮮やかな羽色を持つ鳥
+sky,life,sky_quail,59,ウズラン,ウズラ,Quail,normal,,丸い体で地上を素早く走る小型の鳥
+sky,life,sky_partridge,60,ヤマウズラン,ヤマウズラ,Partridge,normal,,地上で暮らす丸みのあるキジ科の鳥
+sky,life,sky_turkey,61,シチメンチョ,シチメンチョウ,Turkey,normal,,大きな体と扇状の尾羽を持つ鳥
+sky,life,sky_guinea_fowl,62,ホロホロン,ホロホロチョウ,Guinea Fowl,normal,,細かな斑点模様の羽を持つ鳥
+sky,life,sky_ptarmigan,63,ライチョン,ライチョウ,Ptarmigan,normal,,季節で羽色を変える高山の鳥
+sky,life,sky_grouse,64,グラウスン,ライチョウ類,Grouse,normal,,羽毛に覆われた脚を持つ地上性の鳥
+sky,life,sky_bustard,65,ノガン,ノガン,Bustard,normal,,草原を歩く大型で重厚な鳥
+sky,life,sky_sandgrouse,66,サケイロン,サケイ,Sandgrouse,normal,,乾燥地を高速で飛ぶ地上性の鳥
+sky,life,sky_woodpecker,67,キツツキン,キツツキ,Woodpecker,normal,,硬いくちばしで木の幹を叩く鳥
+sky,life,sky_toucan,68,オオハシン,オオハシ,Toucan,normal,,大きく色鮮やかなくちばしを持つ鳥
+sky,life,sky_hoopoe,69,ヤツガシラン,ヤツガシラ,Hoopoe,normal,,扇状に開く冠羽を持つ鳥
+sky,life,sky_bee_eater,70,ハチクイン,ハチクイ,Bee-eater,normal,,細長いくちばしで飛ぶ昆虫を捕らえる鳥
+sky,life,sky_roller,71,ブッポウソン,ブッポウソウ,Roller,normal,,青い羽と回転する求愛飛行が特徴の鳥
+sky,life,sky_swift,72,アマツバメン,アマツバメ,Swift,normal,,鎌形の翼で長時間飛び続ける鳥
+sky,life,sky_nightjar,73,ヨタカン,ヨタカ,Nightjar,normal,,大きな口で夜の昆虫を捕らえる鳥
+sky,life,sky_cuckoo,74,カッコル,カッコウ,Cuckoo,normal,,特徴的な鳴き声で知られる渡り鳥
+sky,life,sky_roadrunner,75,ミチバシリン,オオミチバシリ,Roadrunner,normal,,地上を高速で走るカッコウの仲間
+sky,life,sky_african_grey_parrot,76,ヨウムン,ヨウム,African Grey Parrot,normal,,知能が高く灰色の羽を持つ大型インコ
+sky,life,sky_macaw,77,コンゴウインコン,コンゴウインコ,Macaw,normal,,長い尾と鮮やかな羽を持つ大型インコ
+sky,life,sky_lorikeet,78,ロリキートン,ヒインコ,Lorikeet,normal,,花蜜を好む鮮やかな色のインコ
+sky,life,sky_lovebird,79,ボタンインコン,ボタンインコ,Lovebird,normal,,仲間との結びつきが強い小型インコ
+sky,life,sky_canary,80,カナリアン,カナリア,Canary,normal,,明るい羽色と美しいさえずりを持つ鳥
+sky,life,sky_finch,81,フィンチン,フィンチ,Finch,normal,,小さなくちばしで種子を食べる小鳥
+sky,life,sky_goldfinch,82,ゴシキヒワン,ゴシキヒワ,Goldfinch,normal,,赤い顔と黄色い翼帯を持つ小鳥
+sky,life,sky_robin,83,コマドリン,ヨーロッパコマドリ,Robin,normal,,橙色の胸を持つ小型のさえずり鳥
+sky,life,sky_bluebird,84,ルリツグミン,ルリツグミ,Bluebird,normal,,鮮やかな青い羽を持つ小鳥
+sky,life,sky_starling,85,ムクドリン,ムクドリ,Starling,normal,,群れで複雑な飛行を見せる鳥
+sky,life,sky_myna,86,キュウカン,キュウカンチョウ,Myna,normal,,声まねが得意な黒い羽の鳥
+sky,life,sky_magpie,87,カササギン,カササギ,Magpie,normal,,長い尾と白黒の羽を持つ賢い鳥
+sky,life,sky_jay,88,カケスン,カケス,Jay,normal,,青い翼斑と大きな声を持つカラス科の鳥
+sky,life,sky_raven,89,ワタリガラスン,ワタリガラス,Raven,normal,,大型で知能の高い黒いカラス科の鳥
+sky,life,sky_shrike,90,モズキン,モズ,Shrike,normal,,鉤状のくちばしを持つ小型の狩猟鳥
+sky,life,sky_wagtail,91,セキレイン,セキレイ,Wagtail,normal,,長い尾を上下に振りながら歩く鳥
+sky,life,sky_warbler,92,ウグイスン,ウグイス,Warbler,normal,,茂みで美しくさえずる小型の鳥
+sky,life,sky_flycatcher,93,ヒタキン,ヒタキ,Flycatcher,normal,,枝から飛び出して昆虫を捕らえる鳥
+sky,life,sky_nuthatch,94,ゴジュウカラン,ゴジュウカラ,Nuthatch,normal,,木の幹を頭から下へ移動できる鳥
+sky,life,sky_treecreeper,95,キバシリン,キバシリ,Treecreeper,normal,,木の幹をらせん状に登る小型の鳥
+sky,life,sky_wren,96,ミソサザイン,ミソサザイ,Wren,normal,,小さな体に力強い声を持つ鳥
+sky,life,sky_thrush,97,ツグミン,ツグミ,Thrush,normal,,胸の斑点と跳ねるような歩き方が特徴の鳥
+sky,life,sky_blackbird,98,クロウタドリン,クロウタドリ,Blackbird,normal,,黒い羽と黄色いくちばしを持つ鳥
+sky,life,sky_oriole,99,コウライウグイン,コウライウグイス,Oriole,normal,,黄色と黒の鮮やかな羽を持つ鳥
+sky,life,sky_bunting,100,ホオジロン,ホオジロ,Bunting,normal,,頬の模様と澄んださえずりを持つ小鳥
+sky,life,sky_kakapo,1,カカポン,カカポ,Kakapo,rare,,飛べない夜行性の希少な大型オウム
+sky,life,sky_japanese_crested_ibis,2,トキリン,トキ,Japanese Crested Ibis,rare,,淡い朱色の翼を持つ希少な鳥
+bug,life,bug_ladybug,1,テントム,テントウムシ,Ladybug,normal,11,11
+bug,life,bug_rhinoceros_beetle,2,カブトン,カブトムシ,Rhinoceros Beetle,normal,11,11
+bug,life,bug_stag_beetle,3,クワガロン,クワガタ,Stag Beetle,normal,11,11
+bug,life,bug_scarab_beetle,4,コガネン,コガネムシ,Scarab Beetle,normal,11,11
+bug,life,bug_jewel_beetle,5,タマムシィ,タマムシ,Jewel Beetle,normal,11,11
+bug,life,bug_bronze_beetle,6,カナブンブン,カナブン,Bronze Beetle,normal,11,11
+bug,life,bug_flower_chafer,7,ハナムグリン,ハナムグリ,Flower Chafer,normal,11,11
+bug,life,bug_butterfly,8,チョウミィ,蝶,Butterfly,normal,11,11
+bug,life,bug_moth,9,ガミィ,蛾,Moth,normal,11,11
+bug,life,bug_silkworm,10,カイコロ,カイコ,Silkworm,normal,11,11
+bug,life,bug_honeybee,11,ハチミィ,ミツバチ,Honeybee,normal,11,11
+bug,life,bug_carpenter_bee,12,クマンバチン,クマバチ,Carpenter Bee,normal,11,11
+bug,life,bug_hornet,13,スズメバチン,スズメバチ,Hornet,normal,11,11
+bug,life,bug_paper_wasp,14,アシナガン,アシナガバチ,Paper Wasp,normal,11,11
+bug,life,bug_ant,15,アリッコ,アリ,Ant,normal,11,11
+bug,life,bug_termite,16,シロアリム,シロアリ,Termite,normal,11,11
+bug,life,bug_mantis,17,カマキリン,カマキリ,Mantis,normal,11,11
+bug,life,bug_grasshopper,18,バッタロン,バッタ,Grasshopper,normal,11,11
+bug,life,bug_katydid,19,キリギリン,キリギリス,Katydid,normal,11,11
+bug,life,bug_cricket,20,コオロギン,コオロギ,Cricket,normal,11,11
+bug,life,bug_bell_cricket,21,スズムシィ,スズムシ,Bell Cricket,normal,11,11
+bug,life,bug_pine_cricket,22,マツムシン,マツムシ,Pine Cricket,normal,11,11
+bug,life,bug_cicada,23,セミマル,セミ,Cicada,normal,11,11
+bug,life,bug_dragonfly,24,トンボル,トンボ,Dragonfly,normal,11,11
+bug,life,bug_firefly,25,ホタルン,ホタル,Firefly,normal,11,11
+bug,life,bug_giant_water_bug,26,タガメン,タガメ,Giant Water Bug,normal,11,11
+bug,life,bug_diving_beetle,27,ゲンゴロン,ゲンゴロウ,Diving Beetle,normal,11,11
+bug,life,bug_whirligig_beetle,28,ミズスマシン,ミズスマシ,Whirligig Beetle,normal,11,11
+bug,life,bug_water_strider,29,アメンボウ,アメンボ,Water Strider,normal,11,11
+bug,life,bug_scorpion,30,サソリオン,サソリ,Scorpion,normal,11,11
+bug,life,bug_centipede,31,ムカデン,ムカデ,Centipede,normal,11,11
+bug,life,bug_millipede,32,ヤスデロ,ヤスデ,Millipede,normal,11,11
+bug,life,bug_pill_bug,33,ダンゴロン,ダンゴムシ,Pill Bug,normal,11,11
+bug,life,bug_stick_insect,34,ナナフシン,ナナフシ,Stick Insect,normal,11,11
+bug,life,bug_leaf_insect,35,コノハムシ,コノハムシ,Leaf Insect,normal,11,11
+bug,life,bug_leaf_beetle,36,ハムシィ,ハムシ,Leaf Beetle,normal,11,11
+bug,life,bug_weevil,37,ゾウムシン,ゾウムシ,Weevil,normal,11,11
+bug,life,bug_longhorn_beetle,38,カミキリン,カミキリムシ,Longhorn Beetle,normal,11,11
+bug,life,bug_tiger_beetle,39,ハンミョン,ハンミョウ,Tiger Beetle,normal,11,11
+bug,life,bug_ground_beetle,40,オサムシン,オサムシ,Ground Beetle,normal,11,11
+bug,life,bug_dung_beetle,41,タマオシン,フンコロガシ,Dung Beetle,normal,11,11
+bug,life,bug_earwig,42,ハサミムシ,ハサミムシ,Earwig,normal,11,11
+bug,life,bug_silverfish,43,シミミィ,シミ,Silverfish,normal,11,11
+bug,life,bug_springtail,44,トビムシン,トビムシ,Springtail,normal,11,11
+bug,life,bug_aphid,45,アブラン,アブラムシ,Aphid,normal,11,11
+bug,life,bug_caterpillar,46,イモムシィ,芋虫,Caterpillar,normal,11,11
+bug,life,bug_bagworm,47,ミノムシン,ミノムシ,Bagworm,normal,11,11
+bug,life,bug_leafroller,48,ハマキムシ,ハマキムシ,Leafroller,normal,11,11
+bug,life,bug_antlion,49,ウスバカゲ,ウスバカゲロウ,Antlion,normal,11,11
+bug,life,bug_mayfly,50,カゲロウル,カゲロウ,Mayfly,normal,11,11
+bug,life,bug_stonefly,51,カワゲラン,カワゲラ,Stonefly,normal,11,11
+bug,life,bug_cockroach,52,ゴキリス,ゴキブリ,Cockroach,normal,11,11
+bug,life,bug_mosquito,53,カミィ,カ,Mosquito,normal,11,11
+bug,life,bug_fly,54,ハエルン,ハエ,Fly,normal,11,11
+bug,life,bug_horsefly,55,アブロン,アブ,Horsefly,normal,11,11
+bug,life,bug_blackfly,56,ブユミィ,ブユ,Blackfly,normal,11,11
+bug,life,bug_crane_fly,57,ガガンボル,ガガンボ,Crane Fly,normal,11,11
+bug,life,bug_stink_bug,58,カメムシン,カメムシ,Stink Bug,normal,11,11
+bug,life,bug_cave_cricket,59,カマドウマル,カマドウマ,Cave Cricket,normal,11,11
+bug,life,bug_leafhopper,60,ヨコバイン,ヨコバイ,Leafhopper,normal,11,11
+bug,life,bug_planthopper,61,ウンカル,ウンカ,Planthopper,normal,11,11
+bug,life,bug_scale_insect,62,カイガラム,カイガラムシ,Scale Insect,normal,11,11
+bug,life,bug_bark_beetle,63,キクイムシン,キクイムシ,Bark Beetle,normal,11,11
+bug,life,bug_mole_cricket,64,オケラン,オケラ,Mole Cricket,normal,11,11
+bug,life,bug_click_beetle,65,コメツキン,コメツキムシ,Click Beetle,normal,11,11
+bug,life,bug_spittlebug,66,アワフキン,アワフキムシ,Spittlebug,normal,11,11
+bug,life,bug_sawfly,67,ハバチル,ハバチ,Sawfly,normal,11,11
+bug,life,bug_spider,68,クモマル,クモ,Spider,normal,11,11
+bug,life,bug_mite,69,ダニミィ,ダニ,Mite,normal,11,11
+bug,life,bug_tick,70,マダニン,マダニ,Tick,normal,11,11
+bug,life,bug_flea,71,ノミピョン,ノミ,Flea,normal,11,11
+bug,life,bug_louse,72,シラミン,シラミ,Louse,normal,11,11
+bug,life,bug_booklouse,73,チャタテム,チャタテムシ,Booklouse,normal,11,11
+bug,life,bug_whitefly,74,コナジラミィ,コナジラミ,Whitefly,normal,11,11
+bug,life,bug_lacewing,75,クサカゲロウル,クサカゲロウ,Lacewing,normal,11,11
+bug,life,bug_dobsonfly,76,ヘビトンボン,ヘビトンボ,Dobsonfly,normal,11,11
+bug,life,bug_alderfly,77,センブリン,センブリ,Alderfly,normal,11,11
+bug,life,bug_caddisfly,78,トビケラン,トビケラ,Caddisfly,normal,11,11
+bug,life,bug_thrips,79,アザミウマル,アザミウマ,Thrips,normal,11,11
+bug,life,bug_rove_beetle,80,ハネカクシン,ハネカクシ,Rove Beetle,normal,11,11
+bug,life,bug_firebrat,81,マダラシミィ,マダラシミ,Firebrat,normal,11,11
+bug,life,bug_robber_fly,82,ムシヒキアブン,ムシヒキアブ,Robber Fly,normal,11,11
+bug,life,bug_hoverfly,83,ハナアブル,ハナアブ,Hoverfly,normal,11,11
+bug,life,bug_ichneumon_wasp,84,ヒメバチン,ヒメバチ,Ichneumon Wasp,normal,11,11
+bug,life,bug_lace_bug,85,グンバイムシ,グンバイムシ,Lace Bug,normal,11,11
+bug,life,bug_assassin_bug,86,サシガメン,サシガメ,Assassin Bug,normal,11,11
+bug,life,bug_bed_bug,87,トコジラミィ,トコジラミ,Bed Bug,normal,11,11
+bug,life,bug_water_scorpion,88,ミズカマキリ,ミズカマキリ,Water Scorpion,normal,11,11
+bug,life,bug_water_boatman,89,ミズムシン,ミズムシ,Water Boatman,normal,11,11
+bug,life,bug_backswimmer,90,マツモムシィ,マツモムシ,Backswimmer,normal,11,11
+bug,life,bug_velvet_worm,91,カギムシン,カギムシ,Velvet Worm,normal,11,11
+bug,life,bug_pseudoscorpion,92,カニムシン,カニムシ,Pseudoscorpion,normal,11,11
+bug,life,bug_harvestman,93,ザトウムシィ,ザトウムシ,Harvestman,normal,11,11
+bug,life,bug_house_centipede,94,ゲジゲジン,ゲジ,House Centipede,normal,11,11
+bug,life,bug_symphylan,95,コムカデン,コムカデ,Symphylan,normal,11,11
+bug,life,bug_pauropod,96,エダヒゲムシ,エダヒゲムシ,Pauropod,normal,11,11
+bug,life,bug_bristletail,97,イシノミィ,イシノミ,Bristletail,normal,11,11
+bug,life,bug_snakefly,98,ラクダムシン,ラクダムシ,Snakefly,normal,11,11
+bug,life,bug_webspinner,99,シロアリモドキ,シロアリモドキ,Webspinner,normal,11,11
+bug,life,bug_horntail,100,ハバチモドキ,キバチ,Horntail,normal,11,11
+bug,life,bug_rare_phantom_insect,1,幻虫,幻虫,Phantom Insect,rare,11,11
+bug,life,bug_rare_kesaran_pasaran,2,ケサランパサラン,ケサランパサラン,Kesaran Pasaran,rare,11,11
+bug,life,bug_goliath_beetle,101,ゴライアトン,ゴライアスオオツノハナムグリ,Goliath Beetle,normal,,大きな体と力強い脚を持つ大型甲虫
+bug,life,bug_atlas_moth,102,ヨナグニン,ヨナグニサン,Atlas Moth,normal,,大きな翅と蛇の頭を思わせる翅端を持つ蛾
+bug,life,bug_orchid_mantis,103,ハナカマリン,ハナカマキリ,Orchid Mantis,normal,,花びらに似た姿で身を隠すカマキリ
+bug,life,bug_tarantula,104,タランチュン,タランチュラ,Tarantula,normal,,太い脚と密な毛を持つ大型のクモ
+bug,life,bug_atlas_beetle,105,コーカサトン,コーカサスオオカブト,Atlas Beetle,normal,,三本の大きな角が特徴の大型カブトムシ
+bug,life,bug_lord_howe_island_stick_insect,3,ロードハウン,ロードハウナナフシ,Lord Howe Island Stick Insect,rare,,限られた地域に生き残る大型の希少ナナフシ
+bug,life,bug_queen_alexandra_s_birdwing,4,アレクサンドラ,アレクサンドラトリバネアゲハ,Queen Alexandra's Birdwing,rare,,世界最大級で生息域が限られる希少なチョウ
+phantom,life,phantom_rare_dragon,1,ドラゴン,ドラゴン,Dragon,rare,11,11
+phantom,life,phantom_rare_ghost,2,ゴースト,ゴースト,Ghost,rare,11,11
+phantom,life,phantom_rare_phoenix,3,フェニックス,フェニックス,Phoenix,rare,11,11
+phantom,life,phantom_rare_sphinx,4,スフィンクス,スフィンクス,Sphinx,rare,11,11
+phantom,life,phantom_rare_moai,5,モアイ,モアイ,Moai,rare,11,11
+phantom,life,phantom_rare_fairy,6,妖精,妖精,Fairy,rare,11,11
+phantom,life,phantom_rare_dwarf,7,小人,小人,Dwarf,rare,11,11
+phantom,life,phantom_rare_elf,8,エルフ,エルフ,Elf,rare,11,11
+phantom,life,phantom_rare_unicorn,9,ユニコーン,ユニコーン,Unicorn,rare,11,11
+phantom,life,phantom_rare_griffin,10,グリフォン,グリフォン,Griffin,rare,11,11
+phantom,life,phantom_rare_pegasus,11,ペガサス,ペガサス,Pegasus,rare,11,11
+planet,space,planet_rare_alien,1,エイリアン,エイリアン,Alien,rare,11,11
+planet,space,planet_rare_robot,2,ロボット,ロボット,Robot,rare,11,11
