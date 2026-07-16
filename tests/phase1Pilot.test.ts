@@ -136,6 +136,9 @@ describe("Phase 1A: 正式データへ影響しない", () => {
 describe("Phase 1A: プロンプト資料", () => {
   const masterPromptPath = path.join(root, "docs", "PHASE1_REAL_CREATURE_ART_PROMPT.md");
 
+  /** 改行コードを正規化して読む（Git の autocrlf で CRLF になるため、改行差でテストを壊さない）。 */
+  const readText = (p: string) => fs.readFileSync(p, "utf8").replace(/\r\n/g, "\n");
+
   /** ```で始まるフェンスが偶数個（＝閉じられている）かを確認する。 */
   const fences = (src: string) => (src.match(/^```/gm) || []).length;
 
@@ -148,7 +151,7 @@ describe("Phase 1A: プロンプト資料", () => {
 
   it("マスタープロンプトが存在し、1つの連続したコードブロックである", () => {
     assert.ok(fs.existsSync(masterPromptPath));
-    const src = fs.readFileSync(masterPromptPath, "utf8");
+    const src = readText(masterPromptPath);
     assert.equal(fences(src) % 2, 0, "コードブロックが閉じていない");
     // 画像生成プロンプト本体が1つの連続ブロックに収まっていること
     const blocks = [...src.matchAll(/```text\n([\s\S]*?)\n```/g)].map((m) => m[1]!);
@@ -161,7 +164,7 @@ describe("Phase 1A: プロンプト資料", () => {
   });
 
   it("マスタープロンプトが参照画像なしで成立し、必須条件を含む", () => {
-    const src = fs.readFileSync(masterPromptPath, "utf8");
+    const src = readText(masterPromptPath);
     const b = [...src.matchAll(/```text\n([\s\S]*?)\n```/g)].map((m) => m[1]!).find((x) => x.includes("■ 出力仕様"))!;
     assert.ok(!/参考画像を添付|添付された画像|reference image/i.test(b), "参照画像を前提にしている");
     for (const need of ["4案", "88点", "3巡", "1024", "PNG", "透明背景", "全身"]) {
@@ -171,7 +174,7 @@ describe("Phase 1A: プロンプト資料", () => {
 
   it("各 prompt ファイルのコードブロックが途中で途切れていない", () => {
     for (const c of pilot.selectedCharacters) {
-      const src = fs.readFileSync(path.join(root, c.promptPath), "utf8");
+      const src = readText(path.join(root, c.promptPath));
       assert.equal(fences(src) % 2, 0, `${c.id}: コードブロックが閉じていない`);
       const blocks = [...src.matchAll(/```text\n([\s\S]*?)\n```/g)].map((m) => m[1]!);
       const promptBlocks = blocks.filter((b) => b.includes("■ 出力仕様"));
@@ -189,7 +192,7 @@ describe("Phase 1A: プロンプト資料", () => {
 
   it("個別プロンプトは 5種とも異なる推奨構図を持つ（全員同じポーズにしない）", () => {
     const poses = pilot.selectedCharacters.map((c) => {
-      const src = fs.readFileSync(path.join(root, c.promptPath), "utf8");
+      const src = readText(path.join(root, c.promptPath));
       return src.match(/推奨構図:\n(.+)/)![1]!;
     });
     assert.equal(new Set(poses).size, 5, "推奨構図が重複している");
