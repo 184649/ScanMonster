@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "phase2c-design-1",
+  "designOnly": true,
+  "runtimeReference": false,
+  "productionData": false,
+  "officialCharacterIdsIssued": false,
+  "officialImagePathsUsed": false,
+  "noticeJa": "非本番の設計資料。runtimeから参照しない。正式データではない。正式キャラクターIDを発行していない。正式画像パスを使用していない。",
+  "automaticPreferenceScoringProhibited": true,
+  "checks": [
+    {
+      "id": "three-second-memory",
+      "question": "After a three-second view, can a viewer describe one feature unique to the character?",
+      "decisionOwner": "user and human review"
+    },
+    {
+      "id": "silhouette",
+      "question": "Can the three characters be distinguished using black outer shapes only?",
+      "decisionOwner": "user with technical support"
+    },
+    {
+      "id": "personality",
+      "question": "Do posture and construction suggest personality without the written brief?",
+      "decisionOwner": "user and design review"
+    },
+    {
+      "id": "reason-to-like",
+      "question": "Can the reason to choose this individual be stated beyond cute or cool?",
+      "decisionOwner": "user"
+    },
+    {
+      "id": "face-exchange",
+      "question": "Does moving the face to another animal break the design?",
+      "decisionOwner": "user and design review"
+    },
+    {
+      "id": "small-screen",
+      "question": "Do the face and primary memory point read at both 64px and 128px?",
+      "decisionOwner": "technical and human review"
+    },
+    {
+      "id": "toy-translation",
+      "question": "Can the character be organized into approximately 8 to 12 major three-dimensional blocks?",
+      "decisionOwner": "designer and merchandise review"
+    },
+    {
+      "id": "drawability",
+      "question": "Can a child or fan preserve the primary feature in a simplified drawing?",
+      "decisionOwner": "human review"
+    },
+    {
+      "id": "ip-coherence",
+      "question": "Does the trio belong together without sharing one face, eye, or body type?",
+      "decisionOwner": "user and IP or art leads"
+    },
+    {
+      "id": "existing-ip-similarity",
+      "question": "Does the design avoid strongly recalling a specific famous character?",
+      "decisionOwner": "human review with specialist rights review where needed",
+      "notALegalConclusion": true
+    },
+    {
+      "id": "user-judgment",
+      "question": "Beside popular characters, does the user want to see it completed, feel they could like it, and consider choosing it?",
+      "decisionOwner": "user only",
+      "mayNotBeAutomated": true
+    }
+  ],
+  "gateRules": {
+    "stage1": "User selects up to two silhouettes per motif; no selection means agreed reproposal or stop, never automatic Stage 2.",
+    "stage3": "User selects the color direction; no selection means no Stage 4.",
+    "stage6": "No 24-character bulk production before the three-character system passes."
+  }
+}

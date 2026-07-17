@@ -1,0 +1,160 @@
+{
+  "schemaVersion": "phase2c-design-1",
+  "designOnly": true,
+  "runtimeReference": false,
+  "productionData": false,
+  "officialCharacterIdsIssued": false,
+  "officialImagePathsUsed": false,
+  "noticeJa": "非本番の設計資料。runtimeから参照しない。正式データではない。正式キャラクターIDを発行していない。正式画像パスを使用していない。",
+  "contractFieldsRequiredPerStage": [
+    "fee",
+    "payment milestone",
+    "delivery date",
+    "included revisions",
+    "revision definition",
+    "approval owner",
+    "acceptance evidence",
+    "extra-work rate",
+    "stop or cancellation terms"
+  ],
+  "stages": [
+    {
+      "stage": 0,
+      "name": "creative direction",
+      "deliverables": [
+        "one-sentence WORLDAWN character IP direction",
+        "shape principles shared by all three characters",
+        "shape principles that vary among the three",
+        "eye and face treatment",
+        "line, shading, and color-plane direction",
+        "existing-IP differentiation method",
+        "one-sentence core and reason to like each character",
+        "silhouette, face, and color memory points",
+        "reasons for any motif replacement proposal"
+      ],
+      "userDecision": "approve creative direction and separately approve any motif replacement",
+      "blocksNextStageUntilApproved": true
+    },
+    {
+      "stage": 1,
+      "name": "black silhouettes",
+      "quantityPerCharacter": {
+        "minimum": 8,
+        "maximum": 12
+      },
+      "requirements": [
+        "independent character concepts, not pose variants",
+        "solid black on white",
+        "no internal detail, eyes, expression, color, texture, shading, equipment, text, or background",
+        "one primary memory point",
+        "different ratio, center of mass, contour, posture, species parts, and block organization",
+        "full body legible at 64px",
+        "toy-feasible"
+      ],
+      "deliverables": [
+        "comparison board",
+        "independent image for every option",
+        "one-sentence core per option",
+        "one-sentence reason to like per option",
+        "short explanation of structural difference per option"
+      ],
+      "userDecision": "select up to two options per motif or use agreed reproposal/stop terms",
+      "blocksNextStageUntilApproved": true
+    },
+    {
+      "stage": 2,
+      "name": "head, face, and expression",
+      "deliverables": [
+        "front head view",
+        "three-quarter head view",
+        "side head view",
+        "neutral expression",
+        "joy expression",
+        "alert expression",
+        "puzzled expression",
+        "calm expression",
+        "eyes-closed state",
+        "mouth-open state",
+        "construction notes"
+      ],
+      "userDecision": "approve species-specific face construction",
+      "blocksNextStageUntilApproved": true
+    },
+    {
+      "stage": 3,
+      "name": "color-plane design",
+      "approximateDirectionsPerCharacter": 3,
+      "requirements": [
+        "primarily three or four large colors or regions",
+        "no fine-pattern dependence",
+        "grayscale readability",
+        "128px identification",
+        "avoid signature existing-IP palette or marking resemblance",
+        "normal remains appealing without rare or legendary ornament",
+        "merchandise reproducibility"
+      ],
+      "userDecision": "select final color direction",
+      "blocksNextStageUntilApproved": true
+    },
+    {
+      "stage": 4,
+      "name": "model sheet",
+      "deliverables": [
+        "front, side, rear, and three-quarter views",
+        "top or necessary auxiliary view",
+        "expression sheet",
+        "major-shape breakdown",
+        "color specification",
+        "size comparison",
+        "64px and 128px proofs",
+        "toy simplification",
+        "prohibited deformations",
+        "left-right asymmetry",
+        "movement and pose cautions"
+      ],
+      "userDecision": "character or art lead accepts reproducible construction",
+      "blocksNextStageUntilApproved": true
+    },
+    {
+      "stage": 5,
+      "name": "finished key art",
+      "requirements": [
+        "at least 1024 by 1024 pixels",
+        "transparent background with genuine alpha",
+        "no cropped major parts",
+        "no background, ground, or foot shadow",
+        "thumbnail-capable composition",
+        "editable source data",
+        "integrated PNG",
+        "vector or higher-resolution source when contracted"
+      ],
+      "userDecision": "separate art approval and technical QA",
+      "blocksNextStageUntilApproved": true
+    },
+    {
+      "stage": 6,
+      "name": "cross-character art bible",
+      "deliverables": [
+        "common and variable silhouette principles",
+        "head-to-body, face, eye, mouth, ear, limb, line, shading, color, texture, pose, and expression rules",
+        "normal, rare, and legendary differentiation",
+        "prohibited constructions",
+        "new-character design template",
+        "full-size, 128px, and 64px lineup proofs",
+        "reference material for future human and separately approved AI-assisted work"
+      ],
+      "userDecision": "user and IP or art leads approve the three-character system",
+      "bulkProductionBlockedUntilApproved": true
+    }
+  ],
+  "firstPaidContractUnit": {
+    "includes": [
+      "Stage 0 creative direction",
+      "Stage 1 black silhouettes"
+    ],
+    "excludes": [
+      "finished color illustration",
+      "automatic progression to Stage 2"
+    ]
+  }
+}

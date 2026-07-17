@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "phase2c-design-1",
+  "designOnly": true,
+  "runtimeReference": false,
+  "productionData": false,
+  "officialCharacterIdsIssued": false,
+  "officialImagePathsUsed": false,
+  "noticeJa": "非本番の設計資料。runtimeから参照しない。正式データではない。正式キャラクターIDを発行していない。正式画像パスを使用していない。",
+  "legalAdvice": false,
+  "qualifiedReviewRequiredWhereApplicable": true,
+  "sections": [
+    {
+      "name": "scope and commercial terms",
+      "items": [
+        "contracting parties and authority",
+        "Stage 0 through Stage 6 scope and exclusions",
+        "deliverable counts and source formats",
+        "revision count and revision definition",
+        "motif-change scope and fee",
+        "additional fees",
+        "payment stages",
+        "delivery dates",
+        "delay handling",
+        "cancellation and suspension",
+        "use of partial work on early termination",
+        "acceptance procedure"
+      ]
+    },
+    {
+      "name": "copyright or license",
+      "items": [
+        "copyright assignment or license scope",
+        "exclusive or non-exclusive",
+        "duration",
+        "territory",
+        "media",
+        "game or application use",
+        "Web",
+        "advertising",
+        "social media",
+        "video",
+        "books and printed matter",
+        "merchandise",
+        "plush toys",
+        "figures and collectibles",
+        "events",
+        "sequels and expansions",
+        "derivative works",
+        "character names",
+        "logos",
+        "cooperation with trademark applications",
+        "credit",
+        "sublicensing to partners and manufacturers"
+      ]
+    },
+    {
+      "name": "modification and continuation",
+      "items": [
+        "modification authority",
+        "new poses and expressions",
+        "3D conversion",
+        "animation conversion",
+        "plush and manufacturing simplification",
+        "handoff to other artists",
+        "future characters by other artists",
+        "designer consultation or approval rights",
+        "moral-rights or comparable-rights review"
+      ]
+    },
+    {
+      "name": "source and third-party materials",
+      "items": [
+        "editable source-file delivery",
+        "software and version",
+        "linked and embedded assets",
+        "fonts and font licenses",
+        "brushes, textures, plug-ins, stock, models, and templates",
+        "third-party material disclosure",
+        "license evidence and redistribution limits",
+        "collaborator and subcontractor disclosure",
+        "backup, return, deletion, and archive terms"
+      ]
+    },
+    {
+      "name": "generative AI",
+      "items": [
+        "whether generative AI is used",
+        "model, service, and version if used",
+        "inputs, outputs, settings, and human modification records",
+        "rights basis for source material",
+        "confidential material upload",
+        "service-term and output-use review",
+        "similarity and provenance review",
+        "permission for future AI-assisted reference use",
+        "permission or prohibition for AI training, fine-tuning, embeddings, evaluation, or datasets",
+        "separate boundaries for client, designer, subcontractors, platforms, and public",
+        "AI-use disclosure at delivery"
+      ]
+    },
+    {
+      "name": "confidentiality and publicity",
+      "items": [
+        "confidentiality",
+        "public reveal date",
+        "designer portfolio publication",
+        "social posts, case studies, awards, and process recordings",
+        "return or deletion obligations",
+        "confidentiality duration"
+      ]
+    },
+    {
+      "name": "similarity and claims",
+      "items": [
+        "scope for offering similar work to other clients",
+        "original authorship and other obligations",
+        "existing-IP similarity review process",
+        "response if rights infringement is alleged or established",
+        "notice, cooperation, correction, replacement, suspension, and cost allocation",
+        "warranties, indemnities, liability, and remedies subject to professional review",
+        "governing law and dispute process"
+      ]
+    }
+  ],
+  "productionUseRequiresActualAgreement": true
+}

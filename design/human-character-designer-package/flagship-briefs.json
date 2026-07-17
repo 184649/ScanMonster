@@ -1,0 +1,143 @@
+{
+  "schemaVersion": "phase2c-design-1",
+  "designOnly": true,
+  "runtimeReference": false,
+  "productionData": false,
+  "officialCharacterIdsIssued": false,
+  "officialImagePathsUsed": false,
+  "noticeJa": "非本番の設計資料。runtimeから参照しない。正式データではない。正式キャラクターIDを発行していない。正式画像パスを使用していない。",
+  "motifChange": {
+    "userApprovalRequired": true,
+    "generalConditions": [
+      "preserve small friendly, large presence, and non-mammal or clearly different structural tests",
+      "three body structures must not overlap",
+      "exclude sheep",
+      "prefer existing initial / ground / normal candidates",
+      "explain the character and IP benefit",
+      "do not change only because another motif is easier to draw",
+      "consider similarity risk to existing famous IP"
+    ]
+  },
+  "sharedPrinciples": [
+    "one-sentence core and reason to like for each character",
+    "one primary silhouette, face, and color-plane memory point",
+    "personality expressed through construction and posture",
+    "legible at 64px and 128px",
+    "figure and plush translation",
+    "approximately 8 to 12 major three-dimensional blocks at final acceptance",
+    "same IP through abstraction rules, not the same face or body",
+    "no equipment, background, texture, or concrete existing-IP imitation"
+  ],
+  "briefs": [
+    {
+      "category": "small and approachable ground animal",
+      "defaultMotif": "hamster",
+      "alternativeCandidateConditions": [
+        "small and approachable ground organism",
+        "structure distinct from the large and non-mammal categories"
+      ],
+      "ipQuestion": "Can a familiar compact mammal create affection through construction and voluntary behavior without giant eyes, baby proportions, or generic pet imagery?",
+      "characterCoreRequirement": "Join a small physical action to an emotionally legible choice that remains visible without a prop.",
+      "reasonToLikeRequirement": "Explain why someone chooses this individual beyond generic cuteness.",
+      "silhouetteMemoryPointRequirement": "Use one contrast between compact mass and intentional gesture; cheeks alone are insufficient.",
+      "faceMemoryPointRequirement": "Use a hamster-specific brow, short muzzle, cheek, and head transition; eye size is secondary.",
+      "colorMemoryPointRequirement": "Use three or four reproducible large regions; fine markings are not identity.",
+      "toyBlocksToTest": [
+        "head",
+        "main body or hind mass",
+        "forelimb gesture",
+        "foot or support blocks"
+      ],
+      "smallScreenSurvivors": [
+        "head-to-body ratio",
+        "ear placement",
+        "muzzle and cheek transition",
+        "primary posture",
+        "single silhouette hook"
+      ],
+      "avoid": [
+        "inflated cheeks as the only idea",
+        "standing, sitting, or eating pose variants",
+        "roundness as the only body idea",
+        "generic mascot face",
+        "human-like hands",
+        "clothing or props",
+        "giant-eye or infant-only appeal"
+      ]
+    },
+    {
+      "category": "large ground animal with presence",
+      "defaultMotif": "elephant",
+      "alternativeCandidateConditions": [
+        "large ground organism with clear mass and support architecture",
+        "structure distinct from the small and non-mammal categories"
+      ],
+      "ipQuestion": "Can mass, trunk and ear construction, and deliberate weight shift create a gentle memorable character without realism, armor, muscle, or fear?",
+      "characterCoreRequirement": "Turn size into a specific caring or discovery-centered relationship visible without decoration.",
+      "reasonToLikeRequirement": "Explain trust or attachment beyond strength or cuteness.",
+      "silhouetteMemoryPointRequirement": "Use one relationship among trunk, head or shoulder mass, body weight, and supports; length or size alone is insufficient.",
+      "faceMemoryPointRequirement": "Use an elephant-specific forehead, trunk root, cheek, ear-base, and jaw construction.",
+      "colorMemoryPointRequirement": "Use broad merchandise-safe regions that reinforce construction without ceremonial ornament.",
+      "toyBlocksToTest": [
+        "head or shoulder mass",
+        "body",
+        "trunk",
+        "ear planes",
+        "four support groups"
+      ],
+      "smallScreenSurvivors": [
+        "head or shoulder mass",
+        "trunk direction and root",
+        "ear and head relationship",
+        "support rhythm",
+        "primary weight shift"
+      ],
+      "avoid": [
+        "trunk-length-only differences",
+        "ear-size-only differences",
+        "orientation variants",
+        "generic elephant pictogram",
+        "calf-only appeal",
+        "muscle, armor, aggression, or fear",
+        "ritual decoration, cloth, saddle, or crown"
+      ]
+    },
+    {
+      "category": "non-mammal or limbless animal",
+      "defaultMotif": "snake",
+      "alternativeCandidateConditions": [
+        "non-mammalian or clearly different structure",
+        "structure distinct from both ground mammal categories"
+      ],
+      "ipQuestion": "Can a limbless body express reassuring personality through mass, curve hierarchy, negative space, and head construction without mammal facial shorthand?",
+      "characterCoreRequirement": "Give stillness, movement, or attention a specific emotional meaning without generic mystery, villainy, poison, or magic.",
+      "reasonToLikeRequirement": "Make the individual welcome rather than merely novel or threatening.",
+      "silhouetteMemoryPointRequirement": "Use one relationship among ground mass, directional rise, negative space, and head wedge; coil changes alone are insufficient.",
+      "faceMemoryPointRequirement": "Use a species-specific wedge, jaw, snout, and neck transition without mammal cheeks, eyelashes, or giant eyes.",
+      "colorMemoryPointRequirement": "Use broad directional regions without jewels, scales, spots, or ornamental pattern as identity.",
+      "toyBlocksToTest": [
+        "stable base",
+        "counter-mass",
+        "directional section",
+        "neck transition",
+        "head"
+      ],
+      "smallScreenSurvivors": [
+        "head-to-neck transition",
+        "main ground mass",
+        "one directional rise",
+        "one intentional negative space",
+        "tail termination"
+      ],
+      "avoid": [
+        "coil-only differences",
+        "neck-length-only differences",
+        "generic snake symbol",
+        "ring, spiral, or S-curve-only differentiation",
+        "fangs, poison, cobra threat, or villain coding",
+        "dragon conversion",
+        "jewelry, gems, magic effects, or surface pattern"
+      ]
+    }
+  ]
+}

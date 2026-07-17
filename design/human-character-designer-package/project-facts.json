@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "phase2c-design-1",
+  "designOnly": true,
+  "runtimeReference": false,
+  "productionData": false,
+  "officialCharacterIdsIssued": false,
+  "officialImagePathsUsed": false,
+  "noticeJa": "非本番の設計資料。runtimeから参照しない。正式データではない。正式キャラクターIDを発行していない。正式画像パスを使用していない。",
+  "project": {
+    "name": "WORLDAWN",
+    "platform": "smartphone discovery experience",
+    "experienceFlow": [
+      "scan a barcode or QR code",
+      "discover a creature or character",
+      "receive an official per-character discovery number",
+      "create a discovery certificate",
+      "record the encounter in dex, history, and calendar",
+      "support rediscovery and titles"
+    ],
+    "centralVocabulary": [
+      "discovery",
+      "encounter",
+      "record",
+      "rediscovery",
+      "discovery certificate",
+      "title",
+      "dex"
+    ],
+    "notCenteredOn": [
+      "combat",
+      "capture",
+      "training",
+      "ability strength",
+      "fighter unlocking"
+    ],
+    "desiredFeelings": [
+      "want to discover",
+      "glad to encounter",
+      "want to keep in the dex",
+      "want to remember the name",
+      "want to meet again"
+    ]
+  },
+  "commercialGoal": {
+    "goal": "Build an independent long-term original character collection IP whose characters users may choose beside popular character IPs.",
+    "concreteImitationProhibited": true,
+    "prohibitedTargets": [
+      "specific existing character",
+      "face",
+      "eyes",
+      "body proportion",
+      "palette",
+      "marking",
+      "pose",
+      "style",
+      "silhouette"
+    ],
+    "baselineReferenceCharacterCount": {
+      "minimum": 3,
+      "maximum": 5
+    },
+    "futurePortfolioRecommendation": 24,
+    "bulkProductionBlockedUntilBaselineApproval": true
+  },
+  "rarityPolicy": [
+    {
+      "rarity": "normal",
+      "role": "clear, approachable, one strong individual quality, rewarding to discover",
+      "lowerDesignQuality": false
+    },
+    {
+      "rarity": "rare",
+      "role": "unusual real organism, deep-sea or luminous organism, or distinctive ecology",
+      "lowerDesignQuality": false
+    },
+    {
+      "rarity": "legendary",
+      "role": "mythology, folklore, fantasy organism, UMA, or world-significant presence",
+      "lowerDesignQuality": false
+    },
+    {
+      "rarity": "secret",
+      "role": "concealed exceptional category",
+      "lowerDesignQuality": false
+    }
+  ],
+  "preservedArchitecture": [
+    "separate SpeciesMotif from CharacterIdentity",
+    "do not require one species to equal one character",
+    "allow a small number of purposeful motifs",
+    "preserve every existing ID",
+    "preserve discovery history and official discovery numbers",
+    "validate from silhouette before finished illustration",
+    "do not mass-produce before all three flagships pass",
+    "do not let AI score user preference"
+  ],
+  "repositoryBaseline": {
+    "phase2ABranch": "design/character-ip-architecture-reset",
+    "phase2ACommit": "818fbc73c50b307514d1a3f3a6bb296c090b265c",
+    "phase2BBranchObserved": "art/flagship-silhouette-validation",
+    "phase2BBranchHeadObserved": "818fbc73c50b307514d1a3f3a6bb296c090b265c",
+    "phase2BImagesPresentInRepository": false
+  },
+  "phase2BDecision": {
+    "hamster": "ALL_REJECTED",
+    "elephant": "ALL_REJECTED",
+    "snake": "ALL_REJECTED",
+    "gate1Result": "No silhouette created sufficient interest to proceed to Gate 2.",
+    "repeatSameMethod": false,
+    "nextRoute": "human character designer baseline"
+  }
+}

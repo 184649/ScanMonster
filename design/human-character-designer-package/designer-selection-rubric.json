@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "phase2c-design-1",
+  "designOnly": true,
+  "runtimeReference": false,
+  "productionData": false,
+  "officialCharacterIdsIssued": false,
+  "officialImagePathsUsed": false,
+  "noticeJa": "非本番の設計資料。runtimeから参照しない。正式データではない。正式キャラクターIDを発行していない。正式画像パスを使用していない。",
+  "maximumScore": 100,
+  "automaticSelectionProhibited": true,
+  "criteria": [
+    {
+      "name": "character construction fundamentals",
+      "weight": 25
+    },
+    {
+      "name": "different body structures",
+      "weight": 15
+    },
+    {
+      "name": "silhouette design",
+      "weight": 15
+    },
+    {
+      "name": "personality translated into shape",
+      "weight": 15
+    },
+    {
+      "name": "model sheets and repeatability",
+      "weight": 10
+    },
+    {
+      "name": "toy and merchandise potential",
+      "weight": 10
+    },
+    {
+      "name": "originality and existing-IP avoidance",
+      "weight": 10
+    }
+  ],
+  "portfolioChecks": [
+    "roughs and exploration, not only finished illustrations",
+    "different faces rather than one face reused across species",
+    "non-mammals and structurally unusual bodies",
+    "consistent front, side, rear, and three-quarter views",
+    "expression variants that preserve construction",
+    "ability to explain design reasons",
+    "silhouette- or construction-first process",
+    "game, animation, figure, plush, and merchandise awareness",
+    "substantial original work, not only existing-IP fan art",
+    "traceable creative process rather than unexplained generated-AI images"
+  ],
+  "processRules": {
+    "fullUnpaidCompetitionProhibited": true,
+    "paidTestWhenNeeded": true,
+    "recommendedPaidTestScope": [
+      "Stage 0 creative direction",
+      "limited mutually agreed Stage 1 silhouette work"
+    ],
+    "scoreMustIncludeEvidence": true,
+    "humanJudgmentRequired": true
+  }
+}
