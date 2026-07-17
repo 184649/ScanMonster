@@ -15,6 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 import { LockKeyhole } from "../components/icons";
 import { MonsterAvatar } from "../components/MonsterAvatar";
 import type { CatalogCharacter, CatalogRare } from "../data/characterCatalog.generated";
+import { resolveCharacterPresentation } from "../services/characterPresentationResolver";
 import { effectiveUnlockedWorldGroups } from "../services/worldAccess";
 import { getWorldDexView, getWorldTabs, monstersByCatalogId, type WorldDexEntry } from "../services/worldDex";
 import { useMonsterStore } from "../stores/monsterStore";
@@ -59,9 +60,11 @@ export const WorldDexScreen = () => {
   const renderDexCard = useCallback(
     ({ entry, owned }: WorldDexEntry<DexCardEntry>) => {
       const ownedMonster = owned ? ownedMap.get(entry.id) : undefined;
-      const canPress = owned && entry.hasImage;
-      const title = !entry.hasImage ? "準備中" : owned ? entry.name : "???";
-      const subtitle = !entry.hasImage ? "" : owned ? entry.speciesJa : "";
+      const presentation = resolveCharacterPresentation(entry.id);
+      const imageReady = entry.hasImage && Boolean(presentation?.imageSource);
+      const canPress = owned && imageReady;
+      const title = !imageReady ? "準備中" : owned ? presentation?.displayName ?? entry.name : "???";
+      const subtitle = !imageReady ? "" : owned ? presentation?.motifName ?? entry.speciesJa : "";
 
       return (
         <Pressable
@@ -72,7 +75,7 @@ export const WorldDexScreen = () => {
             isRareEntry(entry) && styles.rareCard,
             { width: CARD_WIDTH },
             !owned && styles.cardLocked,
-            !entry.hasImage && styles.cardPreparing,
+            !imageReady && styles.cardPreparing,
             pressed && canPress && styles.pressed
           ]}
         >
@@ -80,7 +83,7 @@ export const WorldDexScreen = () => {
             {String(entry.no).padStart(3, "0")}
           </Text>
 
-          {entry.hasImage && owned ? (
+          {imageReady && owned ? (
             <View style={styles.avatarWrap}>
               <MonsterAvatar
                 imageKey={entry.id}
@@ -91,7 +94,7 @@ export const WorldDexScreen = () => {
                 backgroundColor={isRareEntry(entry) ? "#FEF3C7" : colors.borderFaint}
               />
             </View>
-          ) : entry.hasImage ? (
+          ) : imageReady ? (
             <MysterySilhouette size={CARD_WIDTH - 20} />
           ) : (
             <View style={[styles.placeholder, { width: CARD_WIDTH - 20, height: CARD_WIDTH - 20 }]}>

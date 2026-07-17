@@ -13,6 +13,7 @@ import { HABITAT_GROUP_LABELS } from "../data/habitatGroups";
 import { getCharacterRarityForMonster, getFamilyHabitatGroup } from "../data/characters";
 import { getFamilyById } from "../data/monsterFamilies";
 import { getRareById } from "../data/rareMonsters";
+import { resolveCharacterPresentation } from "../services/characterPresentationResolver";
 import { playSound } from "../services/soundService";
 import { characterRarityLabel } from "../services/rarityLabel.core";
 import { useMonsterStore } from "../stores/monsterStore";
@@ -36,6 +37,7 @@ export const MonsterDetailScreen = () => {
     const catRare = previewId ? getCatalogRareById(previewId) : undefined;
     const cat = catRare ?? (previewId ? getCatalogCharacterById(previewId) : undefined);
     if (cat) {
+      const presentation = resolveCharacterPresentation(cat.id);
       const cWorld = cat.worldGroup ? WORLD_GROUP_LABELS[cat.worldGroup as WorldGroup] : "";
       const cRealm = cat.realmGroup ? REALM_GROUP_LABELS[cat.realmGroup as RealmGroup] : "";
       const isRare = Boolean(catRare);
@@ -47,9 +49,9 @@ export const MonsterDetailScreen = () => {
                 <Text style={styles.noPillText}>{`${cWorld || "図鑑"} No.${String(cat.no).padStart(3, "0")}`}</Text>
               </View>
               <MonsterAvatar imageKey={cat.id} size={220} showRarity={false} showElementFrame={false} />
-              <Text style={styles.title}>{cat.name}</Text>
+              <Text style={styles.title}>{presentation?.displayName ?? cat.name}</Text>
               <Text style={styles.subtitle}>
-                {isRare ? `${cWorld}のレア` : cWorld} / {cat.speciesJa || cat.speciesEn}
+                {isRare ? `${cWorld}のレア` : cWorld} / {presentation?.motifName ?? (cat.speciesJa || cat.speciesEn)}
               </Text>
               <View style={styles.badgeRow}>
                 <Text style={styles.badge}>{isRare ? "レア" : "通常"}</Text>
@@ -60,7 +62,7 @@ export const MonsterDetailScreen = () => {
 
             <View style={styles.panel}>
               <Text style={styles.sectionTitle}>キャラメモ</Text>
-              <Text style={styles.body}>{cat.description || "（説明は準備中です）"}</Text>
+              <Text style={styles.body}>{presentation?.shortDescription ?? (cat.description || "（説明は準備中です）")}</Text>
             </View>
 
             <View style={styles.panel}>
@@ -90,8 +92,10 @@ export const MonsterDetailScreen = () => {
   const hasWorld = Boolean(monster.worldGroup);
   const worldLabel = monster.worldGroup ? WORLD_GROUP_LABELS[monster.worldGroup] : "";
   const realmLabel = monster.realmGroup ? REALM_GROUP_LABELS[monster.realmGroup] : "";
+  const presentationId = monster.characterId ?? monster.imageKey;
+  const presentation = resolveCharacterPresentation(presentationId);
   const catalogDescription = hasWorld
-    ? getCatalogDescriptionById(monster.characterId ?? monster.imageKey)
+    ? presentation?.shortDescription ?? getCatalogDescriptionById(presentationId)
     : undefined;
   const habitat = monster.habitatGroup ?? getFamilyHabitatGroup(monster.familyId);
   const characterRarity = monster.characterRarity ?? getCharacterRarityForMonster(monster);
@@ -105,7 +109,7 @@ export const MonsterDetailScreen = () => {
   const dexNoLabel = `${hasWorld ? worldLabel : "図鑑"} No.${String(dexNo).padStart(3, "0")}`;
 
   // キャラメモ：カタログ説明→モチーフ別メモ→（ワールド系は汎用文／旧系は family/rare）。
-  const speciesJa = monster.speciesJa ?? monster.speciesEn ?? "";
+  const speciesJa = presentation?.motifName ?? monster.speciesJa ?? monster.speciesEn ?? "";
   const memoText =
     catalogDescription ??
     getCharacterMemoForSpecies(monster.speciesEn) ??
@@ -153,7 +157,7 @@ export const MonsterDetailScreen = () => {
             <Text style={styles.noPillText}>{dexNoLabel}</Text>
           </View>
           <MonsterAvatar monster={monster} size={220} showRarity={false} showElementFrame={false} />
-          <Text style={styles.title}>{monster.nickname ?? monster.displayName}</Text>
+          <Text style={styles.title}>{monster.nickname ?? presentation?.displayName ?? monster.displayName}</Text>
           <Text style={styles.subtitle}>
             {hasWorld
               ? `${characterRarity === "rare" ? `${worldLabel}のレア` : worldLabel} / ${speciesJa}`

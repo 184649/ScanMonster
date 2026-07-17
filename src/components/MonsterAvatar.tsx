@@ -1,10 +1,11 @@
+import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, View, type ImageSourcePropType } from "react-native";
 
-import { getCharacterImage, getCharacterThumb } from "../assets/characterImages.generated";
 import { getMonsterImageSource } from "../assets/monsterImages";
 import { getElementMeta } from "../data/elements";
 import { getFamilyById, MONSTER_FAMILIES } from "../data/monsterFamilies";
 import { getRareById } from "../data/rareMonsters";
+import { resolveCharacterPresentation } from "../services/characterPresentationResolver";
 import type { ElementType, MonsterFamily, RareMonster, UserMonster } from "../types/monster";
 import { colors } from "../theme";
 
@@ -60,9 +61,11 @@ const FallbackVisual = ({ emoji, label, no, elementColor, elementSoftColor, size
           }
         ]}
       />
-      <Text style={{ fontSize: emojiSize }} numberOfLines={1}>
-        {emoji}
-      </Text>
+      {emoji ? (
+        <Text style={{ fontSize: emojiSize }} numberOfLines={1}>
+          {emoji}
+        </Text>
+      ) : null}
       {no ? (
         <View
           style={[
@@ -110,17 +113,22 @@ export const MonsterAvatar = ({
   const family: MonsterFamily = getFamilyById(resolvedFamilyId);
 
   const resolvedImageKey = imageKey ?? monster?.imageKey ?? rare?.imageKey ?? family.imageKey;
-  // 新ワールド構成のカタログ画像を優先し、無ければ旧マニフェストにフォールバック。
-  // thumb 指定時は図鑑用の縮小サムネ（getCharacterThumb は無ければ原画を返す）。
-  const catalogImage = thumb ? getCharacterThumb(resolvedImageKey) : getCharacterImage(resolvedImageKey);
+  const presentation = resolveCharacterPresentation(resolvedImageKey);
+  // presentation resolver の現行画像を優先し、対象外の旧個体だけ旧マニフェストへ戻す。
+  const catalogImage = thumb ? presentation?.thumbnailSource : presentation?.imageSource;
   const imageSource = source ?? catalogImage ?? getMonsterImageSource(resolvedImageKey);
+  const [imageFailed, setImageFailed] = useState(false);
+
+  useEffect(() => {
+    setImageFailed(false);
+  }, [imageSource]);
 
   const elementType: ElementType = monster?.dna.primaryElement ?? rare?.defaultElement ?? family.defaultElement;
   const element = getElementMeta(elementType);
   const rarityText = getRarityText(monster?.dna.rarity ?? rare?.rarity);
 
-  const fallbackEmoji = rare?.emoji ?? family.emoji;
-  const fallbackLabel = rare?.displayName ?? family.baseAnimalName;
+  const fallbackEmoji = presentation ? "" : rare?.emoji ?? family.emoji;
+  const fallbackLabel = presentation?.motifName ?? presentation?.displayName ?? rare?.displayName ?? family.baseAnimalName;
 
   return (
     <View
@@ -134,13 +142,20 @@ export const MonsterAvatar = ({
         }
       ]}
     >
-      {imageSource ? (
-        <Image source={imageSource} style={[styles.image, silhouette && styles.silhouetteImage]} resizeMode="contain" fadeDuration={0} />
+      {imageSource && !imageFailed ? (
+        <Image
+          source={imageSource}
+          style={[styles.image, silhouette && styles.silhouetteImage]}
+          resizeMode="contain"
+          fadeDuration={0}
+          accessibilityLabel={presentation?.altText ?? fallbackLabel}
+          onError={() => setImageFailed(true)}
+        />
       ) : (
         <FallbackVisual
           emoji={fallbackEmoji}
           label={fallbackLabel}
-          no={rare ? undefined : family.no}
+          no={presentation || rare ? undefined : family.no}
           elementColor={element.color}
           elementSoftColor={element.softColor}
           size={size}
