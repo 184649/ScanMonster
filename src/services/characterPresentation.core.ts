@@ -23,6 +23,27 @@ type ResolverOptions = {
   defaultMode: PresentationMode;
 };
 
+export type CharacterDisplayNameInput = {
+  characterId?: string;
+  resolvedDisplayName?: string;
+  storedDisplayName?: string;
+};
+
+const hasVisibleText = (value: string | undefined): value is string =>
+  typeof value === "string" && value.trim().length > 0;
+
+/** 現在表示名 → 保存済み表示名 → ID の順で、未知IDでも安定した表示名を返す。 */
+export const selectCharacterDisplayName = ({
+  characterId,
+  resolvedDisplayName,
+  storedDisplayName
+}: CharacterDisplayNameInput): string => {
+  if (hasVisibleText(resolvedDisplayName)) return resolvedDisplayName;
+  if (hasVisibleText(storedDisplayName)) return storedDisplayName;
+  if (hasVisibleText(characterId)) return characterId;
+  return "キャラクター";
+};
+
 const modeFallbackReason = (mode: PresentationMode) =>
   mode === "zoological"
     ? "zoological-data-unavailable" as const

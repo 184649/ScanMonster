@@ -116,7 +116,8 @@ export const MonsterAvatar = ({
   const presentation = resolveCharacterPresentation(resolvedImageKey);
   // presentation resolver の現行画像を優先し、対象外の旧個体だけ旧マニフェストへ戻す。
   const catalogImage = thumb ? presentation?.thumbnailSource : presentation?.imageSource;
-  const imageSource = source ?? catalogImage ?? getMonsterImageSource(resolvedImageKey);
+  const legacyImage = getMonsterImageSource(resolvedImageKey);
+  const imageSource = source ?? catalogImage ?? legacyImage;
   const [imageFailed, setImageFailed] = useState(false);
 
   useEffect(() => {
@@ -127,8 +128,12 @@ export const MonsterAvatar = ({
   const element = getElementMeta(elementType);
   const rarityText = getRarityText(monster?.dna.rarity ?? rare?.rarity);
 
-  const fallbackEmoji = presentation ? "" : rare?.emoji ?? family.emoji;
-  const fallbackLabel = presentation?.motifName ?? presentation?.displayName ?? rare?.displayName ?? family.baseAnimalName;
+  const unresolvedImageKey = Boolean(resolvedImageKey && !presentation && !legacyImage);
+  const fallbackEmoji = presentation || unresolvedImageKey ? "" : rare?.emoji ?? family.emoji;
+  const fallbackLabel =
+    presentation?.motifName ??
+    presentation?.displayName ??
+    (unresolvedImageKey ? resolvedImageKey : rare?.displayName ?? family.baseAnimalName);
 
   return (
     <View
@@ -155,7 +160,7 @@ export const MonsterAvatar = ({
         <FallbackVisual
           emoji={fallbackEmoji}
           label={fallbackLabel}
-          no={presentation || rare ? undefined : family.no}
+          no={presentation || rare || unresolvedImageKey ? undefined : family.no}
           elementColor={element.color}
           elementSoftColor={element.softColor}
           size={size}

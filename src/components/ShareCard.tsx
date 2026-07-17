@@ -4,6 +4,7 @@ import { APP_INFO } from "../constants/appInfo";
 import { getElementMeta } from "../data/elements";
 import { getFamilyById } from "../data/monsterFamilies";
 import { getRareById } from "../data/rareMonsters";
+import { resolveUserMonsterDisplayName } from "../services/characterPresentationResolver";
 import type { UserMonster } from "../types/monster";
 import { MonsterAvatar } from "./MonsterAvatar";
 import { colors } from "../theme";
@@ -27,9 +28,14 @@ export const ShareCard = ({ monster, discoveredFamilies, totalFamilies, discover
   const rare = monster.rareId ? getRareById(monster.rareId) : undefined;
   const element = getElementMeta(monster.dna.primaryElement);
   const speciesLabel = rare ? `${family.name}のレア` : family.name;
+  const displayName = monster.nickname || resolveUserMonsterDisplayName(monster);
 
   return (
-    <View style={[styles.card, { borderColor: element.color }]}>
+    <View
+      accessible
+      accessibilityLabel={`${displayName}の共有カード。${displayName}のキャラクター画像。${speciesLabel}。図鑑 ${discoveredFamilies}/${totalFamilies}`}
+      style={[styles.card, { borderColor: element.color }]}
+    >
       <View style={styles.header}>
         <Text style={styles.logo}>
           WORLD<Text style={styles.logoGreen}>AWN</Text>
@@ -41,7 +47,7 @@ export const ShareCard = ({ monster, discoveredFamilies, totalFamilies, discover
         <MonsterAvatar monster={monster} size={150} showRarity={false} showElementFrame={false} />
       </View>
 
-      <Text style={styles.name}>{monster.nickname || monster.displayName}</Text>
+      <Text style={styles.name}>{displayName}</Text>
       <Text style={styles.species}>{speciesLabel}</Text>
 
       <View style={styles.metaRow}>

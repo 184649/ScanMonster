@@ -8,7 +8,12 @@ import {
   type CatalogRare
 } from "../data/characterCatalog.generated";
 import type { PresentationMode } from "../types/characterPresentation";
-import { createCharacterPresentationResolver, type CharacterPresentationSource } from "./characterPresentation.core";
+import type { UserMonster } from "../types/monster";
+import {
+  createCharacterPresentationResolver,
+  selectCharacterDisplayName,
+  type CharacterPresentationSource
+} from "./characterPresentation.core";
 
 type CatalogEntry = CatalogCharacter | CatalogRare;
 
@@ -48,3 +53,18 @@ export const resolveCharacterPresentation = (
   characterId: string,
   mode: PresentationMode = DEFAULT_CHARACTER_PRESENTATION_MODE
 ) => resolver.resolveCharacterPresentation(characterId, mode);
+
+/** UI用の名前解決。保存値は変更せず、resolverで解決できない場合だけfallbackとして使う。 */
+export const resolveCharacterDisplayName = (
+  characterId: string | undefined,
+  storedDisplayName?: string
+): string =>
+  selectCharacterDisplayName({
+    characterId,
+    resolvedDisplayName: characterId ? resolveCharacterPresentation(characterId)?.displayName : undefined,
+    storedDisplayName
+  });
+
+/** UserMonsterの永続displayNameを保持したまま、現在表示だけresolver優先にする。 */
+export const resolveUserMonsterDisplayName = (monster: UserMonster): string =>
+  resolveCharacterDisplayName(monster.characterId ?? monster.imageKey, monster.displayName);

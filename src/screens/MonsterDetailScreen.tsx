@@ -5,7 +5,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { MonsterAvatar } from "../components/MonsterAvatar";
 import { CharacterRecordSection } from "../components/discovery/CharacterRecordSection";
 import { PrimaryButton } from "../components/PrimaryButton";
-import { getCatalogCharacterById, getCatalogDescriptionById, getCatalogRareById } from "../data/catalogLookup";
+import { getCatalogCharacterById, getCatalogRareById } from "../data/catalogLookup";
 import { getCharacterMemoForSpecies } from "../data/characterMemos";
 import { getRealWorldProfileForSpecies } from "../data/realWorldProfiles";
 import { REALM_GROUP_LABELS, WORLD_GROUP_LABELS } from "../data/worlds";
@@ -13,7 +13,11 @@ import { HABITAT_GROUP_LABELS } from "../data/habitatGroups";
 import { getCharacterRarityForMonster, getFamilyHabitatGroup } from "../data/characters";
 import { getFamilyById } from "../data/monsterFamilies";
 import { getRareById } from "../data/rareMonsters";
-import { resolveCharacterPresentation } from "../services/characterPresentationResolver";
+import {
+  resolveCharacterDisplayName,
+  resolveCharacterPresentation,
+  resolveUserMonsterDisplayName
+} from "../services/characterPresentationResolver";
 import { playSound } from "../services/soundService";
 import { characterRarityLabel } from "../services/rarityLabel.core";
 import { useMonsterStore } from "../stores/monsterStore";
@@ -49,7 +53,7 @@ export const MonsterDetailScreen = () => {
                 <Text style={styles.noPillText}>{`${cWorld || "図鑑"} No.${String(cat.no).padStart(3, "0")}`}</Text>
               </View>
               <MonsterAvatar imageKey={cat.id} size={220} showRarity={false} showElementFrame={false} />
-              <Text style={styles.title}>{presentation?.displayName ?? cat.name}</Text>
+              <Text style={styles.title}>{resolveCharacterDisplayName(cat.id, cat.name)}</Text>
               <Text style={styles.subtitle}>
                 {isRare ? `${cWorld}のレア` : cWorld} / {presentation?.motifName ?? (cat.speciesJa || cat.speciesEn)}
               </Text>
@@ -95,7 +99,7 @@ export const MonsterDetailScreen = () => {
   const presentationId = monster.characterId ?? monster.imageKey;
   const presentation = resolveCharacterPresentation(presentationId);
   const catalogDescription = hasWorld
-    ? presentation?.shortDescription ?? getCatalogDescriptionById(presentationId)
+    ? presentation?.shortDescription
     : undefined;
   const habitat = monster.habitatGroup ?? getFamilyHabitatGroup(monster.familyId);
   const characterRarity = monster.characterRarity ?? getCharacterRarityForMonster(monster);
@@ -157,7 +161,7 @@ export const MonsterDetailScreen = () => {
             <Text style={styles.noPillText}>{dexNoLabel}</Text>
           </View>
           <MonsterAvatar monster={monster} size={220} showRarity={false} showElementFrame={false} />
-          <Text style={styles.title}>{monster.nickname ?? presentation?.displayName ?? monster.displayName}</Text>
+          <Text style={styles.title}>{monster.nickname ?? resolveUserMonsterDisplayName(monster)}</Text>
           <Text style={styles.subtitle}>
             {hasWorld
               ? `${characterRarity === "rare" ? `${worldLabel}のレア` : worldLabel} / ${speciesJa}`

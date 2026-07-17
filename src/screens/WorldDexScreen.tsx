@@ -15,7 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 import { LockKeyhole } from "../components/icons";
 import { MonsterAvatar } from "../components/MonsterAvatar";
 import type { CatalogCharacter, CatalogRare } from "../data/characterCatalog.generated";
-import { resolveCharacterPresentation } from "../services/characterPresentationResolver";
+import { resolveCharacterDisplayName, resolveCharacterPresentation } from "../services/characterPresentationResolver";
 import { effectiveUnlockedWorldGroups } from "../services/worldAccess";
 import { getWorldDexView, getWorldTabs, monstersByCatalogId, type WorldDexEntry } from "../services/worldDex";
 import { useMonsterStore } from "../stores/monsterStore";
@@ -63,7 +63,7 @@ export const WorldDexScreen = () => {
       const presentation = resolveCharacterPresentation(entry.id);
       const imageReady = entry.hasImage && Boolean(presentation?.imageSource);
       const canPress = owned && imageReady;
-      const title = !imageReady ? "準備中" : owned ? presentation?.displayName ?? entry.name : "???";
+      const title = !imageReady ? "準備中" : owned ? resolveCharacterDisplayName(entry.id, entry.name) : "???";
       const subtitle = !imageReady ? "" : owned ? presentation?.motifName ?? entry.speciesJa : "";
 
       return (

@@ -7,6 +7,7 @@ import { EmptyState } from "../components/EmptyState";
 import { TagChip } from "../components/TagChip";
 import { SEASON_LABELS, TIME_SLOT_LABELS } from "../data/elements";
 import { getReadableBarcodeType } from "../services/scannerService";
+import { resolveUserMonsterDisplayName } from "../services/characterPresentationResolver";
 import { useMonsterStore } from "../stores/monsterStore";
 import { formatFullDateTime } from "../utils/dateUtils";
 import { shortHash } from "../utils/randomFromHash";
@@ -36,11 +37,13 @@ export const ScanHistoryScreen = () => {
           <View style={styles.list}>
             {histories.map((history) => {
               const monster = monsters.find((item) => item.id === history.resultMonsterId);
+              const displayName = monster ? resolveUserMonsterDisplayName(monster) : "生成個体不明";
 
               return (
                 <Pressable
                   key={history.id}
                   accessibilityRole="button"
+                  accessibilityLabel={`${displayName}、${formatFullDateTime(history.scannedAt)}`}
                   onPress={() => monster && navigation.navigate("MonsterDetail", { monsterId: monster.id })}
                   style={({ pressed }) => [styles.historyCard, pressed && monster && styles.pressed]}
                 >
@@ -49,7 +52,7 @@ export const ScanHistoryScreen = () => {
                       <Clock3 color={colors.primary} size={20} strokeWidth={2.4} />
                     </View>
                     <View style={styles.historyTitleBlock}>
-                      <Text style={styles.historyTitle}>{monster?.displayName ?? "生成個体不明"}</Text>
+                      <Text style={styles.historyTitle}>{displayName}</Text>
                       <Text style={styles.historyDate}>{formatFullDateTime(history.scannedAt)}</Text>
                     </View>
                   </View>
