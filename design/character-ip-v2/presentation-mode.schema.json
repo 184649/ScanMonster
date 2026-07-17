@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://worldawn.example/design/character-ip-v2/presentation-mode.schema.json",
+  "title": "WORLDAWN PresentationMode design document",
+  "description": "Future view-layer proposal; it must not alter scan, draw, numbering, history, rarity, unlock, or secret rules.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "sampleOnly", "presentationMode", "identityBinding", "coreBehaviorInvariant"],
+  "properties": {
+    "schemaVersion": { "const": "2.0.0-proposal" },
+    "sampleOnly": { "const": true },
+    "presentationMode": { "enum": ["character", "zoological", "hybrid"] },
+    "identityBinding": { "const": "legacy-character-id" },
+    "coreBehaviorInvariant": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "enum": ["scan", "draw", "deduplication", "official-numbering", "discovery-history", "certificate", "legendary-unlock", "secret-concealment", "privacy"]
+      }
+    }
+  }
+}

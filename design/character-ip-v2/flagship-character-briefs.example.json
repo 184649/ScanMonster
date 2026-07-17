@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "2.0.0-proposal",
+  "sampleOnly": true,
+  "notice": "Non-production Gate 0 examples. Names, IDs, rarity, and release status are not approved for runtime use.",
+  "characters": [
+    {
+      "characterId": "prototype_character_hamster_gatherer_v0",
+      "internalCodename": "Gatherer",
+      "displayNameJa": null,
+      "displayNameEn": null,
+      "nameStatus": "working",
+      "world": "ground",
+      "rarity": "normal",
+      "releaseStatus": "prototype",
+      "personality": ["cautious", "generous", "persistent"],
+      "behavior": "Secures its hindquarters, leans forward, and offers one found object before retreating.",
+      "visualHook": "A small voluntary offering made from a strongly anchored body.",
+      "silhouetteHook": "One joined forepaw block projects from a broad, low hind-body block.",
+      "bodyArchitecture": "compact body with small forelimbs and a heavy hind anchor",
+      "faceLanguage": "Short muzzle under one brow-to-cheek plane; eye size is secondary.",
+      "colorLanguage": "One warm face/forepaw bridge across a darker main mass.",
+      "toyeticStructure": {
+        "majorBlockCount": 5,
+        "description": "head, trunk/hind mass, joined forepaw block, two foot blocks"
+      },
+      "artStatus": "brief",
+      "assetVersion": "v0",
+      "isFlagship": true,
+      "isPlayableReleaseCandidate": false,
+      "createdAt": "2026-07-17T00:00:00+09:00",
+      "updatedAt": "2026-07-17T00:00:00+09:00"
+    },
+    {
+      "characterId": "prototype_character_elephant_wayfinder_v0",
+      "internalCodename": "Wayfinder",
+      "displayNameJa": null,
+      "displayNameEn": null,
+      "nameStatus": "working",
+      "world": "ground",
+      "rarity": "normal",
+      "releaseStatus": "prototype",
+      "personality": ["patient", "observant", "decisive"],
+      "behavior": "Touches the ground ahead with its trunk before moving its whole weight in one direction.",
+      "visualHook": "Large strength expressed as careful pathfinding.",
+      "silhouetteHook": "A low forward trunk bridge points into a high compact head-and-shoulder mass.",
+      "bodyArchitecture": "massive quadruped with trunk bridge and four column supports",
+      "faceLanguage": "Forehead, trunk root, and cheek form one elephant-specific construction.",
+      "colorLanguage": "One light trunk-to-forehead route over a deep main mass.",
+      "toyeticStructure": {
+        "majorBlockCount": 7,
+        "description": "head/shoulder mass, body mass, trunk, two front supports, two rear supports"
+      },
+      "artStatus": "brief",
+      "assetVersion": "v0",
+      "isFlagship": true,
+      "isPlayableReleaseCandidate": false,
+      "createdAt": "2026-07-17T00:00:00+09:00",
+      "updatedAt": "2026-07-17T00:00:00+09:00"
+    },
+    {
+      "characterId": "prototype_character_snake_listener_v0",
+      "internalCodename": "Listener",
+      "displayNameJa": null,
+      "displayNameEn": null,
+      "nameStatus": "working",
+      "world": "ground",
+      "rarity": "normal",
+      "releaseStatus": "prototype",
+      "personality": ["attentive", "deliberate", "reassuring"],
+      "behavior": "Keeps most weight in a low coil while one short section turns toward a ground vibration.",
+      "visualHook": "Stillness reads as attention rather than threat.",
+      "silhouetteHook": "A sheltered open space sits between an asymmetric low coil and a short upright neck.",
+      "bodyArchitecture": "limbless asymmetric coil with short upright neck and head wedge",
+      "faceLanguage": "Wedge-to-neck transition and jaw line carry identity without mammal facial shorthand.",
+      "colorLanguage": "One uninterrupted light route from lower coil to jaw against a dark main body.",
+      "toyeticStructure": {
+        "majorBlockCount": 4,
+        "description": "lower coil, counter-coil, neck, head wedge"
+      },
+      "artStatus": "brief",
+      "assetVersion": "v0",
+      "isFlagship": true,
+      "isPlayableReleaseCandidate": false,
+      "createdAt": "2026-07-17T00:00:00+09:00",
+      "updatedAt": "2026-07-17T00:00:00+09:00"
+    }
+  ],
+  "relationSets": [
+    {
+      "characterId": "prototype_character_hamster_gatherer_v0",
+      "relations": [
+        { "motifId": "motif_species_hamster", "role": "primary", "weight": 0.75, "notes": "Body architecture and biological behavior source." },
+        { "motifId": "motif_behavior_offering", "role": "behavior", "weight": 0.25, "notes": "Defines the voluntary forward gesture; adds no costume or surface detail." }
+      ]
+    },
+    {
+      "characterId": "prototype_character_elephant_wayfinder_v0",
+      "relations": [
+        { "motifId": "motif_species_elephant", "role": "primary", "weight": 0.75, "notes": "Body architecture and trunk behavior source." },
+        { "motifId": "motif_behavior_pathfinding", "role": "behavior", "weight": 0.25, "notes": "Turns strength into attentive forward movement." }
+      ]
+    },
+    {
+      "characterId": "prototype_character_snake_listener_v0",
+      "relations": [
+        { "motifId": "motif_species_snake", "role": "primary", "weight": 0.75, "notes": "Limbless construction and ground-sensing source." },
+        { "motifId": "motif_behavior_ground_listening", "role": "behavior", "weight": 0.25, "notes": "Directs the coil posture without adding magic effects." }
+      ]
+    }
+  ],
+  "gate0Briefs": [
+    {
+      "characterId": "prototype_character_hamster_gatherer_v0",
+      "characterCore": "A small finder who must gather courage before sharing the thing it values.",
+      "reasonToLike": "Its brave act is tiny but voluntary.",
+      "silhouetteMemoryPoint": "forward joined forepaw block against a low hind anchor",
+      "faceMemoryPoint": "short muzzle beneath one brow-to-cheek plane",
+      "colorMemoryPoint": "face-to-forepaw bridge",
+      "forbiddenSimilarities": ["generic spherical baby-animal body", "oversized-eye dependence", "pouch or carried equipment"]
+    },
+    {
+      "characterId": "prototype_character_elephant_wayfinder_v0",
+      "characterCore": "A large guide who listens to the path before taking one certain step.",
+      "reasonToLike": "Strength is expressed as care and certainty rather than dominance.",
+      "silhouetteMemoryPoint": "low trunk bridge into a high compact shoulder mass",
+      "faceMemoryPoint": "continuous forehead-to-trunk-root structure",
+      "colorMemoryPoint": "trunk-to-forehead route",
+      "forbiddenSimilarities": ["realistic calf rendering", "armor or muscular aggression", "circus or royal equipment"]
+    },
+    {
+      "characterId": "prototype_character_snake_listener_v0",
+      "characterCore": "A quiet listener who makes a safe place by feeling what others miss.",
+      "reasonToLike": "Stillness reads as attention, not threat.",
+      "silhouetteMemoryPoint": "sheltered negative space between low coil and short neck",
+      "faceMemoryPoint": "wedge-to-neck and jaw transition",
+      "colorMemoryPoint": "continuous lower-coil-to-jaw route",
+      "forbiddenSimilarities": ["generic S curve", "cobra threat display", "magic familiar, jewelry, or weapon"]
+    }
+  ]
+}

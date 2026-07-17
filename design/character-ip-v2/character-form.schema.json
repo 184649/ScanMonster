@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://worldawn.example/design/character-ip-v2/character-form.schema.json",
+  "title": "WORLDAWN CharacterForm design document",
+  "description": "Future-only form proposal. Forms never own legacy discovery history.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "sampleOnly", "forms"],
+  "properties": {
+    "schemaVersion": { "const": "2.0.0-proposal" },
+    "sampleOnly": { "const": true },
+    "forms": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/characterForm" }
+    }
+  },
+  "$defs": {
+    "characterForm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "formId", "characterId", "formType", "displayName", "nameStatus", "assetVersion",
+        "releaseStatus", "visualDifference", "discoveryCondition", "ownsDiscoveryHistory"
+      ],
+      "properties": {
+        "formId": { "type": "string", "pattern": "^(prototype_form|wdform)_[a-z0-9]+(?:_[a-z0-9]+)*$" },
+        "characterId": { "type": "string", "pattern": "^(prototype_character|wdchar)_[a-z0-9]+(?:_[a-z0-9]+)*$" },
+        "formType": { "enum": ["standard", "regional", "seasonal", "growth", "behavior", "event"] },
+        "displayName": { "type": ["string", "null"] },
+        "nameStatus": { "enum": ["working", "approved"] },
+        "assetVersion": { "type": "string", "pattern": "^v[0-9]+$" },
+        "releaseStatus": { "enum": ["prototype", "future", "inactive", "approved"] },
+        "visualDifference": { "type": "string", "minLength": 1 },
+        "discoveryCondition": { "type": "string", "minLength": 1 },
+        "ownsDiscoveryHistory": { "const": false }
+      }
+    }
+  }
+}

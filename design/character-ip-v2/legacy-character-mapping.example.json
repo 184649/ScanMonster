@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "2.0.0-proposal",
+  "sampleOnly": true,
+  "mappings": [
+    {
+      "legacyCharacterId": "ground_hamster",
+      "motifId": "motif_species_hamster",
+      "newCharacterId": "prototype_character_hamster_gatherer_v0",
+      "mappingStatus": "prototype_linked",
+      "migrationPolicy": "preserve_legacy_identity",
+      "preserveOfficialNumber": true,
+      "preserveDiscoveryHistory": true,
+      "notes": "Prototype link only. ground_hamster keeps its original meaning, history, counter, and number scope."
+    },
+    {
+      "legacyCharacterId": "ground_elephant",
+      "motifId": "motif_species_elephant",
+      "newCharacterId": "prototype_character_elephant_wayfinder_v0",
+      "mappingStatus": "prototype_linked",
+      "migrationPolicy": "preserve_legacy_identity",
+      "preserveOfficialNumber": true,
+      "preserveDiscoveryHistory": true,
+      "notes": "Prototype link only. No catalog, seed, DB, or official-image registration."
+    },
+    {
+      "legacyCharacterId": "ground_snake",
+      "motifId": "motif_species_snake",
+      "newCharacterId": "prototype_character_snake_listener_v0",
+      "mappingStatus": "prototype_linked",
+      "migrationPolicy": "preserve_legacy_identity",
+      "preserveOfficialNumber": true,
+      "preserveDiscoveryHistory": true,
+      "notes": "Prototype link only. A future production identity requires separate approval."
+    }
+  ]
+}

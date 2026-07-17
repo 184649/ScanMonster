@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://worldawn.example/design/character-ip-v2/legacy-character-mapping.schema.json",
+  "title": "WORLDAWN LegacyCharacterMapping design document",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "sampleOnly", "mappings"],
+  "properties": {
+    "schemaVersion": { "const": "2.0.0-proposal" },
+    "sampleOnly": { "const": true },
+    "mappings": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/legacyCharacterMapping" }
+    }
+  },
+  "$defs": {
+    "legacyCharacterMapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "legacyCharacterId", "motifId", "newCharacterId", "mappingStatus", "migrationPolicy",
+        "preserveOfficialNumber", "preserveDiscoveryHistory", "notes"
+      ],
+      "properties": {
+        "legacyCharacterId": { "type": "string", "minLength": 1 },
+        "motifId": { "type": "string", "pattern": "^motif_species_[a-z0-9]+(?:_[a-z0-9]+)*$" },
+        "newCharacterId": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string", "pattern": "^(prototype_character|wdchar)_[a-z0-9]+(?:_[a-z0-9]+)*$" }
+          ]
+        },
+        "mappingStatus": { "enum": ["unmapped", "motif_only", "prototype_linked", "approved_parallel", "migrated", "retired"] },
+        "migrationPolicy": { "enum": ["preserve_legacy_identity", "parallel_identity"] },
+        "preserveOfficialNumber": { "const": true },
+        "preserveDiscoveryHistory": { "const": true },
+        "notes": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

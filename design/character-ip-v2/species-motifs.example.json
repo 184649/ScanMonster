@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "2.0.0-proposal",
+  "sampleOnly": true,
+  "motifs": [
+    {
+      "motifId": "motif_species_hamster",
+      "nameJa": "ハムスター",
+      "nameEn": "Hamster",
+      "taxonomy": { "class": "Mammalia", "group": "Rodentia" },
+      "worldCandidates": ["ground"],
+      "reality": "extant",
+      "observedRarity": "normal",
+      "bodyFeatures": ["compact torso", "small forepaws", "broad hindquarters", "short muzzle"],
+      "behaviors": ["gathering", "food carrying", "brief upright alert posture"],
+      "usableShapeElements": ["low oval body mass", "paired forepaw block", "cheek-to-shoulder contour"],
+      "usableColorElements": ["large dorsal/ventral division", "face-to-forepaw bridge"],
+      "legacyCatalogIds": ["ground_hamster"],
+      "legacySources": [
+        {
+          "legacyCharacterId": "ground_hamster",
+          "masterPath": "assets/characters/character_master.json",
+          "world": "ground",
+          "masterNo": 22
+        }
+      ],
+      "notes": "A biological motif only; it does not define a finished IP character."
+    },
+    {
+      "motifId": "motif_species_elephant",
+      "nameJa": "ゾウ",
+      "nameEn": "Elephant",
+      "taxonomy": { "class": "Mammalia", "group": "Proboscidea" },
+      "worldCandidates": ["ground"],
+      "reality": "extant",
+      "observedRarity": "normal",
+      "bodyFeatures": ["trunk", "large head", "columnar legs", "broad ears", "front-heavy mass"],
+      "behaviors": ["ground and water exploration with trunk", "social care", "deliberate walking"],
+      "usableShapeElements": ["trunk bridge", "high shoulder mass", "four support columns"],
+      "usableColorElements": ["trunk-to-forehead route", "large ear plane"],
+      "legacyCatalogIds": ["ground_elephant"],
+      "legacySources": [
+        {
+          "legacyCharacterId": "ground_elephant",
+          "masterPath": "assets/characters/character_master.json",
+          "world": "ground",
+          "masterNo": 15
+        }
+      ],
+      "notes": "A biological motif only; armor and equipment are not implied."
+    },
+    {
+      "motifId": "motif_species_snake",
+      "nameJa": "ヘビ",
+      "nameEn": "Snake",
+      "taxonomy": { "class": "Reptilia", "group": "Serpentes" },
+      "worldCandidates": ["ground"],
+      "reality": "extant",
+      "observedRarity": "normal",
+      "bodyFeatures": ["limbless body", "continuous spine", "wedge head", "jaw-to-neck transition"],
+      "behaviors": ["ground-vibration sensing", "coiling", "controlled head elevation"],
+      "usableShapeElements": ["asymmetric low coil", "short upright neck", "enclosed negative space"],
+      "usableColorElements": ["continuous underside route", "single large dorsal field"],
+      "legacyCatalogIds": ["ground_snake"],
+      "legacySources": [
+        {
+          "legacyCharacterId": "ground_snake",
+          "masterPath": "assets/characters/character_master.json",
+          "world": "ground",
+          "masterNo": 57
+        }
+      ],
+      "notes": "A biological motif only; cobra display, jewelry, and magic are not implied."
+    }
+  ]
+}
