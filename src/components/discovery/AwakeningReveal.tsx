@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef } from "react";
-import { Animated, Dimensions, Easing, Pressable, StyleSheet, Text, View, type ImageSourcePropType } from "react-native";
+import { Animated, Dimensions, Easing, Pressable, StyleSheet, Text, View } from "react-native";
 
-import { getCharacterImage, getCharacterThumb } from "../../assets/characterImages.generated";
-import { getMonsterImageSource } from "../../assets/monsterImages";
+import { MonsterAvatar } from "../MonsterAvatar";
+import { resolveCharacterDisplayName } from "../../services/characterPresentationResolver";
 import type { RevealTier } from "../../services/scanPresentation.core";
 import { colors } from "../../theme";
 
@@ -39,10 +39,6 @@ export const AwakeningReveal = ({ imageKey, isRare, tier, celebrate = false, onD
   const elevated = t !== "normal";
   const isSecret = t === "secret";
   const theme = THEME[t];
-
-  const source: ImageSourcePropType | undefined =
-    (imageKey ? getCharacterImage(imageKey) ?? getCharacterThumb(imageKey) ?? getMonsterImageSource(imageKey) : undefined) ??
-    undefined;
 
   const backdrop = useRef(new Animated.Value(0)).current;
   const glow = useRef(new Animated.Value(0)).current;
@@ -151,7 +147,12 @@ export const AwakeningReveal = ({ imageKey, isRare, tier, celebrate = false, onD
   const particles = Array.from({ length: particleCount + bonusParticles }, (_, i) => i);
 
   return (
-    <Pressable style={styles.overlay} onPress={finish} accessibilityRole="button">
+    <Pressable
+      style={styles.overlay}
+      onPress={finish}
+      accessibilityRole="button"
+      accessibilityLabel={imageKey ? `${resolveCharacterDisplayName(imageKey)}の出現演出。タップでスキップ` : "キャラクターの出現演出。タップでスキップ"}
+    >
       <Animated.View style={[styles.backdrop, { opacity: backdrop }]} />
 
       <View style={styles.center}>
@@ -176,18 +177,31 @@ export const AwakeningReveal = ({ imageKey, isRare, tier, celebrate = false, onD
           style={[styles.glowInner, { backgroundColor: "#FFFFFF", opacity: Animated.multiply(glowOpacity, 0.9), transform: [{ scale: ringScale }] }]}
         />
 
-        {source ? (
+        {imageKey ? (
           <>
-            <Animated.Image
-              source={source}
-              resizeMode="contain"
-              style={[styles.char, styles.silhouette, { opacity: sil, transform: [{ scale: glowScale }] }]}
-            />
-            <Animated.Image
-              source={source}
-              resizeMode="contain"
+            <Animated.View
+              style={[styles.char, { opacity: sil, transform: [{ scale: glowScale }] }]}
+            >
+              <MonsterAvatar
+                imageKey={imageKey}
+                size={CHAR}
+                showRarity={false}
+                showElementFrame={false}
+                backgroundColor="transparent"
+                silhouette
+              />
+            </Animated.View>
+            <Animated.View
               style={[styles.char, { opacity: charO, transform: [{ scale: charS }, { rotate: charWobble }] }]}
-            />
+            >
+              <MonsterAvatar
+                imageKey={imageKey}
+                size={CHAR}
+                showRarity={false}
+                showElementFrame={false}
+                backgroundColor="transparent"
+              />
+            </Animated.View>
           </>
         ) : null}
 
@@ -234,7 +248,6 @@ const styles = StyleSheet.create({
   glow: { position: "absolute", width: CHAR + 90, height: CHAR + 90, borderRadius: (CHAR + 90) / 2 },
   glowInner: { position: "absolute", width: CHAR - 10, height: CHAR - 10, borderRadius: (CHAR - 10) / 2 },
   char: { position: "absolute", width: CHAR, height: CHAR },
-  silhouette: { tintColor: "#0B1220" },
   spark: { position: "absolute", width: 9, height: 9, borderRadius: 5 },
   flash: { ...StyleSheet.absoluteFillObject, backgroundColor: "#FFFFFF" },
   tierFlash: { ...StyleSheet.absoluteFillObject },

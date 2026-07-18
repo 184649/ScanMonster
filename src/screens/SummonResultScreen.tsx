@@ -9,7 +9,6 @@ import { DiscoveryCertificateCard } from "../components/discovery/DiscoveryCerti
 import { DiscoveryRewardSummary } from "../components/discovery/DiscoveryRewardSummary";
 import { APP_INFO } from "../constants/appInfo";
 import { WORLD_GROUP_LABELS } from "../data/worlds";
-import { getCatalogDescriptionById } from "../data/catalogLookup";
 import { HABITAT_GROUP_LABELS } from "../data/habitatGroups";
 import { getCharacterRarityForMonster, getFamilyHabitatGroup } from "../data/characters";
 import { getElementMeta, SEASON_LABELS, TIME_SLOT_LABELS } from "../data/elements";
@@ -24,7 +23,7 @@ import { getRevealedWorlds, markWorldRevealed } from "../services/legendaryRevea
 import { shouldRevealLegendary } from "../services/legendaryVisibility.core";
 import { characterRarityLabel } from "../services/rarityLabel.core";
 import { createDexSummary } from "../services/dexService";
-import { resolveCharacterPresentation } from "../services/characterPresentationResolver";
+import { resolveCharacterPresentation, resolveUserMonsterDisplayName } from "../services/characterPresentationResolver";
 import { getScanStreakView, type ScanStreakView } from "../services/economyService";
 import { discoveryTitle } from "../services/discoveryTitle.core";
 import { formatDiscoveryNo } from "../services/numberValue.core";
@@ -40,9 +39,6 @@ import { goBackOrHome } from "../utils/navigation";
 import { colors } from "../theme";
 
 const scanSourceLabel = (source: ScanSource): string => (source === "qr" ? "QRコード" : "バーコード");
-
-const presentationName = (monster: UserMonster): string =>
-  resolveCharacterPresentation(monster.characterId ?? monster.imageKey)?.displayName ?? monster.displayName;
 
 // レアリティ表示は共通モジュールへ集約（legendary を含む・段3）。
 
@@ -173,7 +169,7 @@ export const SummonResultScreen = () => {
     const rarity = characterRarityLabel[monster.characterRarity ?? getCharacterRarityForMonster(monster)];
     const proofLabel = record?.strongestProof ? "【最強の証】" : "";
     // 共有カードに生コード値・sourceHash・商品名・時刻・位置は含めない（§28）。
-    const lines = [`${APP_INFO.name}で「${presentationName(monster)}${proofLabel}」を発見！`, `${speciesLabel} / ${rarity}`];
+    const lines = [`${APP_INFO.name}で「${resolveUserMonsterDisplayName(monster)}${proofLabel}」を発見！`, `${speciesLabel} / ${rarity}`];
     if (record) {
       const badge = record.primaryNumberBadge ? `・${record.primaryNumberBadge.label}` : "";
       lines.push(`${formatDiscoveryNo(record.characterDiscoveryNo)}・発見難度${record.difficultyRank}${badge}`);
@@ -257,7 +253,7 @@ export const SummonResultScreen = () => {
     const badge = kindBadge(ref.kind);
     const hasWorld = Boolean(monster.worldGroup);
     const catalogDescription = hasWorld
-      ? getCatalogDescriptionById(monster.characterId ?? monster.imageKey)
+      ? resolveCharacterPresentation(monster.characterId ?? monster.imageKey)?.shortDescription
       : undefined;
     const bioMemo = catalogDescription ?? (rare ? rare.loreMemo : family.biologicalMemo);
     const habitat = monster.habitatGroup ?? getFamilyHabitatGroup(monster.familyId);
@@ -288,7 +284,7 @@ export const SummonResultScreen = () => {
             <View style={[styles.heroImage, { backgroundColor: primary.softColor }]}>
               <MonsterAvatar monster={monster} size={210} showRarity />
             </View>
-            <Text style={styles.title}>{presentationName(monster)}</Text>
+            <Text style={styles.title}>{resolveUserMonsterDisplayName(monster)}</Text>
             <Text style={styles.species}>
               基礎生物：{monster.speciesJa ?? family.baseAnimalName}
               {hasWorld ? ` ・ ${worldLabel}` : ` ・ ${rare ? `${family.name}のレア` : family.name}`}
@@ -449,7 +445,7 @@ export const SummonResultScreen = () => {
                   {index + 1}. {scanSourceLabel(ref.scanSource)}
                 </Text>
                 <Text style={[styles.resultKind, { color: badge.color }]}>{badge.label}</Text>
-                <Text style={styles.resultName}>{presentationName(monster)}</Text>
+                <Text style={styles.resultName}>{resolveUserMonsterDisplayName(monster)}</Text>
                 <Text style={styles.resultSub}>
                   {rare ? `${family.name}のレア` : `${family.baseAnimalName}・${family.name}`}
                 </Text>

@@ -16,6 +16,7 @@ import {
 import { getTitleById } from "../data/titles";
 import { createDexSummary } from "../services/dexService";
 import { topDiscoveryOfDay } from "../services/discoveryQueries";
+import { resolveUserMonsterDisplayName } from "../services/characterPresentationResolver";
 import { useMonsterStore } from "../stores/monsterStore";
 import { formatDateTime, getLocalDateKey } from "../utils/dateUtils";
 import { colors, radius } from "../theme";
@@ -181,18 +182,23 @@ export const HomeScreen = () => {
 
         {recentMonsters.length > 0 ? (
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.recentRow}>
-            {recentMonsters.map((monster) => (
-              <Pressable
-                key={monster.id}
-                onPress={() => navigation.navigate("MonsterDetail", { monsterId: monster.id })}
-                style={({ pressed }) => [styles.recentCard, pressed && styles.pressed]}
-              >
-                <MonsterAvatar monster={monster} size={88} showRarity={false} />
-                <Text numberOfLines={1} style={styles.recentName}>{monster.nickname ?? monster.displayName}</Text>
-                <Text style={styles.recentMeta}>{monster.discoveryCount ?? 1}回発見</Text>
-                <Text numberOfLines={1} style={styles.recentMeta}>{formatDateTime(monster.lastDiscoveredAt ?? monster.obtainedAt)}</Text>
-              </Pressable>
-            ))}
+            {recentMonsters.map((monster) => {
+              const displayName = monster.nickname ?? resolveUserMonsterDisplayName(monster);
+              return (
+                <Pressable
+                  key={monster.id}
+                  accessibilityRole="button"
+                  accessibilityLabel={`${displayName}の詳細を開く`}
+                  onPress={() => navigation.navigate("MonsterDetail", { monsterId: monster.id })}
+                  style={({ pressed }) => [styles.recentCard, pressed && styles.pressed]}
+                >
+                  <MonsterAvatar monster={monster} size={88} showRarity={false} />
+                  <Text numberOfLines={1} style={styles.recentName}>{displayName}</Text>
+                  <Text style={styles.recentMeta}>{monster.discoveryCount ?? 1}回発見</Text>
+                  <Text numberOfLines={1} style={styles.recentMeta}>{formatDateTime(monster.lastDiscoveredAt ?? monster.obtainedAt)}</Text>
+                </Pressable>
+              );
+            })}
           </ScrollView>
         ) : (
           <View style={styles.emptyCard}>

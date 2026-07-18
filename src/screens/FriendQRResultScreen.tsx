@@ -9,6 +9,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { MonsterAvatar } from "../components/MonsterAvatar";
 import { PrimaryButton } from "../components/PrimaryButton";
 import type { FriendQrScanResult } from "../services/apiClient";
+import { resolveCharacterDisplayName } from "../services/characterPresentationResolver";
 import { goBackOrHome } from "../utils/navigation";
 import { colors } from "../theme";
 
@@ -40,6 +41,7 @@ export const FriendQRResultScreen = () => {
 
   const record = result.discoveryRecord;
   const isNew = result.isNewFriend;
+  const characterName = resolveCharacterDisplayName(record.characterId, record.characterName);
 
   return (
     <SafeAreaView style={styles.safeArea} edges={["left", "right", "bottom"]}>
@@ -49,7 +51,7 @@ export const FriendQRResultScreen = () => {
             <Text style={styles.badgeText}>{isNew ? "新しいフレンドと出会い" : "フレンドと再会"}</Text>
           </View>
           <MonsterAvatar imageKey={record.characterId} size={180} showRarity={false} showElementFrame={false} />
-          <Text style={styles.name}>{record.characterName}</Text>
+          <Text style={styles.name}>{characterName}</Text>
           <Text style={styles.no}>No.{String(record.characterDiscoveryNo).padStart(3, "0")}</Text>
           <Text style={styles.sub}>
             {isNew ? "新しい出会いが、まだ見ぬキャラを呼び寄せました" : "交流が、新しい発見の気配を高めています"}
