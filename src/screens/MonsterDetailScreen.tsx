@@ -16,7 +16,7 @@ import { getRareById } from "../data/rareMonsters";
 import {
   resolveCharacterDisplayName,
   resolveCharacterPresentation,
-  resolveUserMonsterDisplayName
+  resolveUserMonsterDisplayNameWithNickname
 } from "../services/characterPresentationResolver";
 import { playSound } from "../services/soundService";
 import { characterRarityLabel } from "../services/rarityLabel.core";
@@ -161,7 +161,7 @@ export const MonsterDetailScreen = () => {
             <Text style={styles.noPillText}>{dexNoLabel}</Text>
           </View>
           <MonsterAvatar monster={monster} size={220} showRarity={false} showElementFrame={false} />
-          <Text style={styles.title}>{monster.nickname ?? resolveUserMonsterDisplayName(monster)}</Text>
+          <Text style={styles.title}>{resolveUserMonsterDisplayNameWithNickname(monster)}</Text>
           <Text style={styles.subtitle}>
             {hasWorld
               ? `${characterRarity === "rare" ? `${worldLabel}のレア` : worldLabel} / ${speciesJa}`

@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { describe, it } from "node:test";
 import { fileURLToPath } from "node:url";
+import ts from "typescript";
 
 import { selectCharacterDisplayName } from "../src/services/characterPresentation.core.ts";
 
@@ -18,8 +19,56 @@ const sourceFiles = (relativeDirectory: string): string[] => {
   });
 };
 
+const isUserMonsterType = (type: ts.Type): boolean => {
+  if (type.isUnionOrIntersection()) return type.types.some(isUserMonsterType);
+  return (type.aliasSymbol ?? type.getSymbol())?.getName() === "UserMonster";
+};
+
+const directUserMonsterDisplayNameAccesses = (relativePaths: readonly string[]): string[] => {
+  const configPath = ts.findConfigFile(root, ts.sys.fileExists, "tsconfig.json");
+  assert.ok(configPath, "tsconfig.json");
+  const config = ts.readConfigFile(configPath, ts.sys.readFile);
+  assert.equal(config.error, undefined, "tsconfig.json should be readable");
+  const parsed = ts.parseJsonConfigFileContent(config.config, ts.sys, path.dirname(configPath));
+  const program = ts.createProgram(parsed.fileNames, parsed.options);
+  const checker = program.getTypeChecker();
+  const targetPaths = new Set(relativePaths.map((relativePath) => path.resolve(root, relativePath)));
+  const violations: string[] = [];
+
+  for (const sourceFile of program.getSourceFiles()) {
+    if (!targetPaths.has(path.resolve(sourceFile.fileName))) continue;
+    const visit = (node: ts.Node): void => {
+      if (
+        ts.isPropertyAccessExpression(node) &&
+        node.name.text === "displayName" &&
+        isUserMonsterType(checker.getTypeAtLocation(node.expression))
+      ) {
+        const line = sourceFile.getLineAndCharacterOfPosition(node.getStart()).line + 1;
+        violations.push(`${path.relative(root, sourceFile.fileName)}:${line}`);
+      }
+      ts.forEachChild(node, visit);
+    };
+    visit(sourceFile);
+  }
+
+  return violations;
+};
+
 describe("Phase 3B character presentation migration", () => {
   it("表示名はresolver値、保存値、characterIdの順で安定してfallbackする", () => {
+    assert.equal(
+      selectCharacterDisplayName({
+        nickname: "愛称",
+        characterId: "ground_hamster",
+        resolvedDisplayName: "現在名",
+        storedDisplayName: "保存名"
+      }),
+      "愛称"
+    );
+    assert.equal(
+      selectCharacterDisplayName({ nickname: "  ", resolvedDisplayName: "現在名", storedDisplayName: "保存名" }),
+      "現在名"
+    );
     assert.equal(
       selectCharacterDisplayName({
         characterId: "ground_hamster",
@@ -40,7 +89,7 @@ describe("Phase 3B character presentation migration", () => {
     const source = read("src/screens/HomeScreen.tsx");
     assert.match(source, /const recentMonsters = monsters\.slice\(0, 6\);/);
     assert.doesNotMatch(source, /recentMonsters\.(?:filter|sort|reverse)\(/);
-    assert.match(source, /resolveUserMonsterDisplayName\(monster\)/);
+    assert.match(source, /resolveUserMonsterDisplayNameWithNickname\(monster\)/);
     assert.match(source, /<MonsterAvatar monster=\{monster\} size=\{88\}/);
     assert.match(source, /navigate\("MonsterDetail", \{ monsterId: monster\.id \}\)/);
     assert.match(source, /accessibilityLabel=\{`\$\{displayName\}の詳細を開く`\}/);
@@ -49,7 +98,7 @@ describe("Phase 3B character presentation migration", () => {
   it("ShareCardは現在名と共通画像fallbackを使い、共有導線と番号表示を保持する", () => {
     const card = read("src/components/ShareCard.tsx");
     const result = read("src/screens/SummonResultScreen.tsx");
-    assert.match(card, /resolveUserMonsterDisplayName\(monster\)/);
+    assert.match(card, /resolveUserMonsterDisplayNameWithNickname\(monster\)/);
     assert.match(card, /<MonsterAvatar monster=\{monster\}/);
     assert.match(card, /accessibilityLabel=\{`\$\{displayName\}の共有カード。\$\{displayName\}のキャラクター画像/);
     assert.match(result, /<ShareCard[\s\S]*monster=\{monster\}/);
@@ -59,7 +108,7 @@ describe("Phase 3B character presentation migration", () => {
 
   it("UI用UserMonster名はresolverへ集約し、永続displayNameと履歴名は削除しない", () => {
     const uiPaths = [...sourceFiles("src/screens"), ...sourceFiles("src/components"), "src/utils/formStage.ts"];
-    const directUserMonsterNames = uiPaths.filter((relativePath) => /\bmonster\??\.displayName\b/.test(read(relativePath)));
+    const directUserMonsterNames = directUserMonsterDisplayNameAccesses(uiPaths);
     assert.deepEqual(directUserMonsterNames, []);
     assert.match(read("src/types/monster.ts"), /export type UserMonster = \{[\s\S]*?displayName: string;/);
     assert.match(read("src/types/discoveryRecord.ts"), /characterName: string;/);
@@ -68,25 +117,26 @@ describe("Phase 3B character presentation migration", () => {
   });
 
   it("production UIはgenerated画像manifestを直接importしない", () => {
-    const uiPaths = [...sourceFiles("src/screens"), ...sourceFiles("src/components")];
-    const directManifestImports = uiPaths.filter((relativePath) => /characterImages\.generated/.test(read(relativePath)));
-    assert.deepEqual(directManifestImports, []);
+    const directManifestImports = sourceFiles("src").filter((relativePath) =>
+      /from\s+["'][^"']*characterImages\.generated["']/.test(read(relativePath))
+    );
+    assert.deepEqual(directManifestImports, ["src/services/characterPresentationResolver.ts"]);
     const reveal = read("src/components/discovery/AwakeningReveal.tsx");
     assert.match(reveal, /<MonsterAvatar/);
     assert.doesNotMatch(reveal, /getCharacterImage|getCharacterThumb|getMonsterImageSource/);
   });
 
   it("発見・同期・抽選・採番・serverはpresentation resolverへ依存しない", () => {
-    const domainPaths = [
-      "src/stores/monsterStore.ts",
-      "src/stores/authStore.ts",
-      "src/services/monsterGenerator.ts",
-      "src/services/worldSpawn.ts",
-      "src/services/discoveryRecordService.ts",
-      "src/services/numberValue.core.ts",
-      ...sourceFiles("server/src")
-    ];
-    const violations = domainPaths.filter((relativePath) => /characterPresentationResolver/.test(read(relativePath)));
+    const productionPaths = [...sourceFiles("src"), ...sourceFiles("server/src")];
+    const presentationConsumers = productionPaths.filter((relativePath) =>
+      /from\s+["'][^"']*characterPresentationResolver["']/.test(read(relativePath))
+    );
+    const violations = presentationConsumers.filter(
+      (relativePath) =>
+        !relativePath.startsWith("src/screens/") &&
+        !relativePath.startsWith("src/components/") &&
+        relativePath !== "src/utils/formStage.ts"
+    );
     assert.deepEqual(violations, []);
   });
 

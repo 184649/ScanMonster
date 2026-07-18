@@ -122,7 +122,7 @@ export const MonsterAvatar = ({
 
   useEffect(() => {
     setImageFailed(false);
-  }, [imageSource]);
+  }, [imageSource, resolvedImageKey]);
 
   const elementType: ElementType = monster?.dna.primaryElement ?? rare?.defaultElement ?? family.defaultElement;
   const element = getElementMeta(elementType);

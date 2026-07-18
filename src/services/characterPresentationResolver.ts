@@ -57,9 +57,11 @@ export const resolveCharacterPresentation = (
 /** UI用の名前解決。保存値は変更せず、resolverで解決できない場合だけfallbackとして使う。 */
 export const resolveCharacterDisplayName = (
   characterId: string | undefined,
-  storedDisplayName?: string
+  storedDisplayName?: string,
+  nickname?: string
 ): string =>
   selectCharacterDisplayName({
+    nickname,
     characterId,
     resolvedDisplayName: characterId ? resolveCharacterPresentation(characterId)?.displayName : undefined,
     storedDisplayName
@@ -68,3 +70,7 @@ export const resolveCharacterDisplayName = (
 /** UserMonsterの永続displayNameを保持したまま、現在表示だけresolver優先にする。 */
 export const resolveUserMonsterDisplayName = (monster: UserMonster): string =>
   resolveCharacterDisplayName(monster.characterId ?? monster.imageKey, monster.displayName);
+
+/** nickname対応画面用。空文字だけのnicknameは現在名を隠さない。 */
+export const resolveUserMonsterDisplayNameWithNickname = (monster: UserMonster): string =>
+  resolveCharacterDisplayName(monster.characterId ?? monster.imageKey, monster.displayName, monster.nickname);

@@ -24,6 +24,7 @@ type ResolverOptions = {
 };
 
 export type CharacterDisplayNameInput = {
+  nickname?: string;
   characterId?: string;
   resolvedDisplayName?: string;
   storedDisplayName?: string;
@@ -34,10 +35,12 @@ const hasVisibleText = (value: string | undefined): value is string =>
 
 /** 現在表示名 → 保存済み表示名 → ID の順で、未知IDでも安定した表示名を返す。 */
 export const selectCharacterDisplayName = ({
+  nickname,
   characterId,
   resolvedDisplayName,
   storedDisplayName
 }: CharacterDisplayNameInput): string => {
+  if (hasVisibleText(nickname)) return nickname;
   if (hasVisibleText(resolvedDisplayName)) return resolvedDisplayName;
   if (hasVisibleText(storedDisplayName)) return storedDisplayName;
   if (hasVisibleText(characterId)) return characterId;
@@ -75,7 +78,7 @@ export const createCharacterPresentationResolver = ({ sources, defaultMode }: Re
     if (!source) return undefined;
 
     const unavailableModeReason = modeFallbackReason(requestedMode);
-    const presentationMode = unavailableModeReason ? defaultMode : requestedMode;
+    const presentationMode = unavailableModeReason ? "character" : requestedMode;
     const thumbnailSource = source.thumbnailSource ?? source.imageSource;
     const presentationStatus = source.presentationStatus ?? (source.imageSource ? "legacy" : "missing");
     const fallbackReason = unavailableModeReason ?? (!source.imageSource ? "image-unavailable" : undefined);

@@ -4,7 +4,7 @@ import { APP_INFO } from "../constants/appInfo";
 import { getElementMeta } from "../data/elements";
 import { getFamilyById } from "../data/monsterFamilies";
 import { getRareById } from "../data/rareMonsters";
-import { resolveUserMonsterDisplayName } from "../services/characterPresentationResolver";
+import { resolveUserMonsterDisplayNameWithNickname } from "../services/characterPresentationResolver";
 import type { UserMonster } from "../types/monster";
 import { MonsterAvatar } from "./MonsterAvatar";
 import { colors } from "../theme";
@@ -28,7 +28,7 @@ export const ShareCard = ({ monster, discoveredFamilies, totalFamilies, discover
   const rare = monster.rareId ? getRareById(monster.rareId) : undefined;
   const element = getElementMeta(monster.dna.primaryElement);
   const speciesLabel = rare ? `${family.name}のレア` : family.name;
-  const displayName = monster.nickname || resolveUserMonsterDisplayName(monster);
+  const displayName = resolveUserMonsterDisplayNameWithNickname(monster);
 
   return (
     <View

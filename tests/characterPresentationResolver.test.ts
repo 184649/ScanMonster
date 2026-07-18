@@ -91,6 +91,14 @@ describe("CharacterPresentationResolver", () => {
     assert.equal(presentation?.fallbackReason, "hybrid-data-unavailable");
   });
 
+  it("未定義modeをdefaultに渡してもcharacter fallbackが循環しない", () => {
+    const unsupportedDefault = createCharacterPresentationResolver({ sources, defaultMode: "hybrid" });
+    const presentation = unsupportedDefault.resolveCharacterPresentation("ground_hamster");
+    assert.equal(presentation?.requestedMode, "hybrid");
+    assert.equal(presentation?.presentationMode, "character");
+    assert.equal(presentation?.fallbackReason, "hybrid-data-unavailable");
+  });
+
   it("resolver は rarity / releaseStatus / 発見・採番単位を変更しない", () => {
     const before = structuredClone(sources[0]!.identity);
     const presentation = resolver.resolveCharacterPresentation(before.characterId);
@@ -138,5 +146,6 @@ describe("CharacterPresentationResolver", () => {
     assert.doesNotMatch(authStore, /characterPresentationResolver/);
     assert.doesNotMatch(monsterStore, /characterPresentationResolver/);
     assert.match(avatar, /onError=\{\(\) => setImageFailed\(true\)\}/);
+    assert.match(avatar, /useEffect\(\(\) => \{\s*setImageFailed\(false\);\s*\}, \[imageSource, resolvedImageKey\]\);/);
   });
 });

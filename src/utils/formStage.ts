@@ -3,7 +3,7 @@ import type { ImageSourcePropType } from "react-native";
 import { getFormImageSource } from "../assets/monsterFormImages";
 import { FORM_STAGE_LABELS, FORM_STAGE_SUFFIX } from "../data/economy";
 import { getFamilyById } from "../data/monsterFamilies";
-import { resolveUserMonsterDisplayName } from "../services/characterPresentationResolver";
+import { resolveUserMonsterDisplayNameWithNickname } from "../services/characterPresentationResolver";
 import type { EconomyStateData, FormStage } from "../types/economy";
 import type { UserMonster } from "../types/monster";
 
@@ -15,7 +15,7 @@ export const getFormStageDisplayName = (baseName: string, stage: FormStage): str
   `${baseName}${FORM_STAGE_SUFFIX[stage]}`;
 
 export const getMonsterDisplayNameWithForm = (monster: UserMonster, economy: EconomyStateData): string => {
-  const baseName = monster.nickname || resolveUserMonsterDisplayName(monster);
+  const baseName = resolveUserMonsterDisplayNameWithNickname(monster);
   return getFormStageDisplayName(baseName, getActiveFormStage(economy, monster.id));
 };
 

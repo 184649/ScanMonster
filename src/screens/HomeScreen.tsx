@@ -16,7 +16,7 @@ import {
 import { getTitleById } from "../data/titles";
 import { createDexSummary } from "../services/dexService";
 import { topDiscoveryOfDay } from "../services/discoveryQueries";
-import { resolveUserMonsterDisplayName } from "../services/characterPresentationResolver";
+import { resolveUserMonsterDisplayNameWithNickname } from "../services/characterPresentationResolver";
 import { useMonsterStore } from "../stores/monsterStore";
 import { formatDateTime, getLocalDateKey } from "../utils/dateUtils";
 import { colors, radius } from "../theme";
@@ -183,7 +183,7 @@ export const HomeScreen = () => {
         {recentMonsters.length > 0 ? (
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.recentRow}>
             {recentMonsters.map((monster) => {
-              const displayName = monster.nickname ?? resolveUserMonsterDisplayName(monster);
+              const displayName = resolveUserMonsterDisplayNameWithNickname(monster);
               return (
                 <Pressable
                   key={monster.id}
