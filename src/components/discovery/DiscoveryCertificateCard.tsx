@@ -9,6 +9,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { MonsterAvatar } from "../MonsterAvatar";
 import { CHARACTER_TITLE_LABELS, DIFFICULTY_COLORS, NUMBER_VALUE_RANK_LABELS } from "../../data/discoveryLabels";
 import { WORLD_GROUP_LABELS } from "../../data/worlds";
+import { resolveCharacterPresentation } from "../../services/characterPresentationResolver";
 import { formatDiscoveryNo } from "../../services/numberValue.core";
 import type { DiscoveryRecord } from "../../types/discoveryRecord";
 import type { WorldGroup } from "../../types/worlds";
@@ -73,6 +74,8 @@ const Field = ({ jp, en, value }: { jp: string; en: string; value: string }) => 
 );
 
 export const DiscoveryCertificateCard = ({ record, compact = false, highlighted = false, discoveryCount }: Props) => {
+  const presentation = resolveCharacterPresentation(record.characterId);
+  const characterName = presentation?.displayName ?? record.characterName;
   const diff = DIFFICULTY_COLORS[record.difficultyRank];
   const badge = record.primaryNumberBadge;
   const world = worldLabel(record.worldGroup);
@@ -91,7 +94,7 @@ export const DiscoveryCertificateCard = ({ record, compact = false, highlighted 
             {record.strongestProof ? <Text style={styles.proofTag}>最強の証</Text> : null}
           </View>
           <Text style={styles.compactNo}>
-            {record.characterName} {formatDiscoveryNo(record.characterDiscoveryNo)}
+            {characterName} {formatDiscoveryNo(record.characterDiscoveryNo)}
             {record.numberSource === "local" ? "（暫定）" : ""}
             {badge ? `・${badge.label}` : ""}
           </Text>
@@ -151,7 +154,7 @@ export const DiscoveryCertificateCard = ({ record, compact = false, highlighted 
             <MonsterAvatar imageKey={record.imageKey} size={92} showRarity={false} showElementFrame={false} />
           </View>
 
-          <Text style={styles.name}>{record.characterName}</Text>
+          <Text style={styles.name}>{characterName}</Text>
           {world ? <Text style={styles.worldJp}>{world}</Text> : null}
           {worldEn ? <Text style={styles.worldEn}>{worldEn}</Text> : null}
 
