@@ -1,5 +1,5 @@
 {
-  "_comment": "キャラ分類の正本レイヤ。Character.xlsx は rarity=normal|rare しか表現できず legendary/releaseStatus を持てないため、ここが legendary 分類と releaseStatus の正式な正本。id 据え置きで実効 rarity を上書きする（rare=実在／legendary=空想）。 ／ 【未解決の矛盾】ground_rare_white_tiger は Excel=normal だが既存 catalog/seed/DB は rare。既存互換のため rare で固定中。正式なrarityは要決定。",
+  "_comment": "キャラ分類の正本レイヤ。Character.xlsx は rarity=normal|rare しか表現できず legendary/releaseStatus を持てないため、ここが legendary 分類と releaseStatus の正式な正本。id 据え置きで実効 rarity を上書きする（rare=実在／legendary=空想）。 ／ ground_rare_white_tiger は Phase 0.75 で rare に正式統一済み（実在する白変個体のため legendary にしない）。",
   "rarity": {
     "ground_rare_fenrir": "legendary",
     "ground_rare_yeti": "legendary",
@@ -124,6 +124,45 @@
       "sky_sparrow": "initial",
       "sky_swallow": "initial",
       "sky_swan": "initial"
+    }
+  },
+  "dexClass": {
+    "_comment": "図鑑上の分類（表示専用）。抽選は従来どおり rarity を参照し、この値は抽選・確率・解放条件へ一切影響しない。既定は rarity から導出（normal→NORMAL / rare→RARE / legendary→LEGEND / secret→SECRET）し、実体と一致しないものだけ byId で上書きする。NORMAL=現生の通常形態 / RARE=実在する希少形態（白変種等）/ LEGEND=絶滅生物 / SECRET=神話・伝承・空想・SF。",
+    "byId": {
+      "bug_lord_howe_island_stick_insect": "NORMAL",
+      "bug_queen_alexandra_s_birdwing": "NORMAL",
+      "bug_rare_kesaran_pasaran": "SECRET",
+      "bug_rare_phantom_insect": "SECRET",
+      "ground_iberian_lynx": "NORMAL",
+      "ground_rare_fenrir": "SECRET",
+      "ground_rare_tsuchinoko": "SECRET",
+      "ground_rare_underground_dweller": "SECRET",
+      "ground_rare_yeti": "SECRET",
+      "ground_saola": "NORMAL",
+      "phantom_rare_dragon": "SECRET",
+      "phantom_rare_dwarf": "SECRET",
+      "phantom_rare_elf": "SECRET",
+      "phantom_rare_fairy": "SECRET",
+      "phantom_rare_ghost": "SECRET",
+      "phantom_rare_griffin": "SECRET",
+      "phantom_rare_moai": "SECRET",
+      "phantom_rare_pegasus": "SECRET",
+      "phantom_rare_phoenix": "SECRET",
+      "phantom_rare_sphinx": "SECRET",
+      "phantom_rare_unicorn": "SECRET",
+      "planet_rare_alien": "SECRET",
+      "planet_rare_robot": "SECRET",
+      "sky_japanese_crested_ibis": "NORMAL",
+      "sky_kakapo": "NORMAL",
+      "waterside_axolotl": "NORMAL",
+      "waterside_rare_coelacanth": "NORMAL",
+      "waterside_rare_kraken": "SECRET",
+      "waterside_rare_megalodon": "LEGEND",
+      "waterside_rare_megamouth_shark": "NORMAL",
+      "waterside_rare_merlion": "SECRET",
+      "waterside_rare_nessie": "SECRET",
+      "waterside_rare_sea_dragon": "SECRET",
+      "waterside_vaquita": "NORMAL"
     }
   }
 }

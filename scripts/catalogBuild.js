@@ -64,8 +64,17 @@ const imageKeysFor = (speciesEn, isRare) => {
   return keys;
 };
 
+/**
+ * 図鑑上の分類（表示専用）。抽選・確率・解放条件へは一切影響しない。
+ * 既定は実効 rarity から導出し、実体と一致しないものだけ classification.dexClass.byId で上書きする。
+ */
+const DEX_CLASS_BY_RARITY = { normal: "NORMAL", rare: "RARE", legendary: "LEGEND", secret: "SECRET" };
+const dexClassFor = (id, effRarity, overrides) =>
+  overrides[id] || DEX_CLASS_BY_RARITY[effRarity] || "NORMAL";
+
 const buildCatalog = ({ root, charactersDir, master, classification = {} }) => {
   const rarityOverrides = classification.rarity || {};
+  const dexClassOverrides = (classification.dexClass || {}).byId || {};
   const rs = classification.releaseStatus || {};
   const worldDefault = rs.worldDefault || {};
   const byIdStatus = rs.byId || {};
@@ -176,6 +185,7 @@ const buildCatalog = ({ root, charactersDir, master, classification = {} }) => {
         speciesEn: en,
         hasImage,
         releaseStatus,
+        dexClass: dexClassFor(id, effRarity, dexClassOverrides),
         description: (row.description || row["説明"] || "").trim()
       };
       if (effRarity === "legendary") legendaries.push(entry);
@@ -191,11 +201,15 @@ const buildCatalog = ({ root, charactersDir, master, classification = {} }) => {
 /** character-classification.json を読み込む（rarity 分類修正 + releaseStatus の正本レイヤ）。 */
 const loadClassification = (charactersDir) => {
   const p = path.join(charactersDir, "character-classification.json");
-  const empty = { rarity: {}, releaseStatus: { worldDefault: {}, byId: {} } };
+  const empty = { rarity: {}, releaseStatus: { worldDefault: {}, byId: {} }, dexClass: { byId: {} } };
   if (!fs.existsSync(p)) return empty;
   try {
     const c = JSON.parse(fs.readFileSync(p, "utf8"));
-    return { rarity: c.rarity || {}, releaseStatus: c.releaseStatus || { worldDefault: {}, byId: {} } };
+    return {
+      rarity: c.rarity || {},
+      releaseStatus: c.releaseStatus || { worldDefault: {}, byId: {} },
+      dexClass: c.dexClass || { byId: {} }
+    };
   } catch {
     return empty;
   }

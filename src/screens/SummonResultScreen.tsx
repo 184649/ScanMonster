@@ -403,7 +403,7 @@ export const SummonResultScreen = () => {
         <View style={styles.hero}>
           <Text style={styles.title}>{refs.length}個のコードを読み取りました</Text>
           <Text style={styles.subtitle}>
-            {newCount > 0 ? `新しいキャラが ${newCount} 体見つかりました。` : "再発見または発見済みの結果です。"}
+            {newCount > 0 ? `新しい生きものが ${newCount} 種見つかりました。` : "再発見または発見済みの結果です。"}
           </Text>
         </View>
 

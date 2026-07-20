@@ -166,7 +166,7 @@ export const WorldDexScreen = () => {
           </View>
         </View>
       ) : null}
-      <Text style={styles.note}>未発見のキャラクターは共通シルエットで表示されます。発見するまで名前や姿は分かりません。</Text>
+      <Text style={styles.note}>未発見の生きものは共通シルエットで表示されます。発見するまで名前や姿は分かりません。</Text>
     </View>
   );
 

@@ -52,7 +52,7 @@ export const FriendQRResultScreen = () => {
           <Text style={styles.name}>{record.characterName}</Text>
           <Text style={styles.no}>No.{String(record.characterDiscoveryNo).padStart(3, "0")}</Text>
           <Text style={styles.sub}>
-            {isNew ? "新しい出会いが、まだ見ぬキャラを呼び寄せました" : "交流が、新しい発見の気配を高めています"}
+            {isNew ? "新しい出会いが、まだ見ぬ生きものを呼び寄せました" : "交流が、新しい発見の気配を高めています"}
           </Text>
         </View>
 

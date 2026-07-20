@@ -37,8 +37,8 @@ export const NumberCollectionScreen = () => {
 
         <View style={styles.note}>
           <Text style={styles.noteText}>
-            番号価値は、キャラクター別の公式発見番号（No.007・No.777・No.1000 など）に付きます。
-            同じ価値の番号を別のキャラクターで見つけると、コレクションが増えます。
+            番号価値は、生きもの別の公式発見番号（No.007・No.777・No.1000 など）に付きます。
+            同じ価値の番号を別の生きもので見つけると、コレクションが増えます。
           </Text>
         </View>
       </ScrollView>

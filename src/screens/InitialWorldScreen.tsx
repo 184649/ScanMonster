@@ -71,7 +71,7 @@ export const InitialWorldScreen = () => {
 
         <View style={styles.note}>
           <Text style={styles.noteTitle}>初回リリースの遊び方</Text>
-          <Text style={styles.noteText}>スキャンでDPを集め、ワールド解放とワールドブーストで出会えるキャラを増やしていきます。</Text>
+          <Text style={styles.noteText}>スキャンでDPを集め、ワールド解放とワールドブーストで出会える生きものを増やしていきます。</Text>
         </View>
       </ScrollView>
     </SafeAreaView>

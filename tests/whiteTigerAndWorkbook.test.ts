@@ -109,8 +109,10 @@ describe("Phase 0.75: legendary 解放条件が変化していない", () => {
 });
 
 describe("Phase 0.75: Character.xlsx の構造保全", () => {
-  it("正式8シートが期待の順序で存在する", () => {
-    assert.deepEqual(wb.SheetNames, OFFICIAL_SHEETS);
+  it("正式8シートが期待の順序で先頭に存在する（制作用シートの追加は許容）", () => {
+    // 図鑑特化版：v4 以降、reference_catalog / generation_queue など制作用シートが追記される。
+    // export:master はホワイトリスト方式なので取り込まれない（別テストで固定）。
+    assert.deepEqual(wb.SheetNames.slice(0, OFFICIAL_SHEETS.length), OFFICIAL_SHEETS);
   });
 
   it("正式6シートに id 列があり、id / 英名 / rarity に空欄が無い", () => {

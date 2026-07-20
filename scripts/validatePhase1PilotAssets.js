@@ -184,7 +184,7 @@ const main = async () => {
   }
   if (generated === 0) {
     console.log("\nNOT_GENERATED: パイロット画像はまだ1枚も生成されていません（技術検証は未実施）。");
-    console.log("ChatGPT Work で docs/phase1-pilot-prompts/ のプロンプトを実行し、_pilot 配下へ配置してください。");
+    console.log("ChatGPT Work で docs/legacy-character-prompts/phase1-pilot-prompts/ のプロンプトを実行し、_pilot 配下へ配置してください。");
     process.exit(2);
   }
   if (notGenerated > 0) {

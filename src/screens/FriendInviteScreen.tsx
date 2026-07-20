@@ -63,7 +63,7 @@ export const FriendInviteScreen = () => {
             <Text style={styles.title}>友達を招待</Text>
             <Text style={styles.lead}>
               招待が成立すると、招待した人・された人の双方に +{FRIEND_INVITE_DP} {DP_ABBR}。
-              付与されるのは{DP_ABBR}のみです。限定キャラクターや特別なQR・限定図鑑登録などは一切ありません。
+              付与されるのは{DP_ABBR}のみです。限定の生きものや特別なQR・限定図鑑登録などは一切ありません。
             </Text>
           </View>
 

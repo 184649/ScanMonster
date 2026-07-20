@@ -1,6 +1,8 @@
 # WORLDAWN 機能ステータス
 
-最終更新: 2026-07-11
+最終更新: 2026-07-20
+
+> 2026-07-20（**図鑑特化版へ移行**）：キャラクター・マスコット中心から、**自然史図鑑向けのリアルなイラストと図鑑情報**中心へ。**ゲーム構造は変更なし**（探索・発見・抽選・収集・図鑑完成・レアリティ・出現確率・解放条件はすべて現状維持）。レアリティの意味を **NORMAL=現生の通常形態 / RARE=実在する希少形態（白変種等）/ LEGEND=絶滅生物 / SECRET=神話・伝承・空想**へ整理。ただし**抽選用 `rarity` は1件も変更せず**、表示専用の `dexClass` を `character-classification.json` に追加して分離（461件＝NORMAL 436 / RARE 1 / LEGEND 1 / SECRET 23）。**DBマイグレーション無し・server seed 差分ゼロ**。旧 legendary 21件は図鑑上SECRETだが**発見方法はワールド完成条件のまま**（未解放時の完全秘匿も維持）。図鑑情報は `species-profiles.json`＋`SpeciesProfileSection` で表示し、`reviewStatus=confirmed`＋出典1件以上でなければ非公開。パイロット10種を投入済み（全件 needsReview＝人間の監修待ち、残451種は未調査）。新画像は `assets/encyclopedia/` へ分離し `npm run validate:encyclopedia` が**実際の透明画素**まで検査（旧 `assets/characters/` は従来基準を維持）。旧設計・プロンプトは `docs/legacy-character-prompts/` に保存、STYLE 06 系はブランチ `art/sheep-style-exploration` に凍結。確率不変は `tests/spawnInvariance.test.ts` が6階層で証明。詳細 [ENCYCLOPEDIA_REDESIGN.md](ENCYCLOPEDIA_REDESIGN.md)。検証：273 pass / 0 fail / TSC0。
 
 > 2026-07-11（初期リリース 89/85/4・release gate）：**hasImage による future 自動降格を廃止**。canonical initial=**89**（ground74+sky15）/ asset complete=**85** / **missing=4**（White Tiger・Tsuchinoko・Yeti・Underground Dweller、全て ground・releaseStatus=initial のまま）。欠損は `npm run validate:release-assets`（非0終了）で検出、`gen:catalog`/`gen:seed` は欠損時に既定で中止（server/app 不一致に部分再生成しない・原子性、`WORLDAWN_ALLOW_INCOMPLETE=1` で85安全ビルド）。画像解決は実効rarityフォルダ対応。21体のlegendary再分類は維持。**現在の生成物(app catalog/server seed)=85 buildable**で一致、canonical 89 とは4体分の一時的不一致（画像投入後 `gen:catalog && gen:seed` で89へ再生成）。Codex引き継ぎ [CHARACTER_IMAGE_GENERATION_HANDOFF.md](CHARACTER_IMAGE_GENERATION_HANDOFF.md)。**Underground Dwellerはデザイン未確定**。検証：server 138 pass・1 skip / app 123 pass / 両TSC0 / export成功 / validate:release-assets=FAILED(4欠損・想定通り)。
 

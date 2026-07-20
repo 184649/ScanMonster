@@ -197,7 +197,7 @@ export const HomeScreen = () => {
         ) : (
           <View style={styles.emptyCard}>
             <Text style={styles.emptyTitle}>まだ発見がありません</Text>
-            <Text style={styles.emptyText}>バーコードやQRコードを読み取って、最初のキャラを見つけましょう。</Text>
+            <Text style={styles.emptyText}>バーコードやQRコードを読み取って、最初の生きものを見つけましょう。</Text>
             <PrimaryButton label="最初のスキャンへ" onPress={() => navigation.navigate("Scan")} />
           </View>
         )}

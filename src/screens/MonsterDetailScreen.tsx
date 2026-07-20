@@ -4,6 +4,8 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { MonsterAvatar } from "../components/MonsterAvatar";
 import { CharacterRecordSection } from "../components/discovery/CharacterRecordSection";
+import { SpeciesProfileSection } from "../components/dex/SpeciesProfileSection";
+import type { DexClass } from "../data/characterCatalog.generated";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { getCatalogCharacterById, getCatalogDescriptionById, getCatalogRareById } from "../data/catalogLookup";
 import { getCharacterMemoForSpecies } from "../data/characterMemos";
@@ -59,13 +61,17 @@ export const MonsterDetailScreen = () => {
             </View>
 
             <View style={styles.panel}>
-              <Text style={styles.sectionTitle}>キャラメモ</Text>
+              <Text style={styles.sectionTitle}>メモ</Text>
               <Text style={styles.body}>{cat.description || "（説明は準備中です）"}</Text>
             </View>
 
+            <SpeciesProfileSection id={cat.id} dexClass={(cat.dexClass ?? "NORMAL") as DexClass} />
+
             <View style={styles.panel}>
               <Text style={styles.sectionTitle}>ステータス</Text>
-              <Text style={styles.body}>まだ発見していないキャラです（図鑑プレビュー）。スキャンで見つけると発見記録が付きます。</Text>
+              <Text style={styles.body}>
+                まだ発見していない生きものです（図鑑プレビュー）。スキャンで見つけると発見記録が付きます。
+              </Text>
             </View>
 
             <View style={styles.actions}>
@@ -78,7 +84,7 @@ export const MonsterDetailScreen = () => {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.centerContent}>
-          <Text style={styles.title}>キャラが見つかりません</Text>
+          <Text style={styles.title}>生きものが見つかりません</Text>
           <PrimaryButton label="戻る" onPress={() => goBackOrHome(navigation)} />
         </View>
       </SafeAreaView>
@@ -119,9 +125,13 @@ export const MonsterDetailScreen = () => {
   const profile = getRealWorldProfileForSpecies(monster.speciesEn);
 
   // 代表発見証明の直後に差し込む「キャラメモ＋実在モチーフ参考値」。
+  // 図鑑分類（表示専用）。抽選・解放条件には影響しない。
+  const dexClass = (catalogChar?.dexClass ?? getCatalogRareById(monster.characterId ?? "")?.dexClass ?? "NORMAL") as DexClass;
+  const dexProfileId = catalogChar?.id ?? monster.characterId ?? monster.imageKey;
+
   const memoPanel = (
     <View style={styles.panel}>
-      <Text style={styles.sectionTitle}>キャラメモ</Text>
+      <Text style={styles.sectionTitle}>メモ</Text>
       <Text style={styles.body}>{memoText}</Text>
       {profile ? (
         <View style={styles.profileBox}>
@@ -143,6 +153,14 @@ export const MonsterDetailScreen = () => {
         </View>
       ) : null}
     </View>
+  );
+
+  // キャラメモの直後に図鑑情報（科学情報・出典）を差し込む。
+  const belowRepresentative = (
+    <>
+      {memoPanel}
+      <SpeciesProfileSection id={dexProfileId} dexClass={dexClass} />
+    </>
   );
 
   return (
@@ -172,7 +190,7 @@ export const MonsterDetailScreen = () => {
           fallbackFirstDiscoveredAt={firstDiscoveredAt}
           fallbackLastDiscoveredAt={lastDiscoveredAt}
           fallbackDiscoveryCount={discoveryCount}
-          belowRepresentative={memoPanel}
+          belowRepresentative={belowRepresentative}
         />
 
         <View style={styles.panel}>
