@@ -5,9 +5,15 @@ import {
   getDexPresentation,
   revealIntensityFor,
   revealHeadlineFor,
+  revealTagFor,
+  revealEntranceFor,
+  revealDurationFor,
+  revealSoundFor,
   dexProgressOf,
   dexProgressMessage,
-  shouldCelebrateWorldComplete
+  shouldCelebrateWorldComplete,
+  completionCelebrationOf,
+  pickCompletionCelebration
 } from "../src/services/dexPresentation.core.ts";
 import {
   buildDiscoveryShareText,
@@ -216,12 +222,22 @@ describe("テーマとの同期", () => {
       surface: "#FFFFFF",
       surfaceMuted: "#F8FAFC",
       textSlate: "#52627A",
-      primary: "#1D4ED8",
-      primaryInk: "#1E40AF",
-      primarySoft: "#EAF2FF",
-      gold: "#C6A15B",
-      navy: "#071B46",
-      brandNavy: "#0B1B3B"
+      ink: "#0F172A",
+      borderFaint: "#EEF2F7",
+      rareSilver: "#C7CDD6",
+      rareSilverSoft: "#F3F5F8",
+      rareIridescent: "#AFC6E9",
+      rareInk: "#41506B",
+      legendBronze: "#9C6B3F",
+      legendDarkGold: "#B08542",
+      legendAmber: "#D9A05B",
+      legendDeep: "#2B1E12",
+      legendSoft: "#F6EFE4",
+      secretPurple: "#3B2A5A",
+      secretNavy: "#111B34",
+      secretTeal: "#1F4A4A",
+      secretBlackGold: "#C9A14A",
+      secretSoft: "#EDEAF3"
     };
     for (const [token, hex] of Object.entries(expected)) {
       const m = new RegExp(`\\b${token}:\\s*"(#[0-9A-Fa-f]{6})"`).exec(theme);
@@ -252,5 +268,147 @@ describe("純粋モジュール間のラベル同期", () => {
     for (const [d, t] of [[0, 0], [1, 3], [30, 69], [999, 1000], [69, 69]] as const) {
       assert.deepEqual(shareProgressOf(d, t), dexProgressOf(d, t), `${d}/${t} で計算がずれている`);
     }
+  });
+});
+
+describe("レア演出仕様", () => {
+  it("一覧の英字ラベルは NORMAL だけ出さない", () => {
+    assert.equal(getDexPresentation("NORMAL").rarityTag, undefined, "NORMAL に英字ラベルを出している");
+    assert.equal(getDexPresentation("RARE").rarityTag, "RARE");
+    assert.equal(getDexPresentation("LEGEND").rarityTag, "LEGEND");
+    assert.equal(getDexPresentation("SECRET").rarityTag, "SECRET");
+  });
+
+  it("subtle glow は RARE 以上のみ", () => {
+    assert.equal(getDexPresentation("NORMAL").hasInnerGlow, false);
+    for (const d of ["RARE", "LEGEND", "SECRET"] as const) {
+      assert.equal(getDexPresentation(d).hasInnerGlow, true, `${d}: glow が無い`);
+      assert.notEqual(getDexPresentation(d).glowColor, "transparent");
+    }
+  });
+
+  it("格上ほど枠が太い（一覧で格の違いが読める）", () => {
+    const w = ALL.map((d) => getDexPresentation(d).frameWidth);
+    assert.ok(w[0]! < w[1]!, "NORMAL より RARE が太くない");
+    assert.ok(w[1]! <= w[2]!, "RARE より LEGEND が細い");
+    assert.ok(w[1]! <= w[3]!, "RARE より SECRET が細い");
+  });
+
+  it("発見演出の入り方が仕様どおり", () => {
+    assert.equal(revealEntranceFor("NORMAL", true), "fade");
+    assert.equal(revealEntranceFor("RARE", true), "glow");
+    assert.equal(revealEntranceFor("LEGEND", true), "dim_then_rise");
+    assert.equal(revealEntranceFor("SECRET", true), "silhouette_then_reveal");
+  });
+
+  it("再発見は常に短いフェード（重い演出を繰り返さない）", () => {
+    for (const d of ALL) {
+      assert.equal(revealEntranceFor(d, false), "fade", `${d}: 再発見で重い演出が出る`);
+      assert.equal(revealDurationFor(d, false), 600, `${d}: 再発見の演出が長い`);
+      assert.equal(revealSoundFor(d, false), "rediscovery", `${d}: 再発見で発見音が鳴る`);
+      assert.equal(revealTagFor(d, false), undefined, `${d}: 再発見で英字ラベルが出る`);
+    }
+  });
+
+  it("英字ラベルは初発見のときだけ出る", () => {
+    assert.equal(revealTagFor("SECRET", true), "SECRET DISCOVERED");
+    assert.equal(revealTagFor("LEGEND", true), "LEGEND DISCOVERED");
+    assert.equal(revealTagFor("RARE", true), "RARE DISCOVERED");
+    assert.equal(revealTagFor("NORMAL", true), undefined, "NORMAL に英字ラベルを出している");
+  });
+
+  it("演出長は格上ほど長い", () => {
+    const d = ALL.map((c) => revealDurationFor(c, true));
+    assert.ok(d[0]! < d[1]! && d[1]! < d[2]! && d[2]! < d[3]!, `演出長が単調増加でない: ${d.join(",")}`);
+  });
+
+  it("分類ごとに専用 SE が割り当てられている", () => {
+    assert.equal(revealSoundFor("NORMAL", true), "discovery_normal");
+    assert.equal(revealSoundFor("RARE", true), "discovery_rare");
+    assert.equal(revealSoundFor("LEGEND", true), "discovery_legend");
+    assert.equal(revealSoundFor("SECRET", true), "discovery_secret");
+  });
+
+  it("発見日時・図鑑番号を目立たせるのは LEGEND 以上", () => {
+    assert.equal(getDexPresentation("NORMAL").emphasizeRecordMeta, false);
+    assert.equal(getDexPresentation("RARE").emphasizeRecordMeta, false);
+    assert.equal(getDexPresentation("LEGEND").emphasizeRecordMeta, true);
+    assert.equal(getDexPresentation("SECRET").emphasizeRecordMeta, true);
+  });
+
+  it("共有導線の優先度は SECRET が最優先", () => {
+    const p = ALL.map((d) => getDexPresentation(d).sharePriority);
+    assert.deepEqual(p, [0, 1, 2, 3], "共有優先度が仕様どおりでない");
+  });
+
+  it("詳細ヘッダの色が分類ごとに異なる（本文色は変えない）", () => {
+    const headers = ALL.map((d) => getDexPresentation(d).headerBackgroundColor);
+    assert.equal(new Set(headers).size, 4, "詳細ヘッダが分類ごとに区別されていない");
+  });
+
+  it("LEGEND は古代図鑑系、SECRET は伝承系の色調", () => {
+    // 仕様：LEGEND=ブロンズ/ダークゴールド/アンバー、SECRET=深い紫/濃紺/青緑/黒金
+    assert.equal(getDexPresentation("LEGEND").frameColor, "#B08542");
+    assert.equal(getDexPresentation("LEGEND").glowColor, "#D9A05B");
+    assert.equal(getDexPresentation("SECRET").frameColor, "#C9A14A");
+    assert.equal(getDexPresentation("SECRET").glowColor, "#3B2A5A");
+    assert.notEqual(getDexPresentation("LEGEND").frameColor, getDexPresentation("SECRET").frameColor);
+  });
+
+  it("RARE はシルバー〜淡い虹彩（金系にしない）", () => {
+    assert.equal(getDexPresentation("RARE").frameColor, "#C7CDD6");
+    assert.equal(getDexPresentation("RARE").glowColor, "#AFC6E9");
+  });
+});
+
+describe("完成演出", () => {
+  it("ワールド完成は代表生物の記念カードを出す", () => {
+    const c = completionCelebrationOf("world", "地上");
+    assert.match(c.title, /地上/);
+    assert.equal(c.showsRepresentativeGallery, true, "代表生物を並べる指定が無い");
+    assert.equal(c.offersShare, true);
+    assert.equal(c.sound, "dex_complete");
+  });
+
+  it("完成演出はどれも通常の発見より大きい（強度3）", () => {
+    for (const k of ["world", "dexClass", "firstComplete", "full"] as const) {
+      const c = completionCelebrationOf(k, "地上");
+      assert.equal(c.intensity, 3, `${k}: 完成演出が通常発見より小さい`);
+    }
+  });
+
+  it("同時成立時は大きい方を1つだけ選ぶ", () => {
+    const base = {
+      worldComplete: true,
+      worldLabel: "地上",
+      dexClassComplete: true,
+      dexClassLabel: "希少形態",
+      isFirstEverComplete: false,
+      fullDexComplete: false
+    };
+    assert.equal(pickCompletionCelebration({ ...base, fullDexComplete: true })!.kind, "full");
+    assert.equal(pickCompletionCelebration({ ...base, isFirstEverComplete: true })!.kind, "firstComplete");
+    assert.equal(pickCompletionCelebration(base)!.kind, "dexClass", "分類完成がワールド完成より優先されていない");
+    assert.equal(pickCompletionCelebration({ ...base, dexClassComplete: false })!.kind, "world");
+  });
+
+  it("何も完成していなければ演出を出さない", () => {
+    assert.equal(
+      pickCompletionCelebration({
+        worldComplete: false,
+        worldLabel: "地上",
+        dexClassComplete: false,
+        dexClassLabel: "",
+        isFirstEverComplete: false,
+        fullDexComplete: false
+      }),
+      undefined
+    );
+  });
+
+  it("図鑑100%達成は専用文言", () => {
+    const c = completionCelebrationOf("full", "");
+    assert.match(c.title, /100/);
+    assert.equal(c.showsRepresentativeGallery, true);
   });
 });

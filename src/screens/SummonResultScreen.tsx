@@ -11,7 +11,7 @@ import { APP_INFO } from "../constants/appInfo";
 import { WORLD_GROUP_LABELS } from "../data/worlds";
 import { getCatalogCharacterById, getCatalogDescriptionById, getCatalogRareById } from "../data/catalogLookup";
 import type { DexClass } from "../data/characterCatalog.generated";
-import { getDexPresentation, revealHeadlineFor } from "../services/dexPresentation.core";
+import { getDexPresentation, revealHeadlineFor, revealSoundFor, revealTagFor } from "../services/dexPresentation.core";
 import { buildDiscoveryShareText, shareProgressOf } from "../services/shareText.core";
 import { HABITAT_GROUP_LABELS } from "../data/habitatGroups";
 import { getCharacterRarityForMonster, getFamilyHabitatGroup } from "../data/characters";
@@ -142,15 +142,25 @@ export const SummonResultScreen = () => {
     }
     soundPlayedRef.current = true;
 
-    const anyRare = refs.some((ref) => {
-      if (ref.kind === "duplicate" || !ref.monsterId) {
-        return false;
-      }
+    // 発見音は「今回いちばん格上の図鑑分類」に合わせる（SECRET > LEGEND > RARE > NORMAL）。
+    // 再発見だけの場合は共通の再発見音。
+    let bestPriority = -1;
+    let primary: SoundId = "rediscovery";
+    for (const ref of refs) {
+      if (ref.kind === "duplicate" || !ref.monsterId) continue;
       const target = getMonsterById(ref.monsterId);
-      return target ? (target.characterRarity ?? getCharacterRarityForMonster(target)) === "rare" : false;
-    });
-    const anyFirst = refs.some((ref) => ref.kind === "first");
-    const primary: SoundId = anyRare ? "discovery_rare" : anyFirst ? "discovery_normal" : "rediscovery";
+      if (!target) continue;
+      const entry =
+        getCatalogCharacterById(target.characterId ?? target.imageKey) ??
+        getCatalogRareById(target.characterId ?? target.imageKey);
+      const cls = (entry?.dexClass ?? "NORMAL") as DexClass;
+      const isFirst = ref.kind === "first";
+      const priority = getDexPresentation(cls).sharePriority + (isFirst ? 1 : 0);
+      if (priority > bestPriority) {
+        bestPriority = priority;
+        primary = revealSoundFor(cls, isFirst);
+      }
+    }
     playSound(primary);
 
     // DP獲得音は発見音に重ねず、少し遅らせて順に鳴らす。
@@ -158,7 +168,8 @@ export const SummonResultScreen = () => {
     if (dpTotal <= 0) {
       return;
     }
-    const delay = anyRare ? 1800 : 900;
+    // 重い発見演出（LEGEND/SECRET）のときはDP音を十分に後ろへずらす。
+    const delay = bestPriority >= 3 ? 2600 : bestPriority >= 2 ? 1800 : 900;
     const timer = setTimeout(() => playSound("dp_gain"), delay);
     return () => clearTimeout(timer);
     // 初回マウント時のみ実行する。
@@ -275,6 +286,7 @@ export const SummonResultScreen = () => {
     const dexClass = (catEntry?.dexClass ?? "NORMAL") as DexClass;
     const dexPresentation = getDexPresentation(dexClass);
     const isFirstDiscovery = ref.kind === "first";
+    const revealTag = revealTagFor(dexClass, isFirstDiscovery);
 
     return (
       <SafeAreaView style={styles.safeArea}>
@@ -292,6 +304,10 @@ export const SummonResultScreen = () => {
                 {badge.label}（{scanSourceLabel(ref.scanSource)}）
               </Text>
             </View>
+            {/* 英字ラベルは初発見のときだけ出す（再発見で毎回出ると特別感が薄れる）。 */}
+            {revealTag ? (
+              <Text style={[styles.dexRevealTag, { color: dexPresentation.frameColor }]}>{revealTag}</Text>
+            ) : null}
             {/* 分類別の見出し。初発見の NORMAL だけ専用文言になる。 */}
             <Text style={styles.dexRevealHeadline}>{revealHeadlineFor(dexClass, isFirstDiscovery)}</Text>
             <View
@@ -652,6 +668,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 22,
     fontWeight: "700"
+  },
+  dexRevealTag: {
+    fontSize: 11,
+    fontWeight: "900",
+    letterSpacing: 2,
+    textAlign: "center",
+    marginTop: 6
   },
   dexRevealHeadline: {
     fontSize: 15,

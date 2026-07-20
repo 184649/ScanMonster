@@ -47,6 +47,27 @@ export const colors = {
   accentGoldInk: "#92400E",
   accentGoldSoft: "#FFFBEB",
 
+  // --- レアリティ演出（図鑑分類ごとの枠・ヘッダ・記念カード）---
+  // 画像へは焼き込まず、UIレイヤーだけで特別感を作るための色。
+  // 「豪華」ではなく「特別」。リアルイラストの上品さを壊さない範囲に留める。
+  // RARE：シルバー〜淡い虹彩
+  rareSilver: "#C7CDD6",
+  rareSilverSoft: "#F3F5F8",
+  rareIridescent: "#AFC6E9",
+  rareInk: "#41506B",
+  // LEGEND：ブロンズ／ダークゴールド／アンバー（化石・地層・古代図鑑）
+  legendBronze: "#9C6B3F",
+  legendDarkGold: "#B08542",
+  legendAmber: "#D9A05B",
+  legendDeep: "#2B1E12",
+  legendSoft: "#F6EFE4",
+  // SECRET：深い紫／濃紺／青緑／黒金（伝承・禁書）
+  secretPurple: "#3B2A5A",
+  secretNavy: "#111B34",
+  secretTeal: "#1F4A4A",
+  secretBlackGold: "#C9A14A",
+  secretSoft: "#EDEAF3",
+
   // --- 汎用 ---
   white: "#FFFFFF"
 } as const;

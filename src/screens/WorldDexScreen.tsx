@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Dimensions,
   FlatList,
@@ -16,7 +16,15 @@ import { LockKeyhole } from "../components/icons";
 import { MonsterAvatar } from "../components/MonsterAvatar";
 import { DexProgressBar } from "../components/dex/DexProgressBar";
 import type { CatalogCharacter, CatalogRare, DexClass } from "../data/characterCatalog.generated";
-import { getDexPresentation, dexProgressOf } from "../services/dexPresentation.core";
+import {
+  getDexPresentation,
+  dexProgressOf,
+  completionCelebrationOf,
+  shouldCelebrateWorldComplete
+} from "../services/dexPresentation.core";
+import { CompletionCelebrationCard } from "../components/dex/CompletionCelebrationCard";
+import { buildWorldCompleteShareText } from "../services/shareText.core";
+import { playSound } from "../services/soundService";
 import { effectiveUnlockedWorldGroups } from "../services/worldAccess";
 import { getWorldDexView, getWorldTabs, monstersByCatalogId, type WorldDexEntry } from "../services/worldDex";
 import { useMonsterStore } from "../stores/monsterStore";
@@ -58,6 +66,28 @@ export const WorldDexScreen = () => {
   const view = useMemo(() => getWorldDexView(selected, monsters, unlockedWorlds), [selected, monsters, unlockedWorlds]);
   const ownedMap = useMemo(() => monstersByCatalogId(monsters), [monsters]);
 
+  // ワールド完成演出。完成した瞬間に一度だけ出す（タブを戻っても再表示しない）。
+  const progress = useMemo(
+    () => dexProgressOf(view.progress.discovered, view.progress.imageReady),
+    [view.progress.discovered, view.progress.imageReady]
+  );
+  const celebratedRef = useRef<Set<string>>(new Set());
+  const [celebrating, setCelebrating] = useState(false);
+  useEffect(() => {
+    if (!shouldCelebrateWorldComplete(progress, selected, celebratedRef.current)) return;
+    celebratedRef.current.add(selected);
+    setCelebrating(true);
+    playSound("dex_complete");
+  }, [progress, selected]);
+
+  const worldLabel = tabs.find((t) => t.key === selected)?.label ?? "";
+  const celebration = progress.isComplete ? completionCelebrationOf("world", worldLabel) : undefined;
+  // 記念カードに並べる代表生物（発見済み・画像ありのものから先頭8件）。
+  const representativeIds = useMemo(
+    () => view.normals.filter((n) => n.owned && n.entry.hasImage).map((n) => n.entry.id),
+    [view.normals]
+  );
+
   const renderDexCard = useCallback(
     ({ entry, owned }: WorldDexEntry<DexCardEntry>) => {
       const ownedMonster = owned ? ownedMap.get(entry.id) : undefined;
@@ -75,17 +105,26 @@ export const WorldDexScreen = () => {
           style={({ pressed }) => [
             styles.card,
             { width: CARD_WIDTH },
-            owned && { borderColor: presentation.frameColor, backgroundColor: presentation.backgroundColor },
+            owned && {
+              borderColor: presentation.frameColor,
+              backgroundColor: presentation.backgroundColor,
+              borderWidth: presentation.frameWidth
+            },
             !owned && styles.cardLocked,
             !entry.hasImage && styles.cardPreparing,
             pressed && canPress && styles.pressed
           ]}
         >
+          {/* カード内側の subtle glow。イラストの上には重ねない（枠の内側だけ）。 */}
+          {owned && presentation.hasInnerGlow ? (
+            <View pointerEvents="none" style={[styles.innerGlow, { borderColor: presentation.glowColor }]} />
+          ) : null}
+
           <View style={styles.cardTopRow}>
             <Text numberOfLines={1} style={styles.cardNo}>
               {String(entry.no).padStart(3, "0")}
             </Text>
-            {owned && entry.dexClass !== "NORMAL" ? (
+            {owned && presentation.rarityTag ? (
               <Text
                 numberOfLines={1}
                 style={[
@@ -93,7 +132,7 @@ export const WorldDexScreen = () => {
                   { color: presentation.badgeTextColor, backgroundColor: presentation.badgeBackgroundColor }
                 ]}
               >
-                {presentation.badgeLabel}
+                {presentation.rarityTag}
               </Text>
             ) : null}
           </View>
@@ -139,7 +178,7 @@ export const WorldDexScreen = () => {
       <View style={styles.header}>
         <Text style={styles.title}>ワールド図鑑</Text>
         {/* 完成率を可視化して「あと何種か」を常に見せる。母数は画像準備済みの種。 */}
-        <DexProgressBar progress={dexProgressOf(view.progress.discovered, view.progress.imageReady)} />
+        <DexProgressBar progress={progress} />
       </View>
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.tabRow}>
@@ -188,6 +227,13 @@ export const WorldDexScreen = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
+      <CompletionCelebrationCard
+        visible={celebrating}
+        celebration={celebration}
+        representativeIds={representativeIds}
+        shareMessage={celebration ? buildWorldCompleteShareText(worldLabel, progress.total) : undefined}
+        onClose={() => setCelebrating(false)}
+      />
       {fixedHeader}
       <FlatList
         data={view.normals}
@@ -266,6 +312,16 @@ const styles = StyleSheet.create({
   cardLocked: { backgroundColor: colors.surfaceMuted, borderColor: colors.border },
   cardPreparing: { backgroundColor: colors.surfaceMuted, borderStyle: "dashed" },
   pressed: { opacity: 0.82, transform: [{ scale: 0.99 }] },
+  innerGlow: {
+    position: "absolute",
+    top: 3,
+    left: 3,
+    right: 3,
+    bottom: 3,
+    borderRadius: 6,
+    borderWidth: 1.5,
+    opacity: 0.55
+  },
   cardTopRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 4 },
   cardNo: { color: colors.textFaint, fontSize: 11, fontWeight: "900" },
   cardBadge: {

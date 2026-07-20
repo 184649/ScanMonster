@@ -11,6 +11,9 @@ export type SoundId =
   | "scan_success"
   | "discovery_normal"
   | "discovery_rare"
+  | "discovery_legend"
+  | "discovery_secret"
+  | "dex_complete"
   | "rediscovery"
   | "dp_gain"
   | "world_unlock"
@@ -28,6 +31,9 @@ export const SOUND_FILE_BASENAMES: Record<SoundId, string> = {
   scan_success: "sound_scan_success",
   discovery_normal: "sound_discovery_normal",
   discovery_rare: "sound_discovery_rare",
+  discovery_legend: "sound_discovery_legend",
+  discovery_secret: "sound_discovery_secret",
+  dex_complete: "sound_dex_complete",
   rediscovery: "sound_rediscovery",
   dp_gain: "sound_dp_gain",
   world_unlock: "sound_world_unlock",
