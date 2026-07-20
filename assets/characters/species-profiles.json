@@ -1,0 +1,215 @@
+{
+  "_comment": "図鑑プロフィール（科学情報）。id は character_master.json と共通の永久不変ID。ここに行が無い生きものは『未調査』として扱い、推測で埋めない。値が null のフィールドも『未調査』。reviewStatus=confirmed かつ sources が1件以上ある場合だけ図鑑へ公開する（未確認情報を確定情報として出さない）。実在生物（NORMAL/RARE/LEGEND）と空想生物（SECRET）で使うフィールドが異なる。",
+  "_schema": {
+    "共通": "speciesJa / speciesEn / scientificName / taxonomy / reviewStatus / sources / lastCheckedAt",
+    "実在生物": "distribution / habitat / size / diet / diagnosticFeatures / behavior / ecosystemRole / conservationStatus / trivia",
+    "RARE（希少形態）": "baseSpeciesId / variantType / variantMechanism / verifiedAppearance",
+    "LEGEND（絶滅生物）": "geologicalPeriod / fossilLocations / estimatedSize / wellSupportedFeatures / uncertainFeatures / extinctionHypotheses",
+    "SECRET（空想生物）": "fictionalOrigin / mythologyOrWorldLore / fictionalEcology / fictionDisclaimer（必須）",
+    "reviewStatus": "unresearched=未調査 / researching=調査中 / needsReview=要監修 / confirmed=確認済（公開可）"
+  },
+  "_pilot": {
+    "対象": "Phase 1 パイロット10種。NORMAL 7 / RARE 1 / LEGEND 1 / SECRET 1 で全4分類の表示経路を網羅する。",
+    "現在の状態": "全件 reviewStatus=needsReview。記載内容は一般に確立した生物学的事実だが、出典URLの実地確認を人間が行っていないため未公開のまま保持する。人間が確認後 confirmed へ変更すると図鑑へ公開される。",
+    "残り451種": "未調査（このファイルに行を持たない）。継続コンテンツ制作として順次追加する。"
+  },
+  "profiles": {
+    "ground_elephant": {
+      "speciesJa": "ゾウ",
+      "speciesEn": "African Bush Elephant",
+      "scientificName": "Loxodonta africana",
+      "taxonomy": "哺乳綱 長鼻目 ゾウ科",
+      "distribution": "サハラ以南のアフリカ",
+      "habitat": "サバンナ、疎林、湿地帯",
+      "size": "肩高2.2〜4.0m、体重2.7〜6.0t。雄が雌より大きい",
+      "diet": "草食。草、木の葉、樹皮、果実。1日に100kg以上を採食する",
+      "diagnosticFeatures": "長い鼻（上唇と鼻が伸びたもの）、大きな扇状の耳、上顎から伸びる切歯（牙）、柱状の四肢。アジアゾウより耳が大きく、背中の輪郭がくぼむ",
+      "behavior": "雌と子からなる母系の群れをつくり、最年長の雌が群れを導く。雄は成熟すると群れを離れる",
+      "ecosystemRole": "採食と移動によって樹木を減らし草原を維持する。糞を通じて種子を遠くへ運ぶ",
+      "conservationStatus": "IUCNレッドリスト 危機（EN）。※保全状況はゲーム内のレアリティとは無関係の情報",
+      "trivia": "鼻の先端で小さな物をつまむことができ、水を吸い上げて口へ運ぶ",
+      "reviewStatus": "needsReview",
+      "sources": [
+        { "title": "African bush elephant - Wikipedia", "url": "https://en.wikipedia.org/wiki/African_bush_elephant", "checkedAt": "2026-07-20" }
+      ],
+      "lastCheckedAt": null
+    },
+    "ground_giraffe": {
+      "speciesJa": "キリン",
+      "speciesEn": "Giraffe",
+      "scientificName": "Giraffa camelopardalis",
+      "taxonomy": "哺乳綱 偶蹄目 キリン科",
+      "distribution": "サハラ以南のアフリカ",
+      "habitat": "サバンナ、疎林",
+      "size": "高さ4.3〜5.7m、体重800〜1200kg",
+      "diet": "草食。主にアカシアなど高木の葉と新芽",
+      "diagnosticFeatures": "極端に長い首と脚、網目状または斑状の体色、頭部のオシコーン（皮膚と毛に覆われた角状突起）、長く可動する舌",
+      "behavior": "ゆるやかな群れをつくる。雄どうしは首を打ち付け合うネッキングで優劣を決める",
+      "ecosystemRole": "高所の葉を採食し、樹木の成長を抑える。受粉や種子散布にも関わる",
+      "conservationStatus": "IUCNレッドリスト 危急（VU）。※保全状況はゲーム内のレアリティとは無関係の情報",
+      "trivia": "首の骨（頸椎）の数はヒトと同じ7個で、1つ1つが非常に長い",
+      "reviewStatus": "needsReview",
+      "sources": [
+        { "title": "Giraffe - Wikipedia", "url": "https://en.wikipedia.org/wiki/Giraffe", "checkedAt": "2026-07-20" }
+      ],
+      "lastCheckedAt": null
+    },
+    "ground_gorilla": {
+      "speciesJa": "ゴリラ",
+      "speciesEn": "Western Gorilla",
+      "scientificName": "Gorilla gorilla",
+      "taxonomy": "哺乳綱 霊長目 ヒト科",
+      "distribution": "中央アフリカ西部",
+      "habitat": "熱帯雨林、低地林、湿地林",
+      "size": "立ち上がった高さ1.4〜1.8m、体重70〜200kg。雄が雌より大幅に大きい",
+      "diet": "主に草食。葉、茎、果実、樹皮。少量の昆虫も食べる",
+      "diagnosticFeatures": "厚い胸部と長い前肢、突出した眉上隆起、成熟した雄の背に生える銀白色の毛（シルバーバック）、ナックルウォークに適した手",
+      "behavior": "シルバーバックを中心とした群れで生活する。夜は毎晩あたらしい寝床をつくる",
+      "ecosystemRole": "果実を食べ、糞を通じて種子を散布する",
+      "conservationStatus": "IUCNレッドリスト 深刻な危機（CR）。※保全状況はゲーム内のレアリティとは無関係の情報",
+      "trivia": "指紋があり、鼻のしわの模様は個体ごとに異なるため識別に使われる",
+      "reviewStatus": "needsReview",
+      "sources": [
+        { "title": "Western gorilla - Wikipedia", "url": "https://en.wikipedia.org/wiki/Western_gorilla", "checkedAt": "2026-07-20" }
+      ],
+      "lastCheckedAt": null
+    },
+    "ground_koala": {
+      "speciesJa": "コアラ",
+      "speciesEn": "Koala",
+      "scientificName": "Phascolarctos cinereus",
+      "taxonomy": "哺乳綱 双前歯目 コアラ科",
+      "distribution": "オーストラリア東部・南東部",
+      "habitat": "ユーカリ林",
+      "size": "体長60〜85cm、体重4〜15kg",
+      "diet": "ほぼユーカリの葉のみ。低栄養で毒性のある葉を解毒しながら消化する",
+      "diagnosticFeatures": "丸く大きな耳、大きく平たい鼻、尾がほとんどない体、枝をつかむための2本と3本に分かれた前肢の指",
+      "behavior": "1日18〜22時間を睡眠と休息に費やす。単独性が強い",
+      "ecosystemRole": "ユーカリ林に依存する専食者で、森林の健全性を示す指標種とされる",
+      "conservationStatus": "IUCNレッドリスト 危急（VU）。※保全状況はゲーム内のレアリティとは無関係の情報",
+      "trivia": "有袋類であり、育児嚢のなかで子を育てる。クマの仲間ではない",
+      "reviewStatus": "needsReview",
+      "sources": [
+        { "title": "Koala - Wikipedia", "url": "https://en.wikipedia.org/wiki/Koala", "checkedAt": "2026-07-20" }
+      ],
+      "lastCheckedAt": null
+    },
+    "ground_red_panda": {
+      "speciesJa": "レッサーパンダ",
+      "speciesEn": "Red Panda",
+      "scientificName": "Ailurus fulgens",
+      "taxonomy": "哺乳綱 食肉目 レッサーパンダ科",
+      "distribution": "ヒマラヤ東部から中国南西部",
+      "habitat": "標高2000〜4000mの温帯林。竹の下層植生がある森",
+      "size": "体長50〜64cm、尾長28〜59cm、体重3〜6kg",
+      "diet": "食肉目だが主に竹を食べる。果実、どんぐり、卵、小動物も食べる",
+      "diagnosticFeatures": "赤褐色の体毛、白い顔の斑紋、環状の縞がある長い尾、竹をつかむのに使う手首の種子骨（第6の指）",
+      "behavior": "主に薄明薄暮性で樹上性が強い。単独で行動する",
+      "ecosystemRole": "竹林の消費者。種子散布にも関わる",
+      "conservationStatus": "IUCNレッドリスト 危機（EN）。※保全状況はゲーム内のレアリティとは無関係の情報",
+      "trivia": "ジャイアントパンダとは別の科に属し、独立したレッサーパンダ科を構成する",
+      "reviewStatus": "needsReview",
+      "sources": [
+        { "title": "Red panda - Wikipedia", "url": "https://en.wikipedia.org/wiki/Red_panda", "checkedAt": "2026-07-20" }
+      ],
+      "lastCheckedAt": null
+    },
+    "sky_owl": {
+      "speciesJa": "フクロウ",
+      "speciesEn": "Owl",
+      "scientificName": "Strigiformes（目レベル。特定の種を指していない）",
+      "taxonomy": "鳥綱 フクロウ目",
+      "distribution": "南極を除く全大陸",
+      "habitat": "森林、草原、農地、市街地まで幅広い",
+      "size": "種により大きく異なる。全長13cm程度から70cm程度まで",
+      "diet": "肉食。齧歯類、小鳥、昆虫。獲物を丸のみし、消化できない骨と毛をペリットとして吐き出す",
+      "diagnosticFeatures": "顔盤（音を集める皿状の顔）、正面を向いた大きな目、前後に動かせる第4趾、風切羽の縁にある細かな櫛状構造",
+      "behavior": "多くの種が夜行性。左右で高さの異なる耳の穴により、音だけで獲物の位置を三次元的に特定する種がいる",
+      "ecosystemRole": "齧歯類の個体数を抑える上位捕食者",
+      "conservationStatus": "種により異なる。個別種の評価を参照すること",
+      "trivia": "眼球は球形ではなく筒状で動かせないため、首を大きく回して視野を補う",
+      "reviewStatus": "needsReview",
+      "sources": [
+        { "title": "Owl - Wikipedia", "url": "https://en.wikipedia.org/wiki/Owl", "checkedAt": "2026-07-20" }
+      ],
+      "lastCheckedAt": null
+    },
+    "sky_flamingo": {
+      "speciesJa": "フラミンゴ",
+      "speciesEn": "Flamingo",
+      "scientificName": "Phoenicopteridae（科レベル。特定の種を指していない）",
+      "taxonomy": "鳥綱 フラミンゴ目 フラミンゴ科",
+      "distribution": "アフリカ、南アジア、南欧、中南米",
+      "habitat": "塩湖、干潟、汽水域などの浅い水域",
+      "size": "種により全長80〜145cm",
+      "diet": "藻類、珪藻、小型甲殻類。嘴を逆さにして水ごと吸い込み、濾し取って食べる",
+      "diagnosticFeatures": "下に大きく折れ曲がった嘴、長い首と脚、桃色から赤色の羽衣、水かきのある足",
+      "behavior": "大規模な集団をつくる。片脚立ちで休むことが多い",
+      "ecosystemRole": "塩湖の藻類やプランクトンを消費し、水域の物質循環に関わる",
+      "conservationStatus": "種により異なる。個別種の評価を参照すること",
+      "trivia": "羽衣の桃色は餌に含まれるカロテノイド由来で、生まれたときは灰白色をしている",
+      "reviewStatus": "needsReview",
+      "sources": [
+        { "title": "Flamingo - Wikipedia", "url": "https://en.wikipedia.org/wiki/Flamingo", "checkedAt": "2026-07-20" }
+      ],
+      "lastCheckedAt": null
+    },
+    "ground_rare_white_tiger": {
+      "speciesJa": "白虎（ホワイトタイガー）",
+      "speciesEn": "White Tiger",
+      "scientificName": "Panthera tigris（白変個体）",
+      "taxonomy": "哺乳綱 食肉目 ネコ科",
+      "baseSpeciesId": "ground_tiger",
+      "variantType": "白変（劣性遺伝による色素の部分的欠如）",
+      "variantMechanism": "SLC45A2 遺伝子の変異により黄色系色素の生成が妨げられる。両親からこの劣性対立遺伝子を受け継いだ個体に現れる。目の色素は保たれるためアルビノとは異なる",
+      "verifiedAppearance": "白色から淡いクリーム色の地色に黒または濃褐色の縞。虹彩は青色。鼻はピンク色。縞模様は消えない",
+      "distribution": "野生ではインド亜大陸で記録があるが、現在の個体はほぼ飼育下に限られる",
+      "habitat": "ベンガルトラに準じる（森林、草地、マングローブ林）",
+      "size": "ベンガルトラに準じる。体長2.7〜3.1m、体重180〜260kg",
+      "diet": "肉食。シカ、イノシシなどの有蹄類",
+      "diagnosticFeatures": "白い地色と青い虹彩。アルビノではないため縞と眼の色素が残る点が決定的な違い",
+      "behavior": "通常のトラと同じく単独性で縄張りを持つ",
+      "ecosystemRole": "生態系の頂点捕食者（トラとして）",
+      "conservationStatus": "白変は種ではなく形態のため単独の保全評価はない。トラ自体はIUCNレッドリスト 危機（EN）",
+      "trivia": "アルビノ（メラニンを全く作れず眼が赤い）とは別の現象であり、混同されることが多い",
+      "reviewStatus": "needsReview",
+      "sources": [
+        { "title": "White tiger - Wikipedia", "url": "https://en.wikipedia.org/wiki/White_tiger", "checkedAt": "2026-07-20" },
+        { "title": "Leucism - Wikipedia", "url": "https://en.wikipedia.org/wiki/Leucism", "checkedAt": "2026-07-20" }
+      ],
+      "lastCheckedAt": null
+    },
+    "waterside_rare_megalodon": {
+      "speciesJa": "メガロドン",
+      "speciesEn": "Megalodon",
+      "scientificName": "Otodus megalodon",
+      "taxonomy": "軟骨魚綱 ネズミザメ目 オトダス科",
+      "geologicalPeriod": "新第三紀 中新世前期から鮮新世後期（およそ2300万年前〜360万年前）",
+      "fossilLocations": "南極を除く世界各地の海成層。北米、南米、ヨーロッパ、アフリカ、アジア、オーストラリア",
+      "estimatedSize": "推定全長14〜20m。推定値は歯の大きさから復元されており、研究により幅がある",
+      "diet": "推定で肉食。クジラ類などの大型海生哺乳類。骨に残る咬傷から推定されている",
+      "wellSupportedFeatures": "三角形で縁が細かく鋸歯状の巨大な歯、大型のネズミザメ目に近い体制。歯と椎骨は多数発見されている",
+      "uncertainFeatures": "全身の正確な体形と各鰭の形。軟骨性のため全身骨格が化石として残らず、復元は近縁種からの類推に依存する。ホホジロザメ型の復元は確定していない",
+      "extinctionHypotheses": "海水温の低下、餌となる大型海生哺乳類の分布変化、ホホジロザメなど他の捕食者との競合などが挙げられている。単一の定説はない",
+      "diagnosticFeatures": "縁が鋸歯状の巨大な三角形の歯。最大で斜辺長18cmを超える",
+      "reviewStatus": "needsReview",
+      "sources": [
+        { "title": "Megalodon - Wikipedia", "url": "https://en.wikipedia.org/wiki/Megalodon", "checkedAt": "2026-07-20" }
+      ],
+      "lastCheckedAt": null
+    },
+    "ground_rare_yeti": {
+      "speciesJa": "イエティ",
+      "speciesEn": "Yeti",
+      "fictionalOrigin": "ヒマラヤ山脈周辺（ネパール、チベット、ブータン）に伝わる伝承上の生きもの",
+      "mythologyOrWorldLore": "シェルパをはじめとする現地の民間伝承に登場する。19世紀以降、西洋の登山家によって『雪男』として広く紹介された。報告された足跡や毛の試料は、後の分析で既知の動物のものと判明した例が知られている",
+      "fictionalEcology": "WORLDAWNでは、高山帯の雪原と岩場を移動する大型の二足歩行生物として扱う。厚い体毛と大きな足を持ち、人の気配を避けて生活しているとされる",
+      "fictionDisclaimer": "この生きものは神話・伝承・空想上の存在です。実在を示す科学的証拠はありません。図鑑の記述は伝承とWORLDAWNの世界設定にもとづく創作であり、生物学的な事実ではありません。",
+      "reviewStatus": "needsReview",
+      "sources": [
+        { "title": "Yeti - Wikipedia", "url": "https://en.wikipedia.org/wiki/Yeti", "checkedAt": "2026-07-20" }
+      ],
+      "lastCheckedAt": null
+    }
+  }
+}

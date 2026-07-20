@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Dimensions,
   FlatList,
@@ -14,7 +14,18 @@ import { useNavigation } from "@react-navigation/native";
 
 import { LockKeyhole } from "../components/icons";
 import { MonsterAvatar } from "../components/MonsterAvatar";
-import type { CatalogCharacter, CatalogRare } from "../data/characterCatalog.generated";
+import { DexProgressBar } from "../components/dex/DexProgressBar";
+import type { CatalogCharacter, CatalogRare, DexClass } from "../data/characterCatalog.generated";
+import {
+  getDexPresentation,
+  dexProgressOf,
+  completionCelebrationOf,
+  shouldCelebrateWorldComplete
+} from "../services/dexPresentation.core";
+import { CompletionCelebrationCard } from "../components/dex/CompletionCelebrationCard";
+import { buildWorldCompleteShareText } from "../services/shareText.core";
+import { buildWorldCompleteCard, shareHeadlineFor } from "../services/shareCard.core";
+import { playSound } from "../services/soundService";
 import { effectiveUnlockedWorldGroups } from "../services/worldAccess";
 import { getWorldDexView, getWorldTabs, monstersByCatalogId, type WorldDexEntry } from "../services/worldDex";
 import { useMonsterStore } from "../stores/monsterStore";
@@ -56,12 +67,53 @@ export const WorldDexScreen = () => {
   const view = useMemo(() => getWorldDexView(selected, monsters, unlockedWorlds), [selected, monsters, unlockedWorlds]);
   const ownedMap = useMemo(() => monstersByCatalogId(monsters), [monsters]);
 
+  // ワールド完成演出。完成した瞬間に一度だけ出す（タブを戻っても再表示しない）。
+  const progress = useMemo(
+    () => dexProgressOf(view.progress.discovered, view.progress.imageReady),
+    [view.progress.discovered, view.progress.imageReady]
+  );
+  const celebratedRef = useRef<Set<string>>(new Set());
+  const [celebrating, setCelebrating] = useState(false);
+  useEffect(() => {
+    if (!shouldCelebrateWorldComplete(progress, selected, celebratedRef.current)) return;
+    celebratedRef.current.add(selected);
+    setCelebrating(true);
+    playSound("dex_complete");
+  }, [progress, selected]);
+
+  const worldLabel = tabs.find((t) => t.key === selected)?.label ?? "";
+  const celebration = progress.isComplete ? completionCelebrationOf("world", worldLabel) : undefined;
+  // 記念カードに並べる代表生物（発見済み・画像ありのものから先頭8件）。
+  const representativeIds = useMemo(
+    () => view.normals.filter((n) => n.owned && n.entry.hasImage).map((n) => n.entry.id),
+    [view.normals]
+  );
+  // ワールド完成カード：代表4体を並べた記念カードを自動生成する。
+  const worldCompleteCard = progress.isComplete
+    ? buildWorldCompleteCard({
+        worldLabel,
+        representatives: view.normals
+          .filter((n) => n.owned && n.entry.hasImage)
+          .slice(0, 4)
+          .map((n) => ({
+            id: n.entry.id,
+            name: n.entry.name,
+            dexClass: (n.entry.dexClass ?? "NORMAL") as DexClass
+          })),
+        totalDiscovered: progress.total,
+        completedAt: new Date().toISOString()
+      })
+    : undefined;
+
   const renderDexCard = useCallback(
     ({ entry, owned }: WorldDexEntry<DexCardEntry>) => {
       const ownedMonster = owned ? ownedMap.get(entry.id) : undefined;
       const canPress = owned && entry.hasImage;
       const title = !entry.hasImage ? "準備中" : owned ? entry.name : "???";
       const subtitle = !entry.hasImage ? "" : owned ? entry.speciesJa : "";
+      // 一覧の統一カード：枠色・背景は図鑑分類で決める（画像側にレア演出を焼き込まない）。
+      // 未発見のあいだは分類を漏らさないため、既定（NORMAL）の見た目にする。
+      const presentation = getDexPresentation((owned ? entry.dexClass : "NORMAL") as DexClass);
 
       return (
         <Pressable
@@ -69,16 +121,38 @@ export const WorldDexScreen = () => {
           onPress={() => ownedMonster && navigation.navigate("MonsterDetail", { monsterId: ownedMonster.id })}
           style={({ pressed }) => [
             styles.card,
-            isRareEntry(entry) && styles.rareCard,
             { width: CARD_WIDTH },
+            owned && {
+              borderColor: presentation.frameColor,
+              backgroundColor: presentation.backgroundColor,
+              borderWidth: presentation.frameWidth
+            },
             !owned && styles.cardLocked,
             !entry.hasImage && styles.cardPreparing,
             pressed && canPress && styles.pressed
           ]}
         >
-          <Text numberOfLines={1} style={styles.cardNo}>
-            {String(entry.no).padStart(3, "0")}
-          </Text>
+          {/* カード内側の subtle glow。イラストの上には重ねない（枠の内側だけ）。 */}
+          {owned && presentation.hasInnerGlow ? (
+            <View pointerEvents="none" style={[styles.innerGlow, { borderColor: presentation.glowColor }]} />
+          ) : null}
+
+          <View style={styles.cardTopRow}>
+            <Text numberOfLines={1} style={styles.cardNo}>
+              {String(entry.no).padStart(3, "0")}
+            </Text>
+            {owned && presentation.rarityTag ? (
+              <Text
+                numberOfLines={1}
+                style={[
+                  styles.cardBadge,
+                  { color: presentation.badgeTextColor, backgroundColor: presentation.badgeBackgroundColor }
+                ]}
+              >
+                {presentation.rarityTag}
+              </Text>
+            ) : null}
+          </View>
 
           {entry.hasImage && owned ? (
             <View style={styles.avatarWrap}>
@@ -88,7 +162,7 @@ export const WorldDexScreen = () => {
                 thumb
                 showRarity={false}
                 showElementFrame={false}
-                backgroundColor={isRareEntry(entry) ? "#FEF3C7" : colors.borderFaint}
+                backgroundColor={colors.borderFaint}
               />
             </View>
           ) : entry.hasImage ? (
@@ -120,10 +194,8 @@ export const WorldDexScreen = () => {
     <View style={styles.fixedHeader}>
       <View style={styles.header}>
         <Text style={styles.title}>ワールド図鑑</Text>
-        <Text style={styles.progress}>
-          <Text style={styles.progressStrong}>{view.progress.discovered}</Text> / {view.progress.total} 発見
-          <Text style={styles.progressSub}>  画像準備済み {view.progress.imageReady}</Text>
-        </Text>
+        {/* 完成率を可視化して「あと何種か」を常に見せる。母数は画像準備済みの種。 */}
+        <DexProgressBar progress={progress} />
       </View>
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.tabRow}>
@@ -166,12 +238,25 @@ export const WorldDexScreen = () => {
           </View>
         </View>
       ) : null}
-      <Text style={styles.note}>未発見のキャラクターは共通シルエットで表示されます。発見するまで名前や姿は分かりません。</Text>
+      <Text style={styles.note}>未発見の生きものは共通シルエットで表示されます。発見するまで名前や姿は分かりません。</Text>
     </View>
   );
 
   return (
     <SafeAreaView style={styles.safeArea}>
+      <CompletionCelebrationCard
+        visible={celebrating}
+        celebration={celebration}
+        representativeIds={representativeIds}
+        shareCard={worldCompleteCard}
+        shareMessage={
+          worldCompleteCard
+            ? `${shareHeadlineFor(worldCompleteCard)}
+${buildWorldCompleteShareText(worldLabel, progress.total)}`
+            : undefined
+        }
+        onClose={() => setCelebrating(false)}
+      />
       {fixedHeader}
       <FlatList
         data={view.normals}
@@ -250,7 +335,27 @@ const styles = StyleSheet.create({
   cardLocked: { backgroundColor: colors.surfaceMuted, borderColor: colors.border },
   cardPreparing: { backgroundColor: colors.surfaceMuted, borderStyle: "dashed" },
   pressed: { opacity: 0.82, transform: [{ scale: 0.99 }] },
-  cardNo: { color: colors.textFaint, fontSize: 11, fontWeight: "900", alignSelf: "flex-start" },
+  innerGlow: {
+    position: "absolute",
+    top: 3,
+    left: 3,
+    right: 3,
+    bottom: 3,
+    borderRadius: 6,
+    borderWidth: 1.5,
+    opacity: 0.55
+  },
+  cardTopRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 4 },
+  cardNo: { color: colors.textFaint, fontSize: 11, fontWeight: "900" },
+  cardBadge: {
+    fontSize: 9,
+    fontWeight: "900",
+    paddingHorizontal: 5,
+    paddingVertical: 1,
+    borderRadius: 999,
+    overflow: "hidden",
+    flexShrink: 1
+  },
   avatarWrap: { alignItems: "center", justifyContent: "center" },
   mysteryRoot: {
     position: "relative",

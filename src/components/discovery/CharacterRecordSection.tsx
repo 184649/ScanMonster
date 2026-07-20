@@ -70,7 +70,7 @@ export const CharacterRecordSection = ({
   return (
     <>
       <View style={styles.panel}>
-        <Text style={styles.sectionTitle}>キャラクター記録</Text>
+        <Text style={styles.sectionTitle}>発見記録</Text>
         <View style={styles.statRow}>
           <View style={styles.stat}>
             <Text style={styles.statLabel}>発見回数</Text>

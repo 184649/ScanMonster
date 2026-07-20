@@ -30,7 +30,7 @@ assets/characters/_pilot/phase1/
 
 ## 使い方
 
-1. `docs/phase1-pilot-prompts/0X_<id>.md` のプロンプトを ChatGPT Work へ貼り付けて画像を生成する
+1. `docs/legacy-character-prompts/phase1-pilot-prompts/0X_<id>.md` のプロンプトを ChatGPT Work へ貼り付けて画像を生成する
 2. 生成画像を `<character-id>/candidates/` へ置く（例：`candidate_01.png`）
 3. `<character-id>/reports/evaluation.json` に視覚評価を記録する（形式は `docs/PHASE1_ASSET_PROMOTION.md`）
 4. **合計88点以上**かつ **automaticReject=false** の1枚を `<character-id>/selected/` へ置く

@@ -16,6 +16,17 @@ import {
 import { getTitleById } from "../data/titles";
 import { createDexSummary } from "../services/dexService";
 import { topDiscoveryOfDay } from "../services/discoveryQueries";
+import { discoveredSpeciesWithinDays, discoveriesOfDay } from "../services/discoveryShare.core";
+import { ShareNudgeCard } from "../components/dex/ShareNudgeCard";
+import { getCatalogCharacterById, getCatalogRareById } from "../data/catalogLookup";
+import type { DexClass } from "../data/characterCatalog.generated";
+import {
+  buildDexProgressShareText,
+  buildTodayShareText,
+  buildWeeklyShareText,
+  shareProgressOf
+} from "../services/shareText.core";
+import { buildTodayCard, buildWeeklyCard, buildDexProgressCard } from "../services/shareCard.core";
 import { useMonsterStore } from "../stores/monsterStore";
 import { formatDateTime, getLocalDateKey } from "../utils/dateUtils";
 import { colors, radius } from "../theme";
@@ -55,6 +66,48 @@ export const HomeScreen = () => {
   const recentMonsters = monsters.slice(0, 6);
   const exp = summary.discoveredFamilies * 120 + histories.length * 20;
   const trainerLevel = Math.max(1, Math.floor(exp / 1000) + 1);
+
+  // 共有導線（今日 / 今週）。発見が無い期間はメッセージが undefined になりカードを出さない。
+  const todayKey = getLocalDateKey(new Date());
+  const dexProgress = shareProgressOf(summary.discoveredFamilies, summary.totalFamilies);
+  const todayRecords = discoveriesOfDay(discoveryRecords, todayKey);
+  const todayEntries = todayRecords.map((record) => {
+    const entry = getCatalogCharacterById(record.characterId) ?? getCatalogRareById(record.characterId);
+    return { name: entry?.name ?? record.characterName, dexClass: (entry?.dexClass ?? "NORMAL") as DexClass };
+  });
+  const todayHasRare = todayEntries.some((e) => e.dexClass !== "NORMAL");
+  const todayShareMessage = buildTodayShareText(todayEntries, dexProgress);
+  const weeklyCount = discoveredSpeciesWithinDays(discoveryRecords, todayKey, 7);
+  const weeklyShareMessage = buildWeeklyShareText(weeklyCount, economy.scanStreak.totalScanStreakDays, dexProgress);
+  const progressShareMessage = buildDexProgressShareText(dexProgress, todayEntries.map((e) => e.name));
+
+  // シェアカード（今日／今週／図鑑進捗）。対象が無ければ undefined になりカードごと出ない。
+  const todaySubjects = todayRecords.map((record) => {
+    const entry = getCatalogCharacterById(record.characterId) ?? getCatalogRareById(record.characterId);
+    return {
+      id: record.characterId,
+      name: entry?.name ?? record.characterName,
+      dexClass: (entry?.dexClass ?? "NORMAL") as DexClass
+    };
+  });
+  const todayCard = buildTodayCard({
+    discoveries: todaySubjects,
+    newCount: todaySubjects.length,
+    percentDelta: 0,
+    percent: dexProgress.percent
+  });
+  const weeklyCard = buildWeeklyCard({
+    weeklyCount,
+    streakDays: economy.scanStreak.totalScanStreakDays,
+    percent: dexProgress.percent,
+    highlights: todaySubjects
+  });
+  const progressCard = buildDexProgressCard({
+    discovered: dexProgress.discovered,
+    total: dexProgress.total,
+    percent: dexProgress.percent,
+    recent: todaySubjects
+  });
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -112,6 +165,29 @@ export const HomeScreen = () => {
           </View>
         </View>
 
+        {/* 共有導線：共有できるものが無い日は表示しない（空カードを押させない）。 */}
+        <View style={styles.shareNudges}>
+          <ShareNudgeCard
+            title="今日の発見を共有"
+            message={todayShareMessage}
+            actionLabel="今日の発見を見せる"
+            emphasized={todayHasRare}
+            card={todayCard}
+          />
+          <ShareNudgeCard
+            title="今週のコレクション"
+            message={weeklyShareMessage}
+            actionLabel="今週のまとめを共有"
+            card={weeklyCard}
+          />
+          <ShareNudgeCard
+            title="図鑑の進捗"
+            message={progressShareMessage}
+            actionLabel="進捗を共有する"
+            card={progressCard}
+          />
+        </View>
+
         <FriendEffectCard />
 
         <View style={styles.dpPanel}>
@@ -125,7 +201,7 @@ export const HomeScreen = () => {
           <InfoCard
             title="図鑑"
             value={`${summary.discoveredFamilies} / ${summary.totalFamilies}`}
-            body="発見したキャラ"
+            body="発見した生きもの"
             accent={colors.success}
             onPress={() => navigation.navigate("WorldDex")}
           />
@@ -197,7 +273,7 @@ export const HomeScreen = () => {
         ) : (
           <View style={styles.emptyCard}>
             <Text style={styles.emptyTitle}>まだ発見がありません</Text>
-            <Text style={styles.emptyText}>バーコードやQRコードを読み取って、最初のキャラを見つけましょう。</Text>
+            <Text style={styles.emptyText}>バーコードやQRコードを読み取って、最初の生きものを見つけましょう。</Text>
             <PrimaryButton label="最初のスキャンへ" onPress={() => navigation.navigate("Scan")} />
           </View>
         )}
@@ -277,6 +353,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: "800"
   },
+  shareNudges: { gap: 10 },
   todayPanel: {
     gap: 12,
     borderRadius: radius.md,

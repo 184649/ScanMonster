@@ -9,7 +9,10 @@ import { DiscoveryCertificateCard } from "../components/discovery/DiscoveryCerti
 import { DiscoveryRewardSummary } from "../components/discovery/DiscoveryRewardSummary";
 import { APP_INFO } from "../constants/appInfo";
 import { WORLD_GROUP_LABELS } from "../data/worlds";
-import { getCatalogDescriptionById } from "../data/catalogLookup";
+import { getCatalogCharacterById, getCatalogDescriptionById, getCatalogRareById } from "../data/catalogLookup";
+import type { DexClass } from "../data/characterCatalog.generated";
+import { getDexPresentation, revealHeadlineFor, revealSoundFor, revealTagFor } from "../services/dexPresentation.core";
+import { buildDiscoveryShareText, shareProgressOf } from "../services/shareText.core";
 import { HABITAT_GROUP_LABELS } from "../data/habitatGroups";
 import { getCharacterRarityForMonster, getFamilyHabitatGroup } from "../data/characters";
 import { getElementMeta, SEASON_LABELS, TIME_SLOT_LABELS } from "../data/elements";
@@ -18,7 +21,8 @@ import { getRareById } from "../data/rareMonsters";
 import { LegendaryRevealOverlay } from "../components/LegendaryRevealOverlay";
 import { MonsterAvatar } from "../components/MonsterAvatar";
 import { PrimaryButton } from "../components/PrimaryButton";
-import { ShareCard } from "../components/ShareCard";
+import { ShareCardView } from "../components/dex/ShareCardView";
+import { buildDiscoveryCard, shareHeadlineFor } from "../services/shareCard.core";
 import { TagChip } from "../components/TagChip";
 import { getRevealedWorlds, markWorldRevealed } from "../services/legendaryReveal";
 import { shouldRevealLegendary } from "../services/legendaryVisibility.core";
@@ -139,15 +143,25 @@ export const SummonResultScreen = () => {
     }
     soundPlayedRef.current = true;
 
-    const anyRare = refs.some((ref) => {
-      if (ref.kind === "duplicate" || !ref.monsterId) {
-        return false;
-      }
+    // 発見音は「今回いちばん格上の図鑑分類」に合わせる（SECRET > LEGEND > RARE > NORMAL）。
+    // 再発見だけの場合は共通の再発見音。
+    let bestPriority = -1;
+    let primary: SoundId = "rediscovery";
+    for (const ref of refs) {
+      if (ref.kind === "duplicate" || !ref.monsterId) continue;
       const target = getMonsterById(ref.monsterId);
-      return target ? (target.characterRarity ?? getCharacterRarityForMonster(target)) === "rare" : false;
-    });
-    const anyFirst = refs.some((ref) => ref.kind === "first");
-    const primary: SoundId = anyRare ? "discovery_rare" : anyFirst ? "discovery_normal" : "rediscovery";
+      if (!target) continue;
+      const entry =
+        getCatalogCharacterById(target.characterId ?? target.imageKey) ??
+        getCatalogRareById(target.characterId ?? target.imageKey);
+      const cls = (entry?.dexClass ?? "NORMAL") as DexClass;
+      const isFirst = ref.kind === "first";
+      const priority = getDexPresentation(cls).sharePriority + (isFirst ? 1 : 0);
+      if (priority > bestPriority) {
+        bestPriority = priority;
+        primary = revealSoundFor(cls, isFirst);
+      }
+    }
     playSound(primary);
 
     // DP獲得音は発見音に重ねず、少し遅らせて順に鳴らす。
@@ -155,29 +169,32 @@ export const SummonResultScreen = () => {
     if (dpTotal <= 0) {
       return;
     }
-    const delay = anyRare ? 1800 : 900;
+    // 重い発見演出（LEGEND/SECRET）のときはDP音を十分に後ろへずらす。
+    const delay = bestPriority >= 3 ? 2600 : bestPriority >= 2 ? 1800 : 900;
     const timer = setTimeout(() => playSound("dp_gain"), delay);
     return () => clearTimeout(timer);
     // 初回マウント時のみ実行する。
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const shareMonster = (monster: UserMonster, record?: DiscoveryRecord) => {
-    const family = getFamilyById(monster.familyId);
-    const rare = monster.rareId ? getRareById(monster.rareId) : undefined;
-    const speciesLabel = rare ? `${family.name}のレア` : family.name;
-    const rarity = characterRarityLabel[monster.characterRarity ?? getCharacterRarityForMonster(monster)];
-    const proofLabel = record?.strongestProof ? "【最強の証】" : "";
-    // 共有カードに生コード値・sourceHash・商品名・時刻・位置は含めない（§28）。
-    const lines = [`${APP_INFO.name}で「${monster.displayName}${proofLabel}」を発見！`, `${speciesLabel} / ${rarity}`];
-    if (record) {
-      const badge = record.primaryNumberBadge ? `・${record.primaryNumberBadge.label}` : "";
-      lines.push(`${formatDiscoveryNo(record.characterDiscoveryNo)}・発見難度${record.difficultyRank}${badge}`);
-    }
-    lines.push(`図鑑 ${summary.discoveredFamilies}/${summary.totalFamilies}`);
-    lines.push(`${APP_INFO.tagline} ${APP_INFO.hashtag}`);
+  const shareMonster = (monster: UserMonster, record?: DiscoveryRecord, headline?: string) => {
+    // 共有文面は shareText.core が生成する。
+    // 生コード値・sourceHash・商品名・秒単位の時刻・位置は含めない（§28）。
+    const catalogEntry = getCatalogCharacterById(monster.characterId ?? monster.imageKey);
+    const message = buildDiscoveryShareText(
+      {
+        name: monster.displayName,
+        speciesJa: monster.speciesJa,
+        dexClass: (catalogEntry?.dexClass ?? "NORMAL") as DexClass,
+        officialNo: record ? String(record.characterDiscoveryNo) : undefined,
+        worldLabel: monster.worldGroup ? WORLD_GROUP_LABELS[monster.worldGroup] : undefined,
+        isFirstDiscovery: (monster.discoveryCount ?? 1) <= 1
+      },
+      shareProgressOf(summary.discoveredFamilies, summary.totalFamilies)
+    );
 
-    void Share.share({ message: lines.join("\n") });
+    void Share.share({ message: headline ? `${headline}
+${message}` : message });
   };
 
   const navActions = (
@@ -264,6 +281,23 @@ export const SummonResultScreen = () => {
     const resultRarity =
       certificate?.rarity ?? (rarity === "rare" ? "rare" : rarity === "legendary" ? "legendary" : "normal");
     const dTitle = discoveryTitle(resultRarity, certificate?.prefectureName);
+    // 図鑑分類による提示（枠・バッジ・共有強調）。画像へ演出を焼き込まず、UI側で特別感を作る。
+    const catEntry =
+      getCatalogCharacterById(monster.characterId ?? monster.imageKey) ??
+      getCatalogRareById(monster.characterId ?? monster.imageKey);
+    const dexClass = (catEntry?.dexClass ?? "NORMAL") as DexClass;
+    const dexPresentation = getDexPresentation(dexClass);
+    const isFirstDiscovery = ref.kind === "first";
+    const revealTag = revealTagFor(dexClass, isFirstDiscovery);
+    // シェアカード：NORMAL は「単体発見カード」、RARE 以上は「レア発見カード」になる。
+    const shareCardModel = buildDiscoveryCard({
+      subject: { id: catEntry?.id ?? monster.characterId ?? monster.imageKey, name: monster.displayName, dexClass },
+      speciesLabel: monster.speciesJa ?? undefined,
+      officialNo: certificate ? String(certificate.characterDiscoveryNo) : undefined,
+      discoveredAt: certificate?.discoveredAt ?? monster.obtainedAt,
+      conditionLabel: certificate?.prefectureName ?? (hasWorld ? worldLabel : undefined),
+      rarityLabel: dexPresentation.badgeLabel
+    });
 
     return (
       <SafeAreaView style={styles.safeArea}>
@@ -281,7 +315,18 @@ export const SummonResultScreen = () => {
                 {badge.label}（{scanSourceLabel(ref.scanSource)}）
               </Text>
             </View>
-            <View style={[styles.heroImage, { backgroundColor: primary.softColor }]}>
+            {/* 英字ラベルは初発見のときだけ出す（再発見で毎回出ると特別感が薄れる）。 */}
+            {revealTag ? (
+              <Text style={[styles.dexRevealTag, { color: dexPresentation.frameColor }]}>{revealTag}</Text>
+            ) : null}
+            {/* 分類別の見出し。初発見の NORMAL だけ専用文言になる。 */}
+            <Text style={styles.dexRevealHeadline}>{revealHeadlineFor(dexClass, isFirstDiscovery)}</Text>
+            <View
+              style={[
+                styles.heroImage,
+                { backgroundColor: dexPresentation.backgroundColor, borderColor: dexPresentation.frameColor }
+              ]}
+            >
               <MonsterAvatar monster={monster} size={210} showRarity />
             </View>
             <Text style={styles.title}>{monster.displayName}</Text>
@@ -340,15 +385,24 @@ export const SummonResultScreen = () => {
             <Text style={styles.memoText}>{bioMemo}</Text>
           </View>
 
-          <View style={styles.shareSection}>
+          <View
+            style={[
+              styles.shareSection,
+              dexPresentation.emphasizeShare && { borderColor: dexPresentation.frameColor, borderWidth: 2 }
+            ]}
+          >
             <Text style={styles.sectionTitle}>共有プレビュー</Text>
-            <ShareCard
-              monster={monster}
-              discoveredFamilies={summary.discoveredFamilies}
-              totalFamilies={summary.totalFamilies}
-              discoveredIndividuals={summary.discoveredIndividuals}
+            {dexPresentation.emphasizeShare ? (
+              <Text style={styles.shareNudge}>
+                めったに出会えない{dexPresentation.badgeLabel}です。この発見を見せびらかしましょう。
+              </Text>
+            ) : null}
+            <ShareCardView model={shareCardModel} compact />
+            <PrimaryButton
+              label={dexPresentation.emphasizeShare ? "この発見を見せる" : "この発見を共有する"}
+              icon={Sparkles}
+              onPress={() => shareMonster(monster, certificate, shareHeadlineFor(shareCardModel))}
             />
-            <PrimaryButton label="この発見を共有する" icon={Sparkles} onPress={() => shareMonster(monster, certificate)} />
           </View>
 
           <View style={styles.actions}>
@@ -403,7 +457,7 @@ export const SummonResultScreen = () => {
         <View style={styles.hero}>
           <Text style={styles.title}>{refs.length}個のコードを読み取りました</Text>
           <Text style={styles.subtitle}>
-            {newCount > 0 ? `新しいキャラが ${newCount} 体見つかりました。` : "再発見または発見済みの結果です。"}
+            {newCount > 0 ? `新しい生きものが ${newCount} 種見つかりました。` : "再発見または発見済みの結果です。"}
           </Text>
         </View>
 
@@ -494,7 +548,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 16,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    // 枠色は図鑑分類で上書きする（レア演出は画像ではなくUI側で作る）。
+    borderWidth: 2,
+    borderColor: "transparent"
   },
   resultBadge: {
     flexDirection: "row",
@@ -617,6 +674,26 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 22,
     fontWeight: "700"
+  },
+  dexRevealTag: {
+    fontSize: 11,
+    fontWeight: "900",
+    letterSpacing: 2,
+    textAlign: "center",
+    marginTop: 6
+  },
+  dexRevealHeadline: {
+    fontSize: 15,
+    fontWeight: "900",
+    color: colors.navy,
+    textAlign: "center",
+    marginTop: 2
+  },
+  shareNudge: {
+    fontSize: 12,
+    fontWeight: "800",
+    color: colors.textSlate,
+    lineHeight: 18
   },
   shareSection: {
     gap: 12

@@ -13,7 +13,7 @@ export const LegendaryRevealOverlay = ({ visible, onClose }: { visible: boolean;
         <Text style={styles.spark}>✨</Text>
         <Text style={styles.title}>新たな気配を確認しました</Text>
         <Text style={styles.body}>
-          このワールドの通常キャラをすべて発見しました。{"\n"}
+          このワールドの生きものをすべて発見しました。{"\n"}
           その瞬間、これまで感じなかった気配が現れています。{"\n\n"}
           まだ出会っていない特別な存在がいるようです。
         </Text>

@@ -134,7 +134,7 @@ describe("Phase 1A: 正式データへ影響しない", () => {
 });
 
 describe("Phase 1A: プロンプト資料", () => {
-  const masterPromptPath = path.join(root, "docs", "PHASE1_REAL_CREATURE_ART_PROMPT.md");
+  const masterPromptPath = path.join(root, "docs", "legacy-character-prompts", "PHASE1_REAL_CREATURE_ART_PROMPT.md");
 
   /** 改行コードを正規化して読む（Git の autocrlf で CRLF になるため、改行差でテストを壊さない）。 */
   const readText = (p: string) => fs.readFileSync(p, "utf8").replace(/\r\n/g, "\n");

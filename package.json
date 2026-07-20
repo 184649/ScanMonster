@@ -19,6 +19,7 @@
     "validate:release-assets": "node scripts/validateReleaseAssets.js",
     "validate:workbook": "python scripts/validateWorkbookStyles.py",
     "validate:phase1-pilot": "node scripts/validatePhase1PilotAssets.js",
+    "validate:encyclopedia": "node scripts/validateEncyclopediaAssets.js",
     "gen:sounds": "node scripts/generateSoundManifest.js"
   },
   "dependencies": {

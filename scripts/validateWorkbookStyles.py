@@ -51,8 +51,12 @@ def main():
     errors = []
     wb = openpyxl.load_workbook(XLSX)
 
-    if wb.sheetnames != OFFICIAL_SHEETS:
-        errors.append(f"シート構成/順序が不正: {wb.sheetnames}（期待 {OFFICIAL_SHEETS}）")
+    # 正式8シートは先頭に順序どおり必須。制作用シート（reference_catalog / generation_queue /
+    # real_master_prompt など）の追記は許容する。export:master はホワイトリスト方式なので取り込まれない。
+    if wb.sheetnames[: len(OFFICIAL_SHEETS)] != OFFICIAL_SHEETS:
+        errors.append(
+            f"正式8シートが先頭に順序どおり存在しない: {wb.sheetnames[: len(OFFICIAL_SHEETS)]}（期待 {OFFICIAL_SHEETS}）"
+        )
 
     ids = []
     for w in WORLD_SHEETS:

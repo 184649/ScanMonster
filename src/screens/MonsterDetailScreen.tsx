@@ -4,6 +4,9 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { MonsterAvatar } from "../components/MonsterAvatar";
 import { CharacterRecordSection } from "../components/discovery/CharacterRecordSection";
+import { SpeciesProfileSection } from "../components/dex/SpeciesProfileSection";
+import { getDexPresentation } from "../services/dexPresentation.core";
+import type { DexClass } from "../data/characterCatalog.generated";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { getCatalogCharacterById, getCatalogDescriptionById, getCatalogRareById } from "../data/catalogLookup";
 import { getCharacterMemoForSpecies } from "../data/characterMemos";
@@ -39,15 +42,25 @@ export const MonsterDetailScreen = () => {
       const cWorld = cat.worldGroup ? WORLD_GROUP_LABELS[cat.worldGroup as WorldGroup] : "";
       const cRealm = cat.realmGroup ? REALM_GROUP_LABELS[cat.realmGroup as RealmGroup] : "";
       const isRare = Boolean(catRare);
+      const previewPresentation = getDexPresentation((cat.dexClass ?? "NORMAL") as DexClass);
       return (
         <SafeAreaView style={styles.safeArea} edges={["left", "right", "bottom"]}>
           <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-            <View style={styles.heroCard}>
+            <View
+              style={[
+                styles.heroCard,
+                {
+                  backgroundColor: previewPresentation.headerBackgroundColor,
+                  borderColor: previewPresentation.frameColor,
+                  borderWidth: previewPresentation.frameWidth
+                }
+              ]}
+            >
               <View style={styles.noPill}>
                 <Text style={styles.noPillText}>{`${cWorld || "図鑑"} No.${String(cat.no).padStart(3, "0")}`}</Text>
               </View>
               <MonsterAvatar imageKey={cat.id} size={220} showRarity={false} showElementFrame={false} />
-              <Text style={styles.title}>{cat.name}</Text>
+              <Text style={[styles.title, { color: previewPresentation.headerTextColor }]}>{cat.name}</Text>
               <Text style={styles.subtitle}>
                 {isRare ? `${cWorld}のレア` : cWorld} / {cat.speciesJa || cat.speciesEn}
               </Text>
@@ -59,13 +72,17 @@ export const MonsterDetailScreen = () => {
             </View>
 
             <View style={styles.panel}>
-              <Text style={styles.sectionTitle}>キャラメモ</Text>
+              <Text style={styles.sectionTitle}>メモ</Text>
               <Text style={styles.body}>{cat.description || "（説明は準備中です）"}</Text>
             </View>
 
+            <SpeciesProfileSection id={cat.id} dexClass={(cat.dexClass ?? "NORMAL") as DexClass} />
+
             <View style={styles.panel}>
               <Text style={styles.sectionTitle}>ステータス</Text>
-              <Text style={styles.body}>まだ発見していないキャラです（図鑑プレビュー）。スキャンで見つけると発見記録が付きます。</Text>
+              <Text style={styles.body}>
+                まだ発見していない生きものです（図鑑プレビュー）。スキャンで見つけると発見記録が付きます。
+              </Text>
             </View>
 
             <View style={styles.actions}>
@@ -78,7 +95,7 @@ export const MonsterDetailScreen = () => {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.centerContent}>
-          <Text style={styles.title}>キャラが見つかりません</Text>
+          <Text style={styles.title}>生きものが見つかりません</Text>
           <PrimaryButton label="戻る" onPress={() => goBackOrHome(navigation)} />
         </View>
       </SafeAreaView>
@@ -119,9 +136,14 @@ export const MonsterDetailScreen = () => {
   const profile = getRealWorldProfileForSpecies(monster.speciesEn);
 
   // 代表発見証明の直後に差し込む「キャラメモ＋実在モチーフ参考値」。
+  // 図鑑分類（表示専用）。抽選・解放条件には影響しない。
+  const dexClass = (catalogChar?.dexClass ?? getCatalogRareById(monster.characterId ?? "")?.dexClass ?? "NORMAL") as DexClass;
+  const dexProfileId = catalogChar?.id ?? monster.characterId ?? monster.imageKey;
+  const presentation = getDexPresentation(dexClass);
+
   const memoPanel = (
     <View style={styles.panel}>
-      <Text style={styles.sectionTitle}>キャラメモ</Text>
+      <Text style={styles.sectionTitle}>メモ</Text>
       <Text style={styles.body}>{memoText}</Text>
       {profile ? (
         <View style={styles.profileBox}>
@@ -145,15 +167,37 @@ export const MonsterDetailScreen = () => {
     </View>
   );
 
+  // キャラメモの直後に図鑑情報（科学情報・出典）を差し込む。
+  const belowRepresentative = (
+    <>
+      {memoPanel}
+      <SpeciesProfileSection id={dexProfileId} dexClass={dexClass} />
+    </>
+  );
+
   return (
     <SafeAreaView style={styles.safeArea} edges={["left", "right", "bottom"]}>
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        <View style={styles.heroCard}>
+        <View
+          style={[
+            styles.heroCard,
+            {
+              backgroundColor: presentation.headerBackgroundColor,
+              borderColor: presentation.frameColor,
+              borderWidth: presentation.frameWidth
+            }
+          ]}
+        >
           <View style={styles.noPill}>
             <Text style={styles.noPillText}>{dexNoLabel}</Text>
           </View>
           <MonsterAvatar monster={monster} size={220} showRarity={false} showElementFrame={false} />
-          <Text style={styles.title}>{monster.nickname ?? monster.displayName}</Text>
+          {presentation.rarityTag ? (
+            <Text style={[styles.dexTag, { color: presentation.headerTextColor }]}>{presentation.rarityTag}</Text>
+          ) : null}
+          <Text style={[styles.title, { color: presentation.headerTextColor }]}>
+            {monster.nickname ?? monster.displayName}
+          </Text>
           <Text style={styles.subtitle}>
             {hasWorld
               ? `${characterRarity === "rare" ? `${worldLabel}のレア` : worldLabel} / ${speciesJa}`
@@ -172,7 +216,7 @@ export const MonsterDetailScreen = () => {
           fallbackFirstDiscoveredAt={firstDiscoveredAt}
           fallbackLastDiscoveredAt={lastDiscoveredAt}
           fallbackDiscoveryCount={discoveryCount}
-          belowRepresentative={memoPanel}
+          belowRepresentative={belowRepresentative}
         />
 
         <View style={styles.panel}>
@@ -216,6 +260,7 @@ const styles = StyleSheet.create({
     padding: 24,
     gap: 14
   },
+  dexTag: { fontSize: 11, fontWeight: "900", letterSpacing: 2 },
   heroCard: {
     alignItems: "center",
     gap: 10,
