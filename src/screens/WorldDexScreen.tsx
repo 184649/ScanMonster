@@ -14,7 +14,9 @@ import { useNavigation } from "@react-navigation/native";
 
 import { LockKeyhole } from "../components/icons";
 import { MonsterAvatar } from "../components/MonsterAvatar";
-import type { CatalogCharacter, CatalogRare } from "../data/characterCatalog.generated";
+import { DexProgressBar } from "../components/dex/DexProgressBar";
+import type { CatalogCharacter, CatalogRare, DexClass } from "../data/characterCatalog.generated";
+import { getDexPresentation, dexProgressOf } from "../services/dexPresentation.core";
 import { effectiveUnlockedWorldGroups } from "../services/worldAccess";
 import { getWorldDexView, getWorldTabs, monstersByCatalogId, type WorldDexEntry } from "../services/worldDex";
 import { useMonsterStore } from "../stores/monsterStore";
@@ -62,6 +64,9 @@ export const WorldDexScreen = () => {
       const canPress = owned && entry.hasImage;
       const title = !entry.hasImage ? "準備中" : owned ? entry.name : "???";
       const subtitle = !entry.hasImage ? "" : owned ? entry.speciesJa : "";
+      // 一覧の統一カード：枠色・背景は図鑑分類で決める（画像側にレア演出を焼き込まない）。
+      // 未発見のあいだは分類を漏らさないため、既定（NORMAL）の見た目にする。
+      const presentation = getDexPresentation((owned ? entry.dexClass : "NORMAL") as DexClass);
 
       return (
         <Pressable
@@ -69,16 +74,29 @@ export const WorldDexScreen = () => {
           onPress={() => ownedMonster && navigation.navigate("MonsterDetail", { monsterId: ownedMonster.id })}
           style={({ pressed }) => [
             styles.card,
-            isRareEntry(entry) && styles.rareCard,
             { width: CARD_WIDTH },
+            owned && { borderColor: presentation.frameColor, backgroundColor: presentation.backgroundColor },
             !owned && styles.cardLocked,
             !entry.hasImage && styles.cardPreparing,
             pressed && canPress && styles.pressed
           ]}
         >
-          <Text numberOfLines={1} style={styles.cardNo}>
-            {String(entry.no).padStart(3, "0")}
-          </Text>
+          <View style={styles.cardTopRow}>
+            <Text numberOfLines={1} style={styles.cardNo}>
+              {String(entry.no).padStart(3, "0")}
+            </Text>
+            {owned && entry.dexClass !== "NORMAL" ? (
+              <Text
+                numberOfLines={1}
+                style={[
+                  styles.cardBadge,
+                  { color: presentation.badgeTextColor, backgroundColor: presentation.badgeBackgroundColor }
+                ]}
+              >
+                {presentation.badgeLabel}
+              </Text>
+            ) : null}
+          </View>
 
           {entry.hasImage && owned ? (
             <View style={styles.avatarWrap}>
@@ -88,7 +106,7 @@ export const WorldDexScreen = () => {
                 thumb
                 showRarity={false}
                 showElementFrame={false}
-                backgroundColor={isRareEntry(entry) ? "#FEF3C7" : colors.borderFaint}
+                backgroundColor={colors.borderFaint}
               />
             </View>
           ) : entry.hasImage ? (
@@ -120,10 +138,8 @@ export const WorldDexScreen = () => {
     <View style={styles.fixedHeader}>
       <View style={styles.header}>
         <Text style={styles.title}>ワールド図鑑</Text>
-        <Text style={styles.progress}>
-          <Text style={styles.progressStrong}>{view.progress.discovered}</Text> / {view.progress.total} 発見
-          <Text style={styles.progressSub}>  画像準備済み {view.progress.imageReady}</Text>
-        </Text>
+        {/* 完成率を可視化して「あと何種か」を常に見せる。母数は画像準備済みの種。 */}
+        <DexProgressBar progress={dexProgressOf(view.progress.discovered, view.progress.imageReady)} />
       </View>
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.tabRow}>
@@ -250,7 +266,17 @@ const styles = StyleSheet.create({
   cardLocked: { backgroundColor: colors.surfaceMuted, borderColor: colors.border },
   cardPreparing: { backgroundColor: colors.surfaceMuted, borderStyle: "dashed" },
   pressed: { opacity: 0.82, transform: [{ scale: 0.99 }] },
-  cardNo: { color: colors.textFaint, fontSize: 11, fontWeight: "900", alignSelf: "flex-start" },
+  cardTopRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 4 },
+  cardNo: { color: colors.textFaint, fontSize: 11, fontWeight: "900" },
+  cardBadge: {
+    fontSize: 9,
+    fontWeight: "900",
+    paddingHorizontal: 5,
+    paddingVertical: 1,
+    borderRadius: 999,
+    overflow: "hidden",
+    flexShrink: 1
+  },
   avatarWrap: { alignItems: "center", justifyContent: "center" },
   mysteryRoot: {
     position: "relative",
