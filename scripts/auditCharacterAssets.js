@@ -11,6 +11,7 @@
  *   引数なしのときは既定の5件（Sheep/Gorilla/Elephant/Gecko/Mole）を監査する。
  */
 const fs = require("fs");
+const os = require("os");
 const path = require("path");
 const crypto = require("crypto");
 
@@ -40,6 +41,27 @@ const loadOfficialPaths = () => {
 };
 
 const sha256 = (buf) => crypto.createHash("sha256").update(buf).digest("hex");
+
+/**
+ * 既存ファイルの改行コードを保ったまま書き出す。
+ *
+ * この環境は core.autocrlf=true のため、チェックアウトされた監査文書は CRLF になる。
+ * LF 固定で上書きすると内容が同一でも git status が dirty になり、
+ * 監査を再実行するたびに作業ツリーが汚れてしまう。
+ *
+ * そこで既存ファイルがあればその改行に合わせ、無ければ os.EOL に合わせる。
+ * **内容（並び順・インデント・数値）は一切変えない。改行コードだけを揃える。**
+ */
+const writePreservingEol = (filePath, contentLf) => {
+  let eol = os.EOL;
+  if (fs.existsSync(filePath)) {
+    const existing = fs.readFileSync(filePath, "utf8");
+    eol = existing.includes("\r\n") ? "\r\n" : "\n";
+  }
+  // contentLf は LF で組み立てられている前提。まず正規化してから目的の改行へ変換する。
+  const normalized = contentLf.replace(/\r\n/g, "\n");
+  fs.writeFileSync(filePath, eol === "\n" ? normalized : normalized.replace(/\n/g, "\r\n"), "utf8");
+};
 
 const auditOne = (target, officialPaths) => {
   const rel = officialPaths.get(target.id);
@@ -77,6 +99,11 @@ const auditOne = (target, officialPaths) => {
   };
 };
 
+module.exports = { writePreservingEol, auditOne, loadOfficialPaths, DEFAULT_TARGETS };
+
+// ここから下は CLI 実行時だけ動かす（require されたときは監査を走らせない）。
+if (require.main !== module) return;
+
 const targets = process.argv.slice(2).length > 0
   ? process.argv.slice(2).map((id) => ({ id, name: id, motif: "" }))
   : DEFAULT_TARGETS;
@@ -103,7 +130,7 @@ const report = {
 };
 
 const jsonPath = path.join(outDir, "current-character-assets-audit.json");
-fs.writeFileSync(jsonPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
+writePreservingEol(jsonPath, `${JSON.stringify(report, null, 2)}\n`);
 
 // ---- 人間が読む概要（Markdown）----
 const n = (v) => (typeof v === "number" ? v.toLocaleString("en-US") : "—");
@@ -177,7 +204,7 @@ md.push("");
 md.push("しきい値は `scripts/pngInspect.js` の `PNG_ANALYSIS_THRESHOLDS` に名称付き定数として定義しています。");
 md.push("");
 const mdPath = path.join(outDir, "current-character-assets-audit.md");
-fs.writeFileSync(mdPath, `${md.join("\n")}\n`, "utf8");
+writePreservingEol(mdPath, `${md.join("\n")}\n`);
 
 console.log(`[audit] ${results.length} 件を監査しました → ${path.relative(root, jsonPath).replace(/\\/g, "/")}`);
 for (const r of results) {
