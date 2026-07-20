@@ -1,7 +1,9 @@
 import { Modal, Pressable, ScrollView, Share, StyleSheet, Text, View } from "react-native";
 
 import { MonsterAvatar } from "../MonsterAvatar";
+import { ShareCardView } from "./ShareCardView";
 import { PrimaryButton } from "../PrimaryButton";
+import type { ShareCardModel } from "../../services/shareCard.core";
 import { Sparkles } from "../icons";
 import type { CompletionCelebration } from "../../services/dexPresentation.core";
 import { colors, radius, spacing } from "../../theme";
@@ -13,6 +15,8 @@ type Props = {
   representativeIds?: string[];
   /** 共有する本文。undefined なら共有ボタンを出さない。 */
   shareMessage?: string;
+  /** 記念シェアカード。渡すとギャラリーの代わりにカードを表示する。 */
+  shareCard?: ShareCardModel;
   onClose: () => void;
 };
 
@@ -28,6 +32,7 @@ export const CompletionCelebrationCard = ({
   celebration,
   representativeIds = [],
   shareMessage,
+  shareCard,
   onClose
 }: Props) => {
   if (!celebration) return null;
@@ -42,7 +47,11 @@ export const CompletionCelebrationCard = ({
           <Text style={styles.title}>{celebration.title}</Text>
           <Text style={styles.subtitle}>{celebration.subtitle}</Text>
 
-          {gallery.length > 0 ? (
+          {shareCard ? (
+            <View style={styles.cardWrap}>
+              <ShareCardView model={shareCard} compact />
+            </View>
+          ) : gallery.length > 0 ? (
             <ScrollView
               horizontal={gallery.length > 4}
               showsHorizontalScrollIndicator={false}
@@ -99,6 +108,7 @@ const styles = StyleSheet.create({
   },
   title: { fontSize: 20, fontWeight: "900", color: colors.navy, textAlign: "center" },
   subtitle: { fontSize: 13, color: colors.textSlate, textAlign: "center", lineHeight: 20 },
+  cardWrap: { width: "100%", marginTop: spacing.sm },
   gallery: { gap: spacing.sm, paddingVertical: spacing.sm, alignItems: "center" },
   galleryItem: {
     backgroundColor: colors.borderFaint,

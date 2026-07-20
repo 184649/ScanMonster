@@ -1,7 +1,9 @@
 import { Share, StyleSheet, Text, View } from "react-native";
 
 import { PrimaryButton } from "../PrimaryButton";
+import { ShareCardView } from "./ShareCardView";
 import { Sparkles } from "../icons";
+import type { ShareCardModel } from "../../services/shareCard.core";
 import { colors, radius, spacing } from "../../theme";
 
 type Props = {
@@ -12,6 +14,8 @@ type Props = {
   actionLabel: string;
   /** レア以上を含むときに強調表示する。 */
   emphasized?: boolean;
+  /** 添えるシェアカード。省略時は本文プレビューだけ出す。 */
+  card?: ShareCardModel;
 };
 
 /**
@@ -20,15 +24,19 @@ type Props = {
  * 共有するものが無いときは何も表示しない（空のカードを出して押させない）。
  * 本文は shareText.core が生成し、機微情報を含まない。
  */
-export const ShareNudgeCard = ({ title, message, actionLabel, emphasized = false }: Props) => {
+export const ShareNudgeCard = ({ title, message, actionLabel, emphasized = false, card }: Props) => {
   if (!message) return null;
 
   return (
     <View style={[styles.card, emphasized && styles.cardEmphasized]}>
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.preview} numberOfLines={4}>
-        {message}
-      </Text>
+      {card ? (
+        <ShareCardView model={card} compact />
+      ) : (
+        <Text style={styles.preview} numberOfLines={4}>
+          {message}
+        </Text>
+      )}
       <PrimaryButton
         label={actionLabel}
         icon={Sparkles}

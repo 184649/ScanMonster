@@ -21,7 +21,8 @@ import { getRareById } from "../data/rareMonsters";
 import { LegendaryRevealOverlay } from "../components/LegendaryRevealOverlay";
 import { MonsterAvatar } from "../components/MonsterAvatar";
 import { PrimaryButton } from "../components/PrimaryButton";
-import { ShareCard } from "../components/ShareCard";
+import { ShareCardView } from "../components/dex/ShareCardView";
+import { buildDiscoveryCard, shareHeadlineFor } from "../services/shareCard.core";
 import { TagChip } from "../components/TagChip";
 import { getRevealedWorlds, markWorldRevealed } from "../services/legendaryReveal";
 import { shouldRevealLegendary } from "../services/legendaryVisibility.core";
@@ -176,7 +177,7 @@ export const SummonResultScreen = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const shareMonster = (monster: UserMonster, record?: DiscoveryRecord) => {
+  const shareMonster = (monster: UserMonster, record?: DiscoveryRecord, headline?: string) => {
     // 共有文面は shareText.core が生成する。
     // 生コード値・sourceHash・商品名・秒単位の時刻・位置は含めない（§28）。
     const catalogEntry = getCatalogCharacterById(monster.characterId ?? monster.imageKey);
@@ -192,7 +193,8 @@ export const SummonResultScreen = () => {
       shareProgressOf(summary.discoveredFamilies, summary.totalFamilies)
     );
 
-    void Share.share({ message });
+    void Share.share({ message: headline ? `${headline}
+${message}` : message });
   };
 
   const navActions = (
@@ -287,6 +289,15 @@ export const SummonResultScreen = () => {
     const dexPresentation = getDexPresentation(dexClass);
     const isFirstDiscovery = ref.kind === "first";
     const revealTag = revealTagFor(dexClass, isFirstDiscovery);
+    // シェアカード：NORMAL は「単体発見カード」、RARE 以上は「レア発見カード」になる。
+    const shareCardModel = buildDiscoveryCard({
+      subject: { id: catEntry?.id ?? monster.characterId ?? monster.imageKey, name: monster.displayName, dexClass },
+      speciesLabel: monster.speciesJa ?? undefined,
+      officialNo: certificate ? String(certificate.characterDiscoveryNo) : undefined,
+      discoveredAt: certificate?.discoveredAt ?? monster.obtainedAt,
+      conditionLabel: certificate?.prefectureName ?? (hasWorld ? worldLabel : undefined),
+      rarityLabel: dexPresentation.badgeLabel
+    });
 
     return (
       <SafeAreaView style={styles.safeArea}>
@@ -386,16 +397,11 @@ export const SummonResultScreen = () => {
                 めったに出会えない{dexPresentation.badgeLabel}です。この発見を見せびらかしましょう。
               </Text>
             ) : null}
-            <ShareCard
-              monster={monster}
-              discoveredFamilies={summary.discoveredFamilies}
-              totalFamilies={summary.totalFamilies}
-              discoveredIndividuals={summary.discoveredIndividuals}
-            />
+            <ShareCardView model={shareCardModel} compact />
             <PrimaryButton
               label={dexPresentation.emphasizeShare ? "この発見を見せる" : "この発見を共有する"}
               icon={Sparkles}
-              onPress={() => shareMonster(monster, certificate)}
+              onPress={() => shareMonster(monster, certificate, shareHeadlineFor(shareCardModel))}
             />
           </View>
 

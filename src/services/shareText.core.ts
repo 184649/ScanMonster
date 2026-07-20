@@ -116,6 +116,24 @@ export const buildWeeklyShareText = (
   return lines.join("\n");
 };
 
+
+/**
+ * 図鑑進捗カードの投稿文。定期投稿の導線に使う。
+ * 発見0種なら undefined（進捗0を投稿させない）。
+ */
+export const buildDexProgressShareText = (
+  progress: DexProgress,
+  recentNames: string[] = []
+): string | undefined => {
+  if (progress.discovered <= 0) return undefined;
+  const lines: string[] = ["図鑑の進捗を記録しました。"];
+  lines.push(`${progress.discovered}/${progress.total} 種（${progress.percent}%）`);
+  if (recentNames.length > 0) lines.push(`直近の発見：${recentNames.slice(0, 3).join("、")}`);
+  if (progress.remaining > 0 && progress.remaining <= 3) lines.push(`あと${progress.remaining}種で完成`);
+  lines.push(SHARE_HASHTAG);
+  return lines.join("\n");
+};
+
 /**
  * 共有文面に機微情報が含まれていないかの検査。
  * 呼び出し側の実装ミスを検出するための最終防衛線。テストでも使う。

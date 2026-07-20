@@ -24,6 +24,7 @@ import {
 } from "../services/dexPresentation.core";
 import { CompletionCelebrationCard } from "../components/dex/CompletionCelebrationCard";
 import { buildWorldCompleteShareText } from "../services/shareText.core";
+import { buildWorldCompleteCard, shareHeadlineFor } from "../services/shareCard.core";
 import { playSound } from "../services/soundService";
 import { effectiveUnlockedWorldGroups } from "../services/worldAccess";
 import { getWorldDexView, getWorldTabs, monstersByCatalogId, type WorldDexEntry } from "../services/worldDex";
@@ -87,6 +88,22 @@ export const WorldDexScreen = () => {
     () => view.normals.filter((n) => n.owned && n.entry.hasImage).map((n) => n.entry.id),
     [view.normals]
   );
+  // ワールド完成カード：代表4体を並べた記念カードを自動生成する。
+  const worldCompleteCard = progress.isComplete
+    ? buildWorldCompleteCard({
+        worldLabel,
+        representatives: view.normals
+          .filter((n) => n.owned && n.entry.hasImage)
+          .slice(0, 4)
+          .map((n) => ({
+            id: n.entry.id,
+            name: n.entry.name,
+            dexClass: (n.entry.dexClass ?? "NORMAL") as DexClass
+          })),
+        totalDiscovered: progress.total,
+        completedAt: new Date().toISOString()
+      })
+    : undefined;
 
   const renderDexCard = useCallback(
     ({ entry, owned }: WorldDexEntry<DexCardEntry>) => {
@@ -231,7 +248,13 @@ export const WorldDexScreen = () => {
         visible={celebrating}
         celebration={celebration}
         representativeIds={representativeIds}
-        shareMessage={celebration ? buildWorldCompleteShareText(worldLabel, progress.total) : undefined}
+        shareCard={worldCompleteCard}
+        shareMessage={
+          worldCompleteCard
+            ? `${shareHeadlineFor(worldCompleteCard)}
+${buildWorldCompleteShareText(worldLabel, progress.total)}`
+            : undefined
+        }
         onClose={() => setCelebrating(false)}
       />
       {fixedHeader}
